@@ -1,0 +1,26 @@
+/* src/index.css */
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark; /* Keeps browser UI dark mode */
+  background-color: #111; /* Match your dashboard bg */
+  color: rgba(255, 255, 255, 0.87);
+}
+
+body {
+  margin: 0;
+  padding: 0; /* Remove default browser padding */
+  display: flex;
+  place-items: flex-start; /* Align top-left, not center */
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%; /* Force the React root to fill the screen */
+  margin: 0;
+  padding: 0;
+  text-align: left; /* specific override for Vite default */
+}

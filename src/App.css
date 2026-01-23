@@ -1,0 +1,62 @@
+:root {
+  /* --- BASE VOID --- */
+  /* Deeper, colder black for better contrast */
+  --cp-bg-dark: #030305;
+  
+  /* --- INTENSIFIED NEBULA GRADIENT --- */
+  --cp-bg-gradient: 
+    /* 1. MAIN LIGHT (Top Left): Strong, pale blue-white mist. 
+       Increased opacity to 0.18 for visibility. */
+    radial-gradient(circle at 0% 0%, rgba(180, 200, 230, 0.22) 0%, transparent 60%),
+    
+    /* 2. SECONDARY LIGHT (Bottom Right): Warmer, pale gray smoke.
+       Opacity 0.15 makes it clearly visible against the dark corner. */
+    radial-gradient(circle at 100% 100%, rgba(220, 220, 225, 0.15) 0%, transparent 50%),
+    
+    /* 3. AMBIENT GLOW (Center): Very large, subtle wash to connect them. */
+    radial-gradient(circle at 50% 50%, rgba(150, 160, 180, 0.08) 0%, transparent 80%),
+    
+    /* 4. THE VOID: The base color underneath everything */
+    var(--cp-bg-dark);
+
+    --cp-noise-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+
+  /* --- ACCENTS (Unchanged) --- */
+  --cp-card-bg-start: #2a2a5a;
+  --cp-card-bg-mid: #15152a;
+  --cp-card-bg-end: #0a0a15;
+  --cp-accent-yellow: #fce96a;
+  --cp-accent-purple: #bf5ec2;
+  
+  --cp-font-main: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  place-items: flex-start;
+  min-width: 320px;
+  min-height: 100vh;
+  /* Keep body bg separate to avoid conflicts */
+  background: var(--cp-bg-dark); 
+  color: rgba(255, 255, 255, 0.87);
+}
+
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  place-items: flex-start;
+  min-width: 320px;
+  min-height: 100vh;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+#root { width: 100%; margin: 0; padding: 0; }

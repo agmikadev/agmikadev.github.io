@@ -1,0 +1,279 @@
+.side-strip {
+  height: auto; 
+  min-height: 0;
+  width: 280px;
+  
+  /* INCREASED PADDING BOTTOM (was 28px -> now 48px)
+     This adds the manual "safe space" at the bottom so your contents 
+     don't look cramped against the curve. */
+  padding: 28px 20px 48px 20px; 
+  
+  display: flex;
+  flex-direction: column;
+  gap: 15px; 
+  flex-shrink: 0;
+  box-sizing: border-box;
+
+  /* --- TICKET SHAPE & COLORS --- */
+  position: relative;
+  background: var(--cp-accent-yellow);
+  color: #111;
+  
+  border-radius: 64px 0 64px 0;  
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  font-family: var(--cp-font-main);
+}
+
+/* --- THE INNER DECORATIVE LINE --- */
+.side-strip::before {
+  content: "";
+  position: absolute;
+  top: 8px; left: 8px; right: 8px; bottom: 8px;
+  border: 1px solid #111;
+  
+  /* MATH: 64px (Outer) - 8px (Gap) = 56px */
+  border-radius: 56px 0 56px 0;
+  
+  pointer-events: none; 
+  z-index: 0; 
+}
+
+/* --- CONTENT STACKING --- */
+.profile-header, 
+.profile-stats, 
+.profile-bio, 
+.profile-tags, 
+.profile-footer, 
+.divider-line {
+  position: relative;
+  z-index: 1; 
+}
+
+/* --- PROFILE HEADER --- */
+.profile-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar-container {
+  position: relative;
+  /* 3. Resized Avatar: Dropped from 90px to 80px to match thinner width */
+  width: 80px;
+  height: 80px;
+  margin-bottom: 12px;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px; 
+  background: #111;
+  color: var(--cp-accent-yellow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #000;
+  overflow: hidden;
+}
+
+.avatar-placeholder svg {
+  width: 50%;
+  height: 50%;
+  stroke-width: 1.5;
+}
+
+.status-indicator {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 18px; /* Scaled down slightly */
+  height: 18px;
+  background: #00ff00;
+  border: 3px solid var(--cp-accent-yellow);
+  border-radius: 50%;
+}
+
+.profile-name {
+  /* 4. Font Adjustment: Reduced to 1.2rem to prevent wrapping */
+  font-size: 1.2rem; 
+  font-weight: 800;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  line-height: 1.2;
+  white-space: nowrap; /* Forces name to stay on one line if possible */
+}
+
+.verified-badge {
+  color: #111; 
+  font-size: 0.9rem;
+}
+
+.profile-role {
+  font-size: 0.65rem; /* Scaled down */
+  font-weight: 700;
+  margin: 4px 0 0 0;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* --- DIVIDERS --- */
+.divider-line {
+  width: 100%;
+  height: 1px;
+  background: rgba(0,0,0,0.1); 
+  margin: 0; 
+}
+
+/* --- STATS --- */
+.profile-stats {
+  display: flex;
+  justify-content: space-between;
+  /* 5. Padding tweak to ensure numbers don't hit the edges */
+  padding: 0 2px; 
+}
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.stat-value {
+  font-weight: 800;
+  /* 6. Font Adjustment: 1.0rem fits better than 1.1rem here */
+  font-size: 1.0rem; 
+}
+.stat-label {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: 0.6;
+  letter-spacing: 0.5px;
+}
+
+/* --- BIO --- */
+.profile-bio { text-align: left; }
+.profile-bio h3, .profile-tags h3 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  margin-bottom: 6px; 
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+.profile-bio p {
+  font-size: 0.8rem;
+  line-height: 1.4; 
+  margin: 0;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+/* --- TAGS --- */
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px; 
+}
+
+.tag {
+  background: #111;
+  color: var(--cp-accent-yellow);
+  padding: 4px 8px; 
+  border-radius: 6px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border: 1px solid transparent; 
+}
+
+/* --- FOOTER INFO (Moved Up) --- */
+.profile-footer {
+  /* REMOVE 'margin-top: auto' so it doesn't stick to the bottom */
+  /* margin-top: auto;  <-- DELETED */
+  
+  /* ADD 'margin-top: 20px' to give it space from the tags above */
+  margin-top: 25px; 
+  
+  display: flex;
+  flex-direction: column;
+  gap: 12px; 
+  
+  /* We don't need margin-bottom anymore since it's not fighting the corner */
+  margin-bottom: 0;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  
+  /* Keep the divider style, it looks good */
+  border-bottom: 1px dashed rgba(0,0,0,0.15);
+  padding-bottom: 6px; 
+}
+
+/* Remove border from the last item */
+.info-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.info-row .label {
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.info-row .value {
+  font-weight: 800;
+  text-align: right;
+}
+
+/* --- NEW BOTTOM ANCHOR FOOTER --- */
+.sidestrip-site-footer {
+  /* THE ANCHOR: Pushes to bottom */
+  margin-top: auto;
+  
+  /* SPACING: Lifts it up from the 64px curved corner */
+  padding-bottom: 25px; 
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px; /* Tighter gap between the two lines */
+  
+  /* SEPARATOR: Kept it subtle, but made it full width */
+  border-top: 1px solid rgba(0,0,0,0.1); 
+  padding-top: 15px; 
+  width: 100%;
+}
+
+.system-id {
+  /* RESET FONT: Use the same font as the rest of the card */
+  font-family: var(--cp-font-main); 
+  
+  /* STYLE: Match the "TECH STACK" header look, but smaller */
+  font-size: 0.7rem;
+  font-weight: 800; /* Extra Bold */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #111;
+  opacity: 0.9; /* High visibility */
+}
+
+.copyright {
+  /* STYLE: Match the "Label" look (like 'Location' label) */
+  font-family: var(--cp-font-main);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  
+  /* Lower opacity to push it to the background */
+  opacity: 0.5; 
+}
