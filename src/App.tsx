@@ -1,10 +1,10 @@
-import CardFrame from './components/CardFrame';
+import MainFrame from './components/MainFrame';
 import './App.css';
 
 function App() {
   return (
     <div>
-      <CardFrame />
+      <MainFrame />
     </div>
   );
 }

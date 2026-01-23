@@ -1,4 +1,5 @@
 import React from "react";
+import { HudButton } from "./HudButton";
 import "./styles/PlanetaryDashboard.css";
 
 // Import just the type using the "type" keyword for safety
@@ -17,25 +18,33 @@ export const PlanetDashboard: React.FC<DashboardProps> = ({
     <div className="dashboard-overlay">
       <div className="dashboard-container">
         {/* Return Button */}
-        <button
-          className="back-btn"
-          onClick={onClose}
-          aria-label="Return to system view"
+        <div
+          style={{
+            position: "absolute",
+            zIndex: 20,
+          }}
         >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M19 12H5M12 19l-7-7 7-7" />
-          </svg>
-          <span>SYSTEM VIEW</span>
-        </button>
+          <HudButton
+            variant="back"
+            label="SYSTEM VIEW"
+            themeColor={planet.color}
+            onClick={onClose}
+            icon={
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
+            }
+          />
+        </div>
 
         {/* LEFT: Zoomed Planet */}
         <div className="dashboard-left">

@@ -1,14 +1,14 @@
 import { type FC, type ReactNode } from 'react';
-import './styles/PosterLayout.css';
+import './styles/MainFrame.css';
 import './styles/Card.css';
 import { SideStrip } from './SideStrip';
 import { PlanetarySystem } from './PlanetarySystem';
 
-interface CardFrameProps {
+interface MainFrameProps {
   children?: ReactNode;
 }
 
-export const CardFrame: FC<CardFrameProps> = ({ children }) => {
+export const MainFrame: FC<MainFrameProps> = ({ children }) => {
   return (
     <div className="app-container">
       
@@ -55,4 +55,4 @@ export const CardFrame: FC<CardFrameProps> = ({ children }) => {
   );
 };
 
-export default CardFrame;
+export default MainFrame;

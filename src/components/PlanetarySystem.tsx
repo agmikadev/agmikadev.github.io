@@ -21,11 +21,11 @@ export const PlanetarySystem: React.FC = () => {
             className="orbit-group" 
             key={planet.id}
             style={{ 
-              '--radius': `${radius}px`, 
+              '--radius': `${radius}`, 
               '--r-val': radius, 
               '--speed': `${planet.speed}s`,
               '--p-color': planet.color,
-              '--p-size': `${planet.size}px`
+              '--p-size': `${planet.size}`
             } as React.CSSProperties}
           >
             <div className="orbit-ring"></div>
@@ -36,9 +36,8 @@ export const PlanetarySystem: React.FC = () => {
               onClick={() => setSelectedPlanet(planet)}
               aria-label={`View details for ${planet.name}`}
             >
-              <div className="planet">
-                <span className="planet-label">{planet.name}</span>
-              </div>
+              <div className="planet"></div>
+              <span className="planet-label">{planet.name}</span>
             </button>
           </div>
         );

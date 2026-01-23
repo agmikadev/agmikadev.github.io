@@ -1,0 +1,44 @@
+/* --- 1. THE BASE CLASS (.hud-btn) --- */
+/* Contains ONLY shared structure and default styles */
+.hud-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 20px 8px 8px; 
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 30px; 
+  color: #aaa;
+  font-family: monospace;
+  font-size: 0.85rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ... keep existing .hud-icon styles here ... */
+
+/* Shared Hover Effect */
+.hud-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--theme-color); 
+  box-shadow: 0 0 15px var(--theme-color); 
+}
+
+/* --- 2. THE MODIFIER CLASSES --- */
+/* These ONLY contain the specific animation overrides */
+
+/* The "Back" Modifier */
+.hud-btn-back:hover {
+  transform: translateX(-4px);
+}
+
+/* The "Action" or "Default" Modifiers */
+.hud-btn-default:hover,
+.hud-btn-action:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px var(--theme-color); 
+}

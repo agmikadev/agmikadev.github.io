@@ -48,15 +48,3 @@ body {
   margin: 0;
   padding: 0;
 }
-
-body {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  place-items: flex-start;
-  min-width: 320px;
-  min-height: 100vh;
-  color: rgba(255, 255, 255, 0.87);
-}
-
-#root { width: 100%; margin: 0; padding: 0; }

@@ -40,7 +40,7 @@
 
   flex: 1; /* Fills all available vertical space */
   display: flex;
-  gap: 8px;
+  gap: 24px;
   
   /* Centering Logic */
   width: 100%;
@@ -49,29 +49,6 @@
   
   align-items: stretch; 
   min-height: 0; 
-}
-
-/* --- THE FOOTER FIX --- */
-.site-footer {
-  position: relative;
-  z-index: 1;
-  /* 1. Horizontal Alignment */
-  width: 100%;
-  max-width: 1600px; /* Matches the dashboard above exactly */
-  margin: 0 auto;    /* Centers it horizontally relative to the screen */
-  text-align: center;
-  
-  /* 2. Vertical Symmetry */
-  margin-top: 24px; 
-  
-  /* 3. Text Styling */
-  font-size: 0.75rem;
-  opacity: 0.4;
-  color: #fff;
-  letter-spacing: 1px;
-  
-  /* Optional: Prevents text from being selected for a UI feel */
-  user-select: none;
 }
 
 /* Mobile Responsive */
