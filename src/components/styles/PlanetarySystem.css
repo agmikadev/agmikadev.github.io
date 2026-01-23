@@ -22,6 +22,9 @@
   border-radius: 50%;
   box-shadow: 0 0 28px #ffdf00, 0 0 45px #ffdf0040;
   z-index: 10;
+
+  /* Pulse Animation */
+  animation: star-pulse 4s ease-in-out infinite;
 }
 
 /* --- 2. THE GROUP CONTAINER --- */
@@ -53,9 +56,17 @@
   top: 50%; left: 50%;
   text-decoration: none;
   cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  outline: none;
+  -webkit-tap-highlight-color: transparent; /* Removes blue flash on mobile */
   
   /* Start the animation */
   animation: orbit var(--speed) linear infinite;
+
+  /* Perspective Refinement */
+  z-index: calc(sin(var(--angle)) * var(--r-val) + 1000);
 
   /* THE MAGIC:
      X = cos(angle) * radius
@@ -90,19 +101,34 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease;
+
+  /* Label Scaling */
+  transform: translateX(-50%) scale(calc(1 + sin(var(--angle)) * 0.35));
 }
 
 /* --- 5. THE KEYFRAMES --- */
-/* We only need to animate the angle variable! */
 @keyframes orbit {
   from { --angle: 0deg; }
   to { --angle: 360deg; }
 }
 
+@keyframes star-pulse {
+  0%, 100% {
+    transform: scale(1);
+    /* Baseline glow */
+    box-shadow: 0 0 28px #ffdf00, 0 0 45px #ffdf0040; 
+  }
+  50% {
+    transform: scale(1.05);
+    /* Expanded, brighter glow */
+    box-shadow: 0 0 25px #ffdf00, 0 0 55px #ffdf0060;
+  }
+}
+
 /* --- 6. HOVER EFFECTS --- */
 .planet-link:hover {
   animation-play-state: paused;
-  z-index: 20;
+  z-index: 9999;
 }
 
 .planet-link:hover .planet {
