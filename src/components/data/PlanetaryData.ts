@@ -1,6 +1,7 @@
 export interface TelemetryStat {
   label: string;
-  value: number; // 0 to 100
+  value: number;
+  description: string;
 }
 
 export interface PlanetModel {
@@ -14,7 +15,7 @@ export interface PlanetModel {
   critical: string;
   color: string;
   size: number;
-  orbitSize: number,
+  orbitSize: number;
   speed: number;
   stats: TelemetryStat[];
 }
@@ -25,7 +26,8 @@ export const PLANET_DATA: PlanetModel[] = [
     name: "AESTHETICA",
     type: "Planeta de Superfície Dinâmica (UI/UX)",
     function: "Captura de Atenção Estelar",
-    description: "",
+    description:
+      "Visceralmente atrativo, esse planeta é responsável por causar a primeira impressão perfeita na experiência do usuário.",
     lore: "O mundo mais próximo da estrela (Usuário). Um planeta de paisagens fluidas onde as cores e formas mudam para agradar à luz estelar. Se a atmosfera não for convidativa, a viagem do usuário termina aqui.",
     tools: "Figma | Design Tokens",
     critical: "Vitrines visuais, botões de ação (CTAs), tipografia.",
@@ -34,10 +36,15 @@ export const PLANET_DATA: PlanetModel[] = [
     orbitSize: 192,
     speed: 12, // Orbits fastest
     stats: [
-      { label: "Gravidade Estrutural", value: 75 },
-      { label: "Volatilidade", value: 95 },
-      { label: "Terraformação", value: 85 },
-      { label: "Periculosidade", value: 30 },
+      {
+        label: "Gravidade Estrutural",
+        value: 75,
+        description:
+          "Visceralmente atrativo, esse planeta é responsável por causar a primeira impressão perfeita na experiência do usuário.",
+      },
+      { label: "Volatilidade", value: 95, description: "wip"},
+      { label: "Terraformação", value: 85, description: "wip" },
+      { label: "Periculosidade", value: 30, description: "wip" },
     ],
   },
   {
@@ -54,10 +61,10 @@ export const PLANET_DATA: PlanetModel[] = [
     orbitSize: 280, // Safe distance from Visoria
     speed: 18,
     stats: [
-      { label: "Gravidade Estrutural", value: 80 },
-      { label: "Volatilidade", value: 85 },
-      { label: "Terraformação", value: 90 },
-      { label: "Periculosidade", value: 60 },
+      { label: "Gravidade Estrutural", value: 80, description: "wip" },
+      { label: "Volatilidade", value: 85, description: "wip" },
+      { label: "Terraformação", value: 90, description: "wip" },
+      { label: "Periculosidade", value: 60, description: "wip" },
     ],
   },
   {
@@ -74,10 +81,10 @@ export const PLANET_DATA: PlanetModel[] = [
     orbitSize: 380, // Middle orbit belt
     speed: 24,
     stats: [
-      { label: "Gravidade Estrutural", value: 85 },
-      { label: "Volatilidade", value: 50 },
-      { label: "Terraformação", value: 75 },
-      { label: "Periculosidade", value: 80 },
+      { label: "Gravidade Estrutural", value: 85, description: "wip" },
+      { label: "Volatilidade", value: 50, description: "wip"},
+      { label: "Terraformação", value: 75, description: "wip" },
+      { label: "Periculosidade", value: 80, description: "wip" },
     ],
   },
   {
@@ -88,16 +95,17 @@ export const PLANET_DATA: PlanetModel[] = [
     description: "",
     lore: "Onde o trabalho pesado é feito. Envolto em nuvens densas, Logica-Prime abriga as fábricas que calculam estoques e processam o fluxo financeiro. O astronauta veste seu traje de chumbo para operar essas máquinas colossais.",
     tools: "Node.js (Runtime) | Docker | APIs de Lógica",
-    critical: "Algoritmos de checkout, segurança de transações, regras de negócios.",
+    critical:
+      "Algoritmos de checkout, segurança de transações, regras de negócios.",
     color: "#4ade80", // Node.js Green
     size: 34,
     orbitSize: 480, // Deep orbit
     speed: 35,
     stats: [
-      { label: "Gravidade Estrutural", value: 95 },
-      { label: "Volatilidade", value: 30 },
-      { label: "Terraformação", value: 70 },
-      { label: "Periculosidade", value: 90 },
+      { label: "Gravidade Estrutural", value: 95, description: "wip" },
+      { label: "Volatilidade", value: 30, description: "wip" },
+      { label: "Terraformação", value: 70, description: "wip" },
+      { label: "Periculosidade", value: 90, description: "wip" },
     ],
   },
   {
@@ -114,10 +122,10 @@ export const PLANET_DATA: PlanetModel[] = [
     orbitSize: 580, // Furthest orbit (edge of the screen)
     speed: 55,
     stats: [
-      { label: "Gravidade Estrutural", value: 100 },
-      { label: "Volatilidade", value: 5 },
-      { label: "Terraformação", value: 60 },
-      { label: "Periculosidade", value: 98 },
+      { label: "Gravidade Estrutural", value: 100, description: "wip" },
+      { label: "Volatilidade", value: 5, description: "wip" },
+      { label: "Terraformação", value: 60, description: "wip" },
+      { label: "Periculosidade", value: 98, description: "wip" },
     ],
-  }
+  },
 ];

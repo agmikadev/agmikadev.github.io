@@ -45,7 +45,8 @@ export const PlanetarySystem: React.FC = () => {
 
       {/* 4. Render the Dashboard if a planet is selected */}
       {selectedPlanet && (
-        <PlanetDashboard 
+        <PlanetDashboard
+          key={selectedPlanet.id} 
           planet={selectedPlanet} 
           onClose={() => setSelectedPlanet(null)} 
         />
