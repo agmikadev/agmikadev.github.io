@@ -1,0 +1,134 @@
+/* --- 1. SPACING BETWEEN CARDS --- */
+.mission-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* The margin between each mission card */
+}
+
+/* --- 2. MISSION CARD BASE --- */
+.mission-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03); 
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 16px;
+  /* (Hover effect removed as requested) */
+}
+
+/* --- MISSION CARD TYPOGRAPHY & LAYOUT --- */
+
+/* Replaces: flex justify-between items-center mb-1 */
+.mission-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+/* Replaces inline font styles */
+.mission-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Replaces: text-xs font-mono px-2 py-1 rounded-full bg-black/30 border border-white/5 text-gray-400 */
+.mission-year {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 4px 8px;
+  border-radius: 9999px; /* Perfect pill shape */
+}
+
+/* Replaces: text-xs text-gray-500 font-mono mb-4 tracking-wider */
+.mission-role {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: #6b7280;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+
+/* Replaces: text-sm text-gray-300 mb-6 leading-relaxed */
+.mission-description {
+  font-size: 0.875rem;
+  color: #d1d5db;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* Replaces: text-xs font-mono font-bold tracking-wider transition-all hover:brightness-150 flex items-center gap-1.5 */
+.mission-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+}
+
+/* The brightness hover effect you had in Tailwind */
+.mission-link:hover {
+  filter: brightness(1.5);
+}
+
+/* --- 3. SPACING BETWEEN TAGS --- */
+.mission-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* The margin between tags */
+  margin-bottom: 16px; /* Space between tags and the links below */
+}
+
+/* --- MISSION TAGS (PILL STYLE) --- */
+.mission-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px; 
+  border-radius: 30px; 
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #666;
+  
+  /* THE FIX: Prevents the mouse from turning into a pointer on dead tags */
+  cursor: default; 
+  
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- THE ACTIVE TAG (Neon Pop) --- */
+.mission-tag.active {
+  background: var(--theme-color);
+  color: #fff;
+  border-color: var(--theme-color);
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 0 10px var(--theme-color); 
+  
+  /* Re-enables the interactive cursor for active tags */
+  cursor: pointer; 
+}
+
+/* --- THE HOVER STATE (STRICTLY FOR ACTIVE TAGS ONLY) --- */
+.mission-tag.active:hover {
+  transform: translateY(-3px); 
+  box-shadow: 
+    0 8px 30px rgba(0, 0, 0, 0.5), 
+    inset 0 0 10px rgba(0,0,0,0.5), 
+    0 0 20px var(--theme-color); 
+}
+
+/* --- 4. SPACING BETWEEN LINKS --- */
+.mission-links-container {
+  display: flex;
+  gap: 20px; /* The margin between your external links */
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}

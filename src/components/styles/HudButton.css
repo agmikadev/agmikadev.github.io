@@ -4,6 +4,7 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
+  line-height: 1;
   padding: 8px 20px 8px 8px; 
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(10px);
@@ -18,14 +19,34 @@
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ... keep existing .hud-icon styles here ... */
+.hud-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* Fixed dimensions so the flexbox doesn't stretch it */
+  width: 28px;
+  height: 28px;
+  
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
 
 /* Shared Hover Effect */
+/* Hover Effects */
 .hud-btn:hover {
   color: #fff;
   background: rgba(255, 255, 255, 0.08);
   border-color: var(--theme-color); 
   box-shadow: 0 0 15px var(--theme-color); 
+}
+
+/* Fills the icon background with the planet color on hover */
+.hud-btn:hover .hud-icon {
+  background-color: var(--theme-color);
+  color: #000; /* Makes the arrow dark for contrast against the neon color */
 }
 
 /* --- 2. THE MODIFIER CLASSES --- */

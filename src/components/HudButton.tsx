@@ -18,7 +18,6 @@ export const HudButton: React.FC<HudButtonProps> = ({
 }) => {
   return (
     <button 
-      // Output example: class="hud-btn hud-btn-back"
       className={`hud-btn hud-btn-${variant}`} 
       onClick={onClick} 
       aria-label={label}

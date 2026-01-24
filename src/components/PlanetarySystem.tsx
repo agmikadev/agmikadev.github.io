@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import './styles/PlanetarySystem.css';
 
 // 1. Import the data and type from our new file
-import { PLANET_DATA, type PlanetType } from './data/PlanetaryData'; 
+import { PLANET_DATA, type PlanetModel } from './data/PlanetaryData'; 
 import { PlanetDashboard } from './PlanetaryDashboard';
 
 export const PlanetarySystem: React.FC = () => {
   // 2. Add the state to track which planet is clicked
-  const [selectedPlanet, setSelectedPlanet] = useState<PlanetType | null>(null);
+  const [selectedPlanet, setSelectedPlanet] = useState<PlanetModel | null>(null);
 
   return (
     <div className="system-container">
