@@ -1,5 +1,5 @@
 import React, { type ReactNode } from "react";
-import "./styles/HudButton.css";
+import "./HudButton.css";
 
 interface HudButtonProps {
   label: string;

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import "./styles/PlanetarySystem.css";
-import "./styles/PlanetShapes.css";
+import "./PlanetarySystem.css";
+import "./PlanetShapes.css";
 
 // 1. Import the data and type from our new file
-import { planets, type PlanetModel } from "./data/PlanetaryData";
-import { PlanetDashboard } from "./PlanetaryDashboard";
+import { planets, type PlanetModel } from "../data";
+import { PlanetDashboard } from "./PlanetaryDashboard/PlanetaryDashboard";
 
 export const PlanetarySystem: React.FC = () => {
   // 2. Add the state to track which planet is clicked

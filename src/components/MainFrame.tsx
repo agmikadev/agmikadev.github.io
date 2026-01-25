@@ -2,7 +2,7 @@ import { type FC, type ReactNode } from 'react';
 import './styles/MainFrame.css';
 import './styles/Container.css';
 import { SideStrip } from './SideStrip';
-import { PlanetarySystem } from './PlanetarySystem';
+import { PlanetarySystem } from './Planetary';
 
 interface MainFrameProps {
   children?: ReactNode;

@@ -1,6 +1,6 @@
 import React from "react";
 import { TerminalText } from "./TerminalText";
-import "./styles/CliHeader.css";
+import "./CliHeader.css";
 
 interface CliHeaderProps {
   planetId: string;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Tabs.css";
 
 // The shape of a single Tab
 export interface TabItem {

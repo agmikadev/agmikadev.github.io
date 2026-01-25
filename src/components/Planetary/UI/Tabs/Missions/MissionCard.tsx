@@ -1,6 +1,6 @@
 import React from "react";
-import type { MissionType } from "./data/MissionData";
-import "./styles/MissionCard.css";
+import type { MissionType } from "../../../data/MissionData";
+import "./MissionCard.css";
 
 interface MissionCardProps {
   mission: MissionType;
