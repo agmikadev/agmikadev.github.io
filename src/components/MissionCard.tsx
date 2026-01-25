@@ -5,7 +5,7 @@ import "./styles/MissionCard.css";
 interface MissionCardProps {
   mission: MissionType;
   planetColor: string;
-  planetTools: string;
+  planetTools: string[]; // ✅ Correctly typed as an array
 }
 
 export const MissionCard: React.FC<MissionCardProps> = ({
@@ -14,7 +14,11 @@ export const MissionCard: React.FC<MissionCardProps> = ({
   planetTools,
 }) => {
   return (
-    <div className="mission-card">
+    <div 
+      className="mission-card" 
+      // Gives the card a subtle colored border to match the planet
+      style={{ borderLeft: `2px solid ${planetColor}` }} 
+    >
       
       {/* --- HEADER --- */}
       <div className="mission-header">
@@ -36,19 +40,31 @@ export const MissionCard: React.FC<MissionCardProps> = ({
         {mission.technical_briefing}
       </p>
 
-      {/* --- TAGS (Container already handled in previous CSS) --- */}
+      {/* --- TAGS (Dynamic Highlighting) --- */}
       <div className="mission-tags-container">
         {mission.technologies.map((tech) => {
-          const isActive = planetTools.includes(tech);
+          // ✅ Checks if the planet uses this technology
+          const isActive = planetTools.includes(tech); 
+          
           return (
-            <span key={tech} className={`mission-tag ${isActive ? "active" : ""}`}>
+            <span 
+              key={tech} 
+              className={`mission-tag ${isActive ? "active" : ""}`}
+              style={isActive ? { 
+                // Dynamic styling for ACTIVE tags
+                borderColor: planetColor, 
+                color: planetColor,
+                backgroundColor: `${planetColor}15`, // 15% opacity background
+                boxShadow: `0 0 10px ${planetColor}30` // Subtle sci-fi glow
+              } : {}}
+            >
               {tech}
             </span>
           );
         })}
       </div>
 
-      {/* --- LINKS (Container already handled in previous CSS) --- */}
+      {/* --- EXTERNAL LINKS --- */}
       {mission.external_links && (
         <div className="mission-links-container">
           {mission.external_links.map((link) => (

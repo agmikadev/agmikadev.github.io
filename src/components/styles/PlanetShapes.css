@@ -1,0 +1,54 @@
+/* --- 8. THE PLANET (Base) --- */
+.planet {
+  position: absolute;
+  /* PERFECT CENTER */
+  transform: translate(-50%, -50%);
+
+  /* BASE SIZING */
+  width: calc(var(--p-size) * var(--scale));
+  height: calc(var(--p-size) * var(--scale));
+
+  /* DEFAULT TO SPHERE (applied unless overridden) */
+  background-color: var(--p-color);
+  border-radius: 50%;
+  box-shadow:
+    inset -5px -5px 10px rgba(0, 0, 0, 0.5),
+    0 0 10px var(--p-color);
+  transition: transform 0.2s ease;
+}
+
+.planet.shape-hexagon {
+  background-color: transparent !important; /* Invisible center */
+  border-radius: 50% !important; 
+  
+  /* THE REAL BOX-SHADOW: Matches your spheres perfectly! */
+  box-shadow: 0 0 10px var(--p-color), 
+              0 0 20px var(--p-color) !important; 
+
+  transform: translate(-50%, -50%);
+}
+
+/* --- 2. THE NODE.JS HEXAGON (The Hull) --- */
+/* This layer sits on top of the glow and creates the 3D isometric shape */
+.planet.shape-hexagon::after {
+  content: "";
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* The Hexagon Cut */
+  clip-path: polygon(
+  25% 6.7%,   /* Top-Left */
+  75% 6.7%,   /* Top-Right */
+  100% 50%,   /* Mid-Right */
+  75% 93.3%,  /* Bottom-Right */
+  25% 93.3%,  /* Bottom-Left */
+  0% 50%      /* Mid-Left */
+);
+
+  background-color: var(--p-color);
+
+  transform: scale(1.2);
+}

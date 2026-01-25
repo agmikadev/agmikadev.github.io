@@ -92,6 +92,9 @@
   outline: none;
   -webkit-tap-highlight-color: transparent;
 
+  perspective: 1000px;
+  transform-style: preserve-3d;
+
   animation: orbit var(--speed) linear infinite;
   z-index: round(calc(sin(var(--angle)) * var(--r-val) + 1000), 1);
 
@@ -99,24 +102,6 @@
     calc(cos(var(--angle)) * var(--radius) * var(--scale) - 50%),
     calc(sin(var(--angle)) * var(--radius) * var(--scale) * 0.4226 - 50%)
   );
-}
-
-/* --- 8. THE PLANET --- */
-.planet {
-  position: absolute;
-
-  /* PERFECT CENTER: Centers the planet directly on the link's anchor point */
-  transform: translate(-50%, -50%);
-
-  width: calc(var(--p-size) * var(--scale));
-  height: calc(var(--p-size) * var(--scale));
-
-  background-color: var(--p-color);
-  border-radius: 50%;
-  box-shadow:
-    inset -5px -5px 10px rgba(0, 0, 0, 0.5),
-    0 0 10px var(--p-color);
-  transition: transform 0.2s ease;
 }
 
 /* --- 9. THE LABEL --- */

@@ -34,8 +34,7 @@
   transition: background-color 0.3s ease;
 }
 
-/* Shared Hover Effect */
-/* Hover Effects */
+/* --- HOVER STATES --- */
 .hud-btn:hover {
   color: #fff;
   background: rgba(255, 255, 255, 0.08);
@@ -46,11 +45,10 @@
 /* Fills the icon background with the planet color on hover */
 .hud-btn:hover .hud-icon {
   background-color: var(--theme-color);
-  color: #000; /* Makes the arrow dark for contrast against the neon color */
+  color: #000; /* Dark arrow for neon contrast */
 }
 
 /* --- 2. THE MODIFIER CLASSES --- */
-/* These ONLY contain the specific animation overrides */
 
 /* The "Back" Modifier */
 .hud-btn-back:hover {
@@ -62,4 +60,20 @@
 .hud-btn-action:hover {
   transform: translateY(-3px);
   box-shadow: 0 5px 15px var(--theme-color); 
+}
+
+/* =========================================
+   3. MOBILE RESPONSIVENESS
+   ========================================= */
+@media (max-width: 900px) {
+  /* 1. Hide the text label completely */
+  .hud-label {
+    display: none;
+  }
+
+  /* 2. Reset padding to make a perfect symmetrical icon button */
+  .hud-btn {
+    padding: 8px; 
+    gap: 0; 
+  }
 }

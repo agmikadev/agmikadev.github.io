@@ -1,6 +1,6 @@
 import { type FC, type ReactNode } from 'react';
 import './styles/MainFrame.css';
-import './styles/Card.css';
+import './styles/Container.css';
 import { SideStrip } from './SideStrip';
 import { PlanetarySystem } from './PlanetarySystem';
 
@@ -15,14 +15,12 @@ export const MainFrame: FC<MainFrameProps> = ({ children }) => {
       {/* --- MIDDLE SECTION: DASHBOARD & SIDEBAR --- */}
       <div className="dashboard-wrapper">
         
-        {/* --- MAIN CARD --- */}
-        <div className="card">
+        {/* --- MAIN CONTAINER --- */}
+        <div className="container">
           {/* Layer 1: Outer Border */}
-          <div className="card-border-outer"></div>
+          <div className="container-border-outer"></div>
           {/* Layer 2: Inner Border */}
-          <div className="card-border-inner"></div>
-
-          <PlanetarySystem />
+          <div className="container-border-inner"></div>
 
           {/* Header */}
           <div className="header">
@@ -34,8 +32,8 @@ export const MainFrame: FC<MainFrameProps> = ({ children }) => {
           </div>
 
           {/* Content */}
-          <div className="card-content">
-            {children || <div/>}
+          <div className="container-content">
+            {children || <PlanetarySystem />}
           </div>
 
           {/* Footer */}

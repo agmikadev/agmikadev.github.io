@@ -1,3 +1,6 @@
+/* =========================================
+   1. MAIN LAYOUT
+   ========================================= */
 .dashboard-overlay {
   position: absolute; 
   top: 0; left: 0;
@@ -15,111 +18,22 @@
   animation: fade-in 0.4s ease-out forwards;
 }
 
-/* --- THE 1/3 & 2/3 LAYOUT --- */
 .dashboard-container {
   display: flex;
   width: 100%;
   height: 100%;
   max-width: 1400px; 
   margin: 0 auto; 
-  position: relative; /* Essential for absolutely positioning the HudButton wrapper */
+  position: relative; 
 }
 
-/* LEFT: The 1/3 Planet Container */
+/* LEFT: The 3D Planet */
 .dashboard-left {
   flex: 0 0 35%; 
   display: flex;
   justify-content: center;
   align-items: center; 
   padding: 24px;
-}
-
-/* RIGHT: The Text & UI Container */
-.dashboard-right {
-  flex: 1; 
-  padding: 0 48px; 
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  height: 100%; 
-  max-height: 100%;
-  
-  /* This enables vertical scrolling but now respects the horizontal padding moat */
-  overflow-y: auto;
-}
-
-/* --- CONJOINED ANALYTICS LIST --- */
-.analytics-list {
-  display: flex;
-  flex-direction: column;
-  gap: 32px; /* Large gap between different stats so they don't blend together */
-}
-
-/* Individual Stat Container */
-.stat-card {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Label & Value Row */
-.stat-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end; /* Aligns the text to the bottom baseline */
-  margin-bottom: 8px;
-}
-
-.stat-label {
-  font-size: 0.9rem;
-  font-weight: bold;
-  color: #fff;
-  letter-spacing: 0.5px;
-}
-
-.stat-value {
-  font-family: monospace;
-  font-size: 0.85rem;
-  font-weight: bold;
-}
-
-/* The Bar (If you don't already have these classes) */
-.progress-track {
-  width: 100%;
-  height: 4px; /* Thinner, more modern bar */
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
-  overflow: hidden;
-  margin-bottom: 12px; /* Space between the bar and the text below */
-}
-
-.progress-fill {
-  height: 100%;
-  border-radius: 2px;
-  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* THE NEW DESCRIPTION TEXT */
-.stat-description {
-  font-family: monospace;
-  font-size: 0.85rem;
-  color: #a3a3a3; /* Muted gray so the bar stands out */
-  line-height: 1.6; /* High readability */
-}
-
-.fetched-data-wrapper {
-  animation: slide-up-fade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes slide-up-fade {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .big-planet {
@@ -131,7 +45,6 @@
   animation: planet-grow 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* CRATER TEXTURE */
 .big-planet::before {
   content: '';
   position: absolute;
@@ -143,58 +56,35 @@
   filter: blur(2px);
 }
 
-/* --- DASHBOARD TEXT & BARS --- */
-.planet-title {
-  font-size: 3.5rem;
-  margin: 0 0 8px 0;
-  text-transform: uppercase;
-  letter-spacing: 4px;
+/* RIGHT: The Data HUD */
+.dashboard-right {
+  flex: 1; 
+  padding: 0 48px; 
+  display: flex;
+  flex-direction: column;
+  height: 100%; 
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-.planet-description {
-  color: #ccc;
-  line-height: 1.8;
-  font-size: 1.1rem;
-  max-width: 600px;
-  margin-bottom: 40px;
-}
+/* Custom Scrollbar for the HUD */
+.dashboard-right::-webkit-scrollbar { width: 6px; background-color: rgba(0, 0, 0, 0.5); }
+.dashboard-right::-webkit-scrollbar-thumb { background-color: var(--theme-color); border-radius: 4px; }
+.dashboard-right::-webkit-scrollbar-thumb:hover { filter: brightness(1.2); }
 
-.stats-container { display: flex; flex-direction: column; gap: 12px; max-width: 600px; }
-.stat-group { position: relative; }
-.stat-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #888; }
-.stat-value { float: right; font-weight: bold; }
-.progress-track { width: 100%; height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 3px; margin-top: 8px; overflow: hidden; }
-.progress-fill { height: 100%; border-radius: 3px; transition: width 1s cubic-bezier(0.16, 1, 0.3, 1); }
-
-.mission-log-header {
-  color: #fff;
-  font-weight: bold;
-  font-size: 0.9rem;
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #333;
-}
-
-/* Replaces: className="text-red-500/80 italic text-sm mt-4" */
-.mission-error-log {
-  color: rgba(239, 68, 68, 0.8); /* Standard Tailwind Red-500 with 80% opacity */
-  font-style: italic;
-  font-size: 0.875rem; /* 14px (text-sm equivalent) */
-  margin-top: 16px;
-}
-
-/* Replaces inline styles for the CLI Header */
-/* --- CLI HEADER --- */
+/* =========================================
+   2. TEXT & HEADERS
+   ========================================= */
 .cli-header {
   display: flex;
-  align-items: center; /* Centers the SVG with the text */
-  gap: 8px; /* Space between the arrow and the text */
+  align-items: center;
+  gap: 8px;
   font-size: 0.85rem;
   opacity: 0.8;
-  font-weight: bold; /* Makes the terminal text a bit more legible */
+
+  font-weight: bold;
 }
 
-/* Optional: The blinking cursor effect at the end of the text */
 .cli-cursor {
   display: inline-block;
   width: 8px;
@@ -203,12 +93,13 @@
   animation: blink 1s step-end infinite;
 }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+.planet-title {
+  font-size: 3.5rem;
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 4px;
 }
 
-/* Replaces inline styles for the debrief */
 .planet-debrief {
   color: #a3a3a3;
   font-size: 0.9rem;
@@ -217,88 +108,152 @@
   line-height: 1.6;
 }
 
-/* --- TERMINAL SCROLLBAR STYLING --- */
-
-/* The track (background) */
-.dashboard-right::-webkit-scrollbar {
-  width: 6px;
-  background-color: rgba(0, 0, 0, 0.5);
+.mission-error-log {
+  color: rgba(239, 68, 68, 0.8);
+  font-style: italic;
+  font-size: 0.875rem;
+  margin-top: 16px;
 }
 
-/* The thumb (the draggable bar) */
-.dashboard-right::-webkit-scrollbar-thumb {
-  background-color: var(--theme-color);
+/* =========================================
+   3. ANALYTICS & STATS (Merged & Cleaned)
+   ========================================= */
+.analytics-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px; 
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end; 
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.stat-value {
+  font-family: monospace;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.progress-track {
+  width: 100%;
+  height: 4px; 
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 12px; 
+}
+
+.progress-fill {
+  /* Your existing properties (height, border-radius, etc.) */
+  height: 100%;
   border-radius: 4px;
+  
+  /* THE ADDITION: A smooth ease-out animation */
+  animation: load-bar 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: left;
 }
 
-/* Hover state for the thumb */
-.dashboard-right::-webkit-scrollbar-thumb:hover {
-  background-color: var(--theme-color);
+.stat-description {
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: #a3a3a3; 
+  line-height: 1.6; 
 }
 
-/* Slight brightness bump on hover */
-.dashboard-right::-webkit-scrollbar-thumb:hover {
-  filter: brightness(1.2); 
+/* =========================================
+   4. ANIMATIONS
+   ========================================= */
+.fetched-data-wrapper {
+  animation: slide-up-fade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* --- KEYFRAMES --- */
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
 @keyframes planet-grow {
   from { transform: scale(0.1) rotate(-45deg); opacity: 0; }
   to { transform: scale(1) rotate(0deg); opacity: 1; }
 }
 
-@keyframes slide-left {
-  from { opacity: 0; transform: translateX(40px); }
-  to { opacity: 1; transform: translateX(0); }
+@keyframes slide-up-fade {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes load-bar {
+  0% { 
+    transform: scaleX(0); /* Starts at 0% width */
+  }
+  100% { 
+    transform: scaleX(1); /* Ends at the inline width set by React */
+  }
 }
 
 /* =========================================
-   MOBILE RESPONSIVENESS (New!)
+   5. MOBILE RESPONSIVENESS (Total Vertical Freedom)
    ========================================= */
 @media (max-width: 900px) {
-  /* Reduce the safe zone padding for smaller screens */
+  /* 1. UNLOCK THE OVERLAY - By changing to 'relative' and 'auto', the overlay no longer traps itself 
+     to the screen size. It grows infinitely downward. */
   .dashboard-overlay {
-    padding: 20px; 
-    align-items: flex-start; /* Aligns content to the top so it can scroll if needed */
+    position: relative; 
+    height: auto; 
+    min-height: 100vh; /* Ensures it at least covers the screen if content is short */
+    overflow: visible;
+    padding: 0;
   }
 
-  /* Stack the layout vertically */
+  /* 2. THE CONTAINER */
   .dashboard-container {
-    flex-direction: column;
-    overflow-y: auto; /* Allows scrolling on very small phones */
-    padding-top: 60px; /* Makes room for the absolute HudButton at the top */
+    display: block; 
+    height: auto;
+    overflow: visible; 
+    padding-top: 60px; 
   }
 
-  /* Planet moves to the top and shrinks */
+  /* 3. THE PLANET */
   .dashboard-left {
-    flex: 0 0 auto;
-    padding: 10px;
+    display: flex; 
+    height: auto;
+    padding: 0;
+    margin-bottom: 24px;
   }
 
   .big-planet {
-    max-width: 250px; /* Much smaller for mobile */
+    max-width: 160px; 
   }
 
-  /* Text moves below the planet */
+  /* 4. THE RIGHT COLUMN */
   .dashboard-right {
-    flex: 0 0 auto;
-    padding: 20px 10px;
-    align-items: center; /* Center-aligns the text */
-    text-align: center;
+    display: block; 
+    height: auto; 
+    overflow: visible; 
+    padding: 0 16px 80px 16px; 
   }
 
+  /* 5. Text Scaling */
   .planet-title {
-    font-size: 2.2rem;
+    font-size: 2rem; 
+    text-align: left;
   }
 
-  .planet-description {
-    font-size: 1rem;
-    margin-bottom: 25px;
-  }
-
-  .stats-container {
-    width: 100%; /* Ensures progress bars span the full mobile width */
+  .cli-header {
+    font-size: 0.75rem; 
   }
 }

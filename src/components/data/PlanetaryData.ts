@@ -1,18 +1,16 @@
+// You can define this interface at the top of your file if you haven't already
 export interface TelemetryStat {
   label: string;
   value: number;
-  description: string;
 }
 
 export interface PlanetModel {
   id: string;
   name: string;
   type: string;
-  function: string;
   description: string;
-  lore: string;
-  tools: string;
-  critical: string;
+  tools: string[];
+  shape: "sphere" | "prism" | "hexagon" | "triangle";
   color: string;
   size: number;
   orbitSize: number;
@@ -20,112 +18,125 @@ export interface PlanetModel {
   stats: TelemetryStat[];
 }
 
-export const PLANET_DATA: PlanetModel[] = [
+// THE SOLAR SYSTEM DATA
+export const planets: PlanetModel[] = [
+  // --- 1. THE DESIGN HUB ---
   {
     id: "aesthetica",
     name: "AESTHETICA",
-    type: "Planeta de Superfície Dinâmica (UI/UX)",
-    function: "Captura de Atenção Estelar",
-    description:
-      "Visceralmente atrativo, esse planeta é responsável por causar a primeira impressão perfeita na experiência do usuário.",
-    lore: "O mundo mais próximo da estrela (Usuário). Um planeta de paisagens fluidas onde as cores e formas mudam para agradar à luz estelar. Se a atmosfera não for convidativa, a viagem do usuário termina aqui.",
-    tools: "Figma | Design Tokens",
-    critical: "Vitrines visuais, botões de ação (CTAs), tipografia.",
-    color: "#ff33a6", // Bright Figma Pink
-    size: 24,
-    orbitSize: 192,
-    speed: 12, // Orbits fastest
+    type: "Matriz Visual",
+    description: "The primary design sector. Generates high-fidelity prototypes, vector geometries, and user-centric visual experiences before code compilation.",
+    tools: ["Figma", "Pixso", "Adobe Illustrator", "Vector Graphics"],
+    
+    // RENDER PHYSICS: 1st Planet (Fastest, Closest)
+    shape: "sphere",
+    color: "#a855f7", // Vibrant UI Purple
+    size: 22,
+    orbitSize: 160, 
+    speed: 10,
+
+    // STATS: Design Skills
     stats: [
-      {
-        label: "Gravidade Estrutural",
-        value: 75,
-        description:
-          "Visceralmente atrativo, esse planeta é responsável por causar a primeira impressão perfeita na experiência do usuário.",
-      },
-      { label: "Volatilidade", value: 95, description: "wip"},
-      { label: "Terraformação", value: 85, description: "wip" },
-      { label: "Periculosidade", value: 30, description: "wip" },
+      { label: "Protipação de alta fidelidade", value: 95 },
+      { label: "Edição de Vetores", value: 70 },
+      { label: "Design de Experiência do Usuário (UX)", value: 80},
+      { label: "Montagem de Design System Atômico", value: 90 }
     ],
   },
+
+  // --- 2. THE FRONTEND ENGINE ---
   {
     id: "interactron",
     name: "INTERACTRON",
-    type: "Metrópole Habitável Responsiva (Front-end)",
-    function: "Interatividade e Infraestrutura do Usuário",
-    description: "",
-    lore: "A zona habitável. Interactron é um planeta de alta tecnologia coberto por cidades que mudam de tamanho e forma dependendo de quem as visita. É onde a navegação acontece.",
-    tools: "React | Next.js | Tailwind CSS | TypeScript",
-    critical: "Renderização de páginas, gerenciamento de estado da interface.",
-    color: "#38bdf8", // React/Tailwind Sky Blue
-    size: 28,
-    orbitSize: 280, // Safe distance from Visoria
-    speed: 18,
+    type: "Interface Sphere",
+    description: "The surface rendering engine. Responsible for human-machine interaction, global state management, and visual telemetry rendering.",
+    tools: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    
+    // RENDER PHYSICS: 2nd Planet
+    shape: "sphere",
+    color: "#61dafb", // React Cyan
+    size: 24,
+    orbitSize: 260,
+    speed: 16,
+
+    // STATS: Frontend Skills
     stats: [
-      { label: "Gravidade Estrutural", value: 80, description: "wip" },
-      { label: "Volatilidade", value: 85, description: "wip" },
-      { label: "Terraformação", value: 90, description: "wip" },
-      { label: "Periculosidade", value: 60, description: "wip" },
+      { label: "React (Hooks & State)", value: 90 },
+      { label: "CSS & Responsive UI", value: 95 },
+      { label: "DOM Manipulation", value: 85 },
+      { label: "Motion & Animation", value: 80 }
     ],
   },
+
+  // --- 3. THE BACKEND HUB ---
   {
-    id: "apeiron",
-    name: "APEIRON",
-    type: "Cinturão de Transmissão (API / tRPC)",
-    function: "Roteamento de Dados e Segurança de Borda",
-    description: "",
-    lore: "O guardião entre a luz e as sombras. Um cinturão artificial que capta os sinais de clique em Frontalis e os traduz para a linguagem industrial dos planetas distantes.",
-    tools: "Node.js | tRPC / Express | Postman",
-    critical: "Endpoints de autenticação, integração de pagamentos e rotas.",
-    color: "#f59e0b", // Transmission Amber/Orange
-    size: 22,
-    orbitSize: 380, // Middle orbit belt
-    speed: 24,
+    id: "nodeon",
+    name: "NODEON",
+    type: "Data Nexus",
+    description: "The central backend hub. Handles all asynchronous routing, database mutations, secure data transmission, and server-side logic.",
+    tools: ["Node.js", "Express", "PostgreSQL", "Prisma"],
+
+    // RENDER PHYSICS: 3rd Planet (The Fake 3D Hexagon)
+    shape: "hexagon",
+    color: "#339933", // Node.js Green
+    size: 24,
+    orbitSize: 360, 
+    speed: 22,
+
+    // STATS: Backend Skills
     stats: [
-      { label: "Gravidade Estrutural", value: 85, description: "wip" },
-      { label: "Volatilidade", value: 50, description: "wip"},
-      { label: "Terraformação", value: 75, description: "wip" },
-      { label: "Periculosidade", value: 80, description: "wip" },
+      { label: "Node.js (Async/Event Loop)", value: 92 },
+      { label: "Express API Routing", value: 88 },
+      { label: "PostgreSQL Database", value: 80 },
+      { label: "API Security & Auth", value: 85 }
     ],
   },
+
+  // --- 4. THE LOGIC PROCESSOR ---
   {
     id: "logica-prime",
     name: "LOGICA-PRIME",
-    type: "Planeta Industrial Pesado (Back-end)",
-    function: "Processamento de Lógica de Negócios",
-    description: "",
-    lore: "Onde o trabalho pesado é feito. Envolto em nuvens densas, Logica-Prime abriga as fábricas que calculam estoques e processam o fluxo financeiro. O astronauta veste seu traje de chumbo para operar essas máquinas colossais.",
-    tools: "Node.js (Runtime) | Docker | APIs de Lógica",
-    critical:
-      "Algoritmos de checkout, segurança de transações, regras de negócios.",
-    color: "#4ade80", // Node.js Green
-    size: 34,
-    orbitSize: 480, // Deep orbit
-    speed: 35,
+    type: "Algorithm Prism",
+    description: "The logic processor. Executes complex computational algorithms, data transformation pipelines, and system architecture optimization.",
+    tools: ["TypeScript", "Python", "GraphQL", "Algorithms"],
+
+    // RENDER PHYSICS: 4th Planet (The 3D Prism)
+    shape: "prism",
+    color: "#ff4500", // High-energy Orange
+    size: 32,
+    orbitSize: 460,
+    speed: 28,
+
+    // STATS: Computer Science & Architecture
     stats: [
-      { label: "Gravidade Estrutural", value: 95, description: "wip" },
-      { label: "Volatilidade", value: 30, description: "wip" },
-      { label: "Terraformação", value: 70, description: "wip" },
-      { label: "Periculosidade", value: 90, description: "wip" },
+      { label: "Algorithmic Thinking", value: 85 },
+      { label: "System Architecture", value: 80 },
+      { label: "GraphQL/API Design", value: 88 },
+      { label: "Code Refactoring", value: 85 }
     ],
   },
+
+  // --- 5. THE DEPLOYMENT PLATFORM ---
   {
-    id: "kryo",
-    name: "KRYO",
-    type: "Planeta Gélido de Arquivo (Banco de Dados)",
-    function: "Persistência de Dados e Recuperação Histórica",
-    description: "",
-    lore: "Nos confins escuros do sistema, o gelo eterno de Kryo mantém as temperaturas dos servidores perfeitamente estáveis. A memória definitiva do sistema sob cofres blindados.",
-    tools: "PostgreSQL | Prisma ORM | MongoDB",
-    critical: "Schema relacional, índices, proteção contra falhas (Backups).",
-    color: "#a0e1ff", // Cold Ice White/Blue
-    size: 30,
-    orbitSize: 580, // Furthest orbit (edge of the screen)
-    speed: 55,
+    id: "infra-x",
+    name: "INFRA-X",
+    type: "Deployment Sector",
+    description: "The orbital deployment platform. Manages continuous integration, containerized environments, and secure cloud infrastructure automation.",
+    tools: ["Docker", "Git", "AWS", "CI/CD"],
+
+    // RENDER PHYSICS: 5th Planet (The Fake 3D Cone)
+    shape: "triangle",
+    color: "#2496ed", // Docker Blue
+    size: 22,
+    orbitSize: 560,
+    speed: 34,
+
+    // STATS: DevOps & Tooling
     stats: [
-      { label: "Gravidade Estrutural", value: 100, description: "wip" },
-      { label: "Volatilidade", value: 5, description: "wip" },
-      { label: "Terraformação", value: 60, description: "wip" },
-      { label: "Periculosidade", value: 98, description: "wip" },
+      { label: "Git Branching Workflow", value: 95 },
+      { label: "Docker Containerization", value: 75 },
+      { label: "CI/CD Pipelines", value: 80 },
+      { label: "Cloud Deployment", value: 70 }
     ],
-  },
+  }
 ];

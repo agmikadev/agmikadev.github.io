@@ -1,13 +1,14 @@
 import React, { useMemo, useState, useCallback } from "react";
 import { HudButton } from "./HudButton";
-import { TerminalText } from "./TerminalText";
+import { CliHeader } from "./CliHeader";
 import { MissionCard } from "./MissionCard";
 import { Tabs, type TabItem } from "./Tabs";
 import "./styles/PlanetaryDashboard.css";
+import "./styles/Tabs.css";
 
 // IMPORT THE DATA
 import type { PlanetModel } from "./data/PlanetaryData";
-import { MISSION_ARCHIVE } from "./data/MissionData"; 
+import { MISSION_ARCHIVE } from "./data/MissionData";
 
 interface DashboardProps {
   planet: PlanetModel;
@@ -18,84 +19,107 @@ export const PlanetDashboard: React.FC<DashboardProps> = ({
   planet,
   onClose,
 }) => {
+  // =========================================
+  // FETCH WAITER
+  // =========================================
 
-  // 1. THE NEW FETCH STATE
+  // 1. THE FETCH STATE
   const [isFetched, setIsFetched] = useState(false);
 
   // 2. RESET STATE WHEN PLANET CHANGES
-  // This ensures the animation replays if they click a new planet
   const handleFetchComplete = useCallback(() => {
     setIsFetched(true);
   }, []);
 
-  // --- THE FILTER LOGIC (Memoized for performance) ---
-  const relevantMissions = useMemo(() => {
-    // 1. Convert "React | Next.js" into ["React", "Next.js"]
-    const planetTags = planet.tools.split("|").map((tag) => tag.trim());
+  // =========================================
+  // THE FILTER LOGIC (Memoized for performance)
+  // =========================================
 
-    // 2. Filter missions that share at least ONE tag with this planet
+  const relevantMissions = useMemo(() => {
+    // FIX: Since planet.tools is already an array, just use it directly!
+    const planetTags = planet.tools;
+
     return MISSION_ARCHIVE.filter((mission) =>
       mission.technologies.some((tech) => planetTags.includes(tech)),
     );
-  // React strictly tracks the tools string to know when to re-filter
-  }, [planet.tools]); 
+  }, [planet.tools]);
+
+  const getSkillColor = (value: number) => {
+    if (value >= 90) return "#00f0ff"; // MASTER: Sci-Fi Cyan
+    if (value >= 75) return "#00ff73"; // PROFICIENT: Neon Green
+    if (value >= 50) return "#ffae00"; // INTERMEDIATE: Amber/Orange
+    return "#ff3366"; // LEARNING: Danger Red
+  };
 
   // =========================================
-  // DEFINE THE TABS DATA
+  // TABS DATA
   // =========================================
+
   const dashboardTabs: TabItem[] = [
     {
       id: "missions",
-      label: "[ MISSÕES ]",
+      label: `[ MISSÕES: ${relevantMissions.length} ]`,
       content: (
         <>
-          <div className="mission-log-header">
-            [ REGISTROS DE MISSÃO ENCONTRADOS: {relevantMissions.length} ]
-          </div>
           {relevantMissions.length === 0 ? (
-            <div className="mission-error-log">[ERRO]: Nenhuma missão registrada nos arquivos.</div>
+            <div className="mission-error-log">
+              [ERRO]: Nenhuma missão registrada nos arquivos.
+            </div>
           ) : (
             <div className="mission-list">
               {relevantMissions.map((mission) => (
-                <MissionCard key={`${planet.id}-${mission.id}`} mission={mission} planetColor={planet.color} planetTools={planet.tools} />
+                <MissionCard
+                  key={`${planet.id}-${mission.id}`}
+                  mission={mission}
+                  planetColor={planet.color}
+                  planetTools={planet.tools}
+                />
               ))}
             </div>
           )}
         </>
       ),
     },
+
     {
       id: "analytics",
       label: "[ MÉTRICAS ]",
       content: (
-        // Replaced flex Tailwind classes with a pure CSS wrapper class
         <div className="analytics-list">
-          {planet.stats.map(stat => (
+          <div className="stat-header">
+            <span className="stat-label">Progresso de Sincronização do Astronauta</span>
+            {/* We reuse the stat-value class to create a cool sci-fi status indicator */}
+            <span className="stat-value" style={{ color: planet.color }}>
+              STATUS: ESTABILIZADO
+            </span>
+          </div>
+
+          {/* --- 2. YOUR EXISTING LOOP (Untouched) --- */}
+          {planet.stats.map((stat) => (
             <div className="stat-card" key={stat.label}>
-              
               {/* Header: Label and Value */}
               <div className="stat-header">
                 <span className="stat-label">{stat.label}</span>
-                <span className="stat-value" style={{ color: planet.color }}>{stat.value}/100</span>
+                <span
+                  className="stat-value"
+                  style={{ color: getSkillColor(stat.value) }}
+                >
+                  {stat.value}/100
+                </span>
               </div>
 
               {/* The Progress Bar */}
               <div className="progress-track">
-                <div 
-                  className="progress-fill" 
-                  style={{ 
-                    width: `${stat.value}%`, 
-                    backgroundColor: planet.color, 
-                    boxShadow: `0 0 10px ${planet.color}` 
-                  }} 
+                <div
+                  className="progress-fill"
+                  style={{
+                    width: `${stat.value}%`,
+                    /* THE FIX: Colors and glow now react to the number! */
+                    backgroundColor: getSkillColor(stat.value),
+                    boxShadow: `0 0 10px ${getSkillColor(stat.value)}`,
+                  }}
                 />
               </div>
-
-              {/* THE NEW SWOT NARRATIVE */}
-              <p className="stat-description">
-                {stat.description}
-              </p>
-
             </div>
           ))}
         </div>
@@ -103,13 +127,16 @@ export const PlanetDashboard: React.FC<DashboardProps> = ({
     },
   ];
 
+  // =========================================
+  // COMPONENT RENDERING
+  // =========================================
+
   return (
     <div
       className="dashboard-overlay"
       style={{ "--theme-color": planet.color } as React.CSSProperties}
     >
       <div className="dashboard-container">
-        
         {/* --- RETURN BUTTON --- */}
         <div style={{ position: "absolute", zIndex: 20 }}>
           <HudButton
@@ -118,7 +145,16 @@ export const PlanetDashboard: React.FC<DashboardProps> = ({
             themeColor={planet.color}
             onClick={onClose}
             icon={
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <path d="M19 12H5M12 19l-7-7 7-7" />
               </svg>
             }
@@ -138,39 +174,42 @@ export const PlanetDashboard: React.FC<DashboardProps> = ({
 
         {/* --- RIGHT: The Mission HUD --- */}
         <div className="dashboard-right" style={{ fontFamily: "monospace" }}>
-          
-          {/* --- 1. THE CLI COMMAND (Always Visible) --- */}
-          <div className="cli-header" style={{ color: planet.color }}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-            <TerminalText 
-              key={`${planet.id}-cli`} 
-              text={`root@ship-os:~# fetch_archives --planet="${planet.id}"`} 
-              
-              // Speed (5ms per character)
-              speed={5} 
-              
-              onComplete={handleFetchComplete} 
-            />
-            <span className="cli-cursor"></span>
-          </div>
-          {/* --- 2. THE REVEAL WRAPPER (This is where 'isFetched' gets used!) --- */}
+          {/* --- 1. THE CLI LINE --- */}
+          <CliHeader
+            planetId={planet.id}
+            color={planet.color}
+            onComplete={handleFetchComplete}
+          />
+
+          {/* --- 2. THE REVEALER --- */}
           {isFetched && (
-          <div className={`fetched-data-wrapper`}>
-            
-            <h1 className="planet-title" style={{ color: planet.color, textShadow: `0 0 15px ${planet.color}60` }}>
-              {planet.name}
-            </h1>
+            <div className="fetched-data-wrapper">
+              <h1
+                className="planet-title"
+                style={{
+                  color: planet.color,
+                  textShadow: `0 0 15px ${planet.color}60`,
+                }}
+              >
+                {planet.name}
+              </h1>
 
-            <div className="planet-debrief" style={{ borderLeft: `2px solid ${planet.color}` }}>
-              <strong style={{ color: "#fff" }}>STATUS:</strong> {planet.type} <br />
-              {planet.lore}
+              <div
+                className="planet-debrief"
+                style={{ borderLeft: `2px solid ${planet.color}` }}
+              >
+                <strong style={{ color: "#fff" }}>STATUS:</strong> {planet.type}{" "}
+                <br />
+                {/* Changed from planet.lore to planet.description */}
+                {planet.description}
+              </div>
+
+              <Tabs
+                tabs={dashboardTabs}
+                defaultTabId="missions"
+                themeColor={planet.color}
+              />
             </div>
-
-            <Tabs tabs={dashboardTabs} defaultTabId="missions" themeColor={planet.color} />
-            
-          </div>
           )}
         </div>
       </div>

@@ -277,3 +277,83 @@
   /* Lower opacity to push it to the background */
   opacity: 0.5; 
 }
+
+/* ==========================================================================
+   MOBILE HORIZONTAL LAYOUT (Max Width: 960px)
+   Converts the vertical sidebar into a horizontal profile card.
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  .side-strip {
+    width: 100%; 
+    height: auto;
+    /* 1. Switch to row layout with wrapping */
+    flex-direction: row; 
+    flex-wrap: wrap;
+    align-items: center;
+    
+    /* 2. Adjust padding for horizontal view */
+    padding: 24px; 
+    gap: 20px;
+    
+    /* 3. Scale down the ticket corners for a wider aspect ratio */
+    border-radius: 32px 0 32px 0; 
+  }
+
+  /* Adjust the inner border math for the new 32px corner (32px - 8px gap = 24px) */
+  .side-strip::before {
+    border-radius: 24px 0 24px 0;
+  }
+
+  /* --- HEADER: Avatar & Name side-by-side --- */
+  .profile-header {
+    width: 100%;
+    flex-direction: row;
+    text-align: left;
+    justify-content: flex-start;
+    gap: 15px;
+  }
+
+  .avatar-container {
+    margin-bottom: 0; /* Remove bottom margin */
+    width: 70px;
+    height: 70px;
+  }
+
+  .profile-name-role-wrapper {
+    /* Aligns name and role to the left next to avatar */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* --- CONTENT SECTIONS --- */
+  /* Make dividers and content span full width of the wrapped row */
+  .divider-line, 
+  .profile-stats, 
+  .profile-bio, 
+  .profile-tags, 
+  .profile-footer {
+    width: 100%; 
+  }
+
+  /* Horizontal layout for stats */
+  .profile-stats {
+    justify-content: space-around;
+    padding: 10px 0;
+  }
+
+  /* Reset footer spacing for mobile */
+  .profile-footer {
+    margin-top: 10px;
+  }
+
+  /* Footer Bottom Anchor Reset */
+  .sidestrip-site-footer {
+    width: 100%;
+    margin-top: 10px;
+    padding-bottom: 0;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

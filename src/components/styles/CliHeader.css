@@ -1,0 +1,24 @@
+/* Replaces inline styles for the CLI Header */
+/* --- CLI HEADER --- */
+.cli-header {
+  display: flex;
+  align-items: center; /* Centers the SVG with the text */
+  gap: 8px; /* Space between the arrow and the text */
+  font-size: 0.85rem;
+  opacity: 0.8;
+  font-weight: bold; /* Makes the terminal text a bit more legible */
+}
+
+/* Optional: The blinking cursor effect at the end of the text */
+.cli-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.2em;
+  background-color: currentColor;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}

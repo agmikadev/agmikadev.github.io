@@ -52,13 +52,25 @@
 }
 
 /* Mobile Responsive */
+/* =========================================
+   MOBILE RESPONSIVENESS (The Horizontal Dock Setup)
+   ======================================== */
 @media (max-width: 960px) {
+  
+  /* 1. Reset the outer shell to allow full-page scrolling */
   .app-container {
     height: auto;
     overflow-y: auto;
+    padding: 0; /* REMOVED: Desktop 24px padding so content hits the screen edges */
   }
+
+  /* 2. Stack the layout vertically */
   .dashboard-wrapper {
-    flex-direction: column-reverse;
+    /* Changed from column-reverse to column. 
+       This puts the Container on top, and the Sidebar on the bottom. */
+    flex-direction: column; 
+    
     height: auto;
+    gap: 0; /* REMOVED: 24px gap to reclaim vertical screen space */
   }
 }

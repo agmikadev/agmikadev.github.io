@@ -1,0 +1,189 @@
+/* =========================================
+   1. DESKTOP BASE STYLES (The Grid Stack)
+   ========================================= */
+
+/* THE MASTER CONTAINER: Now a CSS Grid to overlap elements */
+.container {
+  position: relative;
+  flex: 1; /* Still fills the MainFrame flexbox layout */
+  
+  /* THE FIX: CSS Grid creates ONE master cell for everything to stack inside */
+  display: grid; 
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+
+  min-height: 0; 
+  min-width: 0;
+
+  /* Desktop Shape */
+  border-radius: 0 48px 0 48px; 
+  background: radial-gradient(circle at center, rgba(10,10,25,1) 0%, #050505 80%, #000000 100%);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  box-sizing: border-box;
+  
+  /* Keeps the 48px corners sharp on desktop by masking the 3D canvas */
+  overflow: hidden; 
+}
+
+/* --- BORDERS (Pseudo Elements) --- */
+.container::before { 
+  content: ""; position: absolute;
+  top: 10px; left: 10px; right: 10px; bottom: 10px; 
+  border: 1px solid var(--cp-accent-yellow);
+  border-radius: 0 38px 0 38px; 
+  pointer-events: none; z-index: 2; opacity: 0.3;
+}
+
+/* The Scanline Effect */
+.container::after {
+  content: " ";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.1) 50%
+  ), linear-gradient(
+    90deg, 
+    rgba(255, 0, 0, 0.04), 
+    rgba(0, 255, 0, 0.01), 
+    rgba(0, 0, 255, 0.04)
+  );
+  background-size: 100% 2px, 2px 100%;
+  
+  z-index: 10000;
+  pointer-events: none; 
+}
+
+/* --- THE CONTENT WRAPPER (100% of the Window) --- */
+.container-content {
+  grid-area: 1 / 1; /* Assigns it to the master grid cell */
+  position: relative; 
+  z-index: 2; 
+  
+  /* Takes up 100% of the container space */
+  width: 100%;
+  height: 100%;
+  
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center;
+  overflow: visible; 
+}
+
+/* --- THE GHOST HEADER (Floating at Top) --- */
+.header {
+  grid-area: 1 / 1; /* Stacks directly ON TOP of the content */
+  align-self: start; /* Pins it to the top */
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  z-index: 20000;
+  
+  /* Desktop Margins */
+  margin: 32px 32px 0 32px; 
+
+  /* CRITICAL: Lets user click THROUGH the header to move planets underneath */
+  pointer-events: none; 
+}
+
+.circles-icon { display: flex; flex-direction: row; gap: 4px; flex-shrink: 0; }
+.circles-icon span { display: block; width: 12px; height: 12px; border: 1px solid var(--cp-accent-yellow); border-radius: 50%; box-sizing: border-box; }
+
+.header-line {
+  flex-grow: 1; height: 1px; background: var(--cp-accent-yellow); 
+  opacity: 0.5; min-width: 30px; margin: 0 15px;
+}
+
+.header h1 {
+  font-family: var(--cp-font-main); font-size: 12px; font-weight: 800; 
+  color: var(--cp-accent-yellow); text-transform: uppercase;
+  letter-spacing: 2px; white-space: nowrap; line-height: 1; margin: 0;
+}
+
+/* --- THE GHOST FOOTER (Floating at Bottom) --- */
+.footer {
+  grid-area: 1 / 1; /* Stacks directly ON TOP of the content */
+  align-self: end; /* Pins it to the bottom */
+
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  z-index: 20000;
+  
+  /* Desktop Margins */
+  margin: 0 32px 32px 32px; 
+
+  /* CRITICAL: Lets user click THROUGH the footer */
+  pointer-events: none; 
+}
+
+.footer-text { 
+  font-family: var(--cp-font-main); font-size: 12px; font-weight: 800; 
+  color: var(--cp-accent-yellow); text-transform: uppercase; letter-spacing: 1px; 
+}
+
+.footer-line { flex-grow: 1; height: 1px; background: var(--cp-accent-yellow); margin: 0 15px; opacity: 0.5; }
+.stars { display: flex; flex-direction: row; font-size: 12px; color: var(--cp-accent-yellow); }
+
+/* =========================================
+   2. MOBILE RESPONSIVENESS
+   ========================================= */
+@media (max-width: 960px) {
+  
+  /* THE MASTER CONTAINER */
+  .container { 
+    width: 100%; 
+    max-width: 100%; 
+    min-height: 100dvh; 
+    height: auto; 
+    border-radius: 0; 
+    overflow-x: hidden; 
+    overflow-y: visible; 
+  }
+
+  .container::before { display: none; } 
+
+  /* 1. DELETE THE HUD ON MOBILE */
+  .header, .footer {
+    display: none !important; /* Completely removes them from the DOM */
+  }
+
+  /* 2. RESET THE CONTENT WRAPPER */
+  .container-content {
+    min-width: 0; 
+    box-sizing: border-box; 
+    width: 100%;
+    
+    margin: 0; 
+    /* Reduced padding since there are no floating HUDs to avoid */
+    padding: 24px 16px;
+  }
+
+  .dashboard-overlay {
+    position: relative; /* Still needed so the container "hugs" it */
+    width: 100%;
+    height: auto; 
+    padding: 0; 
+    background: transparent; 
+  }
+
+  /* Reset Back Button Spacing */
+  .dashboard-container {
+    display: block; 
+    height: auto;
+    padding-top: 40px; /* A standard, comfortable distance from the top */
+    overflow: visible;
+  }
+
+  /* Reset Mission Card Spacing */
+  .dashboard-right {
+    display: block; 
+    height: auto;
+    max-height: none; 
+    padding: 0 16px 40px 16px; /* A standard distance from the bottom */
+    overflow: visible; 
+  }
+}
