@@ -74,7 +74,7 @@
 
 /* --- THE GHOST HEADER (Floating at Top) --- */
 .header {
-  grid-area: 1 / 1; /* Stacks directly ON TOP of the content */
+  grid-area: 1 / 1;
   align-self: start; /* Pins it to the top */
   
   display: flex;

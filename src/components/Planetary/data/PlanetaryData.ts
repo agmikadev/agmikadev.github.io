@@ -11,7 +11,10 @@ export interface PlanetModel {
   description: string;
   tools: string[];
   shape: "sphere" | "hexagon";
+  variant?: 'standard' | 'ringed' | 'wireframe';
+  hasMoon?: boolean;
   color: string;
+  textureUrl?: string;
   size: number;
   orbitSize: number;
   speed: number;
@@ -28,14 +31,16 @@ export const planets: PlanetModel[] = [
     description: "O setor de design primário. Gera protótipos de alta fidelidade, geometrias vetoriais e experiências visuais focadas no usuário antes da compilação do código.",
     tools: ["Figma", "Pixso", "Adobe Illustrator", "Vector Graphics"],
     
-    // RENDER PHYSICS: 1º Planeta (Mais rápido, mais próximo)
+    // RENDER PHYSICS: O Planeta Esteta
     shape: "sphere",
+    variant: "standard",
+    hasMoon: true, // Adiciona uma lua satélite (representando o foco no Usuário)
     color: "#a855f7", // Roxo Vibrante UI
     size: 22,
     orbitSize: 160, 
     speed: 10,
 
-    // STATS: Habilidades de Design (Ação + com + Ferramenta)
+    // STATS: Habilidades de Design
     stats: [
       { label: "Prototipagem de alta fidelidade com Figma", value: 95 },
       { label: "Colaboração de design de interface com Pixso", value: 85 },
@@ -52,8 +57,9 @@ export const planets: PlanetModel[] = [
     description: "O motor de renderização da superfície. Responsável pela interação humano-máquina, gerenciamento de estado global e renderização de telemetria visual.",
     tools: ["React / Vue", "TypeScript", "Tailwind CSS", "Framer Motion"],
     
-    // RENDER PHYSICS: 2º Planeta
+    // RENDER PHYSICS: O Holograma de Componentes
     shape: "sphere",
+    variant: "wireframe", // Renderiza apenas a malha/grade brilhante
     color: "#61dafb", // Ciano React
     size: 24,
     orbitSize: 260,
@@ -73,13 +79,15 @@ export const planets: PlanetModel[] = [
     id: "nodeon",
     name: "NODEON",
     type: "Nexus de Dados",
-    description: "O hub central de backend. Não é um planeta, mas sim uma construção artificial estratégicamente posicionada. Lida com roteamento assíncrono, mutações de banco de dados, transmissão segura de dados e lógica do lado do servidor.",
+    description: "O hub central de backend. Não é um planeta, mas sim uma construção artificial estrategicamente posicionada. Lida com roteamento assíncrono, mutações de banco de dados, transmissão segura de dados e lógica do lado do servidor.",
     tools: ["Node.js", "Express", "PostgreSQL", "Prisma"],
 
-    // RENDER PHYSICS: 3º Planeta
+    // RENDER PHYSICS: A Megaestrutura Hexagonal
     shape: "hexagon",
+    variant: "standard",
+    textureUrl: "/texturas/tech_circuit_hex.png", // Textura de circuitos impressos
     color: "#339933", // Verde Node.js
-    size: 18,
+    size: 20,
     orbitSize: 360, 
     speed: 22,
 
@@ -100,8 +108,9 @@ export const planets: PlanetModel[] = [
     description: "O processador lógico. Executa algoritmos computacionais complexos, pipelines de transformação de dados e otimização da arquitetura do sistema.",
     tools: ["TypeScript", "Python", "GraphQL", "Otimização com IA"],
 
-    // RENDER PHYSICS: 4º Planeta
-    shape: "sphere", // Pode alterar para "prism" se a sua interface suportar
+    // RENDER PHYSICS: O Gigante Gasoso Lógico
+    shape: "sphere", 
+    variant: "ringed", // Adiciona anéis (representando loops de dados)
     color: "#ff4500", // Laranja de Alta Energia
     size: 32,
     orbitSize: 460,
@@ -124,8 +133,9 @@ export const planets: PlanetModel[] = [
     description: "A plataforma de implantação orbital. Gerencia integração contínua, ambientes em contêineres e automação segura de infraestrutura em nuvem.",
     tools: ["Docker", "Git", "AWS", "CI/CD"],
 
-    // RENDER PHYSICS: 5º Planeta
-    shape: "sphere", // Pode alterar para "triangle" se a sua interface suportar
+    // RENDER PHYSICS: O Escudo de Container
+    shape: "sphere", 
+    variant: "standard",
     color: "#2496ed", // Azul Docker
     size: 22,
     orbitSize: 560,

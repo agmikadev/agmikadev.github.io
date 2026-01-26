@@ -1,8 +1,15 @@
 import React, { useState, useCallback } from "react";
-import { HudButton, CliHeader, Tabs, MissionsTab, AnalyticsTab } from "../../UI";
+import {
+  HudButton,
+  CliHeader,
+  Tabs,
+  MissionsTab,
+  AnalyticsTab,
+} from "../../UI";
 
 import "./PlanetaryDashboard.css";
 import type { PlanetModel } from "../../data";
+import { Planet3D } from "./Planet3D";
 
 interface DashboardProps {
   planet: PlanetModel;
@@ -76,13 +83,17 @@ export const PlanetDashboard: React.FC<DashboardProps> = ({
 
         {/* --- LEFT: The 3D Planet --- */}
         <div className="dashboard-left">
+          {/* O container precisa ter um tamanho definido para o Canvas do 3D funcionar */}
           <div
-            className="big-planet"
             style={{
-              backgroundColor: planet.color,
-              boxShadow: `inset -20px -20px 40px rgba(0,0,0,0.6), 0 0 50px ${planet.color}60`,
+              width: "100%",
+              maxWidth: "450px",
+              aspectRatio: "1/1",
+              margin: "auto",
             }}
-          ></div>
+          >
+            <Planet3D planet={planet} />
+          </div>
         </div>
 
         {/* --- RIGHT: The Mission HUD --- */}

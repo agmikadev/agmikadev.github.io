@@ -2,75 +2,123 @@
    1. MAIN LAYOUT
    ========================================= */
 .dashboard-overlay {
-  position: absolute; 
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(10, 10, 20, 0.95);
   backdrop-filter: blur(15px);
   z-index: 10000;
-  
+
   /* THE SAFE ZONE */
-  padding: 64px 32px; 
+  padding: 64px 0;
   box-sizing: border-box;
-  
+
   display: flex;
   color: white;
   animation: fade-in 0.4s ease-out forwards;
 }
 
+/* --- O CONTAINER PAI BLINDADO --- */
 .dashboard-container {
-  display: flex;
+  position: relative; /* Segura a borda ::before */
+  
   width: 100%;
-  height: 100%;
-  max-width: 1400px; 
-  margin: 0 auto; 
-  position: relative; 
+  height: 100%; /* Ocupa exatamente a altura do PlanetSystem */
+  max-height: 100%; /* Proíbe de crescer além da tela */
+  
+  display: flex; /* Divide em Esquerda (Planeta) e Direita (HUD) */
+  
+  padding: 24px; 
+  gap: 24px;
+  
+  box-sizing: border-box; /* Garante que o padding empurre para dentro, não para fora */
+  
+  /* A REGRA DE OURO PARA OVERFLOW EM FLEXBOX: 
+     Isso permite que os filhos encolham se não houver espaço vertical. */
+  min-height: 0; 
+  overflow: hidden; /* Corta qualquer coisa que tentar vazar */
 }
 
-/* LEFT: The 3D Planet */
+/* =========================================
+   AS DUAS COLUNAS INTERNAS (O Segredo do Encaixe)
+   ========================================= */
+
+/* COLUNA ESQUERDA (Planeta 3D) */
 .dashboard-left {
-  flex: 0 0 35%; 
+  flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center; 
-  padding: 24px;
+  align-items: center;
+  min-height: 0; /* Permite o esmagamento */
+  min-width: 0;  /* Permite o esmagamento */
+}
+
+/* COLUNA DIREITA (HUD e Abas) */
+.dashboard-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  
+  overflow-y: auto; 
+  padding: 0 8px;
 }
 
 .big-planet {
-  width: 100%; 
-  max-width: 450px; 
-  aspect-ratio: 1/1; 
-  border-radius: 50%;
+  /* Define um tamanho grande e imponente */
+  width: 100%;
+  max-width: 450px; /* Limite máximo para monitores gigantes */
+  aspect-ratio: 1 / 1; /* Garante que seja sempre um quadrado perfeito antes do corte */
+
+  /* Centraliza no container da esquerda */
+  margin: auto;
+
+  /* Transição suave se você trocar de um planeta redondo para um hexagonal */
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
-  animation: planet-grow 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  /* Garante que o box-shadow interno funcione bem */
+  background-blend-mode: overlay;
+  overflow: hidden;
 }
 
-.big-planet::before {
-  content: '';
+.planet-texture-layer {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  border-radius: 50%;
-  background-image: 
-    radial-gradient(circle at 70% 30%, rgba(255,255,255,0.1) 0%, transparent 20%),
-    radial-gradient(circle at 20% 60%, rgba(0,0,0,0.2) 0%, transparent 40%);
-  filter: blur(2px);
-}
+  inset: 0; /* Ocupa 100% da largura e altura do pai */
 
-/* RIGHT: The Data HUD */
-.dashboard-right {
-  flex: 1; 
-  padding: 0 48px; 
-  display: flex;
-  flex-direction: column;
-  height: 100%; 
-  overflow-y: auto;
-  overflow-x: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* A MÁGICA DO PHOTOSHOP NO CSS:
+     'mix-blend-mode' define como a textura se mistura com a cor de fundo.
+     - 'overlay' ou 'soft-light': Ótimos para texturas em tons de cinza.
+     - 'multiply': Escurece o planeta com a textura.
+  */
+  mix-blend-mode: overlay;
+  opacity: 0.7; /* Ajuste a intensidade da textura para não ficar muito forte */
+
+  /* Opcional: Se quiser que a textura gire junto com o planeta */
+  /* animation: slow-orbit 240s linear infinite; */
+
+  /* Garante que a textura fique ATRÁS da sombra interna do pai */
+  z-index: 0;
 }
 
 /* Custom Scrollbar for the HUD */
-.dashboard-right::-webkit-scrollbar { width: 6px; background-color: rgba(0, 0, 0, 0.5); }
-.dashboard-right::-webkit-scrollbar-thumb { background-color: var(--theme-color); border-radius: 4px; }
-.dashboard-right::-webkit-scrollbar-thumb:hover { filter: brightness(1.2); }
+.dashboard-right::-webkit-scrollbar {
+  width: 6px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.dashboard-right::-webkit-scrollbar-thumb {
+  background-color: var(--theme-color);
+  border-radius: 4px;
+}
+.dashboard-right::-webkit-scrollbar-thumb:hover {
+  filter: brightness(1.2);
+}
 
 /* =========================================
    2. TEXT & HEADERS
@@ -121,7 +169,7 @@
 .analytics-list {
   display: flex;
   flex-direction: column;
-  gap: 32px; 
+  gap: 32px;
 }
 
 .stat-card {
@@ -132,7 +180,7 @@
 .stat-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end; 
+  align-items: flex-end;
   margin-bottom: 8px;
 }
 
@@ -152,18 +200,18 @@
 
 .progress-track {
   width: 100%;
-  height: 4px; 
+  height: 4px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 2px;
   overflow: hidden;
-  margin-bottom: 12px; 
+  margin-bottom: 12px;
 }
 
 .progress-fill {
   /* Your existing properties (height, border-radius, etc.) */
   height: 100%;
   border-radius: 4px;
-  
+
   /* THE ADDITION: A smooth ease-out animation */
   animation: load-bar 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   transform-origin: left;
@@ -172,8 +220,8 @@
 .stat-description {
   font-family: monospace;
   font-size: 0.85rem;
-  color: #a3a3a3; 
-  line-height: 1.6; 
+  color: #a3a3a3;
+  line-height: 1.6;
 }
 
 /* =========================================
@@ -183,24 +231,78 @@
   animation: slide-up-fade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes target-lock {
+  0% {
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    opacity: 0;
+  }
+  100% {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    opacity: 0.3;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
 
 @keyframes planet-grow {
-  from { transform: scale(0.1) rotate(-45deg); opacity: 0; }
-  to { transform: scale(1) rotate(0deg); opacity: 1; }
+  from {
+    transform: scale(0.1) rotate(-45deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes slow-orbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes slow-hex-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
 }
 
 @keyframes slide-up-fade {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes load-bar {
-  0% { 
+  0% {
     transform: scaleX(0); /* Starts at 0% width */
   }
-  100% { 
+  100% {
     transform: scaleX(1); /* Ends at the inline width set by React */
   }
 }
@@ -212,8 +314,8 @@
   /* 1. UNLOCK THE OVERLAY - By changing to 'relative' and 'auto', the overlay no longer traps itself 
      to the screen size. It grows infinitely downward. */
   .dashboard-overlay {
-    position: relative; 
-    height: auto; 
+    position: relative;
+    height: auto;
     min-height: 100vh; /* Ensures it at least covers the screen if content is short */
     overflow: visible;
     padding: 0;
@@ -221,39 +323,41 @@
 
   /* 2. THE CONTAINER */
   .dashboard-container {
-    display: block; 
+    display: block;
     height: auto;
-    overflow: visible; 
-    padding-top: 60px; 
+    overflow: visible;
+    padding-top: 60px;
   }
 
   /* 3. THE PLANET */
   .dashboard-left {
-    display: flex; 
+    display: flex;
     height: auto;
     padding: 0;
     margin-bottom: 24px;
   }
 
   .big-planet {
-    max-width: 160px; 
+    /* Um pouco menor em tablets/celulares */
+    max-width: 300px;
+    margin-bottom: 24px;
   }
 
   /* 4. THE RIGHT COLUMN */
   .dashboard-right {
-    display: block; 
-    height: auto; 
-    overflow: visible; 
-    padding: 0 16px 80px 16px; 
+    display: block;
+    height: auto;
+    overflow: visible;
+    padding: 0 16px 80px 16px;
   }
 
   /* 5. Text Scaling */
   .planet-title {
-    font-size: 2rem; 
+    font-size: 2rem;
     text-align: left;
   }
 
   .cli-header {
-    font-size: 0.75rem; 
+    font-size: 0.75rem;
   }
 }
