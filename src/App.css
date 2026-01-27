@@ -16,8 +16,11 @@
     /* 3. AMBIENT GLOW (Center): Very large, subtle wash to connect them. */
     radial-gradient(circle at 50% 50%, rgba(150, 160, 180, 0.08) 0%, transparent 80%),
     
+    
     /* 4. THE VOID: The base color underneath everything */
     var(--cp-bg-dark);
+
+    --ai-glow: #a9fc03;
 
   /* --- ACCENTS (Unchanged) --- */
   --cp-card-bg-start: #2a2a5a;

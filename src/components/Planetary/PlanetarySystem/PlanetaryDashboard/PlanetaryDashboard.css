@@ -30,8 +30,7 @@
   
   display: flex; /* Divide em Esquerda (Planeta) e Direita (HUD) */
   
-  padding: 24px; 
-  gap: 24px;
+  padding: 8px 32px;
   
   box-sizing: border-box; /* Garante que o padding empurre para dentro, não para fora */
   
@@ -63,48 +62,7 @@
   min-height: 0;
   
   overflow-y: auto; 
-  padding: 0 8px;
-}
-
-.big-planet {
-  /* Define um tamanho grande e imponente */
-  width: 100%;
-  max-width: 450px; /* Limite máximo para monitores gigantes */
-  aspect-ratio: 1 / 1; /* Garante que seja sempre um quadrado perfeito antes do corte */
-
-  /* Centraliza no container da esquerda */
-  margin: auto;
-
-  /* Transição suave se você trocar de um planeta redondo para um hexagonal */
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-
-  /* Garante que o box-shadow interno funcione bem */
-  background-blend-mode: overlay;
-  overflow: hidden;
-}
-
-.planet-texture-layer {
-  position: absolute;
-  inset: 0; /* Ocupa 100% da largura e altura do pai */
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  /* A MÁGICA DO PHOTOSHOP NO CSS:
-     'mix-blend-mode' define como a textura se mistura com a cor de fundo.
-     - 'overlay' ou 'soft-light': Ótimos para texturas em tons de cinza.
-     - 'multiply': Escurece o planeta com a textura.
-  */
-  mix-blend-mode: overlay;
-  opacity: 0.7; /* Ajuste a intensidade da textura para não ficar muito forte */
-
-  /* Opcional: Se quiser que a textura gire junto com o planeta */
-  /* animation: slow-orbit 240s linear infinite; */
-
-  /* Garante que a textura fique ATRÁS da sombra interna do pai */
-  z-index: 0;
+  padding: 0 16px;
 }
 
 /* Custom Scrollbar for the HUD */

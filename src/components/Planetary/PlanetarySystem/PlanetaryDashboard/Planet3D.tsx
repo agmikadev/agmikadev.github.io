@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Environment} from "@react-three/drei";
+import { OrbitControls, Environment } from "@react-three/drei";
 import * as THREE from "three";
 import { type PlanetModel } from "../../data/PlanetaryData";
 
@@ -8,103 +8,156 @@ interface Planet3DProps {
   planet: PlanetModel;
 }
 
-// O Objeto 3D em si (A Geometria e o Material)
-const PlanetMesh: React.FC<{ planet: PlanetModel }> = ({ planet }) => {
-  // Ref para o planeta principal (para girar)
-  const planetRef = useRef<THREE.Mesh>(null);
-  // Ref para o grupo da Lua (para a lua orbitar o planeta)
-  const moonGroupRef = useRef<THREE.Group>(null);
+// Cor Verde Neon da IA
+const AI_COLOR = "#a9fc03"; 
 
-  useFrame((_, delta) => {
-    // 1. Gira o planeta em si
-    if (planetRef.current) planetRef.current.rotation.y += delta * 0.2;
-    // 2. Faz a Lua orbitar ao redor do planeta mais rápido
-    if (moonGroupRef.current) moonGroupRef.current.rotation.y += delta * 0.8;
+const PlanetMesh: React.FC<{ planet: PlanetModel }> = ({ planet }) => {
+  // Ref para o núcleo (esfera, hexágono sólido ou o novo hexágono wireframe)
+  const coreMeshRef = useRef<THREE.Mesh>(null);
+  
+  // Refs para os anéis de scanner (usados apenas em planetas normais com IA)
+  const ring1MeshRef = useRef<THREE.Mesh>(null);
+  const ring2MeshRef = useRef<THREE.Mesh>(null);
+
+  // --- DETECÇÃO DE TIPO ---
+  const isAIBelt = planet.shape === 'belt'; // O novo tipo IA
+  const isSolidHexagon = planet.shape === 'hexagon'; // O tipo Nodeon antigo
+  const isWireframeVariant = planet.variant === 'wireframe'; // Variante para planetas comuns
+
+  // --- CONFIGURAÇÃO DE TAMANHOS ---
+  const baseRadius = 1.5; 
+
+  // --- GAMELOOP (Animações) ---
+  useFrame((state, delta) => {
+    const time = state.clock.getElapsedTime();
+
+    // A. ANIMAÇÃO DO NÚCLEO CENTRAL
+    if (coreMeshRef.current) {
+      if (isAIBelt) {
+        // --- NOVA ANIMAÇÃO DA IA (Wireframe Hexagon Dinâmico) ---
+        // Diferente do Nodeon, este gira em TODOS os eixos para parecer instável/vivo.
+        coreMeshRef.current.rotation.y += delta * 0.5; // Rotação principal mais rápida
+        coreMeshRef.current.rotation.x = Math.sin(time * 0.5) * 0.2; // Oscilação no eixo X
+        coreMeshRef.current.rotation.z = Math.cos(time * 0.3) * 0.2; // Oscilação no eixo Z
+        
+        // Efeito de "Pulso/Respiração" (Vértices se movendo)
+        // Escala varia sutilmente entre 0.95x e 1.05x
+        const pulse = 1 + Math.sin(time * 2) * 0.05;
+        coreMeshRef.current.scale.set(pulse, pulse, pulse);
+
+      } else {
+        // --- Animação Padrão (Planetas e Nodeon) ---
+        // Apenas rotação sólida e calma no eixo Y
+        coreMeshRef.current.rotation.y += delta * 0.1;
+      }
+    }
+
+    // B. GIRO DOS ANÉIS DE SCANNER (Apenas para planetas físicos com IA)
+    if (!isAIBelt && planet.hasAI) {
+      if (ring1MeshRef.current) ring1MeshRef.current.rotation.y -= delta * 0.5;
+      if (ring2MeshRef.current) ring2MeshRef.current.rotation.y += delta * 0.5;
+    }
   });
 
-  const isHexagonal = planet.id == 'nodeon';
-  const isWireframe = planet.variant === 'wireframe';
-  const isRinged = planet.variant === 'ringed';
+  // --- MATERIAIS ---
+  
+  // 1. Material da IA (Wireframe Neon Brilhante)
+  // Usamos MeshBasicMaterial para que ele ignore a luz e brilhe com cor pura.
+  const aiWireframeMaterial = useMemo(() => new THREE.MeshBasicMaterial({
+    color: AI_COLOR,
+    wireframe: true,
+    side: THREE.DoubleSide,
+    fog: false, // Não é afetado por neblina se houver
+  }), []);
+
+  // 2. Material do Scanner (Anéis externos)
+  const scannerMaterial = useMemo(() => new THREE.MeshStandardMaterial({
+    color: AI_COLOR,
+    emissive: AI_COLOR,
+    emissiveIntensity: 1.2,
+    wireframe: true,
+    metalness: 1,
+    roughness: 0,
+    side: THREE.DoubleSide,
+  }), []);
+
+  // --- RENDERIZAÇÃO CONDICIONAL DA GEOMETRIA ---
+  const renderCoreGeometry = () => {
+    if (isAIBelt || isSolidHexagon) {
+      // Ambos usam o prisma hexagonal
+      return <cylinderGeometry args={[baseRadius, baseRadius, baseRadius, 6]} />;
+    }
+    // Padrão é esfera
+    return <sphereGeometry args={[baseRadius, 64, 64]} />;
+  };
+
+  // --- RENDERIZAÇÃO CONDICIONAL DO MATERIAL ---
+  const renderCoreMaterial = () => {
+    if (isAIBelt) {
+      // IA usa o material básico wireframe neon
+      return <primitive object={aiWireframeMaterial} />;
+    }
+    
+    // Planetas normais usam material standard que reage à luz
+    return (
+      <meshStandardMaterial
+        color={planet.color}
+        roughness={isWireframeVariant ? 0 : 0.2}
+        metalness={isWireframeVariant ? 1 : 0.6}
+        wireframe={isWireframeVariant}
+        emissive={isWireframeVariant ? planet.color : "#000000"}
+        emissiveIntensity={isWireframeVariant ? 0.5 : 0}
+      />
+    );
+  };
+
 
   return (
     <group>
-      {/* --- 1. O CORPO PRINCIPAL DO PLANETA --- */}
-      <mesh 
-        ref={planetRef} 
-        rotation={isHexagonal ? [Math.PI / 2, 0, 0] : [0, 0, 0]}
+      {/* --- NÚCLEO CENTRAL (Variável) --- */}
+      <mesh
+        ref={coreMeshRef}
+        // Se for hexágono (sólido ou IA), precisa deitar 90graus para ficar em pé
+        rotation={(isAIBelt || isSolidHexagon) ? [Math.PI / 2, 0, 0] : [0, 0, 0]}
       >
-        {isHexagonal ? (
-          <cylinderGeometry args={[1.5, 1.5, 1.5, 6]} />
-        ) : (
-          <sphereGeometry args={[1.5, 64, 64]} />
-        )}
-        
-        {/* MATERIAL INTELIGENTE: Vira holograma se for wireframe */}
-        <meshStandardMaterial 
-          color={planet.color} 
-          roughness={isWireframe ? 0 : 0.2} 
-          metalness={isWireframe ? 1 : 0.6}
-          wireframe={isWireframe} 
-          emissive={isWireframe ? planet.color : "#000000"} // Brilha se for wireframe
-          emissiveIntensity={isWireframe ? 0.5 : 0}
-        />
+        {renderCoreGeometry()}
+        {renderCoreMaterial()}
       </mesh>
 
-      {/* --- 2. O ANEL (Se for 'ringed') --- */}
-      {isRinged && (
-        <mesh rotation={[Math.PI / 2.2, 0, 0]}>
-          {/* Um disco chato com buraco no meio (Torus) */}
-          <torusGeometry args={[2.0, 0.1, 2, 64]} />
-          <meshStandardMaterial 
-            color={planet.color} 
-            roughness={0.1} 
-            metalness={0.8}
-            emissive={planet.color}
-            emissiveIntensity={0.2}
-          />
-        </mesh>
-      )}
-
-      {/* --- 3. A LUA (Se hasMoon for true) --- */}
-      {planet.hasMoon && (
-        <group ref={moonGroupRef}>
-          {/* A lua fica deslocada do centro (position x: 2.5) */}
-          <mesh position={[2.0, 0, 0]}>
-            <sphereGeometry args={[0.3, 32, 32]} />
-            <meshStandardMaterial 
-              color="#ffffff" 
-              roughness={0.8} 
-              metalness={0.1} 
-            />
-          </mesh>
-        </group>
+      {/* --- SCANNER IA (Apenas para planetas FÍSICOS que têm IA) --- */}
+      {/* O próprio belt não precisa se auto-escanear com anéis extras */}
+      {!isAIBelt && planet.hasAI && (
+        <>
+          <group rotation={[Math.PI / 2, Math.PI / 4, 0]}>
+            <mesh ref={ring1MeshRef} material={scannerMaterial}>
+              <torusGeometry args={[2.6, 0.015, 16, 100]} />
+            </mesh>
+          </group>
+          <group rotation={[Math.PI / 2, -Math.PI / 4, 0]}>
+            <mesh ref={ring2MeshRef} material={scannerMaterial}>
+              <torusGeometry args={[2.4, 0.015, 16, 100]} />
+            </mesh>
+          </group>
+        </>
       )}
     </group>
   );
 };
 
-// O "Palco" (Canvas, Luzes e Câmera)
 export const Planet3D: React.FC<Planet3DProps> = ({ planet }) => {
   return (
     <div style={{ width: "100%", height: "100%", position: "relative" }}>
-      <Canvas camera={{ position: [0, 0, 6.0], fov: 45 }}>
+      <Canvas camera={{ position: [0, 0, 7], fov: 45 }} gl={{ alpha: true }}>
         
-        {/* ILUMINAÇÃO */}
+        {/* Luzes afetam planetas normais, mas o Wireframe Basic da IA as ignora */}
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1.5} color={planet.color} />
         <pointLight position={[-5, -5, -5]} intensity={0.5} color="white" />
 
-        {/* O PLANETA */}
         <PlanetMesh planet={planet} />
 
-        {/* CONTROLES: Permite o usuário girar o planeta com o mouse! */}
-        <OrbitControls 
-          enableZoom={false} // Desativa o zoom para não quebrar o layout
-          autoRotate={true}  // Gira sozinho quando o mouse solta
-          autoRotateSpeed={1.0} 
-        />
-
-        {/* EFEITO EXTRA: Um ambiente de reflexo simulado (tipo "Studio") */}
+        {/* AutoRotate desativado para a IA, pois ela já tem sua rotação caótica */}
+        <OrbitControls enableZoom={false} autoRotate={planet.shape !== 'belt'} autoRotateSpeed={0.5} />
         <Environment preset="city" />
       </Canvas>
     </div>
