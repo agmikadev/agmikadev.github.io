@@ -7,7 +7,7 @@
   height: 100%;
   
   /* Fundo Espacial Profundo */
-  background: radial-gradient(circle at center, #0b0d14 0%, #000000 70%); 
+  background: radial-gradient(circle at center, #0b0d14 0%, #000000 70%);
   overflow: hidden;
   z-index: 1;
 }
@@ -23,8 +23,8 @@
   left:0;
   
   /* Fallback de 24px caso a escala falhe */
-  width: max(30px, var(--p-size)); 
-  height: max(30px, var(--p-size));
+  width: var(--p-size); 
+  height: var(--p-size);
 
   /* Centraliza o conteúdo visual dentro da área clicável */
   display: flex;
@@ -110,8 +110,18 @@
 }
 
 @media (max-width: 768px) {
+  .solar-system-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
   /* No celular, forçamos os planetas a serem um pouco menores */
   .planet-node {
-    transform: translate(-50%, -50%) scale(0.7); /* Reduz visualmente 30% */
+    transform: translate(-50%, -50%) scale(0.3); /* Reduz visualmente 30% */
+  }
+
+  .sun-center {
+    width: 48px;
+    height: 48px;
   }
 }

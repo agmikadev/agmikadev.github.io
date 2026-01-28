@@ -22,7 +22,6 @@
   background: transparent;
   border: 1px solid var(--strip-border);
   backdrop-filter: blur(15px);
-  border-radius: 48px 0;
   
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color: var(--text-main);
@@ -234,7 +233,6 @@
   padding: 12px;
   
   transition: all 0.3s ease;
-  /* overflow hidden removido anteriormente, ok */
 }
 
 .data-cycler.active-hover {
@@ -447,6 +445,8 @@
     max-width: 100%;
     border-right: none;
     border-bottom: 1px solid var(--strip-border);
+
+    z-index: 10;
     /* Em mobile, geralmente não queremos que ele cresça infinitamente, então podemos resetar: */
     height: auto; 
   }

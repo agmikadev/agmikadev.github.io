@@ -83,7 +83,7 @@
   z-index: 20000;
   
   /* Desktop Margins */
-  margin: 32px 32px 0 32px; 
+  margin: 32px 32px 0 32px;
 
   /* CRITICAL: Lets user click THROUGH the header to move planets underneath */
   pointer-events: none; 
@@ -137,9 +137,8 @@
   .container { 
     width: 100%; 
     max-width: 100%; 
-    min-height: 100dvh; 
-    height: auto; 
-    border-radius: 0; 
+    min-height: 50dvh;
+    border-radius: 0;
     overflow-x: hidden; 
     overflow-y: visible; 
   }
@@ -156,10 +155,7 @@
     min-width: 0; 
     box-sizing: border-box; 
     width: 100%;
-    
-    margin: 0; 
-    /* Reduced padding since there are no floating HUDs to avoid */
-    padding: 24px 16px;
+    margin: 0;
   }
 
   .dashboard-overlay {
@@ -174,8 +170,8 @@
   .dashboard-container {
     display: block; 
     height: auto;
-    padding-top: 40px; /* A standard, comfortable distance from the top */
     overflow: visible;
+    padding: 0;
   }
 
   /* Reset Mission Card Spacing */

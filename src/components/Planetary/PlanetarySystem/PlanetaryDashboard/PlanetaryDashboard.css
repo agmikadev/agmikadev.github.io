@@ -273,10 +273,9 @@
      to the screen size. It grows infinitely downward. */
   .dashboard-overlay {
     position: relative;
-    height: auto;
-    min-height: 100vh; /* Ensures it at least covers the screen if content is short */
+    height: auto; /* Ensures it at least covers the screen if content is short */
     overflow: visible;
-    padding: 0;
+    padding: 24px;
   }
 
   /* 2. THE CONTAINER */
@@ -284,21 +283,18 @@
     display: block;
     height: auto;
     overflow: visible;
-    padding-top: 60px;
+    padding: 0;
   }
 
   /* 3. THE PLANET */
   .dashboard-left {
     display: flex;
     height: auto;
-    padding: 0;
-    margin-bottom: 24px;
   }
 
   .big-planet {
     /* Um pouco menor em tablets/celulares */
     max-width: 300px;
-    margin-bottom: 24px;
   }
 
   /* 4. THE RIGHT COLUMN */
@@ -306,7 +302,7 @@
     display: block;
     height: auto;
     overflow: visible;
-    padding: 0 16px 80px 16px;
+    padding: 0;
   }
 
   /* 5. Text Scaling */
@@ -317,5 +313,6 @@
 
   .cli-header {
     font-size: 0.75rem;
+    padding-bottom: 16px;
   }
 }

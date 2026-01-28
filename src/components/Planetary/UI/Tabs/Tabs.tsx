@@ -38,7 +38,7 @@ export const Tabs: React.FC<TabsProps> = ({ tabs, defaultTabId, themeColor }) =>
       </div>
 
       {/* --- THE TAB CONTENT (Fades in when active) --- */}
-      <div className="tab-content" style={{ paddingBottom: '40px' }}>
+      <div className="tab-content">
         {tabs.map((tab) => 
           activeTab === tab.id ? (
             <div key={tab.id} className="fade-in-view">
