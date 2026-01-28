@@ -33,7 +33,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({ planet }) => {
             {/* O Cabeçalho da Barra (Nome na esquerda, Número na direita) */}
             <div className="analytics-row-header">
               <span className="row-label">{stat.label}</span>
-              <span className="row-value" style={{ color: getSkillColor(stat.value) }}>
+              <span className="row-value" style={{ color: getSkillColor(Number(stat.value)) }}>
                 {stat.value}/100
               </span>
             </div>
@@ -44,8 +44,8 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({ planet }) => {
                 className="progress-fill"
                 style={{
                   width: `${stat.value}%`,
-                  backgroundColor: getSkillColor(stat.value),
-                  boxShadow: `0 0 10px ${getSkillColor(stat.value)}`,
+                  backgroundColor: getSkillColor(Number(stat.value)),
+                  boxShadow: `0 0 10px ${getSkillColor(Number(stat.value))}`,
                 }}
               />
             </div>
