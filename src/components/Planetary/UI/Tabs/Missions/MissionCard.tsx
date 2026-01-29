@@ -5,7 +5,7 @@ import "./MissionCard.css";
 interface MissionCardProps {
   mission: MissionType;
   planetColor: string;
-  planetTools: string[]; // ✅ Correctly typed as an array
+  planetTools: string[];
 }
 
 export const MissionCard: React.FC<MissionCardProps> = ({

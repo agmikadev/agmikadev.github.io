@@ -84,3 +84,86 @@
   /* Animação suave quando a largura muda */
   transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* =========================================
+   4. ALTERNATIVAS (NOVO)
+========================================= */
+
+/* Container das alternativas */
+.analytics-alternatives {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  padding-left: 12px;
+  flex-wrap: wrap;
+}
+
+/* Ícone de seta (↳) */
+.alternatives-icon {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+/* Texto "Alternativas conhecidas:" */
+.alternatives-prefix {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-style: italic;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* Container das tags */
+.alternatives-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Cada tag individual */
+.alternative-tag {
+  padding: 3px 10px;
+  border-radius: 4px;
+  border: 1px solid;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  background: rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+  cursor: help;
+  white-space: nowrap;
+}
+
+/* Hover usando o padrão do sistema (accent + neon outline) */
+.alternative-tag:hover {
+  background: rgba(255, 255, 255, 0.08);
+  /* border-color vem do inline style já aplicado (planet.color) */
+  /* box-shadow será injetado via inline style para usar a cor do planeta */
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   5. RESPONSIVIDADE MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  /* Alternativas empilham verticalmente em mobile */
+  .analytics-alternatives {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  /* Prefix pode quebrar linha */
+  .alternatives-prefix {
+    white-space: normal;
+  }
+
+  /* Tags um pouco menores em mobile */
+  .alternative-tag {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+  }
+}

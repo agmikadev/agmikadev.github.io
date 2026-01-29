@@ -1,6 +1,6 @@
 import React from "react";
 import { type PlanetModel } from "../../../data/PlanetaryData";
-import "./AnalyticsTab.css"; // Lembre-se de importar o CSS!
+import "./AnalyticsTab.css";
 
 interface AnalyticsTabProps {
   planet: PlanetModel;
@@ -26,9 +26,8 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({ planet }) => {
 
       {/* --- BARRAS DE PROGRESSO --- */}
       <div className="analytics-list">
-        {planet.stats.map((stat) => (
-          /* Mudei de "stat-card" para "analytics-row" para matar o hover! */
-          <div className="analytics-row" key={stat.label}>
+        {planet.stats.map((stat, index) => (
+          <div className="analytics-row" key={`${stat.label}-${index}`}>
             
             {/* O Cabeçalho da Barra (Nome na esquerda, Número na direita) */}
             <div className="analytics-row-header">
@@ -49,6 +48,36 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({ planet }) => {
                 }}
               />
             </div>
+
+            {/* NOVO: Alternativas (se existirem) */}
+            {stat.alternatives && stat.alternatives.length > 0 && (
+              <div className="analytics-alternatives">
+                <span className="alternatives-icon">↳</span>
+                <span className="alternatives-prefix">Alternativas conhecidas:</span>
+                <div className="alternatives-tags">
+                  {stat.alternatives.map((alt, altIndex) => (
+                    <span 
+                      key={altIndex} 
+                      className="alternative-tag"
+                      style={{ 
+                        borderColor: `${planet.color}40`,
+                        color: `${planet.color}cc`,
+                        // Adiciona o box-shadow neon no hover usando a cor do planeta
+                        '--tag-glow': planet.color
+                      } as React.CSSProperties}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.boxShadow = `0 0 8px ${planet.color}40`;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.boxShadow = '';
+                      }}
+                    >
+                      {alt}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         ))}
       </div>
