@@ -4,6 +4,7 @@
   flex-direction: column;
   gap: 24px;
   font-family: monospace;
+  padding: 16px 0;
 }
 
 /* =========================================
@@ -108,7 +109,7 @@
 
 /* Ícone de seta (↳) */
 .alternatives-icon {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.8);
   font-size: 12px;
   margin-right: 4px;
 }
@@ -116,7 +117,7 @@
 /* Texto "Alternativas conhecidas:" */
 .alternatives-prefix {
   font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.8);
   font-style: italic;
   letter-spacing: 0.5px;
   white-space: nowrap;

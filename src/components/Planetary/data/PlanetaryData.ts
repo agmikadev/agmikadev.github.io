@@ -59,16 +59,16 @@ export const planets: PlanetModel[] = [
       },
       { 
         label: "Ilustração e edição vetorial com Adobe Illustrator", 
-        value: 70,
+        value: 85,
         alternatives: ["Vector Design", "Inkscape"]
       },
       { 
         label: "Design de interfaces modernas (UI Design)", 
-        value: 92
+        value: 95
       },
       { 
         label: "Pesquisa e validação de experiência (UX Research)", 
-        value: 88,
+        value: 85,
         alternatives: ["User Testing", "Usability Testing"]
       },
       { 
@@ -78,7 +78,7 @@ export const planets: PlanetModel[] = [
       },
       { 
         label: "Design responsivo multi-plataforma", 
-        value: 93,
+        value: 95,
         alternatives: ["Mobile Design"]
       },
       { 
@@ -88,12 +88,12 @@ export const planets: PlanetModel[] = [
       },
       { 
         label: "Criação de identidade visual (Brand Design)", 
-        value: 85,
+        value: 95,
         alternatives: ["Logo Design", "Color Theory", "Typography"]
       },
       { 
         label: "Animação e prototipagem interativa", 
-        value: 75,
+        value: 85,
         alternatives: ["Principle", "ProtoPie", "After Effects"]
       },
     ],
@@ -127,16 +127,16 @@ export const planets: PlanetModel[] = [
     stats: [
       { 
         label: "Desenvolvimento de componentes React.js", 
-        value: 90,
+        value: 95,
         alternatives: ["Vue.js", "Next.js", "Nuxt.js", "Angular", "Svelte"]
       },
       { 
         label: "Programação JavaScript moderna", 
-        value: 95
+        value: 95,
       },
       { 
         label: "Tipagem estática avançada com TypeScript", 
-        value: 80
+        value: 80,
       },
       { 
         label: "Estruturação semântica com HTML5", 
@@ -144,18 +144,18 @@ export const planets: PlanetModel[] = [
         alternatives: ["XHTML"]
       },
       { 
-        label: "Estilização moderna com CSS3", 
-        value: 92,
+        label: "Estilização complexa com CSS3", 
+        value: 95,
         alternatives: ["SCSS", "Sass"]
       },
       { 
-        label: "Estilização utility-first com Tailwind CSS", 
+        label: "Estilização rápida com Tailwind CSS",
         value: 85,
-        alternatives: ["Styled Components", "CSS Modules", "Emotion", "Material-UI", "shadcn/ui"]
+        alternatives: ["Styled Components", "Bootstrap", "Emotion", "Material-UI", "shadcn/ui"]
       },
       { 
         label: "Build e bundling com Vite", 
-        value: 88,
+        value: 90,
         alternatives: ["Webpack", "Turbopack", "Rollup"]
       },
       { 
@@ -165,17 +165,17 @@ export const planets: PlanetModel[] = [
       },
       { 
         label: "Implementação de interfaces responsivas", 
-        value: 93,
+        value: 95,
         alternatives: ["Mobile First", "Web Accessibility", "ARIA"]
       },
       { 
         label: "Gerenciamento de estado com Context API", 
-        value: 85,
+        value: 75,
         alternatives: ["Redux", "Zustand", "Recoil", "MobX"]
       },
       { 
         label: "Requisições HTTP e gerenciamento de cache", 
-        value: 88,
+        value: 90,
         alternatives: ["React Query", "SWR", "Axios", "Fetch API"]
       },
     ],
@@ -203,7 +203,6 @@ export const planets: PlanetModel[] = [
     shape: "hexagon",
     variant: "standard",
     hasAI: true,
-    textureUrl: "/texturas/tech_circuit_hex.png",
     color: "#339933",
     size: 20,
     orbitSize: 360,
@@ -212,11 +211,11 @@ export const planets: PlanetModel[] = [
     stats: [
       { 
         label: "Processamento de eventos assíncronos com Node.js", 
-        value: 92
+        value: 90
       },
       { 
         label: "Criação de rotas de API com Express.js", 
-        value: 88,
+        value: 85,
         alternatives: ["Fastify", "NestJS", "Koa", "Hapi"]
       },
       { 
@@ -226,7 +225,7 @@ export const planets: PlanetModel[] = [
       },
       { 
         label: "Banco de dados NoSQL com MongoDB", 
-        value: 75
+        value: 85
       },
       { 
         label: "Caching e armazenamento em memória com Redis", 
@@ -234,16 +233,16 @@ export const planets: PlanetModel[] = [
       },
       { 
         label: "Mapeamento objeto-relacional com Prisma", 
-        value: 85,
+        value: 75,
         alternatives: ["Sequelize", "TypeORM", "Mongoose", "Knex.js"]
       },
       { 
         label: "Design e implementação de APIs RESTful", 
-        value: 90
+        value: 80
       },
       { 
         label: "Consulta de dados otimizada com GraphQL", 
-        value: 40,
+        value: 75,
         alternatives: ["tRPC"]
       },
       { 
@@ -253,12 +252,12 @@ export const planets: PlanetModel[] = [
       },
       { 
         label: "Autenticação e autorização com JWT", 
-        value: 85,
+        value: 65,
         alternatives: ["OAuth", "Passport.js", "bcrypt", "Auth0"]
       },
       { 
         label: "Validação de schemas e dados", 
-        value: 88,
+        value: 65,
         alternatives: ["Zod", "Joi", "Yup", "JSON Schema"]
       },
       { 
@@ -268,7 +267,7 @@ export const planets: PlanetModel[] = [
       },
       { 
         label: "Testes automatizados de backend", 
-        value: 80,
+        value: 70,
         alternatives: ["Jest", "Mocha", "Supertest"]
       },
     ],
@@ -307,7 +306,7 @@ export const planets: PlanetModel[] = [
       },
       { 
         label: "Estruturação de modelos complexos com TypeScript", 
-        value: 80
+        value: 80,
       },
       { 
         label: "Análise e manipulação de dados", 
@@ -321,7 +320,7 @@ export const planets: PlanetModel[] = [
       },
       { 
         label: "Análise exploratória e mineração de dados", 
-        value: 65,
+        value: 55,
         alternatives: ["Data Mining", "Big Data"]
       },
       { 
@@ -331,17 +330,17 @@ export const planets: PlanetModel[] = [
       },
       { 
         label: "Design e otimização de algoritmos", 
-        value: 70,
+        value: 75,
         alternatives: ["Sorting Algorithms", "Search Algorithms", "Dynamic Programming"]
       },
       { 
         label: "Estruturas de dados avançadas", 
-        value: 75,
+        value: 55,
         alternatives: ["Graph Theory"]
       },
       { 
         label: "Consulta de dados com GraphQL", 
-        value: 40,
+        value: 75,
         alternatives: ["SQL", "NoSQL", "Query Optimization"]
       },
       { 
@@ -351,7 +350,7 @@ export const planets: PlanetModel[] = [
       },
       { 
         label: "Visão computacional", 
-        value: 45,
+        value: 65,
         alternatives: ["Computer Vision"]
       },
       { 
@@ -361,12 +360,12 @@ export const planets: PlanetModel[] = [
       },
       { 
         label: "Ferramentas de pesquisa científica", 
-        value: 55,
+        value: 50,
         alternatives: ["Jupyter Notebook", "R", "MATLAB"]
       },
       { 
         label: "Otimização de algoritmos complexos com IA", 
-        value: 80
+        value: 85
       },
     ],
   },
@@ -402,7 +401,7 @@ export const planets: PlanetModel[] = [
     stats: [
       { 
         label: "Controle de versão de código com Git", 
-        value: 85,
+        value: 70,
         alternatives: ["GitHub", "GitLab", "Bitbucket", "Git Flow"]
       },
       { 
@@ -412,7 +411,7 @@ export const planets: PlanetModel[] = [
       },
       { 
         label: "Orquestração de containers com Kubernetes", 
-        value: 10
+        value: 10,
       },
       { 
         label: "Automação de pipelines com CI/CD", 
@@ -426,7 +425,7 @@ export const planets: PlanetModel[] = [
       },
       { 
         label: "Deploy de aplicações frontend", 
-        value: 70,
+        value: 90,
         alternatives: ["Vercel", "Netlify", "Heroku", "Railway", "Render"]
       },
       { 
@@ -446,17 +445,17 @@ export const planets: PlanetModel[] = [
       },
       { 
         label: "Segurança e criptografia de conexões", 
-        value: 60,
+        value: 40,
         alternatives: ["SSL/TLS", "Security Best Practices"]
       },
       { 
         label: "Gerenciamento de dependências (npm)", 
-        value: 90,
+        value: 80,
         alternatives: ["yarn", "pnpm", "pip"]
       },
       { 
         label: "Gestão de ambientes (Dev/Staging/Prod)", 
-        value: 85,
+        value: 70,
         alternatives: ["Environment Variables", "Staging", "Production"]
       },
       { 
@@ -494,9 +493,6 @@ export const planets: PlanetModel[] = [
     hasAI: true,
 
     stats: [
-      { label: "Neural Integrity", value: 100 },
-      { label: "Response Rate", value: 98 },
-      { label: "Pattern Match", value: 95 },
       { 
         label: "Implementação de modelos de Machine Learning", 
         value: 70,
@@ -509,7 +505,7 @@ export const planets: PlanetModel[] = [
       },
       { 
         label: "Processamento de linguagem natural", 
-        value: 75,
+        value: 70,
         alternatives: ["NLP"]
       },
       { 
@@ -519,47 +515,47 @@ export const planets: PlanetModel[] = [
       },
       { 
         label: "Otimização de processos com IA", 
-        value: 85,
+        value: 95,
         alternatives: ["Performance Optimization", "Code Analysis"]
       },
       { 
         label: "Análise preditiva e detecção de anomalias", 
-        value: 78,
+        value: 90,
         alternatives: ["Anomaly Detection", "Pattern Recognition"]
       },
       { 
         label: "Processamento de dados em tempo real", 
-        value: 82,
+        value: 74,
         alternatives: ["Stream Processing", "Data Streams", "WebSockets"]
       },
       { 
         label: "Detecção automatizada de bugs e falhas", 
-        value: 88,
+        value: 90,
         alternatives: ["Automated Testing"]
       },
       { 
         label: "Sistemas de recomendação", 
-        value: 72,
+        value: 65,
         alternatives: ["Collaborative Filtering", "Content-Based Filtering"]
       },
       { 
         label: "Visão computacional e reconhecimento", 
-        value: 60,
+        value: 65,
         alternatives: ["Image Recognition", "Speech Recognition"]
       },
       { 
         label: "Análise de sentimento e séries temporais", 
-        value: 68,
+        value: 78,
         alternatives: ["Time Series Analysis"]
       },
       { 
         label: "Aprendizado por reforço", 
-        value: 55,
+        value: 85,
         alternatives: ["Reinforcement Learning"]
       },
       { 
         label: "Arquitetura de sistemas distribuídos", 
-        value: 75,
+        value: 65,
         alternatives: ["Routing", "Context API", "Middleware", "Event-Driven Architecture", "Microservices"]
       },
     ],
