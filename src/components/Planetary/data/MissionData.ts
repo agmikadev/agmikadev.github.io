@@ -52,12 +52,12 @@ export const MISSION_ARCHIVE: MissionType[] = [
   {
     id: "portfolio-01",
     title: "Portfolio Pessoal",
-    year: "2024",
+    year: "2026",
     role: "Desenvolvedor Frontend",
     summary:
       "Website pessoal para showcase de projetos e apresentação profissional.",
     technical_briefing:
-      "Site estático desenvolvido com foco em design responsivo e performance. Implementa boas práticas de SEO e acessibilidade, servindo como vitrine para projetos pessoais e informações profissionais.",
+      "Site estático desenvolvido com foco em design responsivo e performance. Implementa boas práticas de SEO e acessibilidade, servindo como vitrine para projetos pessoais e informações profissionais. Seu design estático permite hospedagem de longo prazo em suites gratuitas como GitHub Pages, Vercel.app e Netlify, garantindo fácil manutenção e atualizações futuras.",
     technologies: [
       // Linguagens base
       "HTML",

@@ -156,15 +156,6 @@
   font-weight: bold;
 }
 
-.progress-track {
-  width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
-  overflow: hidden;
-  margin-bottom: 12px;
-}
-
 .progress-fill {
   /* Your existing properties (height, border-radius, etc.) */
   height: 100%;
