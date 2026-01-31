@@ -1,3 +1,9 @@
+
+
+:root {
+  --planet-color: ;
+}
+
 /* Container principal da aba */
 .analytics-container {
   display: flex;
@@ -130,16 +136,20 @@
   gap: 6px;
 }
 
-/* Cada tag individual */
 .alternative-tag {
-  padding: 3px 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 4px;
+  color: #ccc;
+  font-family: monospace;
   font-size: 0.7rem;
   font-weight: 500;
-  letter-spacing: 0.3px;
-  background: rgba(0, 0, 0, 0.3);
+  cursor: default;
   transition: all 0.2s ease;
-  white-space: nowrap;
 }
 
 /* =========================================

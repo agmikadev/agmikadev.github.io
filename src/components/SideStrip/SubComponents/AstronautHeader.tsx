@@ -10,7 +10,13 @@ export const AstronautHeader = () => (
       
       {/* A Foto ou Iniciais */}
       <div className="avatar-placeholder">
-        <span className="initials">MA</span>
+        <img 
+          src="/public/Angelo.jpg"
+          alt="Mikael Angelo" 
+          className="avatar-image"
+        />
+        {/* Fallback para quando não houver imagem */}
+        {/* <span className="initials">MA</span> */}
       </div>
       
       {/* Indicador de Status Online */}

@@ -66,12 +66,15 @@ export const SideStrip: React.FC = () => {
             <div className="content-pane fade-in">
               <div className="tags-container">
                 <span className="tag">React</span>
+                <span className="tag">Vue</span>
+                <span className="tag">Tailwind</span>
                 <span className="tag">TypeScript</span>
                 <span className="tag">Next.js</span>
                 <span className="tag">Node.js</span>
-                <span className="tag">Tailwind</span>
-                <span className="tag">Three.js</span>
-                <span className="tag">Docker</span>
+                <span className="tag">Express.js</span>
+                <span className="tag">PostgreSQL</span>
+                <span className="tag">MongoDB</span>
+                <span className="tag">Three.js (Fiber)</span>
                 <span className="tag">Git</span>
               </div>
             </div>

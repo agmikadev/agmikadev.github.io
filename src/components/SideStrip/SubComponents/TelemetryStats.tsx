@@ -1,8 +1,8 @@
 // Configuração das Métricas Pessoais
 const METRICS = [
-  { label: "LANG :: ENGLISH", value: "90%", display: "C1", color: "#a9fc03" }, // Verde Neon
-  { label: "ATTR :: LOGIC", value: "95%", display: "HI", color: "#61dafb" }, // Ciano React
-  { label: "ATTR :: CREATIVE", value: "85%", display: "HI", color: "#ff0055" }, // Rosa Cyber
+  { label: "LANG :: ENGLISH", value: "90%", display: "C1 / 7 IELTS", color: "#a9fc03" }, // Verde Neon
+  { label: "SKILL :: SELF LEARNING", value: "95%", display: "A+", color: "#61dafb" }, // Ciano React
+  { label: "SKILL :: TIME MANAGEMENT", value: "85%", display: "A", color: "#ff0055" }, // Rosa Cyber
 ];
 
 export const TelemetryStats = () => {

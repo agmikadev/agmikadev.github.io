@@ -70,16 +70,16 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({ planet }) => {
                       className="alternative-tag"
                       style={
                         {
-                          borderColor: `${planet.color}40`,
+                          border: `1px solid ${planet.color}20`,
                           color: `${planet.color}cc`,
-                          // Adiciona o box-shadow neon no hover usando a cor do planeta
-                          "--tag-glow": planet.color,
                         } as React.CSSProperties
                       }
                       onMouseEnter={(e) => {
+                        e.currentTarget.style.border = `1px solid ${planet.color}cc`;
                         e.currentTarget.style.boxShadow = `0 0 8px ${planet.color}40`;
                       }}
                       onMouseLeave={(e) => {
+                        e.currentTarget.style.border = `1px solid ${planet.color}20`;
                         e.currentTarget.style.boxShadow = "";
                       }}
                     >
