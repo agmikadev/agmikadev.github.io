@@ -69,6 +69,6 @@
     flex-direction: column; 
     
     height: auto;
-    gap: 0; /* REMOVED: 24px gap to reclaim vertical screen space */
+    gap: 8px; /* REMOVED: 24px gap to reclaim vertical screen space */
   }
 }
