@@ -37,6 +37,8 @@ export const TelemetryStats = () => {
           </div>
         ))}
       </div>
+
+      <div className="telemetry-divider"></div>
     </div>
   );
 };

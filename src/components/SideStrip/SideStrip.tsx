@@ -23,8 +23,6 @@ export const SideStrip: React.FC = () => {
       <AstronautHeader />
       <TelemetryStats />
 
-      <div className="sci-fi-divider" />
-
       {/* --- DATA CYCLER CONTAINER --- */}
       <div 
         className={`data-cycler ${isHovered ? "active-hover" : ""}`}
