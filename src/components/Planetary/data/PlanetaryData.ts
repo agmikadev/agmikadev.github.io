@@ -33,14 +33,13 @@ export const planets: PlanetModel[] = [
       "O setor de design primário. Gera protótipos de alta fidelidade, geometrias vetoriais e experiências visuais focadas no usuário antes da compilação do código.",
     tools: [
       "Figma", "Pixso", "Adobe XD", "Sketch",
-      "Adobe Illustrator", "Vector Design", "Inkscape",
+      "Adobe Illustrator", "Affinity", "Inkscape",
       "UI Design", "UX Research", "Mobile Design", "Responsive Design",
-      "User Testing", "Usability Testing",
       "Design Systems", "Design Tokens", "Component Libraries",
       "Principle", "ProtoPie", "After Effects",
       "Data Visualization", "Infographics",
       "Photoshop", "Image Editing",
-      "Brand Design", "Logo Design", "Color Theory", "Typography",
+      "Brand Design", "Color Theory", "Typography",
     ],
 
     shape: "sphere",
@@ -60,16 +59,11 @@ export const planets: PlanetModel[] = [
       { 
         label: "Ilustração e edição vetorial com Adobe Illustrator", 
         value: 85,
-        alternatives: ["Vector Design", "Inkscape"]
-      },
-      { 
-        label: "Design de interfaces modernas (UI Design)", 
-        value: 95
+        alternatives: ["Affinity", "Inkscape"]
       },
       { 
         label: "Pesquisa e validação de experiência (UX Research)", 
         value: 85,
-        alternatives: ["User Testing", "Usability Testing"]
       },
       { 
         label: "Estruturação de Design Systems escaláveis", 
@@ -84,17 +78,11 @@ export const planets: PlanetModel[] = [
       { 
         label: "Visualização de dados e infográficos", 
         value: 80,
-        alternatives: ["Infographics"]
       },
       { 
         label: "Criação de identidade visual (Brand Design)", 
         value: 95,
         alternatives: ["Logo Design", "Color Theory", "Typography"]
-      },
-      { 
-        label: "Animação e prototipagem interativa", 
-        value: 85,
-        alternatives: ["Principle", "ProtoPie", "After Effects"]
       },
     ],
   },
@@ -107,7 +95,7 @@ export const planets: PlanetModel[] = [
     description:
       "O motor de renderização da superfície. Responsável pela interação humano-máquina, gerenciamento de estado global e renderização de telemetria visual.",
     tools: [
-      "React.js", "Vue.js", "Next.js", "Nuxt.js", "Angular", "Svelte",
+      "React.js", "Vue.js", "Next.js", "Nuxt.js", "Angular.js", "Flutter", "Svelte",
       "Vite", "Webpack", "Turbopack", "Rollup",
       "JavaScript", "TypeScript", "HTML", "XHTML", "CSS", "SCSS", "Sass",
       "Tailwind CSS", "Styled Components", "CSS Modules", "Emotion", "Material-UI", "shadcn/ui",
@@ -126,9 +114,9 @@ export const planets: PlanetModel[] = [
 
     stats: [
       { 
-        label: "Desenvolvimento de componentes React.js", 
+        label: "Criação de arquitetura baseada em componentes com React.js", 
         value: 95,
-        alternatives: ["Vue.js", "Next.js", "Nuxt.js", "Angular", "Svelte"]
+        alternatives: ["Vue.js", "Next.js", "Angular.js", "Flutter", "Nuxt.js", "Svelte"]
       },
       { 
         label: "Programação JavaScript moderna", 
@@ -151,7 +139,7 @@ export const planets: PlanetModel[] = [
       { 
         label: "Estilização rápida com Tailwind CSS",
         value: 85,
-        alternatives: ["Styled Components", "Bootstrap", "Emotion", "Material-UI", "shadcn/ui"]
+        alternatives: ["shadcn/ui", "Styled Components", "Bootstrap", "Emotion", "Material-UI"]
       },
       { 
         label: "Build e bundling com Vite", 
@@ -164,7 +152,7 @@ export const planets: PlanetModel[] = [
         alternatives: ["GSAP", "React Spring", "CSS Animations"]
       },
       { 
-        label: "Implementação de interfaces responsivas", 
+        label: "Implementação de interfaces responsivas PC e Mobile", 
         value: 95,
         alternatives: ["Mobile First", "Web Accessibility", "ARIA"]
       },
@@ -174,9 +162,9 @@ export const planets: PlanetModel[] = [
         alternatives: ["Redux", "Zustand", "Recoil", "MobX"]
       },
       { 
-        label: "Requisições HTTP e gerenciamento de cache", 
+        label: "Requisições HTTP e gerenciamento de cache com Axios", 
         value: 90,
-        alternatives: ["React Query", "SWR", "Axios", "Fetch API"]
+        alternatives: ["React Query", "SWR", "Fetch API"]
       },
     ],
   },

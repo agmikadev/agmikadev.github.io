@@ -40,6 +40,8 @@ export const MISSION_ARCHIVE: MissionType[] = [
       // Design
       "Responsive Design",
       "UI Design",
+      //AI
+      "Performance Optimization",
     ],
     external_links: [
       {
@@ -70,6 +72,7 @@ export const MISSION_ARCHIVE: MissionType[] = [
       "Vite",
       // Versionamento
       "Git",
+      "Github",
       // Design
       "Responsive Design",
       "UI Design",
@@ -98,11 +101,12 @@ export const MISSION_ARCHIVE: MissionType[] = [
       "CSS",
       "JavaScript",
       // Framework
-      "React.js",
+      "Vue.js",
       // Build tool
       "Vite",
       // Versionamento
       "Git",
+      "Github",
       // Design
       "Responsive Design",
       "Web Accessibility",
@@ -120,7 +124,7 @@ export const MISSION_ARCHIVE: MissionType[] = [
     id: "polaris-browser-01",
     title: "Polaris Browser Icon",
     year: "2022",
-    role: "UI/UX Designer",
+    role: "UI Designer",
     summary:
       "Design de identidade visual para navegador web fictício com conceito de navegação e orientação.",
     technical_briefing:

@@ -11,7 +11,7 @@ export const AstronautHeader = () => (
       {/* A Foto ou Iniciais */}
       <div className="avatar-placeholder">
         <img 
-          src="../../../assets/angelo.jpg"
+          src="../../../assets/angelo.png"
           alt="Mikael Angelo" 
           className="avatar-image"
         />
