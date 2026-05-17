@@ -27,6 +27,8 @@ export const PlanetarySystem: React.FC = () => {
   const requestRef = useRef<number>(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const planetNodesRef = useRef<(HTMLDivElement | null)[]>([]);
+  const containerWidthRef = useRef<number>(0);
+  const containerHeightRef = useRef<number>(0);
 
   const svgPathRef = useRef<SVGPathElement>(null);
   const svgHitboxRef = useRef<SVGPathElement>(null);
@@ -35,14 +37,33 @@ export const PlanetarySystem: React.FC = () => {
     physicalPlanets.map((_, i) => i * ((Math.PI * 2) / physicalPlanets.length)),
   );
 
+  // --- DIMENSION CACHE (ResizeObserver) ---
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    containerWidthRef.current = container.clientWidth;
+    containerHeightRef.current = container.clientHeight;
+
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        containerWidthRef.current = entry.contentRect.width;
+        containerHeightRef.current = entry.contentRect.height;
+      }
+    });
+    observer.observe(container);
+
+    return () => observer.disconnect();
+  }, []);
+
   // --- GAMELOOP ---
   useEffect(() => {
     const animate = () => {
       if (!containerRef.current) return;
 
-      // Captura dimensões reais para garantir sincronia Pixel-Perfect
-      const w = containerRef.current.clientWidth;
-      const h = containerRef.current.clientHeight;
+      // Lê dimensões cacheadas — sem layout thrashing
+      const w = containerWidthRef.current;
+      const h = containerHeightRef.current;
 
       // 1. Física
       anglesRef.current = anglesRef.current.map((angle, i) => {
@@ -99,7 +120,7 @@ export const PlanetarySystem: React.FC = () => {
 
     requestRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(requestRef.current!);
-  }, [hoveredPlanetId, physicalPlanets]);
+  }, [hoveredPlanetId]);
 
   const isBeltHovered = beltPlanet && hoveredPlanetId === beltPlanet.id;
 
