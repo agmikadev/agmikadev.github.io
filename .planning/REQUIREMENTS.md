@@ -73,7 +73,7 @@
 | FOUND-04 | Phase 1 | Pending |
 | BELT-01 | Phase 2 | Pending |
 | BELT-02 | Phase 2 | Pending |
-| BELT-03 | Phase 2 | Pending |
+| BELT-03 | Phase 3 | Pending |
 | BELT-04 | Phase 3 | Pending |
 | BELT-05 | Phase 2 | Pending |
 | UX-01 | Phase 4 | Pending |
