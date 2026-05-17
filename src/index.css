@@ -24,3 +24,11 @@ body {
   padding: 0;
   text-align: left; /* specific override for Vite default */
 }
+
+/* DPR cap optimization for high-DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .solar-system-container {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
