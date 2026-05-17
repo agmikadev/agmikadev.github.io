@@ -10,7 +10,7 @@
 - [x] **FOUND-01**: GitHub Pages deployment works correctly (vite base path fixed)
 - [ ] **FOUND-02**: 3D scene loads with visible loading state/spinner
 - [ ] **FOUND-03**: Performance baseline of 60fps on mid-range hardware (DPR capped at 2, layout thrashing fixed)
-- [ ] **FOUND-04**: Resume/CV downloadable as PDF from the portfolio
+- [x] **FOUND-04**: Resume/CV downloadable as PDF from the portfolio
 
 ### AI Sonda Network Belt
 
@@ -70,7 +70,7 @@
 | FOUND-01 | Phase 1 | Complete |
 | FOUND-02 | Phase 1 | Pending |
 | FOUND-03 | Phase 1 | Pending |
-| FOUND-04 | Phase 1 | Pending |
+| FOUND-04 | Phase 1 | Complete |
 | BELT-01 | Phase 2 | Pending |
 | BELT-02 | Phase 2 | Pending |
 | BELT-03 | Phase 3 | Pending |
