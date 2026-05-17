@@ -29,7 +29,13 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. User sees a loading spinner while the 3D scene initializes
   3. Orbital animation runs at 60fps on mid-range hardware (DPR capped at 2)
   4. User can download resume/CV as PDF from the portfolio
-**Plans**: TBD
+**Plans**: 4 plans
+
+Plans:
+- [x] 01-01-PLAN.md — Fix GitHub Pages deployment (vite base path, package.json homepage)
+- [ ] 01-02-PLAN.md — Add loading spinner for scene initialization
+- [ ] 01-03-PLAN.md — Add resume/CV PDF download button
+- [ ] 01-04-PLAN.md — Performance baseline (DPR cap, layout thrashing fix)
 
 ### Phase 2: Belt Data & Visual Core
 **Goal**: AI Sonda network belt is visually rendered as animated connections between all planets
@@ -85,7 +91,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Performance | 0/0 | Not started | - |
+| 1. Foundation & Performance | 1/4 | In progress | 01-01 |
 | 2. Belt Data & Visual Core | 0/0 | Not started | - |
 | 3. Belt Interaction & Content | 0/0 | Not started | - |
 | 4. Polish & Accessibility | 0/0 | Not started | - |
