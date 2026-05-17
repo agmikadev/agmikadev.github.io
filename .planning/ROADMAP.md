@@ -35,7 +35,7 @@ Plans:
 - [x] 01-01-PLAN.md — Fix GitHub Pages deployment (vite base path, package.json homepage)
 - [x] 01-02-PLAN.md — Add loading spinner for scene initialization
 - [x] 01-03-PLAN.md — Add resume/CV PDF download button
-- [ ] 01-04-PLAN.md — Performance baseline (DPR cap, layout thrashing fix)
+- [x] 01-04-PLAN.md — Performance baseline (DPR cap, layout thrashing fix)
 
 ### Phase 2: Belt Data & Visual Core
 **Goal**: AI Sonda network belt is visually rendered as animated connections between all planets
@@ -91,7 +91,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Performance | 3/4 | In progress | 01-01, 01-02, 01-03 |
+| 1. Foundation & Performance | 4/4 | Complete | 2026-05-17 |
 | 2. Belt Data & Visual Core | 0/0 | Not started | - |
 | 3. Belt Interaction & Content | 0/0 | Not started | - |
 | 4. Polish & Accessibility | 0/0 | Not started | - |
