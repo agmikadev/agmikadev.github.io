@@ -57,6 +57,18 @@ export const FooterInfo = () => (
           </a>
         ))}
       </div>
+
+      {/* RESUME DOWNLOAD BUTTON */}
+      {/* TODO: Replace public/resume.pdf with actual resume PDF */}
+      <a
+        href="/resume.pdf"
+        download="Mikael-Angelo-Resume.pdf"
+        className="resume-download-btn"
+        aria-label="Download resume as PDF"
+      >
+        <span className="btn-icon">↓</span>
+        <span className="btn-text">DOWNLOAD CV</span>
+      </a>
     </div>
 
     {/* ASSINATURA DO SISTEMA */}

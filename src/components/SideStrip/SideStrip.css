@@ -444,6 +444,39 @@
 
 .copyright { color: rgba(255, 255, 255, 0.15); }
 
+/* RESUME DOWNLOAD BUTTON */
+.resume-download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  margin-top: 12px;
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--ai-glow, #a9fc03);
+  color: var(--ai-glow, #a9fc03);
+  font-family: monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.resume-download-btn:hover {
+  background: rgba(169, 252, 3, 0.1);
+  box-shadow: 0 0 12px rgba(169, 252, 3, 0.3);
+}
+
+.resume-download-btn .btn-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
 /* Animações Globais */
 @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 @keyframes blink-animation { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
