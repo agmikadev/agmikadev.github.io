@@ -7,14 +7,26 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Dismiss spinner after first render cycle completes
-    // requestAnimationFrame ensures the 3D scene has at least started rendering
-    const timer = requestAnimationFrame(() => {
+    const MIN_DISPLAY_MS = 1000;
+    const start = performance.now();
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+
+    const frame = requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        setIsLoading(false);
+        const elapsed = performance.now() - start;
+        const remaining = Math.max(0, MIN_DISPLAY_MS - elapsed);
+        if (remaining > 0) {
+          timeoutId = setTimeout(() => setIsLoading(false), remaining);
+        } else {
+          setIsLoading(false);
+        }
       });
     });
-    return () => cancelAnimationFrame(timer);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      if (timeoutId !== undefined) clearTimeout(timeoutId);
+    };
   }, []);
 
   return (
