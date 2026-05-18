@@ -231,19 +231,15 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  
-  /* <--- ALTERADO: Flex Grow faz ele ocupar todo o espaço vertical disponível */
+
   flex-grow: 1; 
-  
-  /* Removemos min-height fixa se quisermos que ele encolha/cresça com a tela,
-     mas manter um mínimo de segurança é bom */
-  min-height: 150px; 
+  min-height: 0;
   
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 8px;
   padding: 12px;
-  
+  overflow: hidden;
   transition: all 0.3s ease;
 }
 
@@ -292,6 +288,8 @@
   display: flex;
   flex-direction: column;
   padding-top: 12px;
+  overflow-y: auto;
+  min-height: 0;
 }
 
 .content-pane p {
