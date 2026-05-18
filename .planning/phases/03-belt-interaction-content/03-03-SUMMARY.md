@@ -74,3 +74,10 @@ None — No new threat surface introduced. Shape check uses strict equality agai
 - [x] Belt click → BeltHUD open → back button closes (full interaction loop)
 
 ## Self-Check: PASSED
+
+- FOUND: 03-03-SUMMARY.md
+- FOUND: PlanetarySystem.tsx
+- FOUND: UI/index.ts
+- FOUND: commit 261a069 (feat: wire BeltHUD)
+- FOUND: commit 8affdb2 (chore: barrel export)
+- FOUND: commit baa6064 (docs: complete plan)
