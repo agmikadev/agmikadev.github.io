@@ -45,7 +45,12 @@ Plans:
   1. Animated network connections are visible between all orbiting planets
   2. Belt data model contains AI/Agentic tools with proficiency percentages and mission reports
   3. Belt connections update in real-time as planets orbit
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Create belt data model (BeltData.ts) with AI tools, proficiency %, mission reports
+- [ ] 02-02-PLAN.md — Create BeltNetwork animated SVG component with glow/pulse effects
+- [ ] 02-03-PLAN.md — Integrate BeltNetwork into PlanetarySystem game loop for real-time updates
 **UI hint**: yes
 
 ### Phase 3: Belt Interaction & Content
