@@ -3,6 +3,7 @@ import './styles/MainFrame.css';
 import './styles/Container.css';
 import { SideStrip } from './SideStrip';
 import { PlanetarySystem } from './Planetary';
++import { OnboardingOverlay } from './Onboarding/OnboardingOverlay';
 
 interface MainFrameProps {
   children?: ReactNode;
@@ -11,22 +12,19 @@ interface MainFrameProps {
 export const MainFrame: FC<MainFrameProps> = ({ children }) => {
   return (
     <div className="app-container">
-      
-      {/* --- MIDDLE SECTION: DASHBOARD & SIDEBAR --- */}
-      <div className="dashboard-wrapper">
-        
-        {/* --- MAIN CONTAINER --- */}
-        <div className="container">
-          {/* Layer 1: Outer Border */}
-          <div className="container-border-outer"></div>
-          {/* Layer 2: Inner Border */}
-          <div className="container-border-inner"></div>
++      <OnboardingOverlay />
+       
+       {/* --- MIDDLE SECTION: DASHBOARD & SIDEBAR --- */}
+       <div className="dashboard-wrapper">
+@@
+-        <div className="container-content">
+-          {children || <PlanetarySystem />}
+-        </div>
++        <div className="container-content">
++          {children || <PlanetarySystem />}
++        </div>
+*** End Patch
 
-          {/* Header */}
-          <div className="header">
-            <div className="circles-icon">
-              <span></span><span></span>
-            </div>
             <div className="header-line"></div>
             <h1>DASHBOARD INTERFACE</h1>
           </div>

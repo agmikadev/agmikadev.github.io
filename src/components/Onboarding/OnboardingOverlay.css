@@ -1,0 +1,68 @@
+/* Onboarding overlay – full screen dark panel */
+.onboarding-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.94);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 12000; /* above HUD */
+  animation: fade-in 0.3s ease-out;
+}
+
+.onboarding-content {
+  background: var(--hud-panel-dark);
+  color: var(--hud-text-primary);
+  padding: 32px;
+  border-radius: var(--hud-radius-md);
+  max-width: 480px;
+  text-align: center;
+  box-shadow: var(--hud-shadow-card);
+}
+
+.onboarding-content h2 {
+  font-family: var(--font-header);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--hud-accent-yellow);
+}
+
+.onboarding-content p {
+  font-family: var(--font-body);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.onboarding-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.onboarding-close {
+  margin-top: 1rem;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--hud-accent-yellow);
+  color: var(--hud-accent-yellow);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.onboarding-close:hover {
+  background: rgba(252, 233, 106, 0.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .onboarding-overlay,
+  .onboarding-content,
+  .onboarding-close {
+    animation: none !important;
+    transition: none !important;
+  }
+}

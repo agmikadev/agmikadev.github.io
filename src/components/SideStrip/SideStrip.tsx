@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./SideStrip.css";
+import { AstronautHeader } from "./SubComponents/AstronautHeader";
 
 // Importando seus sub-componentes
-import { AstronautHeader } from "./SubComponents/AstronautHeader";
+import { Divider } from "../Planetary/UI/Symbols";
 import { TelemetryStats } from "./SubComponents/TelemetryStats";
 import { FooterInfo } from "./SubComponents/FooterInfo";
 
@@ -30,20 +31,21 @@ export const SideStrip: React.FC = () => {
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* HEADER DO CYCLER */}
-        <div className="cycler-header">
-          <div 
-            className={`cycler-tab ${activeTab === "manifesto" ? "active" : ""}`}
-            onClick={() => setActiveTab("manifesto")}
-          >
-            // MANIFESTO
-          </div>
-          <div 
-            className={`cycler-tab ${activeTab === "stack" ? "active" : ""}`}
-            onClick={() => setActiveTab("stack")}
-          >
-            // STACK
-          </div>
-        </div>
+<div className="cycler-header">
+  <div 
+    className={`cycler-tab ${activeTab === "manifesto" ? "active" : ""}`}
+    onClick={() => setActiveTab("manifesto")}
+  >
+    // MANIFESTO
+  </div>
+  <div 
+    className={`cycler-tab ${activeTab === "stack" ? "active" : ""}`}
+    onClick={() => setActiveTab("stack")}
+  >
+    // STACK
+  </div>
+</div>
+<Divider className="cycler-divider" />
 
         {/* CONTEÚDO DINÂMICO */}
         <div className="cycler-content">

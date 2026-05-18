@@ -216,6 +216,10 @@ export const PlanetarySystem: React.FC = () => {
                 />
 
                 <path
++                  tabIndex={0}
++                  onKeyDown={(e) => {
++                    if (e.key === "Enter") setSelectedPlanet(beltPlanet);
++                  }}
                   ref={svgHitboxRef}
                   fill="none"
                   stroke="transparent"
@@ -234,26 +238,30 @@ export const PlanetarySystem: React.FC = () => {
           </svg>
 
           {physicalPlanets.map((p, i) => (
-            <div
-              key={p.id}
-              className="planet-node"
-              ref={(el) => {
-                planetNodesRef.current[i] = el;
-              }}
-              onClick={() => {
-                setSelectedPlanet(p);
-                setHoveredPlanetId(null);
-              }}
-              onMouseEnter={() => setHoveredPlanetId(p.id)}
-              onMouseLeave={() => setHoveredPlanetId(null)}
-              style={
-                {
-                  "--p-color": p.color,
-                  "--p-size": `${p.size * 2}px`,
-                  zIndex: 10,
-                } as React.CSSProperties
-              }
-            >
+              <div
++                tabIndex={0}
++                onKeyDown={(e) => {
++                  if (e.key === "Enter") {
++                    setSelectedPlanet(p);
++                    setHoveredPlanetId(null);
++                  }
++                }}
+                 key={p.id}
+                 className="planet-node"
+                 ref={(el) => {
+                   planetNodesRef.current[i] = el;
+                 }}
+                 onClick={() => {
+@@
+-                onClick={() => {
+-                  setSelectedPlanet(p);
+-                  setHoveredPlanetId(null);
+-                }}
++                onClick={() => {
++                  setSelectedPlanet(p);
++                  setHoveredPlanetId(null);
++                }}
+*** End Patch
               <div className={`planet-visual shape-${p.shape}`} />
 
               {p.hasAI && (
