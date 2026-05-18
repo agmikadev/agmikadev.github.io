@@ -48,7 +48,7 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Create belt data model (BeltData.ts) with AI tools, proficiency %, mission reports
+- [x] 02-01-PLAN.md — Create belt data model (BeltData.ts) with AI tools, proficiency %, mission reports
 - [x] 02-02-PLAN.md — Create BeltNetwork animated SVG component with glow/pulse effects
 - [ ] 02-03-PLAN.md — Integrate BeltNetwork into PlanetarySystem game loop for real-time updates
 **UI hint**: yes
@@ -97,7 +97,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & Performance | 4/4 | Complete | 2026-05-17 |
-| 2. Belt Data & Visual Core | 1/3 | In progress | - |
+| 2. Belt Data & Visual Core | 2/3 | In progress | - |
 | 3. Belt Interaction & Content | 0/0 | Not started | - |
 | 4. Polish & Accessibility | 0/0 | Not started | - |
 | 5. Production Readiness | 0/0 | Not started | - |

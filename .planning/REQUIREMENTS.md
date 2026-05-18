@@ -15,7 +15,7 @@
 ### AI Sonda Network Belt
 
 - [ ] **BELT-01**: Visual belt rendered as animated network connections between all planets
-- [ ] **BELT-02**: Belt data model with AI/Agentic tools, proficiency percentages, and mission reports
+- [x] **BELT-02**: Belt data model with AI/Agentic tools, proficiency percentages, and mission reports
 - [ ] **BELT-03**: Belt is clickable and opens BeltHUD panel
 - [ ] **BELT-04**: BeltHUD follows same two-tab pattern (Missions + Metrics) as planet HUDs
 - [ ] **BELT-05**: Belt connections animate and update with planet positions in real-time
@@ -72,7 +72,7 @@
 | FOUND-03 | Phase 1 | Pending |
 | FOUND-04 | Phase 1 | Complete |
 | BELT-01 | Phase 2 | Pending |
-| BELT-02 | Phase 2 | Pending |
+| BELT-02 | Phase 2 | Complete |
 | BELT-03 | Phase 3 | Pending |
 | BELT-04 | Phase 3 | Pending |
 | BELT-05 | Phase 2 | Pending |
