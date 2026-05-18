@@ -1,0 +1,27 @@
+.belt-network-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.belt-connection {
+  animation: belt-flow 2s linear infinite;
+}
+
+@keyframes belt-flow {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -20; }
+}
+
+.belt-node {
+  animation: belt-pulse 3s ease-in-out infinite;
+}
+
+@keyframes belt-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
