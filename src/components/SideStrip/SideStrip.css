@@ -237,7 +237,8 @@
   
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
   padding: 12px;
   overflow: hidden;
   transition: all 0.3s ease;
@@ -291,6 +292,8 @@
   overflow-y: auto;
   min-height: 0;
 }
+
+.cycler-content::-webkit-scrollbar { width: 0px; }
 
 .content-pane p {
   font-size: 0.7rem;
