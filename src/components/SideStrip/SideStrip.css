@@ -237,7 +237,7 @@
   
   /* Removemos min-height fixa se quisermos que ele encolha/cresça com a tela,
      mas manter um mínimo de segurança é bom */
-  min-height: 180px; 
+  min-height: 150px; 
   
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -395,7 +395,7 @@
   flex-direction: column;
   gap: 6px;
   padding-top: 16px;
-  padding-bottom: 16px;
+  padding-bottom: 8px;
   border-top: 1px solid var(--strip-border);
 }
 
@@ -450,8 +450,8 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 8px 16px;
-  margin-top: 12px;
+  padding: 6px 12px;
+  margin-top: 8px;
   width: 100%;
   background: transparent;
   border: 1px solid var(--ai-glow, #a9fc03);
