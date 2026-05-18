@@ -43,9 +43,8 @@
   --hud-text-muted: #a3a3a3;
 
   /* Borders */
-  --hud-border-subtle: rgba(255, 255, 255, 0.3);
-  --hud-border-yellow: rgba(252, 233, 106, 0.6);
-  --hud-focus-ring: #FCE96A;
+  --hud-border-subtle: rgba(255, 255, 255, 0.08);
+  --hud-border-yellow: rgba(252, 233, 106, 0.4);
 
   /* Accents */
   --hud-accent-yellow: #FCE96A;
@@ -95,23 +94,51 @@ body {
   color: rgba(255, 255, 255, 0.87);
 }
 
-#root {
-  width: 100%;
-  margin: 0;
-  padding: 0;
+/* ============================================
+   6. ACCESSIBILITY (Focus Visible)
+   ============================================ */
+/* Global focus-visible ring */
+:focus-visible {
+  outline: 2px solid var(--hud-accent-yellow);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
-/* ============================================ */
-/* FOCUS INDICATORS (WCAG 2.4.7)               */
-/* ============================================ */
-*:focus-visible {
-  outline: 2px solid var(--hud-focus-ring);
+/* Planet nodes: keep shape round on focus */
+.planet-node:focus-visible {
+  outline: 2px solid var(--hud-accent-yellow);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
+
+/* Belt interactive path focus */
+path[tabindex]:focus-visible {
+  outline: 2px solid var(--hud-accent-yellow);
+  outline-offset: 4px;
+}
+
+/* Remove default browser focus where we manage it ourselves */
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Onboarding close button focus enhancement */
+.onboarding-close:focus-visible {
+  outline: 2px solid var(--hud-accent-yellow);
   outline-offset: 2px;
 }
 
-button:focus-visible,
-a:focus-visible,
-[tabindex]:focus-visible {
-  outline: 2px solid var(--hud-focus-ring);
+/* Tab buttons focus override */
+.tab-btn:focus-visible {
+  outline: 2px solid var(--hud-accent-yellow);
   outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* HUD button focus enhancement */
+.hud-btn:focus-visible {
+  outline: 2px solid var(--hud-accent-yellow);
+  outline-offset: 2px;
+  border-radius: 30px;
 }

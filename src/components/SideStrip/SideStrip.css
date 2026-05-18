@@ -3,7 +3,7 @@
 ========================================= */
 .side-strip-container {
   --strip-bg: rgba(10, 10, 20, 0.6);
-  --strip-border: var(--hud-border-subtle);
+  --strip-border: rgba(255, 255, 255, 0.08);
   --text-main: #ffffff;
   --text-dim: #a3a3a3;
   --accent: var(--hud-accent-yellow);
@@ -135,14 +135,14 @@
 
 .social-icon-btn {
   display: flex;
-  justify-content: center;
+  justify-content: center; /* center ao invés de space-around para ícone único */
   align-items: center;
   
   width: 32px;
   height: 32px;
   
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--hud-border-subtle);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%; 
   
   color: var(--text-dim);
@@ -231,8 +231,8 @@
   min-height: 0;
   
   background: rgba(0, 0, 0, 0.2);
-  border: 1px solid var(--hud-border-subtle);
-  border-top: 1px solid var(--hud-border-subtle);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   padding: 12px;
   overflow: hidden;
@@ -248,9 +248,9 @@
 .cycler-header {
   display: flex;
   gap: 12px;
-  border-bottom: 1px solid var(--hud-border-subtle);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 8px;
-  flex-shrink: 0;
+  flex-shrink: 0; /* Header não encolhe */
 }
 
 .cycler-divider {
@@ -299,7 +299,7 @@
 .content-pane p {
   font-size: 0.7rem;
   line-height: 1.6;
-  color: var(--text-dim);
+  color: #ccc;
   margin: 0;
   text-align: left;
 }
@@ -317,10 +317,10 @@
   justify-content: center;
   padding: 4px 8px;
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--hud-border-subtle);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 4px;
-  color: var(--text-dim);
-  font-family: var(--font-mono);
+  color: #ccc;
+  font-family: monospace;
   font-size: 0.7rem;
   font-weight: 500;
   cursor: default;
@@ -402,8 +402,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: var(--font-mono);
+  font-family: monospace;
   font-size: 0.7rem;
+}
+
+.info-row .label { color: var(--text-dim); }
+.info-row .value { color: #fff; font-weight: 600; text-align: right; }
+
+.status-active {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #a9fc03 !important;
+}
+
+.blink-dot {
+  width: 6px; height: 6px;
+  background-color: #a9fc03;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #a9fc03;
+  animation: blink-animation 1.5s infinite ease-in-out;
 }
 
 .system-footer {
@@ -412,18 +430,18 @@
   align-items: center;
   gap: 4px;
   padding-top: 12px;
-  border-top: 1px dashed var(--hud-border-subtle);
+  border-top: 1px dashed rgba(255, 255, 255, 0.05);
 }
 
 .sys-line {
-  font-family: var(--font-mono);
+  font-family: monospace;
   font-size: 0.6rem;
-  color: var(--text-dim);
+  color: rgba(255, 255, 255, 0.2);
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
-.copyright { color: var(--text-dim); }
+.copyright { color: rgba(255, 255, 255, 0.15); }
 
 /* RESUME DOWNLOAD BUTTON */
 .resume-download-btn {

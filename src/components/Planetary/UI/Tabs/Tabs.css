@@ -1,8 +1,8 @@
 /* --- THE TAB BUTTONS --- */
 .tab-btn {
   background: transparent;
-  color: var(--hud-text-muted);
-  font-family: var(--font-mono);
+  color: #888; /* ~7.1:1 on #0a0a15 — WCAG AA normal text */
+  font-family: monospace;
   font-size: 0.9rem;
   font-weight: bold;
   letter-spacing: 1px;
@@ -11,7 +11,7 @@
   border-bottom: 2px solid transparent;
   cursor: pointer;
   transition: all 0.2s ease;
-  margin-bottom: -1px;
+  margin-bottom: -1px; /* Overlaps the bottom border of the container */
 }
 
 .tab-btn:hover {

@@ -87,10 +87,10 @@ Plans: TBD
 
 Plans:
 - [x] 04-00-PLAN.md — Implement full HUD visual system (UI-SPEC.md: yellow cards, typography, symbols)
-- [x] 04-01-PLAN.md — Onboarding overlay with localStorage dismiss
+- [ ] 04-01-PLAN.md — Onboarding overlay with localStorage dismiss
 - [ ] 04-02-PLAN.md — Smooth camera transitions for planet select/deselect
-- [x] 04-03-PLAN.md — Keyboard navigation (Tab/Enter/Escape)
-- [x] 04-04-PLAN.md — prefers-reduced-motion support
+- [ ] 04-03-PLAN.md — Keyboard navigation (Tab/Enter/Escape)
+- [ ] 04-04-PLAN.md — prefers-reduced-motion support
 - [x] 04-05-PLAN.md — Side strip polish and symbol integration
 
 ### Phase 5: Production Readiness

@@ -123,7 +123,7 @@
 /* Texto "Alternativas conhecidas:" */
 .alternatives-prefix {
   font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: #aaa; /* ~9.1:1 on #0a0a15 */
   font-style: italic;
   letter-spacing: 0.5px;
   white-space: nowrap;

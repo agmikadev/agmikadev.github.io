@@ -12,7 +12,8 @@
 .hud-divider-line {
   flex: 1;
   height: 1px;
-  background: var(--hud-border-subtle);
+  background: rgba(255, 255, 255, 0.1);
+  opacity: 0.5;
 }
 
 .hud-divider-text {
