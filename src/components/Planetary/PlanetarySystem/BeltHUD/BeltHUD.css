@@ -1,0 +1,101 @@
+/* =========================================
+   BeltHUD — Single-column dashboard variant
+   Reuses animation keyframes from PlanetaryDashboard.css
+   ========================================= */
+
+/* --- OVERLAY (same as .dashboard-overlay) --- */
+.belt-dashboard-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 20, 0.95);
+  backdrop-filter: blur(15px);
+  z-index: 10000;
+
+  padding: 64px 0;
+  box-sizing: border-box;
+
+  display: flex;
+  color: white;
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+/* --- CONTAINER — single-column (no flex split) --- */
+.belt-dashboard-container {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 8px 32px;
+
+  box-sizing: border-box;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* --- RIGHT COLUMN — full width, scrollable --- */
+.belt-dashboard-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+
+  overflow-y: auto;
+  padding: 0 16px;
+}
+
+/* Custom Scrollbar for the HUD */
+.belt-dashboard-right::-webkit-scrollbar {
+  width: 6px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.belt-dashboard-right::-webkit-scrollbar-thumb {
+  background-color: var(--theme-color);
+  border-radius: 4px;
+}
+.belt-dashboard-right::-webkit-scrollbar-thumb:hover {
+  filter: brightness(1.2);
+}
+
+/* =========================================
+   RESPONSIVE — same as PlanetDashboard
+   ========================================= */
+@media (max-width: 900px) {
+  .belt-dashboard-overlay {
+    position: relative;
+    height: auto;
+    overflow: visible;
+    padding: 24px;
+  }
+
+  .belt-dashboard-container {
+    display: block;
+    height: auto;
+    overflow: visible;
+    padding: 0;
+  }
+
+  .belt-dashboard-right {
+    display: block;
+    height: auto;
+    overflow: visible;
+    padding: 0;
+  }
+
+  .planet-title {
+    font-size: 2rem;
+    text-align: left;
+  }
+
+  .cli-header {
+    font-size: 0.75rem;
+    padding-bottom: 16px;
+  }
+}
