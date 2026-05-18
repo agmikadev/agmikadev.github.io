@@ -1,5 +1,7 @@
 // Certifique-se de que o CSS abaixo esteja no arquivo correto (ex: SideStrip.css)
 
+import avatarImg from '/angelo.png';
+
 export const AstronautHeader = () => (
   <div className="profile-header">
     
@@ -11,7 +13,7 @@ export const AstronautHeader = () => (
       {/* A Foto ou Iniciais */}
       <div className="avatar-placeholder">
         <img 
-          src="../../../assets/angelo.png"
+          src={avatarImg}
           alt="Mikael Angelo" 
           className="avatar-image"
         />
