@@ -4,6 +4,7 @@ import "./PlanetShapes.css";
 import { planets, type PlanetModel } from "../data/PlanetaryData";
 import { PlanetDashboard } from "./PlanetaryDashboard/PlanetaryDashboard";
 import { BeltNetwork } from "./BeltNetwork";
+import { BeltHUD } from "./BeltHUD";
 
 const CONFIG = {
   centerX: 50,
@@ -150,7 +151,14 @@ export const PlanetarySystem: React.FC = () => {
         </div>
       )}
 
-      {selectedPlanet ? (
+      {selectedPlanet && selectedPlanet.shape === "belt" ? (
+        <BeltHUD
+          onClose={() => {
+            setSelectedPlanet(null);
+            setHoveredPlanetId(null);
+          }}
+        />
+      ) : selectedPlanet ? (
         <PlanetDashboard
           planet={selectedPlanet}
           onClose={() => {
