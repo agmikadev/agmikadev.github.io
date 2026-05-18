@@ -67,8 +67,8 @@ Plans:
 
 Plans:
 - [x] 03-01-PLAN.md — Create belt tab components (BeltMissionsTab, BeltMissionCard, BeltAnalyticsTab)
-- [ ] 03-02-PLAN.md — Create BeltHUD overlay panel with single-column layout
-- [ ] 03-03-PLAN.md — Wire BeltHUD into PlanetarySystem, update barrel exports
+- [x] 03-02-PLAN.md — Create BeltHUD overlay panel with single-column layout
+- [x] 03-03-PLAN.md — Wire BeltHUD into PlanetarySystem, update barrel exports
 **UI hint**: yes
 
 ### Phase 4: Polish & Accessibility
@@ -103,6 +103,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. Foundation & Performance | 4/4 | Complete | 2026-05-17 |
 | 2. Belt Data & Visual Core | 3/3 | Complete | 2026-05-18 |
-| 3. Belt Interaction & Content | 1/3 | In progress | - |
+| 3. Belt Interaction & Content | 3/3 | Complete | 2026-05-18 |
 | 4. Polish & Accessibility | 0/0 | Not started | - |
 | 5. Production Readiness | 0/0 | Not started | - |
