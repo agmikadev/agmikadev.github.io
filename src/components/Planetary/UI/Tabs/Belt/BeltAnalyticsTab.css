@@ -1,0 +1,38 @@
+/* BeltAnalyticsTab.css — Adapts AnalyticsTab.css pattern for belt tools */
+
+/* Reuse .analytics-container, .analytics-list, .analytics-row, .progress-track,
+   .progress-fill, .analytics-alternatives, .alternative-tag from AnalyticsTab.css */
+
+/* Belt-specific: category grouping */
+.belt-category-group {
+  margin-bottom: 24px;
+}
+
+.belt-category-group:last-child {
+  margin-bottom: 0;
+}
+
+.belt-category-header {
+  font-family: monospace;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #9ca3af;
+  margin: 0 0 16px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Tool description below progress bar */
+.belt-tool-description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #9ca3af;
+  margin: 8px 0 0 0;
+}
+
+/* Belt analytics container override */
+.belt-analytics {
+  /* Inherits from .analytics-container */
+}
