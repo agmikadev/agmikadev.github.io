@@ -1,3 +1,26 @@
+@media (prefers-reduced-motion: reduce) {
+  /* Disable animations and transitions globally */
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Specific overrides for key UI elements */
+  .dashboard-overlay,
+  .belt-dashboard-overlay,
+  .onboarding-overlay,
+  .fade-in,
+  .fade-in-view,
+  .cli-header,
+  .planet-label,
+  .tab-btn {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 :root {
   /* ============================================ */
   /* 1. TYPOGRAPHY (Google Fonts)                */
@@ -76,5 +99,3 @@ body {
   margin: 0;
   padding: 0;
 }
-
-@import "./components/styles/ReducedMotion.css";

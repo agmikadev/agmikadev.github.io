@@ -20,9 +20,7 @@ export const PlanetarySystem: React.FC = () => {
 
   // --- ESTADOS ---
   const [hoveredPlanetId, setHoveredPlanetId] = useState<string | null>(null);
-  const [selectedPlanet, setSelectedPlanet] = useState<PlanetModel | null>(
-    null,
-  );
+  const [selectedPlanet, setSelectedPlanet] = useState<PlanetModel | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   // --- REFS ---
@@ -34,7 +32,7 @@ export const PlanetarySystem: React.FC = () => {
 
   const svgHitboxRef = useRef<SVGPathElement>(null);
   const pixelCoordsRef = useRef<{ x: number; y: number }[]>([]);
-  const [, setFrame] = useState(0); // forces re-render each frame for BeltNetwork
+  const [, setFrame] = useState(0);
 
   const anglesRef = useRef<number[]>(
     physicalPlanets.map((_, i) => i * ((Math.PI * 2) / physicalPlanets.length)),
@@ -44,10 +42,8 @@ export const PlanetarySystem: React.FC = () => {
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
-
     containerWidthRef.current = container.clientWidth;
     containerHeightRef.current = container.clientHeight;
-
     const observer = new ResizeObserver((entries) => {
       for (const entry of entries) {
         containerWidthRef.current = entry.contentRect.width;
@@ -55,7 +51,6 @@ export const PlanetarySystem: React.FC = () => {
       }
     });
     observer.observe(container);
-
     return () => observer.disconnect();
   }, []);
 
@@ -63,43 +58,30 @@ export const PlanetarySystem: React.FC = () => {
   useEffect(() => {
     const animate = () => {
       if (!containerRef.current) return;
-
-      // Lê dimensões cacheadas — sem layout thrashing
       const w = containerWidthRef.current;
       const h = containerHeightRef.current;
 
-      // 1. Física
+      // Physics
       anglesRef.current = anglesRef.current.map((angle, i) => {
         const planet = physicalPlanets[i];
         if (hoveredPlanetId === planet.id) return angle;
-
         const radius = planet.orbitSize * CONFIG.orbitScale;
         const speed = (CONFIG.keplerConstant / radius) * 0.005;
         return angle + speed;
       });
 
-      // 2. Renderização (Cálculo Unificado em Pixels)
-      // Array para guardar coordenadas EXATAS em PIXELS
+      // Render positions
       const pixelCoords: { x: number; y: number }[] = [];
-
       physicalPlanets.forEach((planet, i) => {
         const angle = anglesRef.current[i];
         const radius = planet.orbitSize * CONFIG.orbitScale;
-
-        // Percentual para lógica angular
         const xPct = CONFIG.centerX + radius * Math.cos(angle);
         const yPct = CONFIG.centerY + radius * Math.sin(angle);
-
-        // Conversão para Pixels Absolutos
         const xPx = (w * xPct) / 100;
         const yPx = (h * yPct) / 100;
-
-        // Guardamos o Pixel exato para o SVG usar depois
         pixelCoords.push({ x: xPx, y: yPx });
-
         const node = planetNodesRef.current[i];
         if (node) {
-          // DIV usa Pixel
           node.style.transform = `translate3d(${xPx}px, ${yPx}px, 0) translate(-50%, -50%)`;
           if (hoveredPlanetId !== planet.id) {
             node.style.zIndex = Math.floor(yPct).toString();
@@ -107,26 +89,31 @@ export const PlanetarySystem: React.FC = () => {
         }
       });
 
-      // 3. Atualiza SVG usando PIXELS (Pixel Matching)
-      // Antes usávamos %, o que causava o drift. Agora é idêntico ao DIV.
       const pathData = pixelCoords
         .map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`)
         .join(" ");
       const closedPath = `${pathData} Z`;
+      if (svgHitboxRef.current) svgHitboxRef.current.setAttribute("d", closedPath);
 
-      if (svgHitboxRef.current)
-        svgHitboxRef.current.setAttribute("d", closedPath);
-
-      // Store pixelCoords for BeltNetwork render and trigger re-render
       pixelCoordsRef.current = pixelCoords;
       setFrame((f) => f + 1);
-
       requestRef.current = requestAnimationFrame(animate);
     };
-
     requestRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(requestRef.current!);
   }, [hoveredPlanetId]);
+
+  // --- KEYBOARD HANDLING (Escape to close HUD) ---
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && selectedPlanet) {
+        setSelectedPlanet(null);
+        setHoveredPlanetId(null);
+      }
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [selectedPlanet]);
 
   const isBeltHovered = beltPlanet && hoveredPlanetId === beltPlanet.id;
 
@@ -183,11 +170,7 @@ export const PlanetarySystem: React.FC = () => {
             {physicalPlanets.map((p) => {
               const isHovered = hoveredPlanetId === p.id;
               const radius = p.orbitSize * CONFIG.orbitScale;
-              // Para as órbitas circulares estáticas, mantemos em % usando cx/cy com sufixo '%'
-              // Isso é seguro pois elas não se movem a cada frame.
               return (
-                // rx={`${radius}%`} -> Usa % da LARGURA
-                // ry={`${radius}%`} -> Usa % da ALTURA
                 <ellipse
                   key={`orbit-${p.id}`}
                   cx={`${CONFIG.centerX}%`}
@@ -214,21 +197,18 @@ export const PlanetarySystem: React.FC = () => {
                   isHovered={!!isBeltHovered}
                   beltColor={beltPlanet.color}
                 />
-
                 <path
-+                  tabIndex={0}
-+                  onKeyDown={(e) => {
-+                    if (e.key === "Enter") setSelectedPlanet(beltPlanet);
-+                  }}
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") setSelectedPlanet(beltPlanet);
+                  }}
                   ref={svgHitboxRef}
                   fill="none"
                   stroke="transparent"
-                  strokeWidth="30" // Pixels (hitbox gorda)
+                  strokeWidth="30"
                   strokeLinejoin="bevel"
                   style={{ cursor: "pointer", pointerEvents: "stroke" }}
-                  onMouseMove={(e) =>
-                    setMousePos({ x: e.clientX, y: e.clientY })
-                  }
+                  onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
                   onMouseEnter={() => setHoveredPlanetId(beltPlanet.id)}
                   onMouseLeave={() => setHoveredPlanetId(null)}
                   onClick={() => setSelectedPlanet(beltPlanet)}
@@ -238,48 +218,45 @@ export const PlanetarySystem: React.FC = () => {
           </svg>
 
           {physicalPlanets.map((p, i) => (
-              <div
-+                tabIndex={0}
-+                onKeyDown={(e) => {
-+                  if (e.key === "Enter") {
-+                    setSelectedPlanet(p);
-+                    setHoveredPlanetId(null);
-+                  }
-+                }}
-                 key={p.id}
-                 className="planet-node"
-                 ref={(el) => {
-                   planetNodesRef.current[i] = el;
-                 }}
-                 onClick={() => {
-@@
--                onClick={() => {
--                  setSelectedPlanet(p);
--                  setHoveredPlanetId(null);
--                }}
-+                onClick={() => {
-+                  setSelectedPlanet(p);
-+                  setHoveredPlanetId(null);
-+                }}
-*** End Patch
+            <div
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  setSelectedPlanet(p);
+                  setHoveredPlanetId(null);
+                }
+              }}
+              key={p.id}
+              className="planet-node"
+              ref={(el) => {
+                planetNodesRef.current[i] = el;
+              }}
+              onClick={() => {
+                setSelectedPlanet(p);
+                setHoveredPlanetId(null);
+              }}
+              onMouseEnter={() => setHoveredPlanetId(p.id)}
+              onMouseLeave={() => setHoveredPlanetId(null)}
+              style={{
+                "--p-color": p.color,
+                "--p-size": `${p.size * 2}px`,
+                zIndex: 10,
+              } as React.CSSProperties}
+            >
               <div className={`planet-visual shape-${p.shape}`} />
-
               {p.hasAI && (
                 <>
                   <div className="ai-ring outer" />
                   <div className="ai-ring inner" />
                 </>
               )}
-
               <div
                 className="planet-label"
                 style={{
                   color: p.color,
                   opacity: hoveredPlanetId === p.id ? 1 : 0,
                   transform:
-                    hoveredPlanetId === p.id
-                      ? "translateY(0)"
-                      : "translateY(-10px)",
+                    hoveredPlanetId === p.id ? "translateY(0)" : "translateY(-10px)",
                 }}
               >
                 {p.name}

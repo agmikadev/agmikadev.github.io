@@ -109,33 +109,32 @@ export const PlanetDashboard: React.FC<DashboardProps> = ({
 
           {/* --- 2. THE REVEALER --- */}
           {isFetched && (
-            <Card variant="yellow" className="fetched-data-wrapper">
-              <h1
-                className="planet-title"
-                style={{
-                  color: planet.color,
-                  textShadow: `0 0 15px ${planet.color}60`,
-                }}
-              >
-                {planet.name}
-              </h1>
+            <div className="fetched-data-wrapper">
+              {/* Yellow card: planet name + debrief only */}
+              <Card variant="yellow" className="planet-detail-card">
+                <h1 className="planet-title">
+                  {planet.name}
+                </h1>
 
-              <div
-                className="planet-debrief"
-                style={{ borderLeft: `2px solid ${planet.color}` }}
-              >
-                <strong style={{ color: "#fff" }}>STATUS:</strong> {planet.type}{" "}
-                <br />
-                {planet.description}
+                <div
+                  className="planet-debrief planet-debrief-yellow"
+                  style={{ borderLeft: `2px solid ${planet.color}` }}
+                >
+                  <strong>STATUS:</strong> {planet.type}{" "}
+                  <br />
+                  {planet.description}
+                </div>
+              </Card>
+
+              {/* Tab area on dark background (outside yellow card) */}
+              <div className="tab-area-wrapper">
+                <Tabs
+                  tabs={dashboardTabs}
+                  defaultTabId="missions"
+                  themeColor={planet.color}
+                />
               </div>
-
-              {/* --- 3. TAB Renderer --- */}
-              <Tabs
-                tabs={dashboardTabs}
-                defaultTabId="missions"
-                themeColor={planet.color}
-              />
-            </Card>
+            </div>
           )}
         </div>
       </div>

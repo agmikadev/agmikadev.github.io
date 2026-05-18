@@ -81,32 +81,31 @@ export const BeltHUD: React.FC<BeltHUDProps> = ({ onClose }) => {
 
           {/* --- 2. THE REVEALER --- */}
           {isFetched && (
-            <Card variant="yellow" className="fetched-data-wrapper">
-              <h1
-                className="planet-title"
-                style={{
-                  color: beltDataModel.color,
-                  textShadow: `0 0 15px ${beltDataModel.color}60`,
-                }}
-              >
-                {beltDataModel.name}
-              </h1>
+            <div className="fetched-data-wrapper">
+              {/* Yellow card: belt name + debrief only */}
+              <Card variant="yellow" className="planet-detail-card">
+                <h1 className="planet-title">
+                  {beltDataModel.name}
+                </h1>
 
-              <div
-                className="planet-debrief"
-                style={{ borderLeft: `2px solid ${beltDataModel.color}` }}
-              >
-                <strong style={{ color: "#fff" }}>STATUS:</strong> Neural{" "}Backbone <br />
-                {beltDataModel.description}
+                <div
+                  className="planet-debrief planet-debrief-yellow"
+                  style={{ borderLeft: `2px solid ${beltDataModel.color}` }}
+                >
+                  <strong>STATUS:</strong> Neural Backbone <br />
+                  {beltDataModel.description}
+                </div>
+              </Card>
+
+              {/* Tab area on dark background (outside yellow card) */}
+              <div className="tab-area-wrapper">
+                <Tabs
+                  tabs={beltTabs}
+                  defaultTabId="missions"
+                  themeColor={beltDataModel.color}
+                />
               </div>
-
-              {/* --- 3. TAB Renderer --- */}
-              <Tabs
-                tabs={beltTabs}
-                defaultTabId="missions"
-                themeColor={beltDataModel.color}
-              />
-            </Card>
+            </div>
           )}
 
         </div>

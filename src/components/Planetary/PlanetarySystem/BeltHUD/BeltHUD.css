@@ -64,6 +64,24 @@
   filter: brightness(1.2);
 }
 
+/* Yellow card + tab area layout (matching PlanetaryDashboard) */
+.planet-detail-card {
+  margin-bottom: 24px;
+}
+
+.planet-debrief-yellow {
+  color: var(--hud-text-inverse);
+  margin-bottom: 0;
+}
+
+.planet-debrief-yellow strong {
+  color: var(--hud-text-inverse);
+}
+
+.tab-area-wrapper {
+  position: relative;
+}
+
 /* =========================================
    RESPONSIVE — same as PlanetDashboard
    ========================================= */

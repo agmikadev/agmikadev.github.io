@@ -116,6 +116,26 @@
   line-height: 1.6;
 }
 
+/* Debrief inside yellow card — dark text for contrast */
+.planet-debrief-yellow {
+  color: var(--hud-text-inverse);
+  margin-bottom: 0;
+}
+
+.planet-debrief-yellow strong {
+  color: var(--hud-text-inverse);
+}
+
+/* Yellow card wrapper for planet title + debrief */
+.planet-detail-card {
+  margin-bottom: 24px;
+}
+
+/* Tab area sits on the dark overlay background (outside yellow card) */
+.tab-area-wrapper {
+  position: relative;
+}
+
 .mission-error-log {
   color: rgba(239, 68, 68, 0.8);
   font-style: italic;
