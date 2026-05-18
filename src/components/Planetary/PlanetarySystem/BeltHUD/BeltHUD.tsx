@@ -1,7 +1,9 @@
 import React, { useState, useCallback } from "react";
 import { HudButton, CliHeader, Tabs } from "../../UI";
+import { Card } from "../../UI/CardVariants";
 import { BeltMissionsTab, BeltAnalyticsTab } from "../../UI/Tabs/Belt";
 import { beltDataModel } from "../../data/BeltData";
+
 
 import "./BeltHUD.css";
 
@@ -79,7 +81,7 @@ export const BeltHUD: React.FC<BeltHUDProps> = ({ onClose }) => {
 
           {/* --- 2. THE REVEALER --- */}
           {isFetched && (
-            <div className="fetched-data-wrapper">
+            <Card variant="yellow" className="fetched-data-wrapper">
               <h1
                 className="planet-title"
                 style={{
@@ -94,8 +96,7 @@ export const BeltHUD: React.FC<BeltHUDProps> = ({ onClose }) => {
                 className="planet-debrief"
                 style={{ borderLeft: `2px solid ${beltDataModel.color}` }}
               >
-                <strong style={{ color: "#fff" }}>STATUS:</strong> Neural{" "}
-                Backbone <br />
+                <strong style={{ color: "#fff" }}>STATUS:</strong> Neural{" "}Backbone <br />
                 {beltDataModel.description}
               </div>
 
@@ -105,8 +106,9 @@ export const BeltHUD: React.FC<BeltHUDProps> = ({ onClose }) => {
                 defaultTabId="missions"
                 themeColor={beltDataModel.color}
               />
-            </div>
+            </Card>
           )}
+
         </div>
       </div>
     </div>

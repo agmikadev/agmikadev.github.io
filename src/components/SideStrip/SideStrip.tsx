@@ -53,7 +53,6 @@ export const SideStrip: React.FC = () => {
               <p>
                 Procurando sempre duas maneiras de resolver o mesmo problema:
           Uma pragmática e uma fora da caixa, aplicando cada uma conforme o contexto.
-          <br /><br />
           Está sempre jogando coletivamente,
           seja como baixista no altar da igreja, ou como desenvolvedor no time ágil.
               </p>

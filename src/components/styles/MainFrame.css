@@ -3,7 +3,7 @@
   height: 100vh; 
   width: 100%;
   background: var(--cp-bg-gradient);
-  font-family: var(--cp-font-main);
+  font-family: var(--font-body);
   box-sizing: border-box;
   overflow: hidden; 
   

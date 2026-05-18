@@ -1,0 +1,112 @@
+/* =========================================
+   1. YELLOW CARD (High-Contrast Info)
+   ========================================= */
+.hud-card-yellow {
+  background: var(--hud-panel-yellow);
+  color: var(--hud-text-inverse);
+  border-radius: var(--hud-radius-md);
+  padding: 24px;
+  font-family: var(--font-body);
+}
+
+.hud-card-yellow h1,
+.hud-card-yellow h2,
+.hud-card-yellow h3,
+.hud-card-yellow h4,
+.hud-card-yellow h5,
+.hud-card-yellow h6 {
+  font-family: var(--font-header);
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--hud-text-inverse);
+}
+
+.hud-card-yellow p {
+  color: var(--hud-text-inverse);
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+/* =========================================
+   2. DARK CARD (Image / Planet Panel)
+   ========================================= */
+.hud-card-dark {
+  background: rgba(0, 0, 0, 0.4);
+  color: var(--hud-text-primary);
+  border: 1px solid var(--hud-border-subtle);
+  border-radius: var(--hud-radius-md);
+  padding: 24px;
+  font-family: var(--font-body);
+}
+
+.hud-card-dark h1,
+.hud-card-dark h2,
+.hud-card-dark h3,
+.hud-card-dark h4,
+.hud-card-dark h5,
+.hud-card-dark h6 {
+  font-family: var(--font-header);
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--hud-text-primary);
+}
+
+.hud-card-dark p {
+  color: var(--hud-text-primary);
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+/* =========================================
+   3. GLASS CARD (Default / Subtle)
+   ========================================= */
+.hud-card-glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--hud-border-subtle);
+  border-radius: var(--hud-radius-md);
+  padding: 24px;
+  font-family: var(--font-body);
+}
+
+.hud-card-glass h1,
+.hud-card-glass h2,
+.hud-card-glass h3,
+.hud-card-glass h4,
+.hud-card-glass h5,
+.hud-card-glass h6 {
+  font-family: var(--font-header);
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--hud-text-primary);
+}
+
+.hud-card-glass p {
+  color: var(--hud-text-muted);
+  line-height: 1.6;
+}
+
+/* =========================================
+   4. CARD INTERACTIONS
+   ========================================= */
+.hud-card-yellow,
+.hud-card-dark,
+.hud-card-glass {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hud-card-glass:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* =========================================
+   5. RESPONSIVE
+   ========================================= */
+@media (max-width: 960px) {
+  .hud-card-yellow,
+  .hud-card-dark,
+  .hud-card-glass {
+    padding: 16px;
+  }
+}

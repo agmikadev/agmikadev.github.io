@@ -1,35 +1,63 @@
 :root {
-  /* --- BASE VOID --- */
-  /* Deeper, colder black for better contrast */
+  /* ============================================ */
+  /* 1. TYPOGRAPHY (Google Fonts)                */
+  /* ============================================ */
+  --font-header: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* ============================================ */
+  /* 2. COLOR PALETTE                             */
+  /* ============================================ */
+  /* Base Void */
+  --hud-void: #030305;
+  --hud-panel-dark: rgba(10, 10, 20, 0.95);
+  --hud-panel-yellow: #FCE96A;
+
+  /* Text Colors */
+  --hud-text-primary: #ffffff;
+  --hud-text-inverse: #0a0a15;
+  --hud-text-muted: #a3a3a3;
+
+  /* Borders */
+  --hud-border-subtle: rgba(255, 255, 255, 0.08);
+  --hud-border-yellow: rgba(252, 233, 106, 0.4);
+
+  /* Accents */
+  --hud-accent-yellow: #FCE96A;
+  --hud-accent-purple: #bf5ec2;
+
+  /* ============================================ */
+  /* 3. SPACING & RADIUS                          */
+  /* ============================================ */
+  --hud-radius-lg: 0 48px 0 48px;
+  --hud-radius-md: 16px;
+  --hud-radius-sm: 8px;
+
+  /* ============================================ */
+  /* 4. SHADOWS & GLOWS                           */
+  /* ============================================ */
+  --hud-shadow-card: 0 20px 50px rgba(0, 0, 0, 0.5);
+  --hud-shadow-glow: 0 0 15px var(--hud-accent-yellow);
+  --hud-shadow-planet: 0 0 50px rgba(255, 223, 0, 0.6);
+  --hud-glow-text: 0 0 10px var(--hud-accent-yellow);
+
+  /* ============================================ */
+  /* 5. LEGACY TOKENS (Keep for backwards compat)*/
+  /* ============================================ */
   --cp-bg-dark: #030305;
-  
-  /* --- INTENSIFIED NEBULA GRADIENT --- */
-  --cp-bg-gradient: 
-    /* 1. MAIN LIGHT (Top Left): Strong, pale blue-white mist. 
-       Increased opacity to 0.18 for visibility. */
+  --cp-bg-gradient:
     radial-gradient(circle at 0% 0%, rgba(180, 200, 230, 0.22) 0%, transparent 60%),
-    
-    /* 2. SECONDARY LIGHT (Bottom Right): Warmer, pale gray smoke.
-       Opacity 0.15 makes it clearly visible against the dark corner. */
     radial-gradient(circle at 100% 100%, rgba(220, 220, 225, 0.15) 0%, transparent 50%),
-    
-    /* 3. AMBIENT GLOW (Center): Very large, subtle wash to connect them. */
     radial-gradient(circle at 50% 50%, rgba(150, 160, 180, 0.08) 0%, transparent 80%),
-    
-    
-    /* 4. THE VOID: The base color underneath everything */
     var(--cp-bg-dark);
-
-    --ai-glow: #a9fc03;
-
-  /* --- ACCENTS (Unchanged) --- */
+  --ai-glow: #a9fc03;
   --cp-card-bg-start: #2a2a5a;
   --cp-card-bg-mid: #15152a;
   --cp-card-bg-end: #0a0a15;
   --cp-accent-yellow: #fce96a;
   --cp-accent-purple: #bf5ec2;
-  
-  --cp-font-main: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --cp-font-main: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -39,8 +67,7 @@ body {
   place-items: flex-start;
   min-width: 320px;
   min-height: 100vh;
-  /* Keep body bg separate to avoid conflicts */
-  background: var(--cp-bg-dark); 
+  background: var(--cp-bg-dark);
   color: rgba(255, 255, 255, 0.87);
 }
 

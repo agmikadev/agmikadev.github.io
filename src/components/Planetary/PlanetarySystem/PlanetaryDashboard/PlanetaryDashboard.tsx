@@ -6,10 +6,12 @@ import {
   MissionsTab,
   AnalyticsTab,
 } from "../../UI";
+import { Card } from "../../UI/CardVariants";
 
 import "./PlanetaryDashboard.css";
 import type { PlanetModel } from "../../data";
 import { Planet3D } from "./Planet3D";
+
 
 interface DashboardProps {
   planet: PlanetModel;
@@ -107,7 +109,7 @@ export const PlanetDashboard: React.FC<DashboardProps> = ({
 
           {/* --- 2. THE REVEALER --- */}
           {isFetched && (
-            <div className="fetched-data-wrapper">
+            <Card variant="yellow" className="fetched-data-wrapper">
               <h1
                 className="planet-title"
                 style={{
@@ -133,7 +135,7 @@ export const PlanetDashboard: React.FC<DashboardProps> = ({
                 defaultTabId="missions"
                 themeColor={planet.color}
               />
-            </div>
+            </Card>
           )}
         </div>
       </div>

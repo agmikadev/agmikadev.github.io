@@ -71,6 +71,9 @@ Plans:
 - [x] 03-03-PLAN.md — Wire BeltHUD into PlanetarySystem, update barrel exports
 **UI hint**: yes
 
+Plans: TBD
+**UI hint**: yes
+
 ### Phase 4: Polish & Accessibility
 **Goal**: Portfolio is accessible, intuitive, and polished for all users
 **Depends on**: Phase 3
@@ -80,8 +83,15 @@ Plans:
   2. Camera smoothly transitions when selecting and deselecting planets
   3. User can navigate planets, belt, and HUD using keyboard (Tab/Enter/Escape)
   4. Animations respect the user's prefers-reduced-motion setting
-**Plans**: TBD
-**UI hint**: yes
+**Plans**: 5 plans
+
+Plans:
+- [x] 04-00-PLAN.md — Implement full HUD visual system (UI-SPEC.md: yellow cards, typography, symbols)
+- [ ] 04-01-PLAN.md — Onboarding overlay with localStorage dismiss
+- [ ] 04-02-PLAN.md — Smooth camera transitions for planet select/deselect
+- [ ] 04-03-PLAN.md — Keyboard navigation (Tab/Enter/Escape)
+- [ ] 04-04-PLAN.md — prefers-reduced-motion support
+- [x] 04-05-PLAN.md — Side strip polish and symbol integration
 
 ### Phase 5: Production Readiness
 **Goal**: Portfolio is robust, optimized, and ready for public sharing

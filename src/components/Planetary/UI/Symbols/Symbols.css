@@ -1,0 +1,49 @@
+/* =========================================
+   1. DIVIDER COMPONENT
+   ========================================= */
+.hud-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin: 16px 0;
+}
+
+.hud-divider-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  opacity: 0.5;
+}
+
+.hud-divider-text {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--hud-accent-yellow);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* =========================================
+   2. STAR BURST
+   ========================================= */
+.hud-starburst {
+  display: inline-block;
+  color: var(--hud-accent-yellow);
+}
+
+/* =========================================
+   3. TRIPLE DOT
+   ========================================= */
+.hud-triple-dot {
+  display: inline-flex;
+  align-items: center;
+}
+
+.hud-dot {
+  display: inline-block;
+  border: 1.5px solid var(--hud-accent-yellow);
+  border-radius: 50%;
+}
