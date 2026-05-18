@@ -3,6 +3,7 @@ import "./PlanetarySystem.css";
 import "./PlanetShapes.css";
 import { planets, type PlanetModel } from "../data/PlanetaryData";
 import { PlanetDashboard } from "./PlanetaryDashboard/PlanetaryDashboard";
+import { BeltNetwork } from "./BeltNetwork";
 
 const CONFIG = {
   centerX: 50,
@@ -30,8 +31,9 @@ export const PlanetarySystem: React.FC = () => {
   const containerWidthRef = useRef<number>(0);
   const containerHeightRef = useRef<number>(0);
 
-  const svgPathRef = useRef<SVGPathElement>(null);
   const svgHitboxRef = useRef<SVGPathElement>(null);
+  const pixelCoordsRef = useRef<{ x: number; y: number }[]>([]);
+  const [, setFrame] = useState(0); // forces re-render each frame for BeltNetwork
 
   const anglesRef = useRef<number[]>(
     physicalPlanets.map((_, i) => i * ((Math.PI * 2) / physicalPlanets.length)),
@@ -111,9 +113,12 @@ export const PlanetarySystem: React.FC = () => {
         .join(" ");
       const closedPath = `${pathData} Z`;
 
-      if (svgPathRef.current) svgPathRef.current.setAttribute("d", closedPath);
       if (svgHitboxRef.current)
         svgHitboxRef.current.setAttribute("d", closedPath);
+
+      // Store pixelCoords for BeltNetwork render and trigger re-render
+      pixelCoordsRef.current = pixelCoords;
+      setFrame((f) => f + 1);
 
       requestRef.current = requestAnimationFrame(animate);
     };
@@ -192,26 +197,14 @@ export const PlanetarySystem: React.FC = () => {
 
             {beltPlanet && (
               <>
-                <path
-                  ref={svgPathRef}
-                  fill={beltPlanet.color}
-                  fillOpacity={0.03}
-                  stroke={beltPlanet.color}
-                  strokeWidth={isBeltHovered ? "2" : "1"} // Pixels agora (antes 0.15)
-                  strokeOpacity={isBeltHovered ? "1" : "0.6"}
-                  strokeDasharray="4, 4" // Ajustado para Pixels
-                  strokeLinejoin="bevel"
-                  strokeLinecap="butt"
-                  style={{
-                    transition:
-                      "stroke-width 0.3s ease, stroke-opacity 0.3s ease",
-                    pointerEvents: "none",
-                  }}
-                  filter={
-                    isBeltHovered
-                      ? `drop-shadow(0 0 5px ${beltPlanet.color})`
-                      : "none"
-                  }
+                <BeltNetwork
+                  planetPositions={pixelCoordsRef.current.map((p, i) => ({
+                    ...p,
+                    color: physicalPlanets[i].color,
+                    id: physicalPlanets[i].id,
+                  }))}
+                  isHovered={!!isBeltHovered}
+                  beltColor={beltPlanet.color}
                 />
 
                 <path
