@@ -63,7 +63,12 @@ Plans:
   3. Each planet's Missions tab shows case-study structured project reports (problem → approach → outcome)
   4. Each planet's Analytics tab shows accurate proficiency data
   5. Belt HUD shows populated AI tool proficiency and mission reports
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — Create belt tab components (BeltMissionsTab, BeltMissionCard, BeltAnalyticsTab)
+- [ ] 03-02-PLAN.md — Create BeltHUD overlay panel with single-column layout
+- [ ] 03-03-PLAN.md — Wire BeltHUD into PlanetarySystem, update barrel exports
 **UI hint**: yes
 
 ### Phase 4: Polish & Accessibility
