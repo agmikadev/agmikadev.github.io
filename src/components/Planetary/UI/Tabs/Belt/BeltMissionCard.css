@@ -1,0 +1,80 @@
+/* BeltMissionCard.css — Adapts MissionCard.css for BeltMissionReport shape */
+
+/* Reuse .mission-card base from MissionCard.css (glassmorphism, backdrop blur, border) */
+
+/* Belt-specific left border applied inline via style prop */
+
+/* Section labels: monospace, uppercase, small font */
+.belt-section-label {
+  display: block;
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin-bottom: 4px;
+}
+
+.belt-section {
+  margin-bottom: 16px;
+}
+
+.belt-section-text {
+  font-size: 0.875rem;
+  color: #d1d5db;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Divider between content sections and metadata */
+.belt-divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin: 16px 0;
+}
+
+/* Ferramentas section */
+.belt-tools-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+/* Mtricas section */
+.belt-metrics-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.belt-metrics-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.belt-metrics-list li {
+  font-size: 0.875rem;
+  color: #d1d5db;
+  line-height: 1.6;
+}
+
+.belt-metrics-list li::before {
+  content: "\2022";
+  color: #9ca3af;
+  margin-right: 8px;
+}
+
+.metric-label {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.metric-value {
+  color: #d1d5db;
+}
