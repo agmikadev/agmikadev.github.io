@@ -8,9 +8,6 @@ const METRICS = [
 export const TelemetryStats = () => {
   return (
     <div className="telemetry-wrapper">
-      {/* Divisor Interno */}
-      <div className="telemetry-divider"></div>
-
       {/* 2. PERSONAL METRICS (Bars) */}
       <div className="metrics-col">
         {METRICS.map((metric) => (
@@ -37,8 +34,6 @@ export const TelemetryStats = () => {
           </div>
         ))}
       </div>
-
-      <div className="telemetry-divider"></div>
     </div>
   );
 };

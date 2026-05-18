@@ -162,13 +162,6 @@
   box-shadow: 0 0 10px rgba(97, 218, 251, 0.3);
 }
 
-.telemetry-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-  width: 100%;
-  margin: 4px 0;
-}
-
 /* --- 2. PERSONAL METRICS (Barras) --- */
 .metrics-col {
   display: flex;
