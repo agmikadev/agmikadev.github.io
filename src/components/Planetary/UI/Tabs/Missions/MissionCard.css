@@ -10,10 +10,58 @@
   position: relative;
   background: rgba(255, 255, 255, 0.03); 
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--hud-border-subtle);
   border-radius: 16px;
   padding: 16px;
-  /* (Hover effect removed as requested) */
+}
+
+.mission-year {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--hud-text-muted);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--hud-border-subtle);
+  padding: 4px 8px;
+  border-radius: 9999px;
+}
+
+.mission-role {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--hud-text-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+
+.mission-description {
+  font-size: 0.875rem;
+  color: var(--hud-text-primary);
+  opacity: 0.85;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.mission-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px; 
+  border-radius: 30px; 
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--hud-border-subtle);
+  color: var(--hud-text-muted);
+  cursor: default; 
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mission-links-container {
+  display: flex;
+  gap: 20px;
+  padding-top: 12px;
+  border-top: 1px solid var(--hud-border-subtle);
 }
 
 /* --- MISSION CARD TYPOGRAPHY & LAYOUT --- */

@@ -64,11 +64,7 @@
   filter: brightness(1.2);
 }
 
-/* Yellow card + tab area layout (matching PlanetaryDashboard) */
-.planet-detail-card {
-  margin-bottom: 24px;
-}
-
+/* Debrief inside yellow card — dark text for contrast */
 .planet-debrief-yellow {
   color: var(--hud-text-inverse);
   margin-bottom: 0;
@@ -78,13 +74,21 @@
   color: var(--hud-text-inverse);
 }
 
+/* Planet title inside yellow card overrides */
+.planet-title-yellow {
+  color: var(--hud-text-inverse) !important;
+  text-shadow: none !important;
+}
+
+/* Yellow card wrapper for belt title + debrief */
+.planet-detail-card {
+  margin-bottom: 24px;
+}
+
+/* Tab area sits on the dark overlay background (outside yellow card) */
 .tab-area-wrapper {
   position: relative;
 }
-
-/* =========================================
-   RESPONSIVE — same as PlanetDashboard
-   ========================================= */
 @media (max-width: 900px) {
   .belt-dashboard-overlay {
     position: relative;

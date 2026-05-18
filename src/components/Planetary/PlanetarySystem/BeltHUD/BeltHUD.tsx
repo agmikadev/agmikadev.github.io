@@ -84,7 +84,7 @@ export const BeltHUD: React.FC<BeltHUDProps> = ({ onClose }) => {
             <div className="fetched-data-wrapper">
               {/* Yellow card: belt name + debrief only */}
               <Card variant="yellow" className="planet-detail-card">
-                <h1 className="planet-title">
+                <h1 className="planet-title planet-title-yellow">
                   {beltDataModel.name}
                 </h1>
 

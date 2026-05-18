@@ -43,8 +43,9 @@
   --hud-text-muted: #a3a3a3;
 
   /* Borders */
-  --hud-border-subtle: rgba(255, 255, 255, 0.08);
-  --hud-border-yellow: rgba(252, 233, 106, 0.4);
+  --hud-border-subtle: rgba(255, 255, 255, 0.3);
+  --hud-border-yellow: rgba(252, 233, 106, 0.6);
+  --hud-focus-ring: #FCE96A;
 
   /* Accents */
   --hud-accent-yellow: #FCE96A;
@@ -98,4 +99,19 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
+}
+
+/* ============================================ */
+/* FOCUS INDICATORS (WCAG 2.4.7)               */
+/* ============================================ */
+*:focus-visible {
+  outline: 2px solid var(--hud-focus-ring);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--hud-focus-ring);
+  outline-offset: 2px;
 }

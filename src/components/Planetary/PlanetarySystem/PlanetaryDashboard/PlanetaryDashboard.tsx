@@ -112,7 +112,7 @@ export const PlanetDashboard: React.FC<DashboardProps> = ({
             <div className="fetched-data-wrapper">
               {/* Yellow card: planet name + debrief only */}
               <Card variant="yellow" className="planet-detail-card">
-                <h1 className="planet-title">
+                <h1 className="planet-title planet-title-yellow">
                   {planet.name}
                 </h1>
 
