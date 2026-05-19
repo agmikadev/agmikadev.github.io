@@ -46,7 +46,7 @@
 /* --- PLANET TITLE (base style) --- */
 .planet-title {
   font-family: var(--font-display);
-  font-size: var(--text-3xl);
+  font-size: var(--text-2xl);
   font-weight: 800;
   letter-spacing: 1px;
   color: hsl(var(--hud-text-primary));
