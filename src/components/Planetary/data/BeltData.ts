@@ -24,12 +24,15 @@ export interface BeltTool {
 export interface BeltMissionReport {
   id: string;
   title: string;
-  date: string;
-  problem: string;
-  approach: string;
-  outcome: string;
-  toolsUsed: string[]; // IDs referencing BeltTool.id
-  metrics: { label: string; value: string }[];
+  year: string;
+  role: string;
+  summary: string;
+  highlights: string[];
+  challenges: string;
+  impact: string;
+  aiWorkflow?: string;
+  technologies: string[];
+  external_links?: { label: string; url: string }[];
 }
 
 export interface BeltDataModel {
@@ -207,66 +210,88 @@ export const beltDataModel: BeltDataModel = {
     {
       id: "report-portfolio-ai",
       title: "Portfolio 3D — Otimização com IA",
-      date: "2026",
-      problem:
-        "Desenvolver um portfolio 3D interativo com tema espacial que rodasse a 60fps em hardware intermediário, integrando múltiplos planetas, cinturão de asteroides e HUDs complexos — tudo como SPA estática para GitHub Pages.",
-      approach:
-        "Utilização de IA para otimização de geometrias Three.js, análise de performance de renders com React Three Fiber, e sugestão de estratégias de instanciamento para o cinturão de asteroides. Prompt engineering foi aplicado para refinar shaders e reduzir draw calls.",
-      outcome:
-        "Portfolio deployado no GitHub Pages com performance estável a 60fps, DPR capped em 2, e sistema de cinturão com centenas de partículas instanciadas. A IA auxiliou na identificação de gargalos de renderização e sugeriu otimizações de memória.",
-      toolsUsed: [
-        "code-ai-optimization",
-        "prompt-engineering",
-        "agentic-orchestration",
+      year: "2026",
+      role: "AI-Driven Developer",
+      summary:
+        "Portfolio 3D interativo com tema espacial, otimizado com assistência de IA para atingir 60fps em hardware intermediário como SPA estática.",
+      highlights: [
+        "Geometrias Three.js otimizadas com sugestões de IA para redução de draw calls e instanciamento de partículas",
+        "Sistema de cinturão de asteroides com centenas de instâncias via InstancedMesh",
+        "DPR capped em 2 com monitoramento de performance em tempo real",
+        "Deploy como SPA estática no GitHub Pages via Rolldown-Vite",
+        "Prompt engineering aplicado para refinar shaders GLSL e reduzir complexidade de renderização",
       ],
-      metrics: [
-        { label: "FPS Target", value: "60fps" },
-        { label: "DPR Cap", value: "2x" },
-        { label: "Deployment", value: "GitHub Pages (SPA)" },
-        { label: "Bundle Size", value: "Otimizado via Rolldown-Vite" },
+      challenges:
+        "Alcançar 60fps estável em hardware intermediário com múltiplos planetas, cinturão de asteroides e HUDs complexos — tudo rodando como SPA estática sem servidor.",
+      impact:
+        "Portfolio deployado no GitHub Pages com performance estável a 60fps, bundle otimizado via Rolldown-Vite e sistema de partículas instanciadas sem gargalos de renderização.",
+      aiWorkflow:
+        "IA utilizada para identificação de gargalos de renderização, sugestão de instanciamento para o cinturão, otimização de memória e refinamento de shaders GLSL via prompt engineering iterativo.",
+      technologies: [
+        "React Three Fiber",
+        "Three.js",
+        "Rolldown-Vite",
+        "Prompt Engineering",
+        "GitHub Copilot",
+        "Cursor",
       ],
     },
     {
       id: "report-maxvidro-algorithm",
       title: "MaxVidro — Otimização Algorítmica de Corte",
-      date: "2024",
-      problem:
-        "Criar um sistema para a indústria vidreira que otimizasse o corte de chapas de vidro, minimizando desperdício de material e maximizando a eficiência do processo de corte com geração automatizada de arquivos técnicos.",
-      approach:
-        "Implementação de algoritmos de otimização combinatória (bin packing / cutting stock problem) com IA assistindo na seleção de heurísticas e validação de resultados. Análise preditiva foi usada para estimar desperdício antes do corte real.",
-      outcome:
-        "Sistema funcional que gera arquivos técnicos detalhados com medidas e tipos de vidro, reduzindo significativamente o desperdício de material. Algoritmos de otimização entregaram layouts de corte eficientes para diferentes configurações de chapas.",
-      toolsUsed: [
-        "predictive-analytics",
-        "code-ai-optimization",
-        "ml-models",
+      year: "2024",
+      role: "AI Solutions Developer",
+      summary:
+        "Sistema de otimização de corte de chapas de vidro para a indústria vidreira, minimizando desperdício com algoritmos combinatórios assistidos por IA.",
+      highlights: [
+        "Implementação de algoritmos de bin packing / cutting stock problem para minimização de desperdício",
+        "Análise preditiva para estimar desperdício antes do corte real, reduzindo custos de material",
+        "Geração automatizada de arquivos técnicos com medidas e tipos de vidro",
+        "IA assistindo na seleção de heurísticas e validação de resultados combinatórios",
+        "Interface para diferentes configurações de chapas com layouts de corte otimizados",
       ],
-      metrics: [
-        { label: "Problema", value: "Cutting Stock / Bin Packing" },
-        { label: "Output", value: "Arquivos técnicos automatizados" },
-        { label: "Resultado", value: "Minimização de desperdício" },
+      challenges:
+        "Resolver o cutting stock problem para múltiplas configurações de chapas, gerando layouts de corte eficientes que minimizem desperdício e produzam arquivos técnicos precisos para produção.",
+      impact:
+        "Sistema funcional que gera arquivos técnicos detalhados com medidas e tipos de vidro, reduzindo significativamente o desperdício de material na indústria vidreira.",
+      aiWorkflow:
+        "Modelos preditivos utilizados para estimar desperdício antes do corte, IA assistindo na seleção de heurísticas de bin packing e validação de resultados combinatórios em tempo real.",
+      technologies: [
+        "Python",
+        "Combinatorial Optimization",
+        "Predictive Analytics",
+        "Machine Learning",
+        "Algorithm Design",
       ],
     },
     {
       id: "report-portal-egressos",
       title: "Portal Egressos — Performance & Arquitetura",
-      date: "2024",
-      problem:
-        "Construir um portal profissional multi-página com showcase de projetos e artigos técnicos, mantendo boa performance e organização de código com stack full-stack (Vue.js + Node.js + PostgreSQL).",
-      approach:
-        "IA foi utilizada para análise de arquitetura, sugerindo separação clara entre estrutura, estilização e comportamento. Otimização de queries PostgreSQL e análise de padrões de acesso para melhorar tempos de resposta. Detecção automatizada de bugs identificou inconsistências de responsive design antes do deploy.",
-      outcome:
-        "Portal deployado com múltiplas páginas dedicadas (Fredson, Pierre, Natália, Tereza), navegação intuitiva e design responsivo. Código organizado com boas práticas de separação de responsabilidades. Performance otimizada com caching e queries eficientes.",
-      toolsUsed: [
-        "code-ai-optimization",
-        "predictive-analytics",
-        "ai-evaluation",
+      year: "2024",
+      role: "AI-Assisted Full Stack Developer",
+      summary:
+        "Portal profissional multi-página com showcase de projetos e artigos técnicos, construído com stack full-stack e assistência de IA para arquitetura e qualidade.",
+      highlights: [
+        "Arquitetura full-stack Vue.js + Node.js + PostgreSQL com separação clara de responsabilidades",
+        "Sistema multi-página com páginas dedicadas para cada egresso e artigo",
+        "IA para análise de arquitetura e sugestão de separação entre estrutura, estilização e comportamento",
+        "Otimização de queries PostgreSQL com análise de padrões de acesso",
+        "Detecção automatizada de inconsistências de responsive design antes do deploy",
       ],
-      metrics: [
-        { label: "Stack", value: "Vue.js + Node.js + PostgreSQL" },
-        { label: "Páginas", value: "Multi-página dedicada" },
-        { label: "Deploy", value: "Vercel" },
-        { label: "Acessibilidade", value: "Design responsivo" },
+      challenges:
+        "Organizar um volume grande de conteúdo acadêmico em navegação intuitiva, mantendo performance e separação de responsabilidades entre frontend, backend e banco de dados.",
+      impact:
+        "Portal funcional servindo como vitrine digital do programa de pós-graduação, com páginas dedicadas a projetos e publicações de cada egresso.",
+      aiWorkflow:
+        "IA utilizada para análise de arquitetura — sugerindo separação entre estrutura, estilização e comportamento. Otimização de queries PostgreSQL e validação automatizada de inconsistências de responsive design antes do deploy.",
+      technologies: [
+        "Vue.js",
+        "Node.js",
+        "Express.js",
+        "Sequelize",
+        "PostgreSQL",
+        "Vite",
+        "REST API",
       ],
     },
   ],

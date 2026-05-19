@@ -5,14 +5,14 @@ import "./MissionCard.css";
 
 interface MissionCardProps {
   mission: MissionType;
-  planetTools: string[];
+  planetId: string;
 }
 
 const YELLOW = "hsl(var(--primary))";
 
 export const MissionCard: React.FC<MissionCardProps> = ({
   mission,
-  planetTools,
+  planetId,
 }) => {
   return (
     <Card
@@ -24,37 +24,54 @@ export const MissionCard: React.FC<MissionCardProps> = ({
         <h3 className="mission-title" style={{ color: YELLOW }}>
           {mission.title}
         </h3>
-        <span className="mission-year">
-          {mission.year}
+        <span className="mission-year">{mission.year}</span>
+      </div>
+
+      <div className="mission-role">{mission.role.toUpperCase()}</div>
+
+      <p className="mission-summary">{mission.summary}</p>
+
+      <div className="mission-section">
+        <span className="mission-section-label" style={{ color: YELLOW }}>
+          HIGHLIGHTS
         </span>
+        <ul className="mission-highlights">
+          {mission.highlights.map((h, i) => (
+            <li key={i}>{h}</li>
+          ))}
+        </ul>
       </div>
 
-      <div className="mission-role">
-        {mission.role.toUpperCase()}
+      <div className="mission-detail-grid">
+        <div className="mission-detail-block">
+          <span className="mission-section-label" style={{ color: YELLOW }}>
+            DESAFIO
+          </span>
+          <p className="mission-detail-text">{mission.challenges}</p>
+        </div>
+        <div className="mission-detail-block">
+          <span className="mission-section-label" style={{ color: YELLOW }}>
+            IMPACTO
+          </span>
+          <p className="mission-detail-text">{mission.impact}</p>
+        </div>
       </div>
 
-      <p className="mission-description">
-        {mission.technical_briefing}
-      </p>
+      {mission.aiWorkflow && (
+        <div className="mission-ai-block">
+          <span className="mission-section-label mission-ai-label">
+            AI WORKFLOW
+          </span>
+          <p className="mission-detail-text">{mission.aiWorkflow}</p>
+        </div>
+      )}
 
       <div className="mission-tags-container">
-        {mission.technologies.map((tech) => {
-          const isActive = planetTools.includes(tech);
-          return (
-            <span
-              key={tech}
-              className={`mission-tag ${isActive ? "active" : ""}`}
-              style={isActive ? {
-                borderColor: YELLOW,
-                color: YELLOW,
-                backgroundColor: "hsl(var(--primary) / 8%)",
-                boxShadow: "0 0 10px hsl(var(--primary) / 20%)"
-              } : {}}
-            >
-              {tech}
-            </span>
-          );
-        })}
+        {mission.technologies.map((tech) => (
+          <span key={tech} className="mission-tag active">
+            {tech}
+          </span>
+        ))}
       </div>
 
       {mission.external_links && (
@@ -68,7 +85,16 @@ export const MissionCard: React.FC<MissionCardProps> = ({
               className="mission-link"
               style={{ color: YELLOW }}
             >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                 <polyline points="15 3 21 3 21 9"></polyline>
                 <line x1="10" y1="14" x2="21" y2="3"></line>

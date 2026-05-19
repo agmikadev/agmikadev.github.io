@@ -1,7 +1,7 @@
 import React from "react";
-import type { BeltMissionReport, BeltTool } from "../../../data/BeltData";
-import { beltDataModel } from "../../../data/BeltData";
+import type { BeltMissionReport } from "../../../data/BeltData";
 import { Card } from "../../CardVariants";
+import "../Missions/MissionCard.css";
 import "./BeltMissionCard.css";
 
 interface BeltMissionCardProps {
@@ -10,15 +10,9 @@ interface BeltMissionCardProps {
 
 const YELLOW = "hsl(var(--primary))";
 
-const toolMap = new Map<string, BeltTool>(
-  beltDataModel.tools.map((tool) => [tool.id, tool])
-);
-
 export const BeltMissionCard: React.FC<BeltMissionCardProps> = ({
   report,
 }) => {
-  const year = report.date.substring(0, 4);
-
   return (
     <Card
       variant="dark"
@@ -29,61 +23,86 @@ export const BeltMissionCard: React.FC<BeltMissionCardProps> = ({
         <h3 className="mission-title" style={{ color: YELLOW }}>
           {report.title}
         </h3>
-        <span className="mission-year">{year}</span>
+        <span className="mission-year">{report.year}</span>
       </div>
 
-      <div className="belt-section">
-        <span className="belt-section-label">PROBLEMA:</span>
-        <p className="belt-section-text">{report.problem}</p>
-      </div>
+      <div className="mission-role">{report.role.toUpperCase()}</div>
 
-      <div className="belt-section">
-        <span className="belt-section-label">ABORDAGEM:</span>
-        <p className="belt-section-text">{report.approach}</p>
-      </div>
+      <p className="mission-summary">{report.summary}</p>
 
-      <div className="belt-section">
-        <span className="belt-section-label">RESULTADO:</span>
-        <p className="belt-section-text">{report.outcome}</p>
-      </div>
-
-      <div className="belt-divider" />
-
-      <div className="belt-tools-section">
-        <span className="belt-section-label">Ferramentas:</span>
-        <div className="mission-tags-container">
-          {report.toolsUsed.map((toolId) => {
-            const tool = toolMap.get(toolId);
-            const label = tool ? tool.name : toolId;
-            return (
-              <span
-                key={toolId}
-                className="mission-tag active"
-          style={{
-            borderColor: YELLOW,
-            color: "#fff",
-            backgroundColor: "hsl(var(--primary) / 8%)",
-            boxShadow: "0 0 10px hsl(var(--primary) / 20%)",
-          }}
-              >
-                {label}
-              </span>
-            );
-          })}
-        </div>
-      </div>
-
-      <div className="belt-metrics-section">
-        <span className="belt-section-label">Mtricas:</span>
-        <ul className="belt-metrics-list">
-          {report.metrics.map((metric, index) => (
-            <li key={`${metric.label}-${index}`}>
-              <span className="metric-label">{metric.label}:</span>{" "}
-              <span className="metric-value">{metric.value}</span>
-            </li>
+      <div className="mission-section">
+        <span className="mission-section-label" style={{ color: YELLOW }}>
+          HIGHLIGHTS
+        </span>
+        <ul className="mission-highlights">
+          {report.highlights.map((h, i) => (
+            <li key={i}>{h}</li>
           ))}
         </ul>
       </div>
+
+      <div className="mission-detail-grid">
+        <div className="mission-detail-block">
+          <span className="mission-section-label" style={{ color: YELLOW }}>
+            DESAFIO
+          </span>
+          <p className="mission-detail-text">{report.challenges}</p>
+        </div>
+        <div className="mission-detail-block">
+          <span className="mission-section-label" style={{ color: YELLOW }}>
+            IMPACTO
+          </span>
+          <p className="mission-detail-text">{report.impact}</p>
+        </div>
+      </div>
+
+      {report.aiWorkflow && (
+        <div className="mission-ai-block">
+          <span className="mission-section-label mission-ai-label">
+            AI WORKFLOW
+          </span>
+          <p className="mission-detail-text">{report.aiWorkflow}</p>
+        </div>
+      )}
+
+      <div className="mission-tags-container">
+        {report.technologies.map((tech) => (
+          <span key={tech} className="mission-tag active">
+            {tech}
+          </span>
+        ))}
+      </div>
+
+      {report.external_links && (
+        <div className="mission-links-container">
+          {report.external_links.map((link) => (
+            <a
+              key={link.label}
+              href={link.url}
+              target="_blank"
+              rel="noreferrer"
+              className="mission-link"
+              style={{ color: YELLOW }}
+            >
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
     </Card>
   );
 };

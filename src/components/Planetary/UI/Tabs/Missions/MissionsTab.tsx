@@ -1,19 +1,14 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { type PlanetModel } from "../../../data/PlanetaryData";
 import { MissionCard } from "./MissionCard";
-import { MISSION_ARCHIVE } from "../../../data/MissionData";
+import { useMissions } from "../../../data/hooks";
 
 interface MissionsTabProps {
   planet: PlanetModel;
 }
 
 export const MissionsTab: React.FC<MissionsTabProps> = ({ planet }) => {
-  // A lógica de filtro agora vive APENAS aqui. Perfeito para a performance.
-  const relevantMissions = useMemo(() => {
-    return MISSION_ARCHIVE.filter((mission) =>
-      mission.technologies.some((tech) => planet.tools.includes(tech))
-    );
-  }, [planet.tools]);
+  const relevantMissions = useMissions(planet.id);
 
   if (relevantMissions.length === 0) {
     return (
@@ -29,7 +24,7 @@ export const MissionsTab: React.FC<MissionsTabProps> = ({ planet }) => {
         <MissionCard
           key={`${planet.id}-${mission.id}`}
           mission={mission}
-          planetTools={planet.tools}
+          planetId={planet.id}
         />
       ))}
     </div>

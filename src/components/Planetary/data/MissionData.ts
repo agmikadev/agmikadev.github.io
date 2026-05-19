@@ -4,11 +4,12 @@ export interface MissionType {
   year: string;
   role: string;
   summary: string;
-  // Deep dive into HOW the tools were used
-  technical_briefing: string;
-  // The tags that link the mission to the planets
+  planetIds: string[];
+  highlights: string[];
+  challenges: string;
+  impact: string;
+  aiWorkflow?: string;
   technologies: string[];
-  // Optional links to live sites or GitHub
   external_links?: { label: string; url: string }[];
 }
 
@@ -19,29 +20,32 @@ export const MISSION_ARCHIVE: MissionType[] = [
     year: "2024",
     role: "Desenvolvedor Full Stack",
     summary:
-      "Website portfólio profissional com showcase de projetos e artigos técnicos.",
-    technical_briefing:
-      "Site portfólio desenvolvido com HTML semântico e CSS puro, apresentando uma estrutura multi-página para exibição de projetos e artigos. A arquitetura inclui páginas dedicadas para diferentes projetos (Fredson, Pierre) e artigos (Natália, Tereza), implementando navegação intuitiva e design responsivo. O projeto demonstra boas práticas de organização de código com separação clara entre estrutura (HTML), estilização (CSS) e comportamento (JavaScript), além de incluir uma seção de artigos técnicos.",
+      "Portal profissional multi-página para showcase de projetos e artigos técnicos do programa de pós-graduação.",
+    planetIds: ["interactron", "nodeon", "infra-x"],
+    highlights: [
+      "Arquitetura full-stack Vue.js + Node.js + PostgreSQL com separação clara de responsabilidades",
+      "Sistema multi-página com páginas dedicadas para cada egresso e artigo",
+      "Design responsivo com foco em acessibilidade e navegação intuitiva",
+      "API RESTful com rotas organizadas e validação de dados",
+      "Deploy contínuo na Vercel com builds automatizados",
+    ],
+    challenges:
+      "Organizar um volume grande de conteúdo acadêmico em uma navegação intuitiva, mantendo a performance e a separação de responsabilidades entre frontend, backend e banco de dados.",
+    impact:
+      "Portal funcional servindo como vitrine digital do programa de pós-graduação, com acesso dedicado a projetos e publicações de cada egresso.",
+    aiWorkflow:
+      "IA utilizada para análise de arquitetura — sugerindo separação entre estrutura, estilização e comportamento. Otimização de queries PostgreSQL e validação automatizada de inconsistências de responsive design antes do deploy.",
     technologies: [
-      // Frontend
-      "HTML",
-      "CSS",
-      "JavaScript",
       "Vue.js",
-      "Vite",
-      // Backend
       "Node.js",
       "Express.js",
       "Sequelize",
       "PostgreSQL",
-      // Ferramentas
+      "Vite",
       "Git",
       "REST API",
-      // Design
       "Responsive Design",
       "UI Design",
-      //AI
-      "Performance Optimization",
     ],
     external_links: [
       {
@@ -57,23 +61,29 @@ export const MISSION_ARCHIVE: MissionType[] = [
     year: "2026",
     role: "Desenvolvedor Frontend",
     summary:
-      "Website pessoal para showcase de projetos e apresentação profissional.",
-    technical_briefing:
-      "Site estático desenvolvido com foco em design responsivo e performance. Implementa boas práticas de SEO e acessibilidade, servindo como vitrine para projetos pessoais e informações profissionais. Seu design estático permite hospedagem de longo prazo em suites gratuitas como GitHub Pages, Vercel.app e Netlify, garantindo fácil manutenção e atualizações futuras.",
+      "Portfolio 3D interativo com tema espacial, sistema planetário e HUD analítico — deployado como SPA estática no GitHub Pages.",
+    planetIds: ["interactron", "logus-prime", "infra-x", "ai-belt"],
+    highlights: [
+      "Sistema solar 3D interativo com React Three Fiber, orbital animation e instanced meshes para partículas",
+      "HUD sci-fi com dashboards por planeta — missões estruturadas e métricas de proficiência com progress bars",
+      "Cinturão de IA (S.O.N.D.A. Network) com modelo de dados próprio — tools categorizados e mission reports com problem/approach/outcome",
+      "Pipeline de dados estática com hooks customizados (usePlanetData, useMissions) abstraindo consumo de dados das UIs",
+      "SPA estática com 60fps estável, DPR capped em 2x e deploy via GitHub Pages",
+    ],
+    challenges:
+      "Alcançar 60fps estável em hardware intermediário com centenas de partículas instanciadas, múltiplos Canvas R3F e HUDs complexos — tudo como SPA estática sem servidor.",
+    impact:
+      "Portfolio deployado no GitHub Pages com performance validada, servindo como demonstração ao vivo de habilidades em React, Three.js e arquitetura de dados.",
+    aiWorkflow:
+      "Desenvolvimento end-to-end assistido por IA agentic: arquitetura de dados planejada com agentes GSD, otimização de geometrias Three.js via prompt engineering, debug de performance com análise automatizada de gargalos de renderização, e refatoração incremental com code review por IA.",
     technologies: [
-      // Linguagens base
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "TypeScript",
-      // Framework
       "React.js",
-      // Build tool
+      "TypeScript",
+      "Three.js (R3F)",
       "Vite",
-      // Versionamento
+      "Tailwind CSS",
       "Git",
-      "Github",
-      // Design
+      "GitHub",
       "Responsive Design",
       "UI Design",
     ],
@@ -85,29 +95,29 @@ export const MISSION_ARCHIVE: MissionType[] = [
       { label: "Website", url: "https://angelomikaa.github.io" },
     ],
   },
-
   {
     id: "antigos-01",
     title: "Entre Antigos e Mileniuns",
     year: "2024",
     role: "Desenvolvedor Frontend",
     summary:
-      "Plataforma digital para ensino de Grego Antigo utilizando cultura popular cearense.",
-    technical_briefing:
-      "Projeto educacional inovador que utiliza o português informal regional do Ceará para ensinar Grego Antigo, integrando cordel e ditados populares no processo de aprendizagem. A aplicação web foi desenvolvida com foco em acessibilidade cultural e pedagógica, criando uma ponte entre a cultura clássica grega e a tradição nordestina brasileira. O front-end foi estruturado com HTML semântico, CSS para estilização responsiva e JavaScript para interatividade.",
+      "Plataforma educacional que ensina Grego Antigo usando cultura popular cearense — cordel, ditados e linguagem informal do Nordeste.",
+    planetIds: ["interactron", "aesthetica"],
+    highlights: [
+      "Abordagem pedagógica inovadora: ponte entre cultura clássica grega e tradição nordestina brasileira",
+      "Integração de cordel e ditados populares no processo de aprendizagem de Grego Antigo",
+      "Frontend estruturado com HTML semântico, CSS responsivo e JavaScript para interatividade",
+      "Acessibilidade cultural e pedagógica como princípio norteador do design",
+    ],
+    challenges:
+      "Criar uma experiência de aprendizado que fosse culturalmente autêntica sem simplificar demais o conteúdo acadêmico de Grego Antigo.",
+    impact:
+      "Plataforma funcional que democratiza o acesso ao Grego Antigo através da cultura nordestina, com navegação acessível e conteúdo contextualizado.",
     technologies: [
-      // Linguagens base
-      "HTML",
-      "CSS",
-      "JavaScript",
-      // Framework
       "Vue.js",
-      // Build tool
       "Vite",
-      // Versionamento
       "Git",
-      "Github",
-      // Design
+      "GitHub",
       "Responsive Design",
       "Web Accessibility",
       "UI Design",
@@ -119,21 +129,27 @@ export const MISSION_ARCHIVE: MissionType[] = [
       },
     ],
   },
-
   {
     id: "polaris-browser-01",
     title: "Polaris Browser Icon",
     year: "2022",
     role: "UI Designer",
     summary:
-      "Design de identidade visual para navegador web fictício com conceito de navegação e orientação.",
-    technical_briefing:
-      "Criação de ícone vetorial para o navegador fictício 'Polaris Browser' com o conceito 'Find your North'. O design incorpora elementos de navegação (bússola/estrela polar) com uma paleta de cores em degradê de verde a azul, simbolizando orientação e exploração digital. O ícone foi desenvolvido seguindo as diretrizes de design de ícones iOS/macOS, com cantos arredondados e acabamento em estilo skeuomórfico moderno. A estrela polar central e as estrelas ao fundo reforçam o conceito de navegação e descoberta.",
+      "Identidade visual e ícone vetorial para navegador fictício com conceito de navegação e orientação estelar.",
+    planetIds: ["aesthetica"],
+    highlights: [
+      "Ícone vetorial com conceito 'Find your North' — estrela polar central e estrelas de navegação ao fundo",
+      "Paleta degradê verde-azul simbolizando orientação e exploração digital",
+      "Desenvolvimento seguindo guidelines iOS/macOS com cantos arredados e acabamento skeuomórfico moderno",
+      "Design completo em Figma + Adobe Illustrator com exportação multi-resolução",
+    ],
+    challenges:
+      "Traduzir o conceito abstrato de 'navegação e orientação' em um ícone que comunicasse instantaneamente a proposta do navegador.",
+    impact:
+      "Ícone pronto para produção com identidade visual memorável e aplicável em múltiplas plataformas e resoluções.",
     technologies: [
-      // Design tools
       "Figma",
       "Adobe Illustrator",
-      // Design concepts
       "Vector Design",
       "UI Design",
       "Logo Design",
@@ -147,20 +163,26 @@ export const MISSION_ARCHIVE: MissionType[] = [
       },
     ],
   },
-
   {
     id: "mangazal-01",
-    title: "Mangazal - Rede Social Geek",
+    title: "Mangazal — Rede Social Geek",
     year: "2023",
     role: "UI/UX Designer",
     summary:
-      "Aplicativo de rede social focado em cultura manga e geek com marketplace integrado.",
-    technical_briefing:
-      "Desenvolvimento de interface mobile para rede social especializada em mangá e cultura geek. O app integra funcionalidades de fórum de discussão com marketplace para compra e venda de colecionáveis físicos (quadrinhos, action figures). Escolha de design destacada: orientação intencional right-to-left (RTL) em elementos estratégicos da UI, como referência à direção de leitura dos mangás japoneses. A identidade visual utiliza paleta vibrante de laranja e amarelo com tema dark mode, criando uma atmosfera envolvente para entusiastas da cultura geek compartilharem pensamentos em um ambiente especializado.",
+      "App de rede social focado em cultura manga e geek com marketplace integrado para compra e venda de colecionáveis.",
+    planetIds: ["aesthetica"],
+    highlights: [
+      "Interface mobile com fórum de discussão + marketplace para colecionáveis (quadrinhos, action figures)",
+      "Orientação right-to-left (RTL) em elementos estratégicos da UI — referência à leitura de mangás japoneses",
+      "Paleta vibrante laranja-amarelo com dark mode, criando atmosfera envolvente para a cultura geek",
+      "UX Research com usuário-alvo para validar fluxos de navegação e descoberta de conteúdo",
+    ],
+    challenges:
+      "Equilibrar a referência cultural japonesa (RTL) com a usabilidade para usuários brasileiros acostumados com LTR.",
+    impact:
+      "Design completo de app mobile com identidade visual forte e fluxos validados, pronto para handoff ao desenvolvimento.",
     technologies: [
-      // Design tools
       "Figma",
-      // Design concepts
       "UI Design",
       "UX Research",
       "Mobile Design",
@@ -176,20 +198,26 @@ export const MISSION_ARCHIVE: MissionType[] = [
       },
     ],
   },
-
   {
     id: "sunpower-01",
-    title: "SunPower - Dashboard de Energia Solar",
+    title: "SunPower — Dashboard de Energia Solar",
     year: "2024",
     role: "UI/UX Designer",
     summary:
-      "Dashboard mobile para gerenciamento e monitoramento de energia solar residencial.",
-    technical_briefing:
-      "Case study de UI para plataforma de gestão de energia solar. O SunPower é um dashboard projetado para ser uma solução intuitiva que apresenta ao usuário, de forma textual e visual, informações sobre onde e como a energia produzida por sua rede solar está sendo utilizada. A interface apresenta estatísticas de produção e consumo em tempo real, gráficos de desempenho, comparativos mensais e dados de economia. O design utiliza uma identidade visual vibrante em amarelo solar com elementos em preto, criando contraste e legibilidade. O sistema coloca o usuário em controle total de sua produção energética através de visualizações claras e actionable insights.",
+      "Dashboard mobile para monitoramento de energia solar residencial com estatísticas em tempo real e insights acionáveis.",
+    planetIds: ["aesthetica", "logus-prime"],
+    highlights: [
+      "Dashboard com estatísticas de produção e consumo em tempo real, gráficos de desempenho e comparativos mensais",
+      "Data Visualization como princípio central — informação complexa apresentada de forma visual e actionable",
+      "Identidade visual amarelo-solar com contraste em preto para legibilidade e impacto",
+      "Insights acionáveis colocando o usuário em controle total da produção energética",
+    ],
+    challenges:
+      "Apresentar dados técnicos de energia solar de forma compreensível para usuários não-técnicos, sem perder a precisão das informações.",
+    impact:
+      "Interface de dashboard completa com visualizações claras que transformam dados de energia solar em decisões informadas para o usuário.",
     technologies: [
-      // Design tools
       "Figma",
-      // Design concepts
       "UI Design",
       "UX Research",
       "Mobile Design",
@@ -209,19 +237,28 @@ export const MISSION_ARCHIVE: MissionType[] = [
   },
   {
     id: "maxvidro-01",
-    title: "MaxVidro - Sistema de Corte de Vidro",
+    title: "MaxVidro — Sistema de Corte de Vidro",
     year: "2024",
     role: "Desenvolvedor Full Stack",
     summary:
-      "Aplicação para otimização de corte de vidro com geração automatizada de arquivos técnicos.",
-    technical_briefing:
-      "Sistema desenvolvido para auxiliar na indústria vidreira, gerando arquivos com informações detalhadas sobre medidas e tipos de vidro para corte. A aplicação utiliza algoritmos de otimização para minimizar desperdício de material e maximizar a eficiência do processo de corte.",
+      "Aplicação para otimização de corte de vidro com algoritmos de bin packing e geração automatizada de arquivos técnicos.",
+    planetIds: ["interactron", "logus-prime", "ai-belt"],
+    highlights: [
+      "Algoritmos de otimização combinatória (cutting stock / bin packing) para minimizar desperdício de chapas de vidro",
+      "Geração automatizada de arquivos técnicos com medidas e tipos de vidro detalhados",
+      "Interface simples para input de dados com output de layouts de corte otimizados",
+      "Análise preditiva para estimar desperdício antes do corte real",
+    ],
+    challenges:
+      "Resolver o problema NP-hard de cutting stock com heurísticas eficientes que funcionassem em tempo aceitável para diferentes configurações de chapas.",
+    impact:
+      "Sistema funcional que reduziu significativamente o desperdício de material na indústria vidreira, gerando layouts de corte otimizados automaticamente.",
+    aiWorkflow:
+      "IA assistindo na seleção de heurísticas para o algoritmo de bin packing e validação de resultados. Análise preditiva para estimar desperdício antes do corte real. Debug automatizado de edge cases na lógica de otimização.",
     technologies: [
-      // Frontend básico
       "HTML",
       "CSS",
       "JavaScript",
-      // Organização
       "Git",
     ],
     external_links: [

@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import "./SideStrip.css";
 import { AstronautHeader } from "./SubComponents/AstronautHeader";
 
-import { StarBurst, HUDChromeRow } from "../Planetary/UI/Symbols";
-import { TelemetryStats } from "./SubComponents/TelemetryStats";
+import { StarBurst } from "../Planetary/UI/Symbols";
 import { FooterInfo } from "./SubComponents/FooterInfo";
 
 export const SideStrip: React.FC = () => {
@@ -15,13 +14,9 @@ const handleAnimationEnd = () => {
 };
 
 return (
-  <aside className="side-strip-container">
+    <aside className="side-strip-container">
 
-    <HUDChromeRow label="Perfil" />
-
-    <AstronautHeader />
-
-    <TelemetryStats />
+      <AstronautHeader />
 
     {/* --- DATA CYCLER CONTAINER --- */}
     <div

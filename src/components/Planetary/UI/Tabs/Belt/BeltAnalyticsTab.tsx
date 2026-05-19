@@ -1,6 +1,7 @@
 import React from "react";
 import { beltDataModel, type BeltTool } from "../../../data/BeltData";
 import { Card } from "../../CardVariants";
+import "../Analytics/AnalyticsTab.css";
 import "./BeltAnalyticsTab.css";
 
 const getSkillColor = (value: number) => {

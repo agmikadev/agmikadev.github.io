@@ -1,8 +1,13 @@
-// Interface para padronização das estatísticas
 export interface TelemetryStat {
   label: string;
   value: number | string;
-  alternatives?: string[]; // Lista de tecnologias alternativas (sem barra própria)
+  alternatives?: string[];
+}
+
+export interface PlanetTool {
+  id: string;
+  name: string;
+  category?: string;
 }
 
 export interface PlanetModel {
@@ -10,7 +15,7 @@ export interface PlanetModel {
   name: string;
   type: string;
   description: string;
-  tools: string[];
+  tools: PlanetTool[];
   shape: "sphere" | "hexagon" | "icosahedron" | "belt";
   variant?: "standard" | "ringed" | "wireframe";
   hasAI?: boolean;
@@ -22,9 +27,7 @@ export interface PlanetModel {
   stats: TelemetryStat[];
 }
 
-// OS DADOS DO SISTEMA SOLAR (Totalmente Localizado para PT-BR)
 export const planets: PlanetModel[] = [
-  // --- 1. THE DESIGN HUB ---
   {
     id: "aesthetica",
     name: "AESTHETICA",
@@ -32,14 +35,20 @@ export const planets: PlanetModel[] = [
     description:
       "O setor de design primário. Gera protótipos de alta fidelidade, geometrias vetoriais e experiências visuais focadas no usuário antes da compilação do código.",
     tools: [
-      "Figma", "Pixso", "Adobe XD", "Sketch",
-      "Adobe Illustrator", "Affinity", "Inkscape",
-      "UI Design", "UX Research", "Mobile Design", "Responsive Design",
-      "Design Systems", "Design Tokens", "Component Libraries",
-      "Principle", "ProtoPie", "After Effects",
-      "Data Visualization", "Infographics",
-      "Photoshop", "Image Editing",
-      "Brand Design", "Color Theory", "Typography",
+      { id: "figma", name: "Figma", category: "design" },
+      { id: "adobe-illustrator", name: "Adobe Illustrator", category: "design" },
+      { id: "ui-design", name: "UI Design", category: "skill" },
+      { id: "ux-research", name: "UX Research", category: "skill" },
+      { id: "mobile-design", name: "Mobile Design", category: "skill" },
+      { id: "responsive-design", name: "Responsive Design", category: "skill" },
+      { id: "design-systems", name: "Design Systems", category: "skill" },
+      { id: "brand-design", name: "Brand Design", category: "skill" },
+      { id: "color-theory", name: "Color Theory", category: "skill" },
+      { id: "typography", name: "Typography", category: "skill" },
+      { id: "data-viz", name: "Data Visualization", category: "skill" },
+      { id: "infographics", name: "Infographics", category: "skill" },
+      { id: "logo-design", name: "Logo Design", category: "skill" },
+      { id: "vector-design", name: "Vector Design", category: "skill" },
     ],
 
     shape: "sphere",
@@ -51,43 +60,42 @@ export const planets: PlanetModel[] = [
     speed: 10,
 
     stats: [
-      { 
-        label: "Prototipagem de alta fidelidade com Figma", 
+      {
+        label: "Prototipagem de alta fidelidade com Figma",
         value: 95,
-        alternatives: ["Pixso", "Adobe XD", "Sketch"]
+        alternatives: ["Pixso", "Adobe XD", "Sketch"],
       },
-      { 
-        label: "Ilustração e edição vetorial com Adobe Illustrator", 
+      {
+        label: "Ilustração e edição vetorial com Adobe Illustrator",
         value: 85,
-        alternatives: ["Affinity", "Inkscape"]
+        alternatives: ["Affinity", "Inkscape"],
       },
-      { 
-        label: "Pesquisa e validação de experiência (UX Research)", 
+      {
+        label: "Pesquisa e validação de experiência (UX Research)",
         value: 85,
       },
-      { 
-        label: "Estruturação de Design Systems escaláveis", 
+      {
+        label: "Estruturação de Design Systems escaláveis",
         value: 90,
-        alternatives: ["Design Tokens", "Component Libraries"]
+        alternatives: ["Design Tokens", "Component Libraries"],
       },
-      { 
-        label: "Design responsivo multi-plataforma", 
+      {
+        label: "Design responsivo multi-plataforma",
         value: 95,
-        alternatives: ["Mobile Design"]
+        alternatives: ["Mobile Design"],
       },
-      { 
-        label: "Visualização de dados e infográficos", 
+      {
+        label: "Visualização de dados e infográficos",
         value: 80,
       },
-      { 
-        label: "Criação de identidade visual (Brand Design)", 
+      {
+        label: "Criação de identidade visual (Brand Design)",
         value: 95,
-        alternatives: ["Logo Design", "Color Theory", "Typography"]
+        alternatives: ["Logo Design", "Color Theory", "Typography"],
       },
     ],
   },
 
-  // --- 2. THE FRONTEND ENGINE ---
   {
     id: "interactron",
     name: "INTERACTRON",
@@ -95,14 +103,20 @@ export const planets: PlanetModel[] = [
     description:
       "O motor de renderização da superfície. Responsável pela interação humano-máquina, gerenciamento de estado global e renderização de telemetria visual.",
     tools: [
-      "React.js", "Vue.js", "Next.js", "Nuxt.js", "Angular.js", "Flutter", "Svelte",
-      "Vite", "Webpack", "Turbopack", "Rollup",
-      "JavaScript", "TypeScript", "HTML", "XHTML", "CSS", "SCSS", "Sass",
-      "Tailwind CSS", "Styled Components", "CSS Modules", "Emotion", "Material-UI", "shadcn/ui",
-      "Framer Motion", "GSAP", "React Spring", "CSS Animations",
-      "Redux", "Zustand", "Context API", "Recoil", "MobX",
-      "Responsive Design", "Mobile First", "Web Accessibility", "ARIA",
-      "React Router", "React Query", "SWR", "Axios", "Fetch API",
+      { id: "react", name: "React.js", category: "framework" },
+      { id: "vue", name: "Vue.js", category: "framework" },
+      { id: "typescript", name: "TypeScript", category: "language" },
+      { id: "javascript", name: "JavaScript", category: "language" },
+      { id: "html", name: "HTML5", category: "language" },
+      { id: "css", name: "CSS3", category: "language" },
+      { id: "tailwind", name: "Tailwind CSS", category: "styling" },
+      { id: "vite", name: "Vite", category: "build" },
+      { id: "framer-motion", name: "Framer Motion", category: "animation" },
+      { id: "three-fiber", name: "Three.js (R3F)", category: "3d" },
+      { id: "responsive-design", name: "Responsive Design", category: "skill" },
+      { id: "web-accessibility", name: "Web Accessibility", category: "skill" },
+      { id: "context-api", name: "Context API", category: "state" },
+      { id: "axios", name: "Axios", category: "data" },
     ],
 
     shape: "sphere",
@@ -113,63 +127,61 @@ export const planets: PlanetModel[] = [
     speed: 16,
 
     stats: [
-      { 
-        label: "Criação de arquitetura baseada em componentes com React.js", 
+      {
+        label: "Criação de arquitetura baseada em componentes com React.js",
         value: 95,
-        alternatives: ["Vue.js", "Next.js", "Angular.js", "Flutter", "Nuxt.js", "Svelte"]
+        alternatives: ["Vue.js", "Next.js"],
       },
-      { 
-        label: "Programação JavaScript moderna", 
+      {
+        label: "Programação JavaScript moderna",
         value: 95,
       },
-      { 
-        label: "Tipagem estática avançada com TypeScript", 
+      {
+        label: "Tipagem estática avançada com TypeScript",
         value: 80,
       },
-      { 
-        label: "Estruturação semântica com HTML5", 
+      {
+        label: "Estruturação semântica com HTML5",
         value: 95,
-        alternatives: ["XHTML"]
       },
-      { 
-        label: "Estilização complexa com CSS3", 
+      {
+        label: "Estilização complexa com CSS3",
         value: 95,
-        alternatives: ["SCSS", "Sass"]
+        alternatives: ["SCSS", "Sass"],
       },
-      { 
+      {
         label: "Estilização rápida com Tailwind CSS",
         value: 85,
-        alternatives: ["shadcn/ui", "Styled Components", "Bootstrap", "Emotion", "Material-UI"]
+        alternatives: ["shadcn/ui", "Styled Components"],
       },
-      { 
-        label: "Build e bundling com Vite", 
+      {
+        label: "Build e bundling com Vite",
         value: 90,
-        alternatives: ["Webpack", "Turbopack", "Rollup"]
+        alternatives: ["Webpack", "Turbopack", "Rollup"],
       },
-      { 
-        label: "Animação fluida de componentes com Framer Motion", 
+      {
+        label: "Animação fluida de componentes com Framer Motion",
         value: 80,
-        alternatives: ["GSAP", "React Spring", "CSS Animations"]
+        alternatives: ["GSAP", "React Spring", "CSS Animations"],
       },
-      { 
-        label: "Implementação de interfaces responsivas PC e Mobile", 
+      {
+        label: "Implementação de interfaces responsivas PC e Mobile",
         value: 95,
-        alternatives: ["Mobile First", "Web Accessibility", "ARIA"]
+        alternatives: ["Mobile First", "Web Accessibility", "ARIA"],
       },
-      { 
-        label: "Gerenciamento de estado com Context API", 
+      {
+        label: "Gerenciamento de estado com Context API",
         value: 75,
-        alternatives: ["Redux", "Zustand", "Recoil", "MobX"]
+        alternatives: ["Redux", "Zustand", "Recoil"],
       },
-      { 
-        label: "Requisições HTTP e gerenciamento de cache com Axios", 
+      {
+        label: "Requisições HTTP e gerenciamento de cache com Axios",
         value: 90,
-        alternatives: ["React Query", "SWR", "Fetch API"]
+        alternatives: ["React Query", "SWR", "Fetch API"],
       },
     ],
   },
 
-  // --- 3. THE BACKEND HUB ---
   {
     id: "nodeon",
     name: "NODEON",
@@ -177,15 +189,14 @@ export const planets: PlanetModel[] = [
     description:
       "O hub central de backend. Não é um planeta, mas sim uma megaestrutura de 160km de diâmetro estrategicamente posicionada. Lida com roteamento assíncrono, mutações de banco de dados, transmissão segura de dados e lógica do lado do servidor.",
     tools: [
-      "Node.js", "Express.js", "Fastify", "NestJS", "Koa", "Hapi",
-      "PostgreSQL", "MongoDB", "MySQL", "Redis", "SQLite",
-      "Prisma", "Sequelize", "TypeORM", "Mongoose", "Knex.js",
-      "JWT", "OAuth", "Passport.js", "bcrypt", "Auth0",
-      "REST API", "GraphQL", "tRPC", "WebSockets", "Socket.io", "gRPC",
-      "Bull", "RabbitMQ", "Kafka", "Message Queues",
-      "Zod", "Joi", "Yup", "JSON Schema",
-      "Jest", "Mocha", "Supertest",
-      "TypeScript", "Middleware", "Error Handling", "Logging", "Winston", "Morgan",
+      { id: "nodejs", name: "Node.js", category: "runtime" },
+      { id: "express", name: "Express.js", category: "framework" },
+      { id: "postgresql", name: "PostgreSQL", category: "database" },
+      { id: "mongodb", name: "MongoDB", category: "database" },
+      { id: "sequelize", name: "Sequelize", category: "orm" },
+      { id: "rest-api", name: "REST API", category: "skill" },
+      { id: "graphql", name: "GraphQL", category: "skill" },
+      { id: "jwt", name: "JWT", category: "auth" },
     ],
 
     shape: "hexagon",
@@ -197,71 +208,61 @@ export const planets: PlanetModel[] = [
     speed: 22,
 
     stats: [
-      { 
-        label: "Processamento de eventos assíncronos com Node.js", 
-        value: 90
+      {
+        label: "Processamento de eventos assíncronos com Node.js",
+        value: 90,
       },
-      { 
-        label: "Criação de rotas de API com Express.js", 
+      {
+        label: "Criação de rotas de API com Express.js",
         value: 85,
-        alternatives: ["Fastify", "NestJS", "Koa", "Hapi"]
+        alternatives: ["Fastify", "NestJS"],
       },
-      { 
-        label: "Modelagem de dados relacionais com PostgreSQL", 
+      {
+        label: "Modelagem de dados relacionais com PostgreSQL",
         value: 80,
-        alternatives: ["MySQL", "SQLite"]
+        alternatives: ["MySQL", "SQLite"],
       },
-      { 
-        label: "Banco de dados NoSQL com MongoDB", 
-        value: 85
+      {
+        label: "Banco de dados NoSQL com MongoDB",
+        value: 85,
       },
-      { 
-        label: "Caching e armazenamento em memória com Redis", 
-        value: 70
-      },
-      { 
-        label: "Mapeamento objeto-relacional com Prisma", 
+      {
+        label: "Mapeamento objeto-relacional com Prisma",
         value: 75,
-        alternatives: ["Sequelize", "TypeORM", "Mongoose", "Knex.js"]
+        alternatives: ["Sequelize", "TypeORM", "Mongoose"],
       },
-      { 
-        label: "Design e implementação de APIs RESTful", 
-        value: 80
+      {
+        label: "Design e implementação de APIs RESTful",
+        value: 80,
       },
-      { 
-        label: "Consulta de dados otimizada com GraphQL", 
+      {
+        label: "Consulta de dados otimizada com GraphQL",
         value: 75,
-        alternatives: ["tRPC"]
+        alternatives: ["tRPC"],
       },
-      { 
-        label: "Comunicação em tempo real com WebSockets", 
+      {
+        label: "Comunicação em tempo real com WebSockets",
         value: 75,
-        alternatives: ["Socket.io", "gRPC"]
+        alternatives: ["Socket.io", "gRPC"],
       },
-      { 
-        label: "Autenticação e autorização com JWT", 
+      {
+        label: "Autenticação e autorização com JWT",
         value: 65,
-        alternatives: ["OAuth", "Passport.js", "bcrypt", "Auth0"]
+        alternatives: ["OAuth", "Passport.js", "bcrypt"],
       },
-      { 
-        label: "Validação de schemas e dados", 
+      {
+        label: "Validação de schemas e dados",
         value: 65,
-        alternatives: ["Zod", "Joi", "Yup", "JSON Schema"]
+        alternatives: ["Zod", "Joi", "Yup"],
       },
-      { 
-        label: "Processamento assíncrono com filas de mensagens", 
-        value: 65,
-        alternatives: ["Bull", "RabbitMQ", "Kafka"]
-      },
-      { 
-        label: "Testes automatizados de backend", 
+      {
+        label: "Testes automatizados de backend",
         value: 70,
-        alternatives: ["Jest", "Mocha", "Supertest"]
+        alternatives: ["Jest", "Mocha", "Supertest"],
       },
     ],
   },
 
-  // --- 4. THE LOGIC PROCESSOR ---
   {
     id: "logus-prime",
     name: "LOGUS-PRIME",
@@ -269,14 +270,12 @@ export const planets: PlanetModel[] = [
     description:
       "O processador lógico. Executa algoritmos computacionais complexos, pipelines de transformação de dados e otimização da arquitetura do sistema.",
     tools: [
-      "Python", "NumPy", "Pandas", "SciPy", "Matplotlib",
-      "TypeScript", "Java", "C++", "Rust", "Go",
-      "TensorFlow", "PyTorch", "Scikit-learn", "Keras", "Machine Learning", "Deep Learning", "Neural Networks",
-      "Data Analysis", "Data Mining", "ETL", "Data Pipeline", "Big Data",
-      "Algorithms", "Data Structures", "Sorting Algorithms", "Search Algorithms", "Graph Theory", "Dynamic Programming",
-      "GraphQL", "SQL", "NoSQL", "Query Optimization",
-      "Linear Algebra", "Statistics", "Probability", "Calculus",
-      "Jupyter Notebook", "R", "MATLAB", "Computer Vision", "Natural Language Processing", "NLP",
+      { id: "typescript", name: "TypeScript", category: "language" },
+      { id: "python", name: "Python", category: "language" },
+      { id: "algorithms", name: "Algorithms", category: "skill" },
+      { id: "data-structures", name: "Data Structures", category: "skill" },
+      { id: "graphql", name: "GraphQL", category: "skill" },
+      { id: "machine-learning", name: "Machine Learning", category: "skill" },
     ],
 
     shape: "sphere",
@@ -287,78 +286,57 @@ export const planets: PlanetModel[] = [
     speed: 28,
 
     stats: [
-      { 
-        label: "Resolução de algoritmos complexos com Python", 
+      {
+        label: "Resolução de algoritmos complexos com Python",
         value: 55,
-        alternatives: ["Java", "C++", "Rust", "Go"]
+        alternatives: ["Java", "C++"],
       },
-      { 
-        label: "Estruturação de modelos complexos com TypeScript", 
+      {
+        label: "Estruturação de modelos complexos com TypeScript",
         value: 80,
       },
-      { 
-        label: "Análise e manipulação de dados", 
+      {
+        label: "Análise e manipulação de dados",
         value: 50,
-        alternatives: ["NumPy", "Pandas", "SciPy", "Matplotlib"]
+        alternatives: ["NumPy", "Pandas", "SciPy"],
       },
-      { 
-        label: "Implementação de modelos de Machine Learning", 
+      {
+        label: "Implementação de modelos de Machine Learning",
         value: 60,
-        alternatives: ["TensorFlow", "PyTorch", "Scikit-learn", "Keras", "Deep Learning", "Neural Networks"]
+        alternatives: ["TensorFlow", "PyTorch", "Scikit-learn"],
       },
-      { 
-        label: "Análise exploratória e mineração de dados", 
-        value: 55,
-        alternatives: ["Data Mining", "Big Data"]
-      },
-      { 
-        label: "Pipelines de transformação de dados (ETL)", 
+      {
+        label: "Pipelines de transformação de dados (ETL)",
         value: 60,
-        alternatives: ["Data Pipeline"]
+        alternatives: ["Data Pipeline"],
       },
-      { 
-        label: "Design e otimização de algoritmos", 
+      {
+        label: "Design e otimização de algoritmos",
         value: 75,
-        alternatives: ["Sorting Algorithms", "Search Algorithms", "Dynamic Programming"]
+        alternatives: ["Sorting Algorithms", "Search Algorithms", "Dynamic Programming"],
       },
-      { 
-        label: "Estruturas de dados avançadas", 
+      {
+        label: "Estruturas de dados avançadas",
         value: 55,
-        alternatives: ["Graph Theory"]
+        alternatives: ["Graph Theory"],
       },
-      { 
-        label: "Consulta de dados com GraphQL", 
+      {
+        label: "Consulta de dados com GraphQL",
         value: 75,
-        alternatives: ["SQL", "NoSQL", "Query Optimization"]
+        alternatives: ["SQL", "NoSQL", "Query Optimization"],
       },
-      { 
-        label: "Análise estatística e probabilística", 
+      {
+        label: "Análise estatística e probabilística",
         value: 60,
-        alternatives: ["Statistics", "Probability", "Linear Algebra", "Calculus"]
+        alternatives: ["Statistics", "Probability", "Linear Algebra"],
       },
-      { 
-        label: "Visão computacional", 
-        value: 65,
-        alternatives: ["Computer Vision"]
-      },
-      { 
-        label: "Processamento de linguagem natural", 
-        value: 50,
-        alternatives: ["NLP"]
-      },
-      { 
-        label: "Ferramentas de pesquisa científica", 
-        value: 50,
-        alternatives: ["Jupyter Notebook", "R", "MATLAB"]
-      },
-      { 
-        label: "Otimização de algoritmos complexos com IA", 
-        value: 85
+      {
+        label: "Otimização de algoritmos complexos com IA",
+        value: 85,
       },
     ],
   },
 
-  // --- 5. THE DEPLOYMENT PLATFORM ---
   {
     id: "infra-x",
     name: "INFRA-X",
@@ -366,16 +344,12 @@ export const planets: PlanetModel[] = [
     description:
       "A plataforma de implantação orbital. Gerencia integração contínua, ambientes em contêineres e automação segura de infraestrutura em nuvem.",
     tools: [
-      "Docker", "Docker Compose", "Kubernetes", "Podman",
-      "Git", "GitHub", "GitLab", "Bitbucket", "Git Flow", "GitHub Actions",
-      "AWS", "Azure", "Google Cloud Platform", "GCP", "Vercel", "Netlify", "Heroku", "Railway", "Render",
-      "CI/CD", "Jenkins", "CircleCI", "Travis CI", "GitLab CI",
-      "Terraform", "Ansible", "CloudFormation", "Pulumi",
-      "Prometheus", "Grafana", "ELK Stack", "Datadog", "New Relic", "Sentry",
-      "Nginx", "Apache", "Caddy", "HAProxy",
-      "SSL/TLS", "Security Best Practices", "Penetration Testing", "Vulnerability Scanning",
-      "npm", "yarn", "pnpm", "pip",
-      "Environment Variables", "Staging", "Production", "Load Testing", "Performance Testing",
+      { id: "git", name: "Git", category: "vcs" },
+      { id: "github", name: "GitHub", category: "vcs" },
+      { id: "github-actions", name: "GitHub Actions", category: "ci" },
+      { id: "vercel", name: "Vercel", category: "hosting" },
+      { id: "netlify", name: "Netlify", category: "hosting" },
+      { id: "npm", name: "npm", category: "pkg" },
     ],
 
     shape: "sphere",
@@ -387,74 +361,44 @@ export const planets: PlanetModel[] = [
     speed: 34,
 
     stats: [
-      { 
-        label: "Controle de versão de código com Git", 
+      {
+        label: "Controle de versão de código com Git",
         value: 70,
-        alternatives: ["GitHub", "GitLab", "Bitbucket", "Git Flow"]
+        alternatives: ["GitHub", "GitLab", "Git Flow"],
       },
-      { 
-        label: "Isolamento de ambientes com Docker", 
-        value: 15,
-        alternatives: ["Docker Compose", "Podman"]
-      },
-      { 
-        label: "Orquestração de containers com Kubernetes", 
-        value: 10,
-      },
-      { 
-        label: "Automação de pipelines com CI/CD", 
-        value: 10,
-        alternatives: ["GitHub Actions", "GitLab CI", "Jenkins", "CircleCI", "Travis CI"]
-      },
-      { 
-        label: "Hospedagem de infraestrutura em nuvem (AWS)", 
-        value: 20,
-        alternatives: ["Azure", "Google Cloud Platform", "GCP"]
-      },
-      { 
-        label: "Deploy de aplicações frontend", 
+      {
+        label: "Deploy de aplicações frontend",
         value: 90,
-        alternatives: ["Vercel", "Netlify", "Heroku", "Railway", "Render"]
+        alternatives: ["Vercel", "Netlify", "Heroku", "Railway"],
       },
-      { 
-        label: "Infraestrutura como código", 
-        value: 12,
-        alternatives: ["Terraform", "Ansible", "CloudFormation", "Pulumi"]
-      },
-      { 
-        label: "Configuração de servidores web (Nginx)", 
+      {
+        label: "Configuração de servidores web (Nginx)",
         value: 50,
-        alternatives: ["Apache", "Caddy", "HAProxy"]
+        alternatives: ["Apache", "Caddy"],
       },
-      { 
-        label: "Observabilidade e monitoramento de aplicações", 
-        value: 25,
-        alternatives: ["Prometheus", "Grafana", "ELK Stack", "Datadog", "New Relic", "Sentry"]
-      },
-      { 
-        label: "Segurança e criptografia de conexões", 
-        value: 40,
-        alternatives: ["SSL/TLS", "Security Best Practices"]
-      },
-      { 
-        label: "Gerenciamento de dependências (npm)", 
+      {
+        label: "Gerenciamento de dependências (npm)",
         value: 80,
-        alternatives: ["yarn", "pnpm", "pip"]
+        alternatives: ["yarn", "pnpm"],
       },
-      { 
-        label: "Gestão de ambientes (Dev/Staging/Prod)", 
+      {
+        label: "Gestão de ambientes (Dev/Staging/Prod)",
         value: 70,
-        alternatives: ["Environment Variables", "Staging", "Production"]
+        alternatives: ["Environment Variables", "Staging", "Production"],
       },
-      { 
-        label: "Testes de performance e carga", 
+      {
+        label: "Testes de performance e carga",
         value: 40,
-        alternatives: ["Load Testing", "Performance Testing", "Penetration Testing", "Vulnerability Scanning"]
+        alternatives: ["Load Testing", "Performance Testing"],
+      },
+      {
+        label: "Segurança e criptografia de conexões",
+        value: 40,
+        alternatives: ["SSL/TLS", "Security Best Practices"],
       },
     ],
   },
 
-  // --- 6. THE AI BELT ---
   {
     id: "ai-belt",
     name: "LLMB",
@@ -462,14 +406,14 @@ export const planets: PlanetModel[] = [
     description:
       "Uma rede neural autodidata que acumula uma quantidade imensurável de dados. É capaz de otimizar processos, sugerir melhorias e até mesmo antecipar falhas antes que ocorram. Sua principal função é se utilizar do seu volume robusto de informações em tempo real para sugerir os melhores cursos de ação para o astronauta, ajudando a maximizar a produtividade e minimizar o tempo perdido com bugs.",
     tools: [
-      "Machine Learning", "Deep Learning", "Neural Networks", "AI Optimization", "Predictive Analytics", "Anomaly Detection",
-      "TensorFlow", "PyTorch", "Scikit-learn", "Keras", "Hugging Face", "LangChain",
-      "Natural Language Processing", "NLP", "ChatGPT API", "OpenAI", "Claude API", "LLM Integration",
-      "Routing", "Context API", "Middleware", "Event-Driven Architecture", "Microservices",
-      "Real-time Processing", "Stream Processing", "Data Streams", "WebSockets",
-      "Performance Optimization", "Code Analysis", "Bug Detection", "Pattern Recognition", "Automated Testing",
-      "Recommendation Systems", "Collaborative Filtering", "Content-Based Filtering",
-      "Computer Vision", "Image Recognition", "Speech Recognition", "Sentiment Analysis", "Time Series Analysis", "Reinforcement Learning",
+      { id: "llm-integration", name: "LLM Integration", category: "llm" },
+      { id: "agentic-orchestration", name: "Agentic Orchestration", category: "orchestration" },
+      { id: "prompt-engineering", name: "Prompt Engineering", category: "prompt" },
+      { id: "rag-systems", name: "RAG Systems", category: "rag" },
+      { id: "mcp-protocol", name: "MCP Protocol", category: "mcp" },
+      { id: "ai-evaluation", name: "AI Evaluation & Testing", category: "evaluation" },
+      { id: "code-ai-optimization", name: "AI Code Optimization", category: "evaluation" },
+      { id: "predictive-analytics", name: "Predictive Analytics", category: "orchestration" },
     ],
 
     shape: "belt",
@@ -480,72 +424,6 @@ export const planets: PlanetModel[] = [
     speed: 0,
     hasAI: true,
 
-    stats: [
-      { 
-        label: "Implementação de modelos de Machine Learning", 
-        value: 70,
-        alternatives: ["Deep Learning", "Neural Networks"]
-      },
-      { 
-        label: "Frameworks de IA e treinamento de modelos", 
-        value: 65,
-        alternatives: ["TensorFlow", "PyTorch", "Scikit-learn", "Keras"]
-      },
-      { 
-        label: "Processamento de linguagem natural", 
-        value: 70,
-        alternatives: ["NLP"]
-      },
-      { 
-        label: "Integração com modelos de linguagem (LLMs)", 
-        value: 80,
-        alternatives: ["ChatGPT API", "OpenAI", "Claude API", "Hugging Face", "LangChain"]
-      },
-      { 
-        label: "Otimização de processos com IA", 
-        value: 95,
-        alternatives: ["Performance Optimization", "Code Analysis"]
-      },
-      { 
-        label: "Análise preditiva e detecção de anomalias", 
-        value: 90,
-        alternatives: ["Anomaly Detection", "Pattern Recognition"]
-      },
-      { 
-        label: "Processamento de dados em tempo real", 
-        value: 74,
-        alternatives: ["Stream Processing", "Data Streams", "WebSockets"]
-      },
-      { 
-        label: "Detecção automatizada de bugs e falhas", 
-        value: 90,
-        alternatives: ["Automated Testing"]
-      },
-      { 
-        label: "Sistemas de recomendação", 
-        value: 65,
-        alternatives: ["Collaborative Filtering", "Content-Based Filtering"]
-      },
-      { 
-        label: "Visão computacional e reconhecimento", 
-        value: 65,
-        alternatives: ["Image Recognition", "Speech Recognition"]
-      },
-      { 
-        label: "Análise de sentimento e séries temporais", 
-        value: 78,
-        alternatives: ["Time Series Analysis"]
-      },
-      { 
-        label: "Aprendizado por reforço", 
-        value: 85,
-        alternatives: ["Reinforcement Learning"]
-      },
-      { 
-        label: "Arquitetura de sistemas distribuídos", 
-        value: 65,
-        alternatives: ["Routing", "Context API", "Middleware", "Event-Driven Architecture", "Microservices"]
-      },
-    ],
+    stats: [],
   },
 ];

@@ -2,16 +2,16 @@
 .mission-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--space-4);
 }
 
-/* --- 2. MISSION CARD BASE (Card component handles bg/border/radius) --- */
+/* --- 2. MISSION CARD BASE --- */
 .mission-card {
   position: relative;
   padding: var(--space-6);
 }
 
-/* --- MISSION CARD TYPOGRAPHY & LAYOUT --- */
+/* --- HEADER --- */
 .mission-header {
   display: flex;
   justify-content: space-between;
@@ -45,13 +45,91 @@
   margin-bottom: var(--space-4);
 }
 
-.mission-description {
-  font-size: var(--text-base);
-  color: hsl(var(--hud-text-primary) / 80%);
+/* --- SUMMARY --- */
+.mission-summary {
+  font-size: var(--text-sm);
+  color: hsl(var(--hud-text-primary) / 70%);
   line-height: var(--leading-relaxed);
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-3);
+  font-style: italic;
 }
 
+/* --- SECTION LABEL --- */
+.mission-section-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+  display: block;
+}
+
+/* --- HIGHLIGHTS --- */
+.mission-section {
+  margin-bottom: var(--space-4);
+}
+
+.mission-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.mission-highlights li {
+  font-size: var(--text-sm);
+  color: hsl(var(--hud-text-primary) / 85%);
+  line-height: var(--leading-relaxed);
+  padding-left: var(--space-4);
+  position: relative;
+}
+
+.mission-highlights li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: hsl(var(--primary));
+  font-size: var(--text-xs);
+}
+
+/* --- DETAIL GRID (Challenges + Impact side by side) --- */
+.mission-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-3);
+}
+
+.mission-detail-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.mission-detail-text {
+  font-size: var(--text-sm);
+  color: hsl(var(--hud-text-primary) / 75%);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+/* --- AI WORKFLOW BLOCK --- */
+.mission-ai-block {
+  padding: var(--space-3);
+  margin-bottom: var(--space-3);
+  background: rgba(169, 252, 3, 0.03);
+  border: 1px solid rgba(169, 252, 3, 0.15);
+  border-radius: var(--radius-md);
+}
+
+.mission-ai-label {
+  color: #a9fc03 !important;
+}
+
+/* --- LINKS --- */
 .mission-link {
   display: flex;
   align-items: center;
@@ -67,7 +145,7 @@
   filter: brightness(1.5);
 }
 
-/* --- 3. SPACING BETWEEN TAGS --- */
+/* --- 3. TAGS --- */
 .mission-tags-container {
   display: flex;
   flex-wrap: wrap;
@@ -75,7 +153,6 @@
   margin-bottom: var(--space-4);
 }
 
-/* --- MISSION TAGS (PILL STYLE) --- */
 .mission-tag {
   display: inline-flex;
   align-items: center;
@@ -92,22 +169,19 @@
   transition: all var(--duration-base) var(--ease-out-expo);
 }
 
-/* --- THE ACTIVE TAG (Neon Pop) --- */
 .mission-tag.active {
   background: var(--theme-color);
   color: hsl(var(--primary-foreground));
   border-color: var(--theme-color);
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 0 10px var(--theme-color);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5),
+    0 0 10px var(--theme-color);
   cursor: pointer;
 }
 
-/* --- HOVER STATE (ACTIVE TAGS ONLY) --- */
 .mission-tag.active:hover {
   transform: translateY(-3px);
-  box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.5),
-    inset 0 0 10px rgba(0,0,0,0.5),
-    0 0 20px var(--theme-color);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5),
+    inset 0 0 10px rgba(0, 0, 0, 0.5), 0 0 20px var(--theme-color);
 }
 
 /* --- 4. SPACING BETWEEN LINKS --- */
@@ -116,4 +190,11 @@
   gap: var(--space-5);
   padding-top: var(--space-3);
   border-top: 1px solid hsl(var(--primary) / 15%);
+}
+
+/* --- 5. MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+  .mission-detail-grid {
+    grid-template-columns: 1fr;
+  }
 }
