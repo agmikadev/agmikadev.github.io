@@ -2,23 +2,16 @@
 .mission-list {
   display: flex;
   flex-direction: column;
-  gap: 24px; /* The margin between each mission card */
+  gap: var(--space-6);
 }
 
-/* --- 2. MISSION CARD BASE --- */
+/* --- 2. MISSION CARD BASE (Card component handles bg/border/radius) --- */
 .mission-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.03); 
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 16px;
-  /* (Hover effect removed as requested) */
+  padding: var(--space-6);
 }
 
 /* --- MISSION CARD TYPOGRAPHY & LAYOUT --- */
-
-/* Replaces: flex justify-between items-center mb-1 */
 .mission-header {
   display: flex;
   justify-content: space-between;
@@ -26,53 +19,50 @@
   margin-bottom: 4px;
 }
 
-/* Replaces inline font styles */
 .mission-title {
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-/* Replaces: text-xs font-mono px-2 py-1 rounded-full bg-black/30 border border-white/5 text-gray-400 */
 .mission-year {
-  font-family: monospace;
-  font-size: 0.75rem;
-  color: #9ca3af;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: hsl(var(--muted-foreground));
   background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 4px 8px;
-  border-radius: 9999px; /* Perfect pill shape */
+  border: 1px solid hsl(var(--primary) / 15%);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
 }
 
-/* Replaces: text-xs text-gray-500 font-mono mb-4 tracking-wider */
 .mission-role {
-  font-family: monospace;
-  font-size: 0.75rem;
-  color: #9ca3af; /* ~7.2:1 on #0a0a15 */
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: hsl(var(--muted-foreground));
   letter-spacing: 0.05em;
-  margin-bottom: 16px;
+  margin-bottom: var(--space-4);
 }
 
-/* Replaces: text-sm text-gray-300 mb-6 leading-relaxed */
 .mission-description {
-  font-size: 0.875rem;
-  color: #d1d5db;
-  line-height: 1.6;
-  margin-bottom: 24px;
+  font-size: var(--text-base);
+  color: hsl(var(--hud-text-primary) / 80%);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-6);
 }
 
-/* Replaces: text-xs font-mono font-bold tracking-wider transition-all hover:brightness-150 flex items-center gap-1.5 */
 .mission-link {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-family: monospace;
-  font-size: 0.75rem;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
   font-weight: bold;
   letter-spacing: 0.05em;
-  transition: all 0.3s ease;
+  transition: all var(--duration-base) var(--ease-smooth);
 }
 
-/* The brightness hover effect you had in Tailwind */
 .mission-link:hover {
   filter: brightness(1.5);
 }
@@ -81,54 +71,49 @@
 .mission-tags-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px; /* The margin between tags */
-  margin-bottom: 16px; /* Space between tags and the links below */
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
 }
 
 /* --- MISSION TAGS (PILL STYLE) --- */
 .mission-tag {
   display: inline-flex;
   align-items: center;
-  padding: 6px 14px; 
-  border-radius: 30px; 
-  font-family: monospace;
-  font-size: 0.75rem;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-xl);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
   font-weight: bold;
   letter-spacing: 1px;
   background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #888; /* ~7.1:1 on #0a0a15 — WCAG AA normal text */
-  
-  /* THE FIX: Prevents the mouse from turning into a pointer on dead tags */
-  cursor: default; 
-  
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid hsl(var(--primary) / 15%);
+  color: hsl(var(--muted-foreground));
+  cursor: default;
+  transition: all var(--duration-base) var(--ease-out-expo);
 }
 
 /* --- THE ACTIVE TAG (Neon Pop) --- */
 .mission-tag.active {
   background: var(--theme-color);
-  color: #fff;
+  color: hsl(var(--primary-foreground));
   border-color: var(--theme-color);
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 0 10px var(--theme-color); 
-  
-  /* Re-enables the interactive cursor for active tags */
-  cursor: pointer; 
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 0 10px var(--theme-color);
+  cursor: pointer;
 }
 
-/* --- THE HOVER STATE (STRICTLY FOR ACTIVE TAGS ONLY) --- */
+/* --- HOVER STATE (ACTIVE TAGS ONLY) --- */
 .mission-tag.active:hover {
-  transform: translateY(-3px); 
-  box-shadow: 
-    0 8px 30px rgba(0, 0, 0, 0.5), 
-    inset 0 0 10px rgba(0,0,0,0.5), 
-    0 0 20px var(--theme-color); 
+  transform: translateY(-3px);
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.5),
+    inset 0 0 10px rgba(0,0,0,0.5),
+    0 0 20px var(--theme-color);
 }
 
 /* --- 4. SPACING BETWEEN LINKS --- */
 .mission-links-container {
   display: flex;
-  gap: 20px; /* The margin between your external links */
-  padding-top: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  gap: var(--space-5);
+  padding-top: var(--space-3);
+  border-top: 1px solid hsl(var(--primary) / 15%);
 }

@@ -1,11 +1,11 @@
 /* BeltAnalyticsTab.css — Adapts AnalyticsTab.css pattern for belt tools */
 
-/* Reuse .analytics-container, .analytics-list, .analytics-row, .progress-track,
-   .progress-fill, .analytics-alternatives, .alternative-tag from AnalyticsTab.css */
+.analytics-wrapper.belt-analytics {
+  padding: var(--space-6);
+}
 
-/* Belt-specific: category grouping */
 .belt-category-group {
-  margin-bottom: 24px;
+  margin-bottom: var(--space-6);
 }
 
 .belt-category-group:last-child {
@@ -13,26 +13,24 @@
 }
 
 .belt-category-header {
-  font-family: monospace;
-  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #9ca3af;
-  margin: 0 0 16px 0;
-  padding-bottom: 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: hsl(var(--muted-foreground));
+  margin: 0 0 var(--space-4) 0;
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid hsl(var(--primary) / 20%);
 }
 
-/* Tool description below progress bar */
 .belt-tool-description {
-  font-size: 14px;
-  line-height: 1.6;
-  color: #9ca3af;
-  margin: 8px 0 0 0;
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: hsl(var(--muted-foreground));
+  margin: var(--space-2) 0 0 0;
 }
 
-/* Belt analytics container override */
 .belt-analytics {
   /* Inherits from .analytics-container */
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import { type PlanetModel } from "../../../data/PlanetaryData";
+import { Card } from "../../CardVariants";
 import "./AnalyticsTab.css";
 
 interface AnalyticsTabProps {
@@ -13,85 +14,84 @@ const getSkillColor = (value: number) => {
   return "#ff3366";
 };
 
+const YELLOW = "hsl(var(--primary))";
+
 export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({ planet }) => {
   return (
-    <div className="analytics-container">
-      {/* --- CABEÇALHO DA ABA --- */}
-      <div className="analytics-main-header">
-        <span className="header-label">
-          Progresso de Sincronização do Astronauta
-        </span>
-        <span className="header-value" style={{ color: planet.color }}>
-          STATUS: ESTABILIZADO
-        </span>
-      </div>
+    <Card variant="dark" className="analytics-wrapper">
+      <div className="analytics-container">
+        <div className="analytics-main-header">
+          <span className="header-label">
+            Progresso de Sincronização do Astronauta
+          </span>
+          <span className="header-value" style={{ color: YELLOW }}>
+            STATUS: ESTABILIZADO
+          </span>
+        </div>
 
-      {/* --- BARRAS DE PROGRESSO --- */}
-      <div className="analytics-list">
-        {planet.stats.map((stat, index) => (
-          <div className="analytics-row" key={`${stat.label}-${index}`}>
-            {/* O Cabeçalho da Barra (Nome na esquerda, Número na direita) */}
-            <div className="analytics-row-header">
-              <span className="row-label">{stat.label}</span>
-              <span
-                className="row-value"
-                style={{ color: getSkillColor(Number(stat.value)) }}
-              >
-                {stat.value}/100
-              </span>
-            </div>
-
-            {/* A Barra de Progresso */}
-            <div className="progress-track">
-              <div
-                className="progress-fill"
-                style={{
-                  width: `${stat.value}%`,
-                  backgroundColor: getSkillColor(Number(stat.value)),
-                  boxShadow: `0 0 10px ${getSkillColor(Number(stat.value))}`,
-                }}
-              >
-                <div className="metric-grid-overlay"></div>
-              </div>
-            </div>
-
-            {/* NOVO: Alternativas (se existirem) */}
-            {stat.alternatives && stat.alternatives.length > 0 && (
-              <div className="analytics-alternatives">
-                <span className="alternatives-icon">↳</span>
-                <span className="alternatives-prefix">
-                  {" "}
-                  Ferramentas Mapeadas (prontas para estudo):{" "}
+        <div className="analytics-list">
+          {planet.stats.map((stat, index) => (
+            <div className="analytics-row" key={`${stat.label}-${index}`}>
+              <div className="analytics-row-header">
+                <span className="row-label">{stat.label}</span>
+                <span
+                  className="row-value"
+                  style={{ color: getSkillColor(Number(stat.value)) }}
+                >
+                  {stat.value}/100
                 </span>
-                <div className="alternatives-tags">
-                  {stat.alternatives.map((alt, altIndex) => (
-                    <span
-                      key={altIndex}
-                      className="alternative-tag"
-                      style={
-                        {
-                          border: `1px solid ${planet.color}20`,
-                          color: `${planet.color}cc`,
-                        } as React.CSSProperties
-                      }
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.border = `1px solid ${planet.color}cc`;
-                        e.currentTarget.style.boxShadow = `0 0 8px ${planet.color}40`;
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.border = `1px solid ${planet.color}20`;
-                        e.currentTarget.style.boxShadow = "";
-                      }}
-                    >
-                      {alt}
-                    </span>
-                  ))}
+              </div>
+
+              <div className="progress-track">
+                <div
+                  className="progress-fill"
+                  style={{
+                    width: `${stat.value}%`,
+                    backgroundColor: getSkillColor(Number(stat.value)),
+                    boxShadow: `0 0 10px ${getSkillColor(Number(stat.value))}`,
+                  }}
+                >
+                  <div className="metric-grid-overlay"></div>
                 </div>
               </div>
-            )}
-          </div>
-        ))}
+
+              {stat.alternatives && stat.alternatives.length > 0 && (
+                <div className="analytics-alternatives">
+                  <span className="alternatives-icon">↳</span>
+                  <span className="alternatives-prefix">
+                    {" "}
+                    Ferramentas Mapeadas (prontas para estudo):{" "}
+                  </span>
+                  <div className="alternatives-tags">
+                    {stat.alternatives.map((alt, altIndex) => (
+                      <span
+                        key={altIndex}
+                        className="alternative-tag"
+                  style={
+                    {
+                      border: "1px solid hsl(var(--primary) / 12%)",
+                      color: "hsl(var(--primary) / 80%)",
+                    } as React.CSSProperties
+                  }
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.border = "1px solid hsl(var(--primary) / 80%)";
+                    e.currentTarget.style.boxShadow = "0 0 8px hsl(var(--primary) / 25%)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.border = "1px solid hsl(var(--primary) / 12%)";
+                    e.currentTarget.style.boxShadow = "";
+                  }}
+                      >
+                        {alt}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </Card>
   );
 };

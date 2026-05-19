@@ -45,9 +45,9 @@ export interface BeltDataModel {
 // ---------------------------------------------------------------------------
 
 export const beltDataModel: BeltDataModel = {
-  name: "S.O.N.D.A. NETWORK",
+  name: "LLMB",
   description:
-    "Uma rede neural autodidata que acumula uma quantidade imensurável de dados. É capaz de otimizar processos, sugerir melhorias e até mesmo antecipar falhas antes que ocorram. Sua principal função é se utilizar do seu volume robusto de informações em tempo real para sugerir os melhores cursos de ação para o astronauta, ajudando a maximizar a produtividade e minimizar o tempo perdido com bugs.",
+    "Large Language Model Belt — uma rede neural autodidata que acumula uma quantidade imensurável de dados. É capaz de otimizar processos, sugerir melhorias e até mesmo antecipar falhas antes que ocorram. Sua principal função é se utilizar do seu volume robusto de informações em tempo real para sugerir os melhores cursos de ação para o astronauta, ajudando a maximizar a produtividade e minimizar o tempo perdido com bugs.",
   color: "#a9fc03",
 
   tools: [

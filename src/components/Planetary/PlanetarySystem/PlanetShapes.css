@@ -2,16 +2,14 @@
    BASE VISUAL COMPARTILHADA (.planet-visual)
    ========================================= */
 .planet-visual {
-  /* Preenche o pai (.planet-node) */
   width: 100%;
   height: 100%;
-  
+
   position: relative;
-  transform-style: preserve-3d; 
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+  transition: transform var(--duration-base) var(--ease-spring);
 }
 
-/* Efeito de Crescimento no Hover */
 .planet-node:hover .planet-visual {
   transform: scale(1.3);
 }
@@ -39,7 +37,6 @@
   animation: hex-spin 20s linear infinite;
 }
 
-/* O Corpo do Hexágono (A casca física) */
 .planet-visual.shape-hexagon::after {
   content: "";
   position: absolute;
@@ -47,72 +44,56 @@
   background-color: var(--p-color);
   clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%);
   box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-  transform: scale(1.25); /* Ajustado levemente */
+  transform: scale(1.25);
 }
 
 /* =========================================
    CAMADA DE IA (ANÉIS DO SCANNER 2D)
    ========================================= */
-
-/* O Container do Anel (Centralizado no planeta) */
 .ai-ring {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform-style: preserve-3d; /* Permite a ilusão 3D */
-  pointer-events: none; /* Clique passa direto para o planeta */
+  transform-style: preserve-3d;
+  pointer-events: none;
   border-radius: 50%;
   background: transparent;
-  box-shadow: 0 0 10px rgba(0, 255, 234, 0.1);
-  z-index: 5; /* Fica acima ou ao redor do visual */
+  box-shadow: 0 0 10px hsl(var(--hud-glow) / 10%);
+  z-index: 5;
 }
 
-/* --- ANEL EXTERNO (Lento e Largo) --- */
 .ai-ring.outer {
-  width: 150%; /* Dobro do tamanho do planeta */
+  width: 150%;
   height: 150%;
-  
-  /* Borda tracejada para dar efeito de "dados/tech" */
-  border: 2px solid var(--ai-glow); 
+  border: 2px solid hsl(var(--hud-glow));
   opacity: 0.6;
-  
-  /* Inclina 75 graus e gira no sentido horário */
   animation: scan-spin-cw 10s linear infinite;
 }
 
-/* --- ANEL INTERNO (Rápido e Justo) --- */
 .ai-ring.inner {
   width: 140%;
   height: 140%;
-  
-  /* Borda sólida e fina */
-  border: 2px solid var(--ai-glow);
+  border: 2px solid hsl(var(--hud-glow));
   opacity: 0.9;
-  
-  /* Inclina 65 graus (cruzando) e gira no sentido anti-horário */
   animation: scan-spin-ccw 10s linear infinite;
 }
 
-/* Efeito de Hover na IA: Acelera e Brilha */
 .planet-node:hover .ai-ring {
-  box-shadow: 0 0 15px var(--ai-glow);
+  box-shadow: 0 0 15px hsl(var(--hud-glow));
   filter: brightness(1.5);
 }
 
 /* =========================================
    ANIMAÇÕES
    ========================================= */
-
 @keyframes sphere-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 @keyframes hex-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-/* Rotação com Perspectiva Simulada (Sentido Horário) */
 @keyframes scan-spin-cw {
   0% { transform: translate(-50%, -50%) rotateX(75deg) rotateX(0deg); }
   100% { transform: translate(-50%, -50%) rotateX(75deg) rotateX(360deg); }
 }
 
-/* Rotação com Perspectiva Simulada (Sentido Anti-Horário) */
 @keyframes scan-spin-ccw {
   0% { transform: translate(-50%, -50%) rotateX(65deg) rotateX(0deg); }
   100% { transform: translate(-50%, -50%) rotateX(65deg) rotateX(-360deg); }

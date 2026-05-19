@@ -1,12 +1,14 @@
 /* =========================================
    1. YELLOW CARD (High-Contrast Info)
+   Reference: filled yellow bg, dark text
    ========================================= */
 .hud-card-yellow {
-  background: var(--hud-panel-yellow);
-  color: var(--hud-text-inverse);
-  border-radius: var(--hud-radius-md);
-  padding: 24px;
-  font-family: var(--font-body);
+  background: hsl(var(--hud-panel-yellow));
+  color: hsl(var(--hud-text-inverse));
+  border: var(--hud-border-yellow);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  font-family: var(--font-sans);
 }
 
 .hud-card-yellow h1,
@@ -15,28 +17,31 @@
 .hud-card-yellow h4,
 .hud-card-yellow h5,
 .hud-card-yellow h6 {
-  font-family: var(--font-header);
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--hud-text-inverse);
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: hsl(var(--hud-text-inverse));
+  text-transform: uppercase;
 }
 
 .hud-card-yellow p {
-  color: var(--hud-text-inverse);
+  color: hsl(var(--hud-text-inverse));
   opacity: 0.9;
-  line-height: 1.6;
+  line-height: var(--leading-relaxed);
 }
 
 /* =========================================
    2. DARK CARD (Image / Planet Panel)
+   Reference: dark glass + thin yellow border
    ========================================= */
 .hud-card-dark {
   background: rgba(0, 0, 0, 0.4);
-  color: var(--hud-text-primary);
-  border: 1px solid var(--hud-border-subtle);
-  border-radius: var(--hud-radius-md);
-  padding: 24px;
-  font-family: var(--font-body);
+  color: hsl(var(--hud-text-primary));
+  border: var(--hud-border-yellow);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  font-family: var(--font-sans);
+  backdrop-filter: blur(8px);
 }
 
 .hud-card-dark h1,
@@ -45,28 +50,30 @@
 .hud-card-dark h4,
 .hud-card-dark h5,
 .hud-card-dark h6 {
-  font-family: var(--font-header);
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--hud-text-primary);
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: hsl(var(--hud-text-primary));
+  text-transform: uppercase;
 }
 
 .hud-card-dark p {
-  color: var(--hud-text-primary);
+  color: hsl(var(--hud-text-primary));
   opacity: 0.9;
-  line-height: 1.6;
+  line-height: var(--leading-relaxed);
 }
 
 /* =========================================
    3. GLASS CARD (Default / Subtle)
+   Reference: glass + thin yellow border
    ========================================= */
 .hud-card-glass {
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(12px);
-  border: 1px solid var(--hud-border-subtle);
-  border-radius: var(--hud-radius-md);
-  padding: 24px;
-  font-family: var(--font-body);
+  border: var(--hud-border-yellow);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  font-family: var(--font-sans);
 }
 
 .hud-card-glass h1,
@@ -75,38 +82,71 @@
 .hud-card-glass h4,
 .hud-card-glass h5,
 .hud-card-glass h6 {
-  font-family: var(--font-header);
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--hud-text-primary);
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: hsl(var(--hud-text-primary));
+  text-transform: uppercase;
 }
 
 .hud-card-glass p {
-  color: var(--hud-text-muted);
-  line-height: 1.6;
+  color: hsl(var(--hud-text-muted));
+  line-height: var(--leading-relaxed);
 }
 
 /* =========================================
-   4. CARD INTERACTIONS
+   4. RADIUS MODIFIERS
+   Apply to any card via className
+   ========================================= */
+.hud-radius-signature { border-radius: var(--radius-signature) !important; }
+.hud-radius-reverse { border-radius: var(--radius-reverse) !important; }
+.hud-radius-top-left { border-radius: var(--radius-top-left) !important; }
+.hud-radius-top-right { border-radius: var(--radius-top-right) !important; }
+.hud-radius-bottom-right { border-radius: var(--radius-bottom-right) !important; }
+.hud-radius-bottom-left { border-radius: var(--radius-bottom-left) !important; }
+.hud-radius-3corner { border-radius: var(--radius-3corner) !important; }
+.hud-radius-pill { border-radius: var(--radius-pill) !important; }
+.hud-radius-none { border-radius: var(--radius-none) !important; }
+
+/* =========================================
+   5. BORDER INTENSITY MODIFIERS
+   ========================================= */
+.hud-border-bright { border-color: hsl(var(--primary) / 60%) !important; }
+.hud-border-subtle { border-color: hsl(var(--primary) / 20%) !important; }
+.hud-border-none { border-color: transparent !important; }
+
+/* =========================================
+   6. CARD INTERACTIONS
    ========================================= */
 .hud-card-yellow,
 .hud-card-dark,
 .hud-card-glass {
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all var(--duration-base) var(--ease-out-expo);
 }
 
 .hud-card-glass:hover {
   background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: hsl(var(--primary) / 60%);
+}
+
+.hud-card-dark:hover {
+  border-color: hsl(var(--primary) / 60%);
 }
 
 /* =========================================
-   5. RESPONSIVE
+   7. RESPONSIVE
    ========================================= */
 @media (max-width: 960px) {
   .hud-card-yellow,
   .hud-card-dark,
   .hud-card-glass {
-    padding: 16px;
+    padding: var(--space-4);
+  }
+
+  .hud-card-yellow h1,
+  .hud-card-dark h1,
+  .hud-card-glass h1 {
+    font-size: var(--text-2xl);
+    letter-spacing: 2px;
   }
 }

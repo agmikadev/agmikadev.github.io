@@ -13,14 +13,21 @@ const CONFIG = {
   keplerConstant: 15,
 };
 
-export const PlanetarySystem: React.FC = () => {
+interface PlanetarySystemProps {
+  selectedPlanet: PlanetModel | null;
+  onSelectPlanet: (planet: PlanetModel | null) => void;
+}
+
+export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
+  selectedPlanet,
+  onSelectPlanet,
+}) => {
   // --- DADOS ---
   const physicalPlanets = planets.filter((p) => p.shape !== "belt");
   const beltPlanet = planets.find((p) => p.shape === "belt");
 
   // --- ESTADOS ---
   const [hoveredPlanetId, setHoveredPlanetId] = useState<string | null>(null);
-  const [selectedPlanet, setSelectedPlanet] = useState<PlanetModel | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   // --- REFS ---
@@ -107,19 +114,19 @@ export const PlanetarySystem: React.FC = () => {
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape" && selectedPlanet) {
-        setSelectedPlanet(null);
+        onSelectPlanet(null);
         setHoveredPlanetId(null);
       }
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [selectedPlanet]);
+  }, [selectedPlanet, onSelectPlanet]);
 
   const isBeltHovered = beltPlanet && hoveredPlanetId === beltPlanet.id;
 
   return (
     <div className="solar-system-container" ref={containerRef}>
-      {isBeltHovered && beltPlanet && (
+      {isBeltHovered && beltPlanet && !selectedPlanet && (
         <div
           className="planet-label"
           style={{
@@ -139,20 +146,20 @@ export const PlanetarySystem: React.FC = () => {
       )}
 
       {selectedPlanet && selectedPlanet.shape === "belt" ? (
-        <BeltHUD
-          onClose={() => {
-            setSelectedPlanet(null);
-            setHoveredPlanetId(null);
-          }}
-        />
-      ) : selectedPlanet ? (
-        <PlanetDashboard
-          planet={selectedPlanet}
-          onClose={() => {
-            setSelectedPlanet(null);
-            setHoveredPlanetId(null);
-          }}
-        />
+      <BeltHUD
+        onBack={() => {
+          onSelectPlanet(null);
+          setHoveredPlanetId(null);
+        }}
+      />
+    ) : selectedPlanet ? (
+      <PlanetDashboard
+        planet={selectedPlanet}
+        onBack={() => {
+          onSelectPlanet(null);
+          setHoveredPlanetId(null);
+        }}
+      />
       ) : (
         <>
           <svg
@@ -197,22 +204,25 @@ export const PlanetarySystem: React.FC = () => {
                   isHovered={!!isBeltHovered}
                   beltColor={beltPlanet.color}
                 />
-                <path
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") setSelectedPlanet(beltPlanet);
-                  }}
-                  ref={svgHitboxRef}
-                  fill="none"
-                  stroke="transparent"
-                  strokeWidth="30"
-                  strokeLinejoin="bevel"
-                  style={{ cursor: "pointer", pointerEvents: "stroke" }}
-                  onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
-                  onMouseEnter={() => setHoveredPlanetId(beltPlanet.id)}
-                  onMouseLeave={() => setHoveredPlanetId(null)}
-                  onClick={() => setSelectedPlanet(beltPlanet)}
-                />
+        <path
+          tabIndex={-1}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") onSelectPlanet(beltPlanet);
+          }}
+          ref={svgHitboxRef}
+          fill="none"
+          stroke="transparent"
+          strokeWidth="30"
+          strokeLinejoin="bevel"
+          style={{ cursor: "pointer", pointerEvents: "stroke", outline: "none" }}
+          onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
+          onMouseEnter={() => setHoveredPlanetId(beltPlanet.id)}
+          onMouseLeave={() => setHoveredPlanetId(null)}
+          onClick={() => {
+            onSelectPlanet(beltPlanet);
+            setHoveredPlanetId(null);
+          }}
+        />
               </>
             )}
           </svg>
@@ -222,7 +232,7 @@ export const PlanetarySystem: React.FC = () => {
               tabIndex={0}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  setSelectedPlanet(p);
+                  onSelectPlanet(p);
                   setHoveredPlanetId(null);
                 }
               }}
@@ -232,7 +242,7 @@ export const PlanetarySystem: React.FC = () => {
                 planetNodesRef.current[i] = el;
               }}
               onClick={() => {
-                setSelectedPlanet(p);
+                onSelectPlanet(p);
                 setHoveredPlanetId(null);
               }}
               onMouseEnter={() => setHoveredPlanetId(p.id)}

@@ -1,28 +1,27 @@
 import React from "react";
 import type { MissionType } from "../../../data/MissionData";
+import { Card } from "../../CardVariants";
 import "./MissionCard.css";
 
 interface MissionCardProps {
   mission: MissionType;
-  planetColor: string;
   planetTools: string[];
 }
 
+const YELLOW = "hsl(var(--primary))";
+
 export const MissionCard: React.FC<MissionCardProps> = ({
   mission,
-  planetColor,
   planetTools,
 }) => {
   return (
-    <div 
-      className="mission-card" 
-      // Gives the card a subtle colored border to match the planet
-      style={{ borderLeft: `2px solid ${planetColor}` }} 
+    <Card
+      variant="dark"
+      className="mission-card"
+      style={{ borderLeft: `2px solid ${YELLOW}` }}
     >
-      
-      {/* --- HEADER --- */}
       <div className="mission-header">
-        <h3 className="mission-title" style={{ color: planetColor }}>
+        <h3 className="mission-title" style={{ color: YELLOW }}>
           {mission.title}
         </h3>
         <span className="mission-year">
@@ -30,32 +29,26 @@ export const MissionCard: React.FC<MissionCardProps> = ({
         </span>
       </div>
 
-      {/* --- SUBTITLE --- */}
       <div className="mission-role">
         {mission.role.toUpperCase()}
       </div>
 
-      {/* --- DESCRIPTION --- */}
       <p className="mission-description">
         {mission.technical_briefing}
       </p>
 
-      {/* --- TAGS (Dynamic Highlighting) --- */}
       <div className="mission-tags-container">
         {mission.technologies.map((tech) => {
-          // ✅ Checks if the planet uses this technology
-          const isActive = planetTools.includes(tech); 
-          
+          const isActive = planetTools.includes(tech);
           return (
-            <span 
-              key={tech} 
+            <span
+              key={tech}
               className={`mission-tag ${isActive ? "active" : ""}`}
-              style={isActive ? { 
-                // Dynamic styling for ACTIVE tags
-                borderColor: planetColor, 
-                color: planetColor,
-                backgroundColor: `${planetColor}15`, // 15% opacity background
-                boxShadow: `0 0 10px ${planetColor}30` // Subtle sci-fi glow
+              style={isActive ? {
+                borderColor: YELLOW,
+                color: YELLOW,
+                backgroundColor: "hsl(var(--primary) / 8%)",
+                boxShadow: "0 0 10px hsl(var(--primary) / 20%)"
               } : {}}
             >
               {tech}
@@ -64,7 +57,6 @@ export const MissionCard: React.FC<MissionCardProps> = ({
         })}
       </div>
 
-      {/* --- EXTERNAL LINKS --- */}
       {mission.external_links && (
         <div className="mission-links-container">
           {mission.external_links.map((link) => (
@@ -74,7 +66,7 @@ export const MissionCard: React.FC<MissionCardProps> = ({
               target="_blank"
               rel="noreferrer"
               className="mission-link"
-              style={{ color: planetColor }}
+              style={{ color: YELLOW }}
             >
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
@@ -86,6 +78,6 @@ export const MissionCard: React.FC<MissionCardProps> = ({
           ))}
         </div>
       )}
-    </div>
+    </Card>
   );
 };

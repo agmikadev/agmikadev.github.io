@@ -5,9 +5,10 @@
   position: relative;
   width: 100%;
   height: 100%;
-  
-  /* Fundo Espacial Profundo */
-  background: radial-gradient(circle at center, #0b0d14 0%, #000000 70%);
+  flex: 1;
+  min-height: 0;
+
+  background: transparent;
   overflow: hidden;
   z-index: 1;
 }
@@ -15,32 +16,27 @@
 /* =========================================
    O WRAPPER DE POSICIONAMENTO (.planet-node)
    ========================================= */
-/* Este elemento é movido pelo JavaScript (top/left).
-   Ele não tem visual, apenas segura o planeta e o label. */
 .planet-node {
   position: absolute;
-  top:0;
-  left:0;
-  
-  /* Fallback de 24px caso a escala falhe */
-  width: var(--p-size); 
+  top: 0;
+  left: 0;
+
+  width: var(--p-size);
   height: var(--p-size);
 
-  /* Centraliza o conteúdo visual dentro da área clicável */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
+
   cursor: pointer;
   z-index: 10;
-  
-  /* IMPORTANTE: Permite que brilhos e anéis saiam da caixa sem serem cortados */
-  overflow: visible; 
+  outline: none;
+
+  overflow: visible;
   transition: z-index 0s linear 0.1s;
 }
 
-/* Interação de Z-Index no Hover */
 .planet-node:hover {
   transition-delay: 0s;
   z-index: 999 !important;
@@ -54,15 +50,15 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  
+
   width: 64px;
   height: 64px;
-  
+
   background: radial-gradient(circle, #fff 0%, #ffdf00 60%);
   border-radius: 50%;
-  box-shadow: 0 0 50px rgba(255, 223, 0, 0.6);
+  box-shadow: var(--glow-xl);
   z-index: 5;
-  
+
   animation: sun-pulse 4s ease-in-out infinite;
   pointer-events: none;
 }
@@ -77,30 +73,28 @@
    ========================================= */
 .planet-label {
   position: absolute;
-  top: 100%; /* Empurra para baixo do planeta */
-  margin-top: 8px; /* Distância visual */
-  
+  top: 100%;
+  margin-top: var(--space-2);
+
   background-color: rgba(0, 0, 0, 0.85);
-  border: 1px solid var(--p-color); /* Usa a cor do planeta */
-  color: #fff;
-  
-  /* Tamanho da fonte responsivo */
-  font-size: 12px;
-  padding: 4px 12px;
-  border-radius: 12px;
-  
-  font-family: monospace;
+  border: 1px solid var(--p-color);
+  color: hsl(var(--hud-text-primary));
+
+  font-size: var(--text-xs);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-md);
+
+  font-family: var(--font-mono);
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
   white-space: nowrap;
-  
-  /* Escondido por padrão, aparece no hover */
+
   opacity: 0;
   transform: translateY(-10px);
   pointer-events: none;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  
+  transition: all var(--duration-base) var(--ease-spring);
+
   box-shadow: 0 0 10px var(--p-color);
 }
 
@@ -111,14 +105,13 @@
 
 @media (max-width: 768px) {
   .solar-system-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-  /* No celular, forçamos os planetas a serem 40% menores */
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
   .planet-node {
     transform: translate(-50%, -50%);
-
     width: calc(var(--p-size) * 0.5);
     height: calc(var(--p-size) * 0.5);
   }

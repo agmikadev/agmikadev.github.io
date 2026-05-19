@@ -4,9 +4,9 @@
 .hud-divider {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--space-3);
   width: 100%;
-  margin: 16px 0;
+  margin: var(--space-4) 0;
 }
 
 .hud-divider-line {
@@ -18,12 +18,22 @@
 
 .hud-divider-text {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: var(--text-xs);
   font-weight: 700;
-  color: var(--hud-accent-yellow);
+  color: hsl(var(--primary));
   letter-spacing: 2px;
   text-transform: uppercase;
   white-space: nowrap;
+}
+
+/* --- YELLOW BORDER VARIANT --- */
+.hud-divider-yellow .hud-divider-line {
+  background: hsl(var(--primary) / 50%);
+  opacity: 1;
+}
+
+.hud-divider-yellow .hud-divider-text {
+  color: hsl(var(--primary));
 }
 
 /* =========================================
@@ -31,7 +41,17 @@
    ========================================= */
 .hud-starburst {
   display: inline-block;
-  color: var(--hud-accent-yellow);
+  color: hsl(var(--primary));
+}
+
+/* --- STARBURST INLINE (for titles) --- */
+.hud-starburst-inline {
+  display: inline;
+  color: hsl(var(--primary));
+  font-size: 0.7em;
+  vertical-align: middle;
+  margin-right: 0.3em;
+  line-height: 1;
 }
 
 /* =========================================
@@ -44,6 +64,66 @@
 
 .hud-dot {
   display: inline-block;
-  border: 1.5px solid var(--hud-accent-yellow);
+  border: 1.5px solid hsl(var(--primary));
   border-radius: 50%;
+}
+
+/* =========================================
+   4. HUD CHROME UTILITIES
+   Circles + lines + letter labels (from Container)
+   ========================================= */
+
+/* --- CHROME ROW (header/footer pattern) --- */
+.hud-chrome-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+/* --- CHROME CIRCLES --- */
+.hud-chrome-circles {
+  display: flex;
+  gap: var(--space-1);
+  flex-shrink: 0;
+}
+
+.hud-chrome-circles span {
+  display: block;
+  width: var(--hud-chrome-dot);
+  height: var(--hud-chrome-dot);
+  border: var(--hud-chrome-dot-border);
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+/* --- CHROME LINE --- */
+.hud-chrome-line {
+  flex-grow: 1;
+  height: 1px;
+  background: hsl(var(--primary) / 50%);
+  min-width: 30px;
+}
+
+/* --- CHROME LABEL --- */
+.hud-chrome-label {
+  font-family: var(--font-display);
+  font-size: var(--hud-chrome-label-size);
+  font-weight: var(--hud-chrome-label-weight);
+  letter-spacing: var(--hud-chrome-label-tracking);
+  color: hsl(var(--primary));
+  text-transform: uppercase;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* --- CHROME SECTION (vertical wrapper) --- */
+.hud-chrome-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.hud-chrome-section .hud-chrome-row + * {
+  padding-top: var(--space-1);
 }

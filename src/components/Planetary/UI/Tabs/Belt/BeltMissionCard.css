@@ -1,51 +1,47 @@
 /* BeltMissionCard.css — Adapts MissionCard.css for BeltMissionReport shape */
 
-/* Reuse .mission-card base from MissionCard.css (glassmorphism, backdrop blur, border) */
+.mission-card.belt-mission-card {
+  padding: var(--space-6);
+}
 
-/* Belt-specific left border applied inline via style prop */
-
-/* Section labels: monospace, uppercase, small font */
 .belt-section-label {
   display: block;
-  font-family: monospace;
-  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
   font-weight: bold;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #9ca3af;
-  margin-bottom: 4px;
+  color: hsl(var(--muted-foreground));
+  margin-bottom: var(--space-1);
 }
 
 .belt-section {
-  margin-bottom: 16px;
+  margin-bottom: var(--space-4);
 }
 
 .belt-section-text {
-  font-size: 0.875rem;
-  color: #d1d5db;
-  line-height: 1.6;
+  font-size: var(--text-base);
+  color: hsl(var(--foreground) / 80%);
+  line-height: var(--leading-relaxed);
   margin: 0;
 }
 
-/* Divider between content sections and metadata */
 .belt-divider {
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  margin: 16px 0;
+  border-top: 1px solid hsl(var(--primary) / 15%);
+  margin: var(--space-4) 0;
 }
 
-/* Ferramentas section */
 .belt-tools-section {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
 }
 
-/* Mtricas section */
 .belt-metrics-section {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-2);
 }
 
 .belt-metrics-list {
@@ -54,27 +50,27 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--space-1);
 }
 
 .belt-metrics-list li {
-  font-size: 0.875rem;
-  color: #d1d5db;
-  line-height: 1.6;
+  font-size: var(--text-base);
+  color: hsl(var(--foreground) / 80%);
+  line-height: var(--leading-relaxed);
 }
 
 .belt-metrics-list li::before {
   content: "\2022";
-  color: #9ca3af;
-  margin-right: 8px;
+  color: hsl(var(--muted-foreground));
+  margin-right: var(--space-2);
 }
 
 .metric-label {
-  font-family: monospace;
-  font-size: 0.75rem;
-  color: #9ca3af;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: hsl(var(--muted-foreground));
 }
 
 .metric-value {
-  color: #d1d5db;
+  color: hsl(var(--foreground) / 80%);
 }

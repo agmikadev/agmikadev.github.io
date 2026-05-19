@@ -1,84 +1,80 @@
-
-
-:root {
-  --planet-color: ;
+/* Wrapper Card handles bg/border/radius */
+.analytics-wrapper {
+  padding: var(--space-6);
 }
 
 /* Container principal da aba */
 .analytics-container {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  font-family: monospace;
-  padding: 16px 0;
+  gap: var(--space-6);
+  font-family: var(--font-mono);
 }
 
 /* =========================================
    1. CABEÇALHO PRINCIPAL DA ABA
-========================================= */
+   ========================================= */
 .analytics-main-header {
   display: flex;
-  justify-content: space-between; /* Empurra o texto para os cantos */
+  justify-content: space-between;
   align-items: center;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid hsl(var(--primary) / 20%);
 }
 
 .header-label {
-  font-size: 0.85rem;
-  color: #9ca3af;
+  font-size: var(--text-sm);
+  color: hsl(var(--muted-foreground));
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .header-value {
   font-weight: bold;
-  font-size: 0.85rem;
+  font-size: var(--text-sm);
   letter-spacing: 1px;
 }
 
 /* =========================================
-   2. LINHAS DE MÉTRICAS (Sem Hover!)
-========================================= */
+   2. LINHAS DE MÉTRICAS
+   ========================================= */
 .analytics-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--space-4);
 }
 
 .analytics-row {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  /* Sem cursor: pointer e sem transition: hover */
+  gap: var(--space-2);
 }
 
-/* A linha que segura o Título (esq) e o Número (dir) da barra */
 .analytics-row-header {
   display: flex;
-  justify-content: space-between; /* A MÁGICA DO ALINHAMENTO ESTÁ AQUI */
+  justify-content: space-between;
   align-items: baseline;
 }
 
 .row-label {
-  font-size: 0.8rem;
-  color: #fff;
+  font-size: var(--text-xs);
+  color: hsl(var(--hud-text-primary));
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
 .row-value {
   font-weight: bold;
-  font-size: 0.85rem;
+  font-size: var(--text-sm);
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 /* =========================================
    3. DESIGN DAS BARRAS DE PROGRESSO
-========================================= */
+   ========================================= */
 .progress-track {
   width: 100%;
-  height: 6px; /* Barra fininha e elegante */
+  height: 6px;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 2px;
 }
@@ -86,9 +82,7 @@
 .progress-fill {
   height: 100%;
   border-radius: 2px;
-  
-  /* Animação suave quando a largura muda */
-  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: width 1s var(--ease-out-expo);
 }
 
 .metric-grid-overlay {
@@ -100,78 +94,69 @@
 }
 
 /* =========================================
-   4. ALTERNATIVAS (NOVO)
-========================================= */
-
-/* Container das alternativas */
+   4. ALTERNATIVAS
+   ========================================= */
 .analytics-alternatives {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 6px;
-  padding-left: 12px;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  padding-left: var(--space-3);
   flex-wrap: wrap;
 }
 
-/* Ícone de seta (↳) */
 .alternatives-icon {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 12px;
-  margin-right: 4px;
+  color: hsl(var(--foreground) / 80%);
+  font-size: var(--text-micro);
+  margin-right: var(--space-1);
 }
 
-/* Texto "Alternativas conhecidas:" */
 .alternatives-prefix {
-  font-size: 0.7rem;
-  color: #aaa; /* ~9.1:1 on #0a0a15 */
+  font-size: var(--text-micro);
+  color: hsl(var(--muted-foreground));
   font-style: italic;
   letter-spacing: 0.5px;
   white-space: nowrap;
 }
 
-/* Container das tags */
 .alternatives-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: var(--space-2);
 }
 
 .alternative-tag {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 8px;
+  padding: var(--space-1) var(--space-2);
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-  color: #ccc;
-  font-family: monospace;
-  font-size: 0.7rem;
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius-sm);
+  color: hsl(var(--muted-foreground));
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
   font-weight: 500;
   cursor: default;
-  transition: all 0.2s ease;
+  transition: all var(--duration-fast) var(--ease-smooth);
 }
 
 /* =========================================
    5. RESPONSIVIDADE MOBILE
-========================================= */
-
+   ========================================= */
 @media (max-width: 768px) {
-  /* Alternativas empilham verticalmente em mobile */
   .analytics-alternatives {
     flex-direction: column;
     align-items: flex-start;
-    gap: 6px;
+    gap: var(--space-2);
   }
 
-  /* Prefix pode quebrar linha */
   .alternatives-prefix {
     white-space: normal;
   }
 
-  /* Tags um pouco menores em mobile */
   .alternative-tag {
-    font-size: 0.65rem;
-    padding: 2px 8px;
+    font-size: var(--text-micro);
+    padding: var(--space-1) var(--space-2);
   }
 }

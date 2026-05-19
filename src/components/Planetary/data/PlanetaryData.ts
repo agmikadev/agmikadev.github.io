@@ -457,8 +457,8 @@ export const planets: PlanetModel[] = [
   // --- 6. THE AI BELT ---
   {
     id: "ai-belt",
-    name: "S.O.N.D.A. NETWORK",
-    type: "Neural Backbone",
+    name: "LLMB",
+    type: "Large Language Model Belt",
     description:
       "Uma rede neural autodidata que acumula uma quantidade imensurável de dados. É capaz de otimizar processos, sugerir melhorias e até mesmo antecipar falhas antes que ocorram. Sua principal função é se utilizar do seu volume robusto de informações em tempo real para sugerir os melhores cursos de ação para o astronauta, ajudando a maximizar a produtividade e minimizar o tempo perdido com bugs.",
     tools: [

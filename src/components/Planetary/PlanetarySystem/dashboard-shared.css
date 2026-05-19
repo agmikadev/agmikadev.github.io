@@ -1,0 +1,88 @@
+/* =========================================
+   DASHBOARD SHARED STYLES
+   Shared between PlanetaryDashboard and BeltHUD.
+   Yellow card, title, debrief, and common HUD patterns.
+   ========================================= */
+
+/* --- YELLOW CARD OVERRIDES (dark text for contrast) --- */
+.planet-debrief-yellow {
+  color: hsl(var(--hud-text-inverse));
+  margin-bottom: 0;
+}
+
+.planet-debrief-yellow strong {
+  color: hsl(var(--hud-text-inverse));
+}
+
+.planet-title-yellow {
+  color: hsl(var(--hud-text-inverse)) !important;
+  text-shadow: none !important;
+}
+
+/* --- YELLOW CARD WRAPPER --- */
+.planet-detail-card {
+  margin-bottom: var(--space-6);
+}
+
+/* --- TAB AREA (sits on dark overlay, outside yellow card) --- */
+.tab-area-wrapper {
+  position: relative;
+}
+
+/* --- FETCHED DATA REVEALER --- */
+.fetched-data-wrapper {
+  animation: tab-fade var(--duration-base) var(--ease-smooth) forwards;
+}
+
+/* --- PLANET DEBRIEF (base style) --- */
+.planet-debrief {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: hsl(var(--foreground) / 87%);
+  padding-left: var(--space-3);
+}
+
+/* --- PLANET TITLE (base style) --- */
+.planet-title {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: hsl(var(--hud-text-primary));
+  text-shadow: var(--glow-text);
+  margin: 0 0 var(--space-3) 0;
+}
+
+/* --- CLI HEADER (base style) --- */
+.cli-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  opacity: 0.8;
+  font-weight: bold;
+}
+
+.cli-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.2em;
+  background-color: hsl(var(--primary));
+  animation: blink 1s step-end infinite;
+}
+
+/* --- SCROLLBAR (shared across dashboard overlays) --- */
+.dashboard-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dashboard-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--theme-color);
+  border-radius: var(--radius-sm);
+}
+
+.dashboard-scrollbar::-webkit-scrollbar-thumb:hover {
+  filter: brightness(1.2);
+}

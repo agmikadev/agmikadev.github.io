@@ -1,79 +1,61 @@
-/* --- 1. THE BASE CLASS (.hud-btn) --- */
-/* Contains ONLY shared structure and default styles */
+/* --- 1. BASE CLASS (.hud-btn) --- */
 .hud-btn {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--space-3);
   line-height: 1;
-  padding: 8px 20px 8px 8px; 
+  padding: var(--space-2) 20px var(--space-2) var(--space-2);
   background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 30px; 
-  color: #aaa;
-  font-family: monospace;
-  font-size: 0.85rem;
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius-xl);
+  color: hsl(var(--muted-foreground));
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
   font-weight: bold;
   letter-spacing: 1.5px;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all var(--duration-base) var(--ease-out-expo);
+  outline: none;
 }
 
 .hud-icon {
   display: flex;
   justify-content: center;
   align-items: center;
-  
-  /* Fixed dimensions so the flexbox doesn't stretch it */
   width: 28px;
   height: 28px;
-  
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-  color: #fff;
-  transition: background-color 0.3s ease;
+  color: hsl(var(--hud-text-primary));
+  transition: background-color var(--duration-base) var(--ease-smooth);
 }
 
 /* --- HOVER STATES --- */
 .hud-btn:hover {
-  color: #fff;
+  color: hsl(var(--hud-text-primary));
   background: rgba(255, 255, 255, 0.08);
-  border-color: var(--theme-color); 
-  box-shadow: 0 0 15px var(--theme-color); 
+  border-color: var(--theme-color);
+  box-shadow: 0 0 15px var(--theme-color);
 }
 
-/* Fills the icon background with the planet color on hover */
 .hud-btn:hover .hud-icon {
   background-color: var(--theme-color);
-  color: #000; /* Dark arrow for neon contrast */
+  color: #000;
 }
 
-/* --- 2. THE MODIFIER CLASSES --- */
+/* --- 2. MODIFIER CLASSES --- */
+.hud-btn-back:hover { transform: translateX(-4px); }
 
-/* The "Back" Modifier */
-.hud-btn-back:hover {
-  transform: translateX(-4px);
-}
-
-/* The "Action" or "Default" Modifiers */
 .hud-btn-default:hover,
 .hud-btn-action:hover {
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px var(--theme-color); 
+  box-shadow: 0 5px 15px var(--theme-color);
 }
 
 /* =========================================
    3. MOBILE RESPONSIVENESS
    ========================================= */
-@media (max-width: 900px) {
-  /* 1. Hide the text label completely */
-  .hud-label {
-    display: none;
-  }
-
-  /* 2. Reset padding to make a perfect symmetrical icon button */
-  .hud-btn {
-    padding: 8px; 
-    gap: 0; 
-  }
+@media (max-width: 960px) {
+  .hud-label { display: none; }
+  .hud-btn { padding: var(--space-2); gap: 0; }
 }

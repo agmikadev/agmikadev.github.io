@@ -7,7 +7,7 @@ export interface StarBurstProps {
 }
 
 export const StarBurst: React.FC<StarBurstProps> = ({
-  size = 12,
+  size = 14,
   color = "currentColor",
   className = "",
 }) => {
@@ -21,7 +21,7 @@ export const StarBurst: React.FC<StarBurstProps> = ({
       style={{ color }}
     >
       <path
-        d="M12 0L13.8 10.2L24 12L13.8 13.8L12 24L10.2 13.8L0 12L10.2 10.2L12 0Z"
+        d="M12 0L16 8L24 12L16 16L12 24L8 16L0 12L8 8L12 0Z"
         fill="currentColor"
       />
     </svg>

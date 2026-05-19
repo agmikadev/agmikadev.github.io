@@ -5,12 +5,11 @@ import "./BeltMissionsTab.css";
 
 export const BeltMissionsTab: React.FC = () => {
   const reports = beltDataModel.missionReports;
-  const beltColor = beltDataModel.color;
 
   if (reports.length === 0) {
     return (
       <div className="mission-error-log">
-        [ERRO]: Nenhuma miss\u00e3o registrada nos arquivos.
+        [ERRO]: Nenhuma missão registrada nos arquivos.
       </div>
     );
   }
@@ -21,7 +20,6 @@ export const BeltMissionsTab: React.FC = () => {
         <BeltMissionCard
           key={report.id}
           report={report}
-          beltColor={beltColor}
         />
       ))}
     </div>

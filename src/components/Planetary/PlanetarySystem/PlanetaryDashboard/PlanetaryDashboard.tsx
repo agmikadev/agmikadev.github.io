@@ -1,12 +1,12 @@
 import React, { useState, useCallback } from "react";
 import {
-  HudButton,
   CliHeader,
-  Tabs,
   MissionsTab,
   AnalyticsTab,
 } from "../../UI";
 import { Card } from "../../UI/CardVariants";
+import { StarBurst } from "../../UI/Symbols";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 import "./PlanetaryDashboard.css";
 import type { PlanetModel } from "../../data";
@@ -15,43 +15,18 @@ import { Planet3D } from "./Planet3D";
 
 interface DashboardProps {
   planet: PlanetModel;
-  onClose: () => void;
+  onBack: () => void;
 }
 
 export const PlanetDashboard: React.FC<DashboardProps> = ({
   planet,
-  onClose,
+  onBack,
 }) => {
-  // =========================================
-  // FETCH WAITER (CLI Animation)
-  // =========================================
   const [isFetched, setIsFetched] = useState(false);
 
   const handleFetchComplete = useCallback(() => {
     setIsFetched(true);
   }, []);
-
-  // =========================================
-  // TABS DATA
-  // =========================================
-  // Agora as abas apenas carregam os componentes limpos, passando o "planet" como prop.
-
-  const dashboardTabs = [
-    {
-      id: "missions",
-      label: "[ MISSÕES ]",
-      content: <MissionsTab planet={planet} />,
-    },
-    {
-      id: "analytics",
-      label: "[ MÉTRICAS ]",
-      content: <AnalyticsTab planet={planet} />,
-    },
-  ];
-
-  // =========================================
-  // COMPONENT RENDERING
-  // =========================================
 
   return (
     <div
@@ -59,83 +34,64 @@ export const PlanetDashboard: React.FC<DashboardProps> = ({
       style={{ "--theme-color": planet.color } as React.CSSProperties}
     >
       <div className="dashboard-container">
-        {/* --- RETURN BUTTON --- */}
-        <div style={{ position: "absolute", zIndex: 20 }}>
-          <HudButton
-            variant="back"
-            label="SYSTEM VIEW"
-            themeColor={planet.color}
-            onClick={onClose}
-            icon={
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M19 12H5M12 19l-7-7 7-7" />
-              </svg>
-            }
-          />
-        </div>
+        {/* --- CLI HEADER (full width, above both columns) --- */}
+        <CliHeader
+          planetId={planet.id}
+          color="hsl(var(--primary))"
+          onComplete={handleFetchComplete}
+          onBack={onBack}
+        />
 
-        {/* --- LEFT: The 3D Planet --- */}
-        <div className="dashboard-left">
-          {/* O container precisa ter um tamanho definido para o Canvas do 3D funcionar */}
-          <div
-            style={{
-              width: "100%",
-              maxWidth: "450px",
-              aspectRatio: "1/1",
-              margin: "auto",
-            }}
-          >
-            <Planet3D planet={planet} />
+        {/* --- BODY: left + right columns --- */}
+        <div className="dashboard-body">
+          {/* --- LEFT: Planet 3D + name + description --- */}
+          <div className="dashboard-left">
+            <Card variant="dark" className="planet-info-card">
+              <div className="planet-3d-wrapper">
+                <Planet3D planet={planet} />
+              </div>
+              <div className="planet-info-content">
+                <h1 className="planet-title" style={{ color: planet.color, textShadow: `0 0 10px ${planet.color}` }}>
+<StarBurst size={22} /> {planet.name}
+          </h1>
+          <div className="planet-debrief planet-debrief-yellow">
+            <strong>STATUS:</strong> {planet.type}
+            <br />
+            {planet.description}
           </div>
         </div>
+      </Card>
+    </div>
 
-        {/* --- RIGHT: The Mission HUD --- */}
-        <div className="dashboard-right" style={{ fontFamily: "monospace" }}>
-          {/* --- 1. THE CLI LINE --- */}
-          <CliHeader
-            planetId={planet.id}
-            color={planet.color}
-            onComplete={handleFetchComplete}
-          />
-
-          {/* --- 2. THE REVEALER --- */}
-          {isFetched && (
-            <div className="fetched-data-wrapper">
-              {/* Yellow card: planet name + debrief only */}
-              <Card variant="yellow" className="planet-detail-card">
-                <h1 className="planet-title planet-title-yellow">
-                  {planet.name}
-                </h1>
-
-                <div
-                  className="planet-debrief planet-debrief-yellow"
-                  style={{ borderLeft: `2px solid ${planet.color}` }}
-                >
-                  <strong>STATUS:</strong> {planet.type}{" "}
-                  <br />
-                  {planet.description}
-                </div>
-              </Card>
-
-              {/* Tab area on dark background (outside yellow card) */}
-              <div className="tab-area-wrapper">
-                <Tabs
-                  tabs={dashboardTabs}
-                  defaultTabId="missions"
-                  themeColor={planet.color}
-                />
+    {/* --- RIGHT: tabs only --- */}
+    <div className="dashboard-right">
+      <div className="mobile-planet-header" style={{ "--planet-color": planet.color } as React.CSSProperties}>
+        <h1 className="planet-title" style={{ color: planet.color, textShadow: `0 0 10px ${planet.color}` }}>
+          <StarBurst size={22} /> {planet.name}
+              </h1>
+              <div className="planet-debrief planet-debrief-yellow">
+                <strong>STATUS:</strong> {planet.type}
               </div>
             </div>
-          )}
+            {isFetched && (
+              <div className="fetched-data-wrapper">
+                <div className="tab-area-wrapper">
+                  <Tabs defaultValue="missions">
+                    <TabsList>
+<TabsTrigger value="missions"><StarBurst size={14} /> MISSÕES</TabsTrigger>
+              <TabsTrigger value="analytics"><StarBurst size={14} /> MÉTRICAS</TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="missions">
+                      <MissionsTab planet={planet} />
+                    </TabsContent>
+                    <TabsContent value="analytics">
+                      <AnalyticsTab planet={planet} />
+                    </TabsContent>
+                  </Tabs>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
