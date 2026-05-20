@@ -49,7 +49,7 @@ export const BeltAnalyticsTab: React.FC = () => {
       <div className="analytics-container">
         <div className="analytics-main-header">
           <span className="header-label">
-            Progresso de Sincroniza\u00e7\u00e3o da Rede S.O.N.D.A.
+            Progresso de Sincronização do LLMB
           </span>
                         <span className="header-value" style={{ color: YELLOW }}>
             STATUS: ATIVA
