@@ -57,7 +57,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({ planet }) => {
 
               {stat.alternatives && stat.alternatives.length > 0 && (
                 <div className="analytics-alternatives">
-                  <span className="alternatives-icon">↳</span>
+                  <span className="alternatives-icon">▸</span>
                   <span className="alternatives-prefix">
                     {" "}
                     Ferramentas Mapeadas (prontas para estudo):{" "}

@@ -94,7 +94,7 @@ export const BeltAnalyticsTab: React.FC = () => {
 
                       {tool.relatedTechnologies.length > 0 && (
                         <div className="analytics-alternatives">
-                          <span className="alternatives-icon">\u21b3</span>
+                          <span className="alternatives-icon">▸</span>
                           <span className="alternatives-prefix">
                             {" "}
                             Ferramentas Mapeadas (prontas para estudo):{" "}
