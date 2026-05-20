@@ -41,7 +41,7 @@
 .analytics-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-6);
 }
 
 .analytics-row {
@@ -95,7 +95,8 @@
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  margin-top: var(--space-2);
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-1);
   padding-left: var(--space-3);
   flex-wrap: wrap;
 }
