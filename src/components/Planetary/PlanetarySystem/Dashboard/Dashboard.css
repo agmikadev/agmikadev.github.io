@@ -154,11 +154,21 @@
   }
 
   .dashboard-body {
-    display: block;
+    display: flex;
+    flex-direction: column;
   }
 
   .dashboard-left {
-    display: none;
+    display: flex;
+    flex: none;
+    padding: 0 var(--space-4) var(--space-4);
+  }
+
+  .planet-info-card {
+    border: none !important;
+    border-bottom: 1px solid hsl(var(--primary) / 30%) !important;
+    border-radius: 0;
+    padding: var(--space-4);
   }
 
   .dashboard-right {
@@ -170,12 +180,10 @@
   }
 
   .dashboard-right-header {
-    order: 2;
     padding: 0 var(--space-4);
   }
 
   .dashboard-right-body {
-    order: 1;
     display: block;
     height: auto;
     max-height: none;
@@ -184,11 +192,7 @@
   }
 
   .mobile-planet-header {
-    display: block;
-    padding-top: var(--space-4);
-    padding-bottom: var(--space-4);
-    border-bottom: 1px solid hsl(var(--primary) / 20%);
-    margin-bottom: var(--space-4);
+    display: none;
   }
 
   .dashboard-container .planet-title {
