@@ -68,12 +68,14 @@
   min-height: 0;
 }
 
-/* --- CLI HEADER WRAPPER — replaces the old HUD header row --- */
+/* --- CLI HEADER WRAPPER — single screen header for all states --- */
 .cli-header-wrapper {
   flex-shrink: 0;
   padding: var(--space-3) var(--space-6);
   width: 100%;
   box-sizing: border-box;
+  position: relative;
+  z-index: 1;
 }
 
 /* --- BOTTOM HUD BAR --- */

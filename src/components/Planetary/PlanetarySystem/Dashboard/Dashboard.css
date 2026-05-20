@@ -31,14 +31,7 @@
   flex-direction: column;
   min-height: 0;
   overflow: hidden;
-  padding: var(--space-3);
   box-sizing: border-box;
-}
-
-/* CLI header spans full width above columns */
-.dashboard-container > .cli-header {
-  flex-shrink: 0;
-  padding-bottom: var(--space-4);
 }
 
 /* --- BODY — flex row: left + right columns --- */
@@ -173,10 +166,5 @@
   .dashboard-container .planet-title {
     font-size: var(--text-2xl);
     text-align: left;
-  }
-
-  .dashboard-container .cli-header {
-    font-size: var(--text-xs);
-    padding-bottom: var(--space-4);
   }
 }

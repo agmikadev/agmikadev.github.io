@@ -1,4 +1,4 @@
-import { useState, type FC, type ReactNode } from 'react';
+import { useState, useCallback, type FC, type ReactNode } from 'react';
 import './styles/MainFrame.css';
 import './styles/Container.css';
 import { SideStrip } from './SideStrip';
@@ -13,19 +13,36 @@ interface MainFrameProps {
 
 export const MainFrame: FC<MainFrameProps> = ({ children }) => {
   const [selectedPlanet, setSelectedPlanet] = useState<PlanetModel | null>(null);
+  const [isFetched, setIsFetched] = useState(false);
+
+  const handleSelectPlanet = useCallback((planet: PlanetModel | null) => {
+    setSelectedPlanet(planet);
+    setIsFetched(false);
+  }, []);
+
+  const handleFetchComplete = useCallback(() => {
+    setIsFetched(true);
+  }, []);
+
+  const isDashboard = !!selectedPlanet;
+  const cliCommand = isDashboard
+    ? `❯ root@ship-os:~# fetch_archives --location="${selectedPlanet.id}"`
+    : "❯ root@ship-os:~# Dados do sistema carregados com sucesso. Selecione um objeto espacial para ver mais detalhes";
 
   return (
     <div className="app-container">
       <OnboardingOverlay />
 
-      {!selectedPlanet && (
-        <div className="cli-header-wrapper">
-          <CliHeader
-            command="❯ root@ship-os:~# Dados do sistema carregados com sucesso. Selecione um objeto espacial para ver mais detalhes"
-            color="hsl(var(--primary))"
-          />
-        </div>
-      )}
+      <div className="cli-header-wrapper">
+        <CliHeader
+          key={isDashboard ? `dashboard-${selectedPlanet!.id}` : "solar-view"}
+          planetId={isDashboard ? selectedPlanet!.id : "ship-os"}
+          command={cliCommand}
+          color="hsl(var(--primary))"
+          onBack={isDashboard ? () => handleSelectPlanet(null) : undefined}
+          onComplete={isDashboard ? handleFetchComplete : undefined}
+        />
+      </div>
 
       {/* Middle row: container + sidebar */}
       <div className="dashboard-wrapper">
@@ -35,7 +52,8 @@ export const MainFrame: FC<MainFrameProps> = ({ children }) => {
               {children || (
                 <PlanetarySystem
                   selectedPlanet={selectedPlanet}
-                  onSelectPlanet={setSelectedPlanet}
+                  onSelectPlanet={handleSelectPlanet}
+                  isFetched={isFetched}
                 />
               )}
             </div>

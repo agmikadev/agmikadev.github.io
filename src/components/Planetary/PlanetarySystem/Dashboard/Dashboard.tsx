@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from "react";
-import { CliHeader, MissionsTab, AnalyticsTab } from "../../UI";
+import React from "react";
+import { MissionsTab, AnalyticsTab } from "../../UI";
 import { Card } from "../../UI/CardVariants";
 import { StarBurst } from "../../UI/Symbols";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -12,19 +12,12 @@ import "./Dashboard.css";
 interface DashboardProps {
   planet?: PlanetModel;
   mode: "planet" | "belt";
-  onBack: () => void;
+  isFetched: boolean;
 }
 
-export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, onBack }) => {
-  const [isFetched, setIsFetched] = useState(false);
-
-  const handleFetchComplete = useCallback(() => {
-    setIsFetched(true);
-  }, []);
-
+export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched }) => {
   const isBelt = mode === "belt";
   const themeColor = isBelt ? beltDataModel.color : planet?.color;
-  const planetId = isBelt ? "ai-belt" : planet?.id;
   const planetName = isBelt ? beltDataModel.name : planet?.name;
   const planetType = isBelt ? "Large Language Model Belt" : planet?.type;
   const planetDescription = isBelt ? beltDataModel.description : planet?.description;
@@ -53,13 +46,6 @@ export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, onBack }) =>
       style={{ "--theme-color": themeColor } as React.CSSProperties}
     >
       <div className="dashboard-container">
-        <CliHeader
-          planetId={planetId!}
-          color="hsl(var(--primary))"
-          onComplete={handleFetchComplete}
-          onBack={onBack}
-        />
-
         <div className="dashboard-body">
           <div className="dashboard-left">
             <Card variant="dark" className="planet-info-card">

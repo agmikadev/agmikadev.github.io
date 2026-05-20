@@ -15,11 +15,13 @@ const CONFIG = {
 interface PlanetarySystemProps {
   selectedPlanet: PlanetModel | null;
   onSelectPlanet: (planet: PlanetModel | null) => void;
+  isFetched: boolean;
 }
 
 export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
   selectedPlanet,
   onSelectPlanet,
+  isFetched,
 }) => {
   // --- DADOS ---
   const physicalPlanets = planets.filter((p) => p.shape !== "belt");
@@ -147,19 +149,13 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
       {selectedPlanet && selectedPlanet.shape === "belt" ? (
       <Dashboard
         mode="belt"
-        onBack={() => {
-          onSelectPlanet(null);
-          setHoveredPlanetId(null);
-        }}
+        isFetched={isFetched}
       />
     ) : selectedPlanet ? (
       <Dashboard
         planet={selectedPlanet}
         mode="planet"
-        onBack={() => {
-          onSelectPlanet(null);
-          setHoveredPlanetId(null);
-        }}
+        isFetched={isFetched}
       />
       ) : (
         <>
