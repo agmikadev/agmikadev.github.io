@@ -90,48 +90,47 @@
   line-height: var(--leading-relaxed);
 }
 
-/* --- RIGHT COLUMN — description + scrollable tabs --- */
+/* --- RIGHT COLUMN — header + scrollable body --- */
 .dashboard-right {
   flex: 0 0 60%;
   display: flex;
   flex-direction: column;
-  gap: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* --- RIGHT COLUMN HEADER (fixed, tabs) --- */
+.dashboard-right-header {
+  flex-shrink: 0;
+  padding: 0 var(--space-2);
+}
+
+/* --- RIGHT COLUMN BODY (scrollable content) --- */
+.dashboard-right-body {
+  flex: 1;
   min-height: 0;
   overflow-y: auto;
   padding: 0 var(--space-2);
   font-family: var(--font-mono);
 }
 
-/* --- TAB AREA — sticky at top --- */
-.tab-area-wrapper {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  padding-bottom: var(--space-2);
+.dashboard-right-body::-webkit-scrollbar {
+  width: 6px;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-.fetched-data-wrapper {
-  display: flex;
-  flex-direction: column;
+.dashboard-right-body::-webkit-scrollbar-thumb {
+  background-color: var(--theme-color);
+  border-radius: var(--radius-sm);
+}
+
+.dashboard-right-body::-webkit-scrollbar-thumb:hover {
+  filter: brightness(1.2);
 }
 
 /* --- MOBILE PLANET HEADER (hidden on desktop) --- */
 .mobile-planet-header {
   display: none;
-}
-
-.dashboard-right::-webkit-scrollbar {
-  width: 6px;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.dashboard-right::-webkit-scrollbar-thumb {
-  background-color: var(--theme-color);
-  border-radius: var(--radius-sm);
-}
-
-.dashboard-right::-webkit-scrollbar-thumb:hover {
-  filter: brightness(1.2);
 }
 
 /* =========================================
@@ -163,6 +162,17 @@
   }
 
   .dashboard-right {
+    display: block;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .dashboard-right-header {
+    padding: 0 var(--space-4);
+  }
+
+  .dashboard-right-body {
     display: block;
     height: auto;
     max-height: none;

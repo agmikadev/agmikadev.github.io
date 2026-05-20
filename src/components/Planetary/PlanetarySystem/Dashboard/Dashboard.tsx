@@ -66,14 +66,20 @@ export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched })
           </div>
 
           <div className="dashboard-right">
-            {isFetched && (
-              <div className="fetched-data-wrapper">
-                <div className="tab-area-wrapper">
+            <div className="dashboard-right-header">
+              {isFetched && (
+                <Tabs defaultValue="missions">
+                  <TabsList>
+                    <TabsTrigger value="missions"><StarBurst size={14} /> MISSÕES</TabsTrigger>
+                    <TabsTrigger value="analytics"><StarBurst size={14} /> MÉTRICAS</TabsTrigger>
+                  </TabsList>
+                </Tabs>
+              )}
+            </div>
+            <div className="dashboard-right-body">
+              {isFetched && (
+                <div className="fetched-data-wrapper">
                   <Tabs defaultValue="missions">
-                    <TabsList>
-                      <TabsTrigger value="missions"><StarBurst size={14} /> MISSÕES</TabsTrigger>
-                      <TabsTrigger value="analytics"><StarBurst size={14} /> MÉTRICAS</TabsTrigger>
-                    </TabsList>
                     <TabsContent value="missions">
                       {isBelt ? (
                         <MissionsTab variant="belt" />
@@ -90,14 +96,14 @@ export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched })
                     </TabsContent>
                   </Tabs>
                 </div>
-              </div>
-            )}
-            <div className="mobile-planet-header" style={{ "--planet-color": themeColor } as React.CSSProperties}>
-              <h1 className="planet-title" style={{ color: themeColor, textShadow: `0 0 10px ${themeColor}` }}>
-                <StarBurst size={22} /> {planetName}
-              </h1>
-              <div className="planet-debrief planet-debrief-yellow">
-                <strong>STATUS:</strong> {planetType}
+              )}
+              <div className="mobile-planet-header" style={{ "--planet-color": themeColor } as React.CSSProperties}>
+                <h1 className="planet-title" style={{ color: themeColor, textShadow: `0 0 10px ${themeColor}` }}>
+                  <StarBurst size={22} /> {planetName}
+                </h1>
+                <div className="planet-debrief planet-debrief-yellow">
+                  <strong>STATUS:</strong> {planetType}
+                </div>
               </div>
             </div>
           </div>

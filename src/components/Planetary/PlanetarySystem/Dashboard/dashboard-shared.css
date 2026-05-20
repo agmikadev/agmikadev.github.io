@@ -29,6 +29,11 @@
   position: relative;
 }
 
+/* --- DASHBOARD RIGHT HEADER (tabs) --- */
+.dashboard-right-header {
+  position: relative;
+}
+
 /* --- FETCHED DATA REVEALER --- */
 .fetched-data-wrapper {
   animation: tab-fade var(--duration-base) var(--ease-smooth) forwards;
