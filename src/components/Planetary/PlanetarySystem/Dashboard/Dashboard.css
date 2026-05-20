@@ -162,13 +162,21 @@
     display: flex;
     flex: none;
     padding: 0 var(--space-4) var(--space-4);
+    overflow: visible;
+  }
+
+  .planet-3d-wrapper {
+    max-width: 100%;
+    max-height: 200px;
   }
 
   .planet-info-card {
-    border: none !important;
-    border-bottom: 1px solid hsl(var(--primary) / 30%) !important;
-    border-radius: 0;
+    flex: none;
+    min-height: auto;
+    border: var(--hud-border-yellow) !important;
+    border-radius: var(--radius-lg) !important;
     padding: var(--space-4);
+    overflow: visible !important;
   }
 
   .dashboard-right {
