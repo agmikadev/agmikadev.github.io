@@ -45,18 +45,18 @@ export const BeltAnalyticsTab: React.FC = () => {
   ];
 
   return (
-    <Card variant="dark" className="analytics-wrapper belt-analytics">
-      <div className="analytics-container">
-        <div className="analytics-main-header">
-          <span className="header-label">
-            Progresso de Sincronização do LLMB
-          </span>
-                        <span className="header-value" style={{ color: YELLOW }}>
-            STATUS: ATIVA
-          </span>
-        </div>
-
-        <div className="analytics-list">
+    <>
+      <div className="analytics-main-header">
+        <span className="header-label">
+          Progresso de Sincronização do LLMB
+        </span>
+        <span className="header-value" style={{ color: YELLOW }}>
+          STATUS: ATIVA
+        </span>
+      </div>
+      <Card variant="dark" className="analytics-wrapper belt-analytics">
+        <div className="analytics-container">
+          <div className="analytics-list">
           {categoryOrder.map((category) => {
             const tools = groupedTools[category];
             if (!tools || tools.length === 0) return null;
@@ -134,5 +134,6 @@ export const BeltAnalyticsTab: React.FC = () => {
         </div>
       </div>
     </Card>
+    </>
   );
 };
