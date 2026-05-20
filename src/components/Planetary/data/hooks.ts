@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { planets, type PlanetModel } from "./PlanetaryData";
+import { planets } from "./PlanetaryData";
 import { MISSION_ARCHIVE, type MissionType } from "./MissionData";
 
 export function usePlanetData(planetId: string) {

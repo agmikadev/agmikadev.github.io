@@ -5,14 +5,12 @@ import "./MissionCard.css";
 
 interface MissionCardProps {
   mission: MissionType;
-  planetId: string;
 }
 
 const YELLOW = "hsl(var(--primary))";
 
 export const MissionCard: React.FC<MissionCardProps> = ({
   mission,
-  planetId,
 }) => {
   return (
     <Card
