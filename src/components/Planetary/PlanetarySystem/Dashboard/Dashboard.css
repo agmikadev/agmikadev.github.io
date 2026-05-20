@@ -62,6 +62,8 @@
   padding: var(--space-2) var(--space-2) var(--space-8) var(--space-2);
   min-height: 0;
   border-radius: 0 0 0 48px;
+  border: none !important;
+  border-right: var(--hud-border-yellow) !important;
 }
 
 .planet-3d-wrapper {
@@ -97,8 +99,13 @@
   gap: var(--space-4);
   min-height: 0;
   overflow-y: auto;
-  padding: 0 var(--space-2);
+  padding: var(--space-4) var(--space-2);
   font-family: var(--font-mono);
+}
+
+/* --- TAB AREA MARGIN --- */
+.tab-area-wrapper {
+  margin-top: var(--space-4);
 }
 
 /* --- MOBILE PLANET HEADER (hidden on desktop) --- */
