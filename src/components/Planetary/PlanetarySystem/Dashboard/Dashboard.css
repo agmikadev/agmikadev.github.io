@@ -102,8 +102,7 @@
 /* --- RIGHT COLUMN HEADER (fixed, tabs) --- */
 .dashboard-right-header {
   flex-shrink: 0;
-  padding: var(--space-3) var(--space-2);
-  border-bottom: 1px solid hsl(var(--primary) / 30%);
+  padding: var(--space-3) var(--space-2) 0;
 }
 
 /* --- RIGHT COLUMN BODY (scrollable content) --- */
@@ -163,17 +162,20 @@
   }
 
   .dashboard-right {
-    display: block;
+    display: flex;
+    flex-direction: column;
     height: auto;
     max-height: none;
     overflow: visible;
   }
 
   .dashboard-right-header {
+    order: 2;
     padding: 0 var(--space-4);
   }
 
   .dashboard-right-body {
+    order: 1;
     display: block;
     height: auto;
     max-height: none;

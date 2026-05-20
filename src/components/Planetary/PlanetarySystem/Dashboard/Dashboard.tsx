@@ -77,6 +77,14 @@ export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched })
               )}
             </div>
             <div className="dashboard-right-body">
+              <div className="mobile-planet-header" style={{ "--planet-color": themeColor } as React.CSSProperties}>
+                <h1 className="planet-title" style={{ color: themeColor, textShadow: `0 0 10px ${themeColor}` }}>
+                  <StarBurst size={22} /> {planetName}
+                </h1>
+                <div className="planet-debrief planet-debrief-yellow">
+                  <strong>STATUS:</strong> {planetType}
+                </div>
+              </div>
               {isFetched && (
                 <div className="fetched-data-wrapper">
                   <Tabs defaultValue="missions">
@@ -97,14 +105,6 @@ export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched })
                   </Tabs>
                 </div>
               )}
-              <div className="mobile-planet-header" style={{ "--planet-color": themeColor } as React.CSSProperties}>
-                <h1 className="planet-title" style={{ color: themeColor, textShadow: `0 0 10px ${themeColor}` }}>
-                  <StarBurst size={22} /> {planetName}
-                </h1>
-                <div className="planet-debrief planet-debrief-yellow">
-                  <strong>STATUS:</strong> {planetType}
-                </div>
-              </div>
             </div>
           </div>
         </div>
