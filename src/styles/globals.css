@@ -248,6 +248,7 @@
   *,
   *::before,
   *::after {
+    box-sizing: border-box;
     border-color: hsl(var(--border));
   }
 
@@ -258,7 +259,7 @@
     place-items: flex-start;
     min-width: 320px;
     min-height: 100vh;
-    background-color: hsl(var(--background));
+    background-color: hsl(240 15% 3%);
     color: hsl(var(--foreground) / 87%);
     font-family: var(--font-sans);
     line-height: var(--leading-normal);
@@ -405,5 +406,11 @@ a:focus:not(:focus-visible) {
   50% {
     opacity: 0.4;
     transform: scale(0.8);
+  }
+}
+
+@media (max-width: 960px) {
+  html, body, #root {
+    overflow-x: hidden;
   }
 }

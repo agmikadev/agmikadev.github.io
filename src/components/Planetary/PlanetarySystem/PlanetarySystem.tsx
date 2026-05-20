@@ -9,7 +9,7 @@ import { BeltHUD } from "./BeltHUD";
 const CONFIG = {
   centerX: 50,
   centerY: 50,
-  orbitScale: 0.07,
+  orbitScale: 0.08,
   keplerConstant: 15,
 };
 

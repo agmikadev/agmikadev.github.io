@@ -4,11 +4,12 @@ import "./CliHeader.css";
 import { HudButton } from "../HudButtons";
 
 interface CliHeaderProps {
-  planetId: string;
+  planetId?: string;
   color: string;
-  onComplete: () => void;
+  onComplete?: () => void;
   onBack?: () => void;
   speed?: number;
+  command?: string;
 }
 
 const BACK_ICON = (
@@ -21,13 +22,14 @@ const BACK_ICON = (
 );
 
 export const CliHeader: React.FC<CliHeaderProps> = ({
-  planetId,
+  planetId = "unknown",
   color,
   onComplete,
   onBack,
   speed = 10,
+  command,
 }) => {
-  const terminalCommand = `root@ship-os:~# fetch_archives --location="${planetId}"`;
+  const terminalCommand = command || `❯ root@ship-os:~# fetch_archives --location="${planetId}"`;
 
   return (
     <div className="cli-header" style={{ color }}>
@@ -41,21 +43,12 @@ export const CliHeader: React.FC<CliHeaderProps> = ({
         />
       )}
 
-      <svg
-        width="14" height="14" viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"
-      >
-        <polyline points="9 18 15 12 9 6"></polyline>
-      </svg>
-
       <TerminalText
         key={`${planetId}-cli`}
         text={terminalCommand}
         speed={speed}
         onComplete={onComplete}
       />
-
-      <span className="cli-cursor"></span>
     </div>
   );
 };

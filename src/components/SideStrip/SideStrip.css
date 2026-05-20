@@ -409,9 +409,9 @@ SOCIALS
    ========================================= */
 @media (max-width: 960px) {
   .side-strip-container {
+    width: 100%;
     max-width: 100%;
-  border-right: none;
-  border-bottom: 1px solid hsl(var(--primary) / 30%);
+    border: none;
     border-radius: 48px 0 0 0;
     z-index: 10;
     height: auto;
@@ -419,6 +419,9 @@ SOCIALS
 
   .data-cycler {
     flex-grow: 0;
+    overflow: hidden;
+    min-height: 220px;
+    max-height: 45dvh;
   }
 
 }

@@ -31,5 +31,10 @@ export const TerminalText: React.FC<TerminalTextProps> = ({
     return () => clearInterval(interval);
   }, [text, speed, onComplete]);
 
-  return <span>{displayedText}</span>;
+  return (
+    <span className="terminal-text">
+      {displayedText}
+      <span className="cli-cursor" />
+    </span>
+  );
 };

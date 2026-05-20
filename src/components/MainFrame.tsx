@@ -3,6 +3,7 @@ import './styles/MainFrame.css';
 import './styles/Container.css';
 import { SideStrip } from './SideStrip';
 import { PlanetarySystem } from './Planetary';
+import { CliHeader } from './Planetary/UI';
 import { OnboardingOverlay } from './Onboarding/OnboardingOverlay';
 import type { PlanetModel } from './Planetary/data';
 
@@ -17,14 +18,14 @@ export const MainFrame: FC<MainFrameProps> = ({ children }) => {
     <div className="app-container">
       <OnboardingOverlay />
 
-      {/* Top HUD bar — full width */}
-      <div className="header">
-        <div className="circles-icon">
-          <span></span><span></span>
+      {!selectedPlanet && (
+        <div className="cli-header-wrapper">
+          <CliHeader
+            command="❯ root@ship-os:~# Dados do sistema carregados com sucesso. Selecione um objeto espacial para ver mais detalhes"
+            color="hsl(var(--primary))"
+          />
         </div>
-        <div className="header-line"></div>
-        <h1>DASHBOARD INTERFACE</h1>
-      </div>
+      )}
 
       {/* Middle row: container + sidebar */}
       <div className="dashboard-wrapper">
@@ -45,7 +46,7 @@ export const MainFrame: FC<MainFrameProps> = ({ children }) => {
 
       {/* Bottom HUD bar — full width */}
       <div className="footer">
-        <div className="footer-text">STATUS: ONLINE</div>
+        <div className="footer-text">DASHBOARD INTERFACE // STATUS: ONLINE</div>
         <div className="footer-line"></div>
         <div className="stars">
           <span>✦</span><span>✦</span><span>✦</span>

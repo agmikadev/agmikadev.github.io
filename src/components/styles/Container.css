@@ -40,6 +40,7 @@
     min-height: 50dvh;
     overflow-x: hidden;
     overflow-y: visible;
+    border: none;
   }
 
   .container::before { display: none; }

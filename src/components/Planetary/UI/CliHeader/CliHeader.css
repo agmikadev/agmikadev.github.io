@@ -1,11 +1,13 @@
 /* --- CLI HEADER --- */
 .cli-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--space-2);
   font-size: var(--text-sm);
+  font-family: var(--font-mono);
   opacity: 0.8;
   font-weight: bold;
+  box-sizing: border-box;
 }
 
 .cli-header .hud-btn {
@@ -15,8 +17,22 @@
 
 .cli-cursor {
   display: inline-block;
-  width: 8px;
+  width: 2px;
   height: 1.2em;
   background-color: hsl(var(--primary));
   animation: blink 1s step-end infinite;
+  vertical-align: middle;
+}
+
+.terminal-text {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+@media (max-width: 960px) {
+  .cli-header {
+    padding: var(--space-3);
+  }
 }
