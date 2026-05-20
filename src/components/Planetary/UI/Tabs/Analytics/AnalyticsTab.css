@@ -103,8 +103,9 @@
 
 .alternatives-icon {
   color: hsl(var(--foreground) / 80%);
-  font-size: var(--text-micro);
+  font-size: var(--text-lg);
   margin-right: var(--space-1);
+  line-height: 1;
 }
 
 .alternatives-prefix {
