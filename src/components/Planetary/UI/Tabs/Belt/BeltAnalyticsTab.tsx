@@ -46,7 +46,7 @@ export const BeltAnalyticsTab: React.FC = () => {
 
   return (
     <>
-      <div className="analytics-main-header">
+      <div className="analytics-main-header belt-analytics-header">
         <span className="header-label">
           Progresso de Sincronização do LLMB
         </span>

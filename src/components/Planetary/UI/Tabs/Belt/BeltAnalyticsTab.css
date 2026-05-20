@@ -29,6 +29,6 @@
   margin: 0;
 }
 
-.belt-analytics {
-  /* Inherits from .analytics-container */
+.belt-analytics-header {
+  margin-bottom: var(--space-4);
 }

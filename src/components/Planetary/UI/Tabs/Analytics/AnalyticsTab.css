@@ -22,6 +22,8 @@
   border-bottom: 1px solid hsl(var(--primary) / 20%);
 }
 
+
+
 .header-label {
   font-size: var(--text-sm);
   color: hsl(var(--muted-foreground));
