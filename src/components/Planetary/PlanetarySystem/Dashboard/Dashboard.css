@@ -99,6 +99,14 @@
   overflow: hidden;
 }
 
+/* Single Tabs root spans header + body */
+.dashboard-right-tabs {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+}
+
 /* --- RIGHT COLUMN HEADER (fixed, tabs) --- */
 .dashboard-right-header {
   flex-shrink: 0;
@@ -184,6 +192,13 @@
     flex-direction: column;
     height: auto;
     max-height: none;
+    overflow: visible;
+  }
+
+  .dashboard-right-tabs {
+    display: flex;
+    flex-direction: column;
+    height: auto;
     overflow: visible;
   }
 
