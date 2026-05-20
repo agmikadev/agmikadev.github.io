@@ -1,7 +1,7 @@
 import React from "react";
 import { beltDataModel } from "../../../data/BeltData";
-import { BeltMissionCard } from "./BeltMissionCard";
-import "./BeltMissionsTab.css";
+import { MissionCard } from "../Missions/MissionCard";
+import { NO_MISSIONS_ERROR } from "@/lib/ui-constants";
 
 export const BeltMissionsTab: React.FC = () => {
   const reports = beltDataModel.missionReports;
@@ -9,7 +9,7 @@ export const BeltMissionsTab: React.FC = () => {
   if (reports.length === 0) {
     return (
       <div className="mission-error-log">
-        [ERRO]: Nenhuma missão registrada nos arquivos.
+        {NO_MISSIONS_ERROR}
       </div>
     );
   }
@@ -17,9 +17,9 @@ export const BeltMissionsTab: React.FC = () => {
   return (
     <div className="mission-list">
       {reports.map((report) => (
-        <BeltMissionCard
+        <MissionCard
           key={report.id}
-          report={report}
+          mission={report}
         />
       ))}
     </div>

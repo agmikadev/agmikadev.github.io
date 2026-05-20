@@ -1,17 +1,17 @@
 import React from "react";
 import type { MissionType } from "../../../data/MissionData";
+import type { BeltMissionReport } from "../../../data/BeltData";
 import { Card } from "../../CardVariants";
+import { YELLOW } from "@/lib/ui-constants";
 import "./MissionCard.css";
 
+type MissionCardData = MissionType | BeltMissionReport;
+
 interface MissionCardProps {
-  mission: MissionType;
+  mission: MissionCardData;
 }
 
-const YELLOW = "hsl(var(--primary))";
-
-export const MissionCard: React.FC<MissionCardProps> = ({
-  mission,
-}) => {
+export const MissionCard: React.FC<MissionCardProps> = ({ mission }) => {
   return (
     <Card
       variant="dark"

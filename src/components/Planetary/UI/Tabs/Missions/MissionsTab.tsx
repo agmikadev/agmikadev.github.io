@@ -2,18 +2,27 @@ import React from "react";
 import { type PlanetModel } from "../../../data/PlanetaryData";
 import { MissionCard } from "./MissionCard";
 import { useMissions } from "../../../data/hooks";
+import { BeltMissionsTab } from "../Belt/BeltMissionsTab";
+import { NO_MISSIONS_ERROR } from "@/lib/ui-constants";
 
 interface MissionsTabProps {
-  planet: PlanetModel;
+  planet?: PlanetModel;
+  variant?: "planet" | "belt";
 }
 
-export const MissionsTab: React.FC<MissionsTabProps> = ({ planet }) => {
+export const MissionsTab: React.FC<MissionsTabProps> = ({ planet, variant = "planet" }) => {
+  if (variant === "belt") {
+    return <BeltMissionsTab />;
+  }
+
+  if (!planet) return null;
+
   const relevantMissions = useMissions(planet.id);
 
   if (relevantMissions.length === 0) {
     return (
       <div className="mission-error-log">
-        [ERRO]: Nenhuma missão registrada nos arquivos.
+        {NO_MISSIONS_ERROR}
       </div>
     );
   }

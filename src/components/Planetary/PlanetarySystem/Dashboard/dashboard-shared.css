@@ -76,17 +76,4 @@
   animation: blink 1s step-end infinite;
 }
 
-/* --- SCROLLBAR (shared across dashboard overlays) --- */
-.dashboard-scrollbar::-webkit-scrollbar {
-  width: 6px;
-  background-color: rgba(0, 0, 0, 0.5);
-}
 
-.dashboard-scrollbar::-webkit-scrollbar-thumb {
-  background-color: var(--theme-color);
-  border-radius: var(--radius-sm);
-}
-
-.dashboard-scrollbar::-webkit-scrollbar-thumb:hover {
-  filter: brightness(1.2);
-}

@@ -1,22 +1,29 @@
 /* =========================================
-BeltHUD — 2-column dashboard layout
-Matches PlanetaryDashboard structure
-========================================= */
-@import "../dashboard-shared.css";
+   DASHBOARD — fills container-content
+   Desktop: 40/60 body split
+   Mobile: stacked, left column hidden
+   Used by both planet and belt modes.
+   ========================================= */
+@import "./dashboard-shared.css";
 
 /* --- OVERLAY --- */
-.belt-dashboard-overlay {
+.dashboard-overlay {
   width: 100%;
   height: 100%;
   background: transparent;
-  box-sizing: border-box;
   display: flex;
+  box-sizing: border-box;
   color: hsl(var(--hud-text-primary));
   animation: fade-in var(--duration-base) var(--ease-smooth) forwards;
 }
 
+/* Belt mode modifier */
+.dashboard-overlay.belt-dashboard {
+  /* inherits all base styles */
+}
+
 /* --- CONTAINER --- */
-.belt-dashboard-container {
+.dashboard-container {
   position: relative;
   width: 100%;
   height: 100%;
@@ -29,13 +36,13 @@ Matches PlanetaryDashboard structure
 }
 
 /* CLI header spans full width above columns */
-.belt-dashboard-container > .cli-header {
+.dashboard-container > .cli-header {
   flex-shrink: 0;
   padding-bottom: var(--space-4);
 }
 
 /* --- BODY — flex row: left + right columns --- */
-.belt-dashboard-container .dashboard-body {
+.dashboard-body {
   flex: 1;
   display: flex;
   flex-direction: row;
@@ -44,8 +51,8 @@ Matches PlanetaryDashboard structure
   overflow: hidden;
 }
 
-/* --- LEFT COLUMN --- */
-.belt-dashboard-container .dashboard-left {
+/* --- LEFT COLUMN — Planet 3D + info --- */
+.dashboard-left {
   flex: 0 0 40%;
   display: flex;
   flex-direction: column;
@@ -54,7 +61,7 @@ Matches PlanetaryDashboard structure
   overflow: hidden;
 }
 
-.belt-dashboard-container .planet-info-card {
+.planet-info-card {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -64,21 +71,7 @@ Matches PlanetaryDashboard structure
   border-radius: 0 0 0 48px;
 }
 
-.belt-dashboard-container .planet-info-content {
-  flex-shrink: 0;
-  padding-top: var(--space-4);
-}
-
-.belt-dashboard-container .planet-info-content .planet-title {
-  margin-bottom: var(--space-2);
-}
-
-.belt-dashboard-container .planet-info-content .planet-debrief {
-  font-size: var(--text-xs);
-  line-height: var(--leading-relaxed);
-}
-
-.belt-dashboard-container .planet-3d-wrapper {
+.planet-3d-wrapper {
   flex: 1;
   display: flex;
   align-items: flex-start;
@@ -89,8 +82,22 @@ Matches PlanetaryDashboard structure
   margin: 0 auto;
 }
 
-/* --- RIGHT COLUMN — scrollable tabs --- */
-.belt-dashboard-container .dashboard-right {
+.planet-info-content {
+  flex-shrink: 0;
+  padding-top: var(--space-4);
+}
+
+.planet-info-content .planet-title {
+  margin-bottom: var(--space-2);
+}
+
+.planet-info-content .planet-debrief {
+  font-size: var(--text-xs);
+  line-height: var(--leading-relaxed);
+}
+
+/* --- RIGHT COLUMN — description + scrollable tabs --- */
+.dashboard-right {
   flex: 0 0 60%;
   display: flex;
   flex-direction: column;
@@ -101,52 +108,54 @@ Matches PlanetaryDashboard structure
   font-family: var(--font-mono);
 }
 
-.belt-dashboard-container .mobile-planet-header {
+/* --- MOBILE PLANET HEADER (hidden on desktop) --- */
+.mobile-planet-header {
   display: none;
 }
 
-.belt-dashboard-container .dashboard-right::-webkit-scrollbar {
+.dashboard-right::-webkit-scrollbar {
   width: 6px;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.belt-dashboard-container .dashboard-right::-webkit-scrollbar-thumb {
+.dashboard-right::-webkit-scrollbar-thumb {
   background-color: var(--theme-color);
   border-radius: var(--radius-sm);
 }
 
-.belt-dashboard-container .dashboard-right::-webkit-scrollbar-thumb:hover {
+.dashboard-right::-webkit-scrollbar-thumb:hover {
   filter: brightness(1.2);
 }
 
 /* =========================================
-   MOBILE
+   MOBILE RESPONSIVENESS
    ========================================= */
 @media (max-width: 960px) {
-  .belt-dashboard-overlay {
+  .dashboard-overlay {
     position: relative;
     width: 100%;
     height: auto;
     padding: 0;
     background: transparent;
+    backdrop-filter: none;
   }
 
-  .belt-dashboard-container {
+  .dashboard-container {
     display: block;
     height: auto;
     overflow: visible;
     padding: 0;
   }
 
-  .belt-dashboard-container .dashboard-body {
+  .dashboard-body {
     display: block;
   }
 
-  .belt-dashboard-container .dashboard-left {
+  .dashboard-left {
     display: none;
   }
 
-  .belt-dashboard-container .dashboard-right {
+  .dashboard-right {
     display: block;
     height: auto;
     max-height: none;
@@ -154,19 +163,19 @@ Matches PlanetaryDashboard structure
     overflow: visible;
   }
 
-  .belt-dashboard-container .mobile-planet-header {
+  .mobile-planet-header {
     display: block;
     padding-bottom: var(--space-4);
     border-bottom: 1px solid hsl(var(--primary) / 20%);
     margin-bottom: var(--space-4);
   }
 
-  .belt-dashboard-container .planet-title {
+  .dashboard-container .planet-title {
     font-size: var(--text-2xl);
     text-align: left;
   }
 
-  .belt-dashboard-container .cli-header {
+  .dashboard-container .cli-header {
     font-size: var(--text-xs);
     padding-bottom: var(--space-4);
   }

@@ -1,5 +1,0 @@
-/* BeltMissionCard.css — Belt-specific overrides on top of shared MissionCard.css classes */
-
-.mission-card.belt-mission-card {
-  padding: var(--space-6);
-}

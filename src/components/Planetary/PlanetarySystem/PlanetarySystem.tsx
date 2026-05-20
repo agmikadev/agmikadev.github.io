@@ -2,9 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import "./PlanetarySystem.css";
 import "./PlanetShapes.css";
 import { planets, type PlanetModel } from "../data/PlanetaryData";
-import { PlanetDashboard } from "./PlanetaryDashboard/PlanetaryDashboard";
-import { BeltNetwork } from "./BeltNetwork";
-import { BeltHUD } from "./BeltHUD";
+import { Dashboard } from "./Dashboard/Dashboard";
+import { BeltNetwork } from "./BeltNetwork/BeltNetwork";
 
 const CONFIG = {
   centerX: 50,
@@ -146,15 +145,17 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
       )}
 
       {selectedPlanet && selectedPlanet.shape === "belt" ? (
-      <BeltHUD
+      <Dashboard
+        mode="belt"
         onBack={() => {
           onSelectPlanet(null);
           setHoveredPlanetId(null);
         }}
       />
     ) : selectedPlanet ? (
-      <PlanetDashboard
+      <Dashboard
         planet={selectedPlanet}
+        mode="planet"
         onBack={() => {
           onSelectPlanet(null);
           setHoveredPlanetId(null);
