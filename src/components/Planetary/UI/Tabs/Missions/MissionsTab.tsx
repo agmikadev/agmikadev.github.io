@@ -24,7 +24,6 @@ export const MissionsTab: React.FC<MissionsTabProps> = ({ planet }) => {
         <MissionCard
           key={`${planet.id}-${mission.id}`}
           mission={mission}
-          planetId={planet.id}
         />
       ))}
     </div>
