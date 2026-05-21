@@ -129,18 +129,12 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
     <div className="solar-system-container" ref={containerRef}>
       {isBeltHovered && beltPlanet && !selectedPlanet && (
         <div
-          className="planet-label"
+          className="planet-label planet-label-tooltip"
           style={{
-            position: "fixed",
-            left: mousePos.x + 15,
-            top: mousePos.y + 15,
-            opacity: 1,
-            pointerEvents: "none",
-            zIndex: 9999,
-            color: beltPlanet.color,
-            borderColor: beltPlanet.color,
-            boxShadow: `0 0 10px ${beltPlanet.color}`,
-          }}
+            "--tooltip-x": `${mousePos.x + 15}px`,
+            "--tooltip-y": `${mousePos.y + 15}px`,
+            "--tooltip-color": beltPlanet.color,
+          } as React.CSSProperties}
         >
           {beltPlanet.name}
         </div>
@@ -159,34 +153,26 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
       />
       ) : (
         <>
-          <svg
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              pointerEvents: "none",
-              zIndex: 1,
-            }}
-            preserveAspectRatio="none"
-          >
+        <svg
+          className="solar-system-svg"
+          preserveAspectRatio="none"
+        >
             {physicalPlanets.map((p) => {
               const isHovered = hoveredPlanetId === p.id;
               const radius = p.orbitSize * CONFIG.orbitScale;
               return (
-                <ellipse
-                  key={`orbit-${p.id}`}
-                  cx={`${CONFIG.centerX}%`}
-                  cy={`${CONFIG.centerY}%`}
-                  rx={`${radius}%`}
-                  ry={`${radius}%`}
-                  fill="none"
-                  stroke={isHovered ? p.color : "rgba(255, 255, 255, 0.08)"}
-                  strokeWidth={isHovered ? 2 : 1}
-                  strokeOpacity={isHovered ? 1 : 0.5}
-                  style={{ transition: "all 0.3s ease" }}
-                />
+          <ellipse
+              key={`orbit-${p.id}`}
+              cx={`${CONFIG.centerX}%`}
+              cy={`${CONFIG.centerY}%`}
+              rx={`${radius}%`}
+              ry={`${radius}%`}
+              fill="none"
+              stroke={isHovered ? p.color : "rgba(255, 255, 255, 0.08)"}
+              strokeWidth={isHovered ? 2 : 1}
+              strokeOpacity={isHovered ? 1 : 0.5}
+              className="orbit-ellipse"
+            />
               );
             })}
 
@@ -211,7 +197,7 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
           stroke="transparent"
           strokeWidth="30"
           strokeLinejoin="bevel"
-          style={{ cursor: "pointer", pointerEvents: "stroke", outline: "none" }}
+          className="belt-hitbox-path"
           onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
           onMouseEnter={() => setHoveredPlanetId(beltPlanet.id)}
           onMouseLeave={() => setHoveredPlanetId(null)}
@@ -244,11 +230,10 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
               }}
               onMouseEnter={() => setHoveredPlanetId(p.id)}
               onMouseLeave={() => setHoveredPlanetId(null)}
-              style={{
-                "--p-color": p.color,
-                "--p-size": `${p.size * 2}px`,
-                zIndex: 10,
-              } as React.CSSProperties}
+        style={{
+          "--p-color": p.color,
+          "--p-size": `${p.size * 2}px`,
+        } as React.CSSProperties}
             >
               <div className={`planet-visual shape-${p.shape}`} />
               {p.hasAI && (
@@ -257,15 +242,10 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
                   <div className="ai-ring inner" />
                 </>
               )}
-              <div
-                className="planet-label"
-                style={{
-                  color: p.color,
-                  opacity: hoveredPlanetId === p.id ? 1 : 0,
-                  transform:
-                    hoveredPlanetId === p.id ? "translateY(0)" : "translateY(-10px)",
-                }}
-              >
+        <div
+          className={`planet-label ${hoveredPlanetId === p.id ? "planet-label-visible" : "planet-label-hidden"}`}
+          style={{ "--p-color": p.color } as React.CSSProperties}
+        >
                 {p.name}
               </div>
             </div>

@@ -53,9 +53,9 @@ export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched })
                 <Planet3D planet={beltPlanet} />
               </div>
               <div className="planet-info-content">
-                <h1 className="planet-title" style={{ color: themeColor, textShadow: `0 0 10px ${themeColor}` }}>
-                  <StarBurst size={22} /> {planetName}
-                </h1>
+        <h1 className="planet-title" style={{ "--planet-title-color": themeColor } as React.CSSProperties}>
+          <StarBurst size={22} /> {planetName}
+        </h1>
                 <div className="planet-debrief planet-debrief-yellow">
                   <strong>STATUS:</strong> {planetType}
                   {!isBelt && <br />}
@@ -75,10 +75,10 @@ export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched })
                   </TabsList>
                 </div>
                 <div className="dashboard-right-body">
-                  <div className="mobile-planet-header" style={{ "--planet-color": themeColor } as React.CSSProperties}>
-                    <h1 className="planet-title" style={{ color: themeColor, textShadow: `0 0 10px ${themeColor}` }}>
-                      <StarBurst size={22} /> {planetName}
-                    </h1>
+        <div className="mobile-planet-header">
+          <h1 className="planet-title" style={{ "--planet-title-color": themeColor } as React.CSSProperties}>
+            <StarBurst size={22} /> {planetName}
+          </h1>
                     <div className="planet-debrief planet-debrief-yellow">
                       <strong>STATUS:</strong> {planetType}
                     </div>

@@ -38,7 +38,6 @@ export const MainFrame: FC<MainFrameProps> = ({ children }) => {
           key={isDashboard ? `dashboard-${selectedPlanet!.id}` : "solar-view"}
           planetId={isDashboard ? selectedPlanet!.id : "ship-os"}
           command={cliCommand}
-          color="hsl(var(--primary))"
           onBack={isDashboard ? () => handleSelectPlanet(null) : undefined}
           onComplete={isDashboard ? handleFetchComplete : undefined}
         />

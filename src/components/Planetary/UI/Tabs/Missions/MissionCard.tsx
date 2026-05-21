@@ -2,7 +2,6 @@ import React from "react";
 import type { MissionType } from "../../../data/MissionData";
 import type { BeltMissionReport } from "../../../data/BeltData";
 import { Card } from "../../CardVariants";
-import { YELLOW } from "@/lib/ui-constants";
 import "./MissionCard.css";
 
 type MissionCardData = MissionType | BeltMissionReport;
@@ -16,10 +15,9 @@ export const MissionCard: React.FC<MissionCardProps> = ({ mission }) => {
     <Card
       variant="dark"
       className="mission-card"
-      style={{ borderLeft: `2px solid ${YELLOW}` }}
     >
       <div className="mission-header">
-        <h3 className="mission-title" style={{ color: YELLOW }}>
+        <h3 className="mission-title mission-title-accent">
           {mission.title}
         </h3>
         <span className="mission-year">{mission.year}</span>
@@ -30,7 +28,7 @@ export const MissionCard: React.FC<MissionCardProps> = ({ mission }) => {
       <p className="mission-summary">{mission.summary}</p>
 
       <div className="mission-section">
-        <span className="mission-section-label" style={{ color: YELLOW }}>
+        <span className="mission-section-label mission-section-label-accent">
           HIGHLIGHTS
         </span>
         <ul className="mission-highlights">
@@ -42,13 +40,13 @@ export const MissionCard: React.FC<MissionCardProps> = ({ mission }) => {
 
       <div className="mission-detail-grid">
         <div className="mission-detail-block">
-          <span className="mission-section-label" style={{ color: YELLOW }}>
+          <span className="mission-section-label mission-section-label-accent">
             DESAFIO
           </span>
           <p className="mission-detail-text">{mission.challenges}</p>
         </div>
         <div className="mission-detail-block">
-          <span className="mission-section-label" style={{ color: YELLOW }}>
+          <span className="mission-section-label mission-section-label-accent">
             IMPACTO
           </span>
           <p className="mission-detail-text">{mission.impact}</p>
@@ -80,8 +78,7 @@ export const MissionCard: React.FC<MissionCardProps> = ({ mission }) => {
               href={link.url}
               target="_blank"
               rel="noreferrer"
-              className="mission-link"
-              style={{ color: YELLOW }}
+              className="mission-link mission-link-accent"
             >
               <svg
                 width="12"

@@ -8,6 +8,7 @@
   opacity: 0.8;
   font-weight: bold;
   box-sizing: border-box;
+  color: hsl(var(--primary));
 }
 
 .cli-header .hud-btn {

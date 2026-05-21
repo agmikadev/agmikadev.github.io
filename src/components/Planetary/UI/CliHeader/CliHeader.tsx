@@ -5,7 +5,7 @@ import { HudButton } from "../HudButtons";
 
 interface CliHeaderProps {
   planetId?: string;
-  color: string;
+  color?: string;
   onComplete?: () => void;
   onBack?: () => void;
   speed?: number;
@@ -23,7 +23,6 @@ const BACK_ICON = (
 
 export const CliHeader: React.FC<CliHeaderProps> = ({
   planetId = "unknown",
-  color,
   onComplete,
   onBack,
   speed = 10,
@@ -32,13 +31,13 @@ export const CliHeader: React.FC<CliHeaderProps> = ({
   const terminalCommand = command || `❯ root@ship-os:~# fetch_archives --location="${planetId}"`;
 
   return (
-    <div className="cli-header" style={{ color }}>
+    <div className="cli-header">
       {onBack && (
         <HudButton
           variant="back"
           label="SYSTEM VIEW"
           onClick={onBack}
-          themeColor={color}
+          themeColor="hsl(var(--primary))"
           icon={BACK_ICON}
         />
       )}

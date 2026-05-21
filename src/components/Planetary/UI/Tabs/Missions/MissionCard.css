@@ -27,6 +27,14 @@
   text-transform: uppercase;
 }
 
+.mission-title-accent {
+  color: hsl(var(--primary));
+}
+
+.mission-section-label-accent {
+  color: hsl(var(--primary));
+}
+
 .mission-year {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
@@ -143,6 +151,10 @@
 
 .mission-link:hover {
   filter: brightness(1.5);
+}
+
+.mission-link-accent {
+  color: hsl(var(--primary));
 }
 
 /* --- 3. TAGS --- */

@@ -9,14 +9,7 @@ export const AlternativeTag: React.FC<AlternativeTagProps> = ({ label }) => {
 
   return (
     <span
-      className="alternative-tag"
-      style={{
-        border: hovered
-          ? "1px solid hsl(var(--primary) / 80%)"
-          : "1px solid hsl(var(--primary) / 12%)",
-        color: "hsl(var(--primary) / 80%)",
-        boxShadow: hovered ? "0 0 8px hsl(var(--primary) / 25%)" : undefined,
-      }}
+      className={`alternative-tag ${hovered ? "alternative-tag-hovered" : ""}`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
