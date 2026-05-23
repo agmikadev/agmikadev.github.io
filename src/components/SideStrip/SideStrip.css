@@ -10,8 +10,8 @@
 
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  padding: var(--space-6) var(--space-4);
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-2);
 
   background: transparent;
   border: var(--hud-border-yellow);
