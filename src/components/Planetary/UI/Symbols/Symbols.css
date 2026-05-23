@@ -50,7 +50,7 @@
   color: hsl(var(--primary));
   font-size: 0.7em;
   vertical-align: middle;
-  margin-right: 0.3em;
+  margin-right: var(--space-1);
   line-height: 1;
 }
 

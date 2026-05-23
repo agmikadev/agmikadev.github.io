@@ -2,13 +2,13 @@
 .mission-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-3);
 }
 
 /* --- 2. MISSION CARD BASE --- */
 .mission-card {
   position: relative;
-  padding: var(--space-6);
+  padding: var(--space-3);
 }
 
 /* --- HEADER --- */
@@ -16,12 +16,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 4px;
+  margin-bottom: var(--space-1);
 }
 
 .mission-title {
   font-family: var(--font-display);
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -50,7 +50,7 @@
   font-size: var(--text-xs);
   color: hsl(var(--muted-foreground));
   letter-spacing: 0.05em;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
 }
 
 /* --- SUMMARY --- */
@@ -58,7 +58,7 @@
   font-size: var(--text-sm);
   color: hsl(var(--hud-text-primary) / 70%);
   line-height: var(--leading-relaxed);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
   font-style: italic;
 }
 
@@ -69,13 +69,13 @@
   font-weight: bold;
   letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-1);
   display: block;
 }
 
 /* --- HIGHLIGHTS --- */
 .mission-section {
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
 }
 
 .mission-highlights {
@@ -84,14 +84,14 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-1);
 }
 
 .mission-highlights li {
   font-size: var(--text-sm);
   color: hsl(var(--hud-text-primary) / 85%);
   line-height: var(--leading-relaxed);
-  padding-left: var(--space-4);
+  padding-left: var(--space-3);
   position: relative;
 }
 
@@ -107,14 +107,14 @@
 .mission-detail-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-4);
-  margin-bottom: var(--space-3);
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
 }
 
 .mission-detail-block {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-1);
 }
 
 .mission-detail-text {
@@ -126,8 +126,8 @@
 
 /* --- AI WORKFLOW BLOCK --- */
 .mission-ai-block {
-  padding: var(--space-3);
-  margin-bottom: var(--space-3);
+  padding: var(--space-2);
+  margin-bottom: var(--space-2);
   background: rgba(169, 252, 3, 0.03);
   border: 1px solid rgba(169, 252, 3, 0.15);
   border-radius: var(--radius-md);
@@ -161,14 +161,14 @@
 .mission-tags-container {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-3);
-  margin-bottom: var(--space-4);
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
 }
 
 .mission-tag {
   display: inline-flex;
   align-items: center;
-  padding: var(--space-1) var(--space-3);
+  padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-xl);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
@@ -186,21 +186,21 @@
   color: hsl(var(--primary-foreground));
   border-color: var(--theme-color);
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5),
-    0 0 10px var(--theme-color);
+  0 0 10px var(--theme-color);
   cursor: pointer;
 }
 
 .mission-tag.active:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5),
-    inset 0 0 10px rgba(0, 0, 0, 0.5), 0 0 20px var(--theme-color);
+  inset 0 0 10px rgba(0, 0, 0, 0.5), 0 0 20px var(--theme-color);
 }
 
 /* --- 4. SPACING BETWEEN LINKS --- */
 .mission-links-container {
   display: flex;
-  gap: var(--space-5);
-  padding-top: var(--space-3);
+  gap: var(--space-4);
+  padding-top: var(--space-2);
   border-top: 1px solid hsl(var(--primary) / 15%);
 }
 

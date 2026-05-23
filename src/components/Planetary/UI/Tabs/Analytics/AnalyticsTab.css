@@ -1,24 +1,24 @@
 /* Wrapper Card handles bg/border/radius */
 .analytics-wrapper {
-  padding: var(--space-6);
+  padding: var(--space-3);
 }
 
 /* Container principal da aba */
 .analytics-container {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--space-4);
   font-family: var(--font-mono);
 }
 
 /* =========================================
-   1. CABEÇALHO PRINCIPAL DA ABA
-   ========================================= */
+1. CABEÇALHO PRINCIPAL DA ABA
+========================================= */
 .analytics-main-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
 }
 
 
@@ -46,7 +46,7 @@
 .analytics-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--space-4);
 }
 
 .analytics-row {
