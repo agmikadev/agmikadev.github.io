@@ -20,6 +20,27 @@
 - Fallback estático em todos os pontos de consumo.
 - Contador de visitas no side strip.
 
+## Refinement: two flows + canonical tech index
+
+After review, the interface was split into two explicit navigation flows:
+
+- **Compassado:** the default solar-system exploration. One single header switch
+  opens the express mode; the featured bar, side-strip project button and
+  onboarding project CTA were removed.
+- **Expresso:** a dense project index with search, area filters and a canonical
+  technology sidebar with project counts. This is the escape hatch for
+  recruiters who want to see everything done with a specific technology.
+- Technology tags were canonicalized in `data/technologies.ts`: aliases such as
+  "React 19", "React.js" and "React" now fold into "React"; generic labels such
+  as Git, UI Design and RLS are hidden from tags.
+- Cards show at most 4 canonical tags + count. Tags are clickable: on a planet
+  card they open the express mode filtered by that technology; inside express
+  mode they refine the active filter.
+- Verification: 1 express CTA on the home, 0 featured bars, 0 side-strip
+  project buttons, 11 projects in express mode, 37 canonical technologies in the
+  sidebar, React filter returns 5 projects, and the tag bridge opens the same
+  filter from a planet card.
+
 ## Infrastructure
 
 - D1 database: `star-system-portfolio`

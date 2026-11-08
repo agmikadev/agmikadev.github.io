@@ -72,7 +72,9 @@ Visually demonstrate full-stack development proficiency — including cutting-ed
 | Same HUD pattern for belt | Consistency — belt uses Projects + Skills tabs like planets | ✓ Good |
 | Theme as navigation, not lore | The space metaphor should help visitors find projects, not require learning fiction | ✓ Good — Phase 6 |
 | Real areas primary, codenames secondary | Recruiters should understand Design/Front-end/Back-end/Dados/Infra at a glance | ✓ Good — Phase 6 |
-| Projects-first Mission Log | Every project must be reachable in one click, independent of 3D exploration | ✓ Good — Phase 6 |
+| Two navigation flows | Compassado is for exploring; Expresso is a single-switch dense index for recruiters in a hurry | ✓ Good — Phase 6 refinement |
+| Canonical technology taxonomy | One canonical name per technology; aliases fold together so filtering shows every project | ✓ Good — Phase 6 refinement |
+| Tech tags as navigation | Clicking a tag opens/filters the express index by that technology | ✓ Good — Phase 6 refinement |
 | D1 content with static fallback | Content can be updated without redeploying, but the portfolio never depends on the Worker | ✓ Good — Phase 6 |
 
 ---

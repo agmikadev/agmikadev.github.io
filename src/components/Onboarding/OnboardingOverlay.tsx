@@ -1,17 +1,11 @@
 import React, { useState } from "react";
 import "./OnboardingOverlay.css";
 
-interface OnboardingOverlayProps {
-  onOpenProjects?: () => void;
-}
-
 /**
- * Compact first-visit card. It introduces the metaphor without blocking the
- * solar system, and offers a direct path to the project list.
+ * Compact first-visit card. It introduces the two navigation modes without
+ * blocking the solar system or competing with the single express-mode switch.
  */
-export const OnboardingOverlay: React.FC<OnboardingOverlayProps> = ({
-  onOpenProjects,
-}) => {
+export const OnboardingOverlay: React.FC = () => {
   const [visible, setVisible] = useState(() => {
     try {
       return !localStorage.getItem("hasSeenOnboarding:v2");
@@ -27,11 +21,6 @@ export const OnboardingOverlay: React.FC<OnboardingOverlayProps> = ({
       // Private mode can block storage; dismissal still works for this session.
     }
     setVisible(false);
-  };
-
-  const openProjects = () => {
-    dismiss();
-    onOpenProjects?.();
   };
 
   if (!visible) return null;
@@ -52,15 +41,13 @@ export const OnboardingOverlay: React.FC<OnboardingOverlayProps> = ({
         <h2 id="onboarding-title">MIKAEL ANGELO</h2>
         <p className="onboarding-role">Full Stack Developer</p>
         <p className="onboarding-copy">
-          Projetos reais em design, front-end, back-end, dados e IA. Cada planeta
-          é uma área; o cinturão é a camada de IA que atravessa todas elas.
+          Explore no seu ritmo: cada planeta é uma área e o cinturão é a camada
+          de IA. Se estiver com pressa, o botão <strong>MODO EXPRESSO</strong> no
+          topo vai direto aos projetos e à experiência por tecnologia.
         </p>
 
         <div className="onboarding-actions">
-          <button type="button" className="onboarding-primary" onClick={openProjects}>
-            VER PROJETOS
-          </button>
-          <button type="button" className="onboarding-secondary" onClick={dismiss}>
+          <button type="button" className="onboarding-primary" onClick={dismiss}>
             EXPLORAR SISTEMA
           </button>
         </div>

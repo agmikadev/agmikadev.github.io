@@ -5,11 +5,7 @@ import { AstronautHeader } from "./SubComponents/AstronautHeader";
 import { StarBurst } from "../Planetary/UI/Symbols";
 import { FooterInfo } from "./SubComponents/FooterInfo";
 
-interface SideStripProps {
-  onOpenProjects?: () => void;
-}
-
-export const SideStrip: React.FC<SideStripProps> = ({ onOpenProjects }) => {
+export const SideStrip: React.FC = () => {
 const [activeTab, setActiveTab] = useState<"about" | "stack">("about");
 const [isHovered, setIsHovered] = useState(false);
 
@@ -59,16 +55,16 @@ return (
         {activeTab === "stack" && (
           <div className="content-pane fade-in">
             <div className="tags-container">
-              <span className="tag">React 19</span>
+              <span className="tag">React</span>
               <span className="tag">Next.js</span>
               <span className="tag">TypeScript</span>
-              <span className="tag">Tailwind 4</span>
+              <span className="tag">Tailwind CSS</span>
               <span className="tag">React Router</span>
               <span className="tag">Node.js</span>
               <span className="tag">PostgreSQL</span>
               <span className="tag">Supabase</span>
               <span className="tag">Cloudflare D1</span>
-              <span className="tag">Workers</span>
+              <span className="tag">Cloudflare Workers</span>
               <span className="tag">Python</span>
               <span className="tag">Three.js</span>
             </div>
@@ -86,16 +82,6 @@ return (
       ></div>
 
     </div>
-
-    {onOpenProjects && (
-      <button
-        type="button"
-        className="side-projects-btn"
-        onClick={onOpenProjects}
-      >
-        <StarBurst size={14} /> VER TODOS OS PROJETOS
-      </button>
-    )}
 
     <FooterInfo />
 

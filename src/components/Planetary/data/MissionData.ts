@@ -38,12 +38,12 @@ export const MISSION_ARCHIVE: MissionType[] = [
     aiWorkflow:
       "Leitura do Figma via MCP/REST, extração de tokens, auditoria de design e implementação assistida por IA.",
     technologies: [
-      "Next.js 15",
-      "React 19",
+      "Next.js",
+      "React",
       "TypeScript",
-      "Tailwind CSS 4",
+      "Tailwind CSS",
       "Better Auth",
-      "Neon Postgres",
+      "PostgreSQL",
       "Drizzle ORM",
       "Cloudflare Workers",
       "Cloudflare D1",
@@ -79,13 +79,12 @@ export const MISSION_ARCHIVE: MissionType[] = [
     aiWorkflow:
       "Pipeline de OCR com pré-processamento, whitelist de dígitos e validação humana antes de persistir; amostras reais usadas como harness de regressão.",
     technologies: [
-      "React 19",
+      "React",
       "TypeScript",
       "Vite",
-      "Tailwind CSS 4",
+      "Tailwind CSS",
       "Supabase",
       "PostgreSQL",
-      "RLS",
       "Tesseract.js",
       "Vitest",
       "PWA",
@@ -121,13 +120,12 @@ export const MISSION_ARCHIVE: MissionType[] = [
     impact:
       "v1.0 + v1.1 em produção, com 20 planos concluídos e o fluxo observação → score → decisão fechado.",
     technologies: [
-      "React Router 7",
-      "React 19",
+      "React Router",
+      "React",
       "TypeScript",
-      "Tailwind CSS 4",
+      "Tailwind CSS",
       "Vite",
       "Turso",
-      "libSQL",
       "Recharts",
       "Zod",
       "React Hook Form",
@@ -160,12 +158,11 @@ export const MISSION_ARCHIVE: MissionType[] = [
     impact:
       "Design system navegável e publicado, usado como referência viva de consistência visual e arquitetura de tokens.",
     technologies: [
-      "React 19",
+      "React",
       "TypeScript",
       "Vite",
-      "CSS Variables",
+      "CSS",
       "Design Tokens",
-      "Design Systems",
       "Vercel",
     ],
     external_links: [
@@ -238,15 +235,14 @@ export const MISSION_ARCHIVE: MissionType[] = [
     aiWorkflow:
       "Desenvolvimento assistido por IA agentic: arquitetura de dados, otimização de geometrias Three.js, análise de performance e refatoração incremental com code review por IA.",
     technologies: [
-      "React.js",
+      "React",
       "TypeScript",
-      "Three.js (R3F)",
+      "Three.js",
       "Vite",
       "Tailwind CSS",
       "Cloudflare Workers",
       "Cloudflare D1",
       "GitHub Pages",
-      "UI Design",
     ],
     external_links: [
       {

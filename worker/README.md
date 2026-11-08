@@ -27,7 +27,9 @@ npm run db:seed:remote
 npm run deploy
 ```
 
-O `seed.sql` é gerado a partir da fonte TypeScript:
+O `seed.sql` é gerado a partir da fonte TypeScript. As tecnologias passam pelo
+canonicalizador (`src/components/Planetary/data/technologies.ts`), então o D1
+guarda nomes únicos como `React`, `Next.js` e `Cloudflare D1`:
 
 ```bash
 # na raiz do projeto

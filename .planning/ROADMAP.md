@@ -111,10 +111,11 @@ Plans:
 **Requirements**: CONTENT-04, UX-05, UX-06, DATA-01, DATA-02, DATA-03
 **Success Criteria** (what must be TRUE):
   1. SmartKitchen, HellzDashboard, FootScout e UIMaga aparecem como cards com imagem e links validados
-  2. Mission Log abre em um clique pelo header, side strip ou onboarding, com busca e filtros
+  2. Modo Expresso abre por um único switch no header e oferece busca, filtro por área e filtro por tecnologia com contagem
   3. Cada planeta mostra a área real como label primário e o codinome como secundário
-  4. Worker + D1 serve os 11 projetos e 5 relatórios de IA; visitas anônimas aparecem no side strip
-  5. Fallback estático mantém o portfólio funcional sem o Worker
+  4. Tags de tecnologia são canônicas e clicáveis: levam ao Modo Expresso filtrado pela tecnologia
+  5. Worker + D1 serve os 11 projetos e 5 relatórios de IA; visitas anônimas aparecem no side strip
+  6. Fallback estático mantém o portfólio funcional sem o Worker
 **Plans**: 1 plan
 
 Plans:

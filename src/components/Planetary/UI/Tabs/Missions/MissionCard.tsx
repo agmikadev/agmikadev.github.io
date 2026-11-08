@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import type { MissionType } from "../../../data/MissionData";
 import type { BeltMissionReport } from "../../../data/BeltData";
+import { canonicalTechList } from "../../../data/technologies";
+import { useProjectNavigation } from "../../../../MissionLog/ProjectNavigationContext";
 import { Card } from "../../CardVariants";
 import "./MissionCard.css";
 
@@ -9,18 +11,47 @@ type MissionCardData = MissionType | BeltMissionReport;
 interface MissionCardProps {
   mission: MissionCardData;
   compact?: boolean;
+  onTechClick?: (technology: string) => void;
 }
 
 export const MissionCard: React.FC<MissionCardProps> = ({
   mission,
   compact = false,
+  onTechClick,
 }) => {
   const [expanded, setExpanded] = useState(false);
+  const navigation = useProjectNavigation();
   const visibleHighlights = mission.highlights.slice(0, 3);
-  const visibleTechnologies = compact
-    ? mission.technologies.slice(0, 6)
-    : mission.technologies;
-  const hiddenTechnologies = mission.technologies.length - visibleTechnologies.length;
+  const canonicalTechnologies = canonicalTechList(mission.technologies);
+  const visibleTechnologies = canonicalTechnologies.slice(0, 4);
+  const hiddenTechnologies = canonicalTechnologies.length - visibleTechnologies.length;
+  const handleTechClick =
+    onTechClick ??
+    (navigation
+      ? (technology: string) => navigation.openProjects(technology)
+      : undefined);
+
+  const renderTechnology = (technology: string) => {
+    if (handleTechClick) {
+      return (
+        <button
+          key={technology}
+          type="button"
+          className="mission-tag active mission-tag-button"
+          onClick={() => handleTechClick(technology)}
+          aria-label={`Ver projetos com ${technology}`}
+        >
+          {technology}
+        </button>
+      );
+    }
+
+    return (
+      <span key={technology} className="mission-tag active">
+        {technology}
+      </span>
+    );
+  };
 
   return (
     <Card variant="dark" className={`mission-card ${compact ? "mission-card-compact" : ""}`}>
@@ -99,15 +130,24 @@ export const MissionCard: React.FC<MissionCardProps> = ({
                 <p className="mission-detail-text">{mission.aiWorkflow}</p>
               </div>
             )}
+
+            {hiddenTechnologies > 0 && (
+              <div className="mission-section">
+                <span className="mission-section-label mission-section-label-accent">
+                  MAIS TECNOLOGIAS
+                </span>
+                <div className="mission-tags-container">
+                  {canonicalTechnologies
+                    .slice(visibleTechnologies.length)
+                    .map(renderTechnology)}
+                </div>
+              </div>
+            )}
           </div>
         )}
 
         <div className="mission-tags-container">
-          {visibleTechnologies.map((tech) => (
-            <span key={tech} className="mission-tag active">
-              {tech}
-            </span>
-          ))}
+          {visibleTechnologies.map(renderTechnology)}
           {hiddenTechnologies > 0 && (
             <span className="mission-tag mission-tag-more">+{hiddenTechnologies}</span>
           )}

@@ -13,15 +13,12 @@ interface CliHeaderProps {
   command?: string;
 }
 
-const GRID_ICON = (
+const EXPRESS_ICON = (
   <svg
     width="16" height="16" viewBox="0 0 24 24" fill="none"
     stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
   >
-    <rect x="3" y="3" width="7" height="7" />
-    <rect x="14" y="3" width="7" height="7" />
-    <rect x="14" y="14" width="7" height="7" />
-    <rect x="3" y="14" width="7" height="7" />
+    <path d="M13 2 4.5 13.5H11l-1 8.5L19.5 10H13l0-8Z" />
   </svg>
 );
 
@@ -68,10 +65,10 @@ export const CliHeader: React.FC<CliHeaderProps> = ({
           type="button"
           className="cli-projects-btn"
           onClick={onOpenProjects}
-          aria-label="Abrir lista de projetos"
+          aria-label="Abrir modo expresso de projetos"
         >
-          {GRID_ICON}
-          <span>PROJETOS</span>
+          {EXPRESS_ICON}
+          <span>MODO EXPRESSO</span>
         </button>
       )}
     </div>

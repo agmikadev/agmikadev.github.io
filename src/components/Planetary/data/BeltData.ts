@@ -266,7 +266,7 @@ export const beltDataModel: BeltDataModel = {
       aiWorkflow:
         "IA usada para leitura do Figma, extração de tokens, auditoria de consistência e implementação assistida; a validação final foi feita com renders e testes.",
       technologies: [
-        "Figma MCP",
+        "Figma",
         "Next.js",
         "Cloudflare Workers",
         "Cloudflare D1",
@@ -300,11 +300,9 @@ export const beltDataModel: BeltDataModel = {
         "OCR + pré-processamento + validação humana; o pipeline foi iterado com amostras reais e testes automatizados de extração.",
       technologies: [
         "Tesseract.js",
-        "Computer Vision",
-        "React 19",
+        "React",
         "Supabase",
         "PostgreSQL",
-        "RLS",
       ],
       external_links: [
         { label: "Live Demo", url: "https://hellzguild.vercel.app" },
@@ -337,9 +335,8 @@ export const beltDataModel: BeltDataModel = {
       aiWorkflow:
         "IA utilizada para identificação de gargalos de renderização, sugestão de instanciamento para o cinturão, otimização de memória e refinamento de shaders GLSL via prompt engineering iterativo.",
       technologies: [
-        "React Three Fiber",
         "Three.js",
-        "Rolldown-Vite",
+        "Vite",
         "Cloudflare D1",
         "Prompt Engineering",
         "OpenCode",

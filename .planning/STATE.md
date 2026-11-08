@@ -11,8 +11,8 @@ See: .planning/PROJECT.md (updated 2026-05-17)
 
 Phase: 6 (Projects-First Content Refresh & D1)
 Plan: 1 of 1 in current phase
-Status: Completed phase 06 — projects-first reframe, recent cards, Mission Log, D1
-Last activity: 2026-11-08 — Phase 6 complete
+Status: Completed phase 06 — two navigation flows, canonical tech index, D1
+Last activity: 2026-11-08 — Phase 6 refinement: compassado/expresso flows + tech taxonomy
 
 Progress: [█████████████░] 65%
 
@@ -47,7 +47,10 @@ Recent decisions affecting current work:
 
 - AI as belt, not planet — Agentic skills cut across all dev stages, not a standalone stage
 - Theme as navigation, not lore — Real areas are primary; codenames are secondary
-- Projects-first — Featured bar + Mission Log put project names on the first paint
+- Two navigation flows — Compassado (system exploration) is the default; Expresso (dense project index) is a single header switch
+- One express CTA — featured bar, side-strip project button and onboarding project CTA were removed
+- Canonical technology taxonomy — aliases fold into one name; express mode has a tech sidebar with counts
+- Tech tags are navigation — clicking a tag opens/filters express mode by that technology
 - D1 content + static fallback — Content is editable without redeploying the frontend, but the site never depends on the Worker
 - Same HUD pattern for belt — Consistency — belt uses Projects + Skills tabs like planets
 - Real project links are validated before being attached to cards
@@ -72,5 +75,5 @@ Recent decisions affecting current work:
 ## Session Continuity
 
 Last session: 2026-11-08
-Stopped at: Phase 6 complete — projects-first content, recent cards, Mission Log, Cloudflare D1
+Stopped at: Phase 6 complete — compassado/expresso navigation, canonical technology index, Cloudflare D1
 Resume file: .planning/ROADMAP.md (next: Phase 4 polish, then Phase 5 production readiness)

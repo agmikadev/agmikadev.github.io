@@ -26,30 +26,7 @@
 
 .side-strip-container::-webkit-scrollbar { width: 0px; }
 
-/* --- DIRECT PROJECTS ENTRY --- */
-.side-projects-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-1);
-  width: 100%;
-  padding: var(--space-2);
-  background: hsl(var(--primary) / 8%);
-  border: 1px solid hsl(var(--primary) / 35%);
-  border-radius: var(--radius-md);
-  color: hsl(var(--primary));
-  font-family: var(--font-mono);
-  font-size: var(--text-micro);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  cursor: pointer;
-  transition: all var(--duration-fast) var(--ease-smooth);
-}
 
-.side-projects-btn:hover {
-  background: hsl(var(--primary) / 16%);
-  box-shadow: 0 0 18px hsl(var(--primary) / 18%);
-}
 
 /* =========================================
    1. HEADER COMPACTO

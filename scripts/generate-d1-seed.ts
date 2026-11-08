@@ -3,6 +3,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { MISSION_ARCHIVE } from "../src/components/Planetary/data/MissionData";
 import { beltDataModel } from "../src/components/Planetary/data/BeltData";
+import { canonicalTechList } from "../src/components/Planetary/data/technologies";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const outputPath = resolve(__dirname, "../worker/seed.sql");
@@ -38,7 +39,7 @@ function missionRow(
   ${sqlString(mission.challenges)},
   ${sqlString(mission.impact)},
   ${sqlString(mission.aiWorkflow)},
-  ${sqlJson(mission.technologies)},
+  ${sqlJson(canonicalTechList(mission.technologies))},
   ${sqlJson(mission.external_links ?? [])},
   ${sqlString(mission.imageUrl)},
   ${mission.featured ? 1 : 0},

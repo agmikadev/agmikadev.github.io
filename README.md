@@ -6,6 +6,16 @@ Back-end, Dados & Algoritmos, Infra & Deploy) e o cinturão representa a camada
 de **IA & Agentic**. Os projetos são o conteúdo principal — a metáfora espacial
 é a forma de navegar, não a história.
 
+## Dois fluxos de navegação
+
+- **Compassado (padrão):** explorar o sistema, abrir planetas, ler os cases e
+  navegar pelo cinturão de IA no tempo do visitante.
+- **Expresso:** um único atalho no header abre um índice denso de projetos com
+  busca, filtro por área e **filtro por tecnologia com contagem**. É o caminho
+  para recrutadores que só querem saber "o que você fez com React/D1/Supabase".
+- Tags de tecnologia são canônicas e clicáveis: clicar em `React` em um card
+  abre o Modo Expresso já filtrado por React.
+
 - **Live:** https://agmikadev.github.io/
 - **Repositório:** https://github.com/agmikadev/agmikadev.github.io
 - **API (Cloudflare Worker):** https://star-system-portfolio-api.agmikadesign.workers.dev
@@ -23,7 +33,7 @@ de **IA & Agentic**. Os projetos são o conteúdo principal — a metáfora espa
 ```
 src/
 ├── components/
-│   ├── MissionLog/            # Lista completa de projetos (filtros + busca)
+│   ├── MissionLog/            # Modo Expresso: índice, filtros e tech sidebar
 │   ├── Planetary/
 │   │   ├── data/              # Fonte estática: planetas, projetos, belt
 │   │   ├── PlanetarySystem/   # Sistema solar + dashboard
@@ -56,6 +66,7 @@ Os dados estáticos ficam em:
 - `src/components/Planetary/data/MissionData.ts` — projetos por área
 - `src/components/Planetary/data/BeltData.ts` — ferramentas e relatórios de IA
 - `src/components/Planetary/data/PlanetaryData.ts` — áreas, stack e proficiência
+- `src/components/Planetary/data/technologies.ts` — taxonomia canônica de tecnologias, aliases e categorias
 
 O frontend busca o conteúdo no D1 e usa esses arquivos como fallback. Para
 atualizar o banco:

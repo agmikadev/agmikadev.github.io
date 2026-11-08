@@ -36,8 +36,10 @@
 ### Content Refresh & D1 (Phase 6)
 
 - [x] **CONTENT-04**: SmartKitchen, HellzDashboard, FootScout and UIMaga are cards with images, stacks and validated links
-- [x] **UX-05**: Mission Log is reachable in one click from the header, side strip and onboarding, with search and area filters
+- [x] **UX-05**: Express mode is reachable through a single header switch, with search, area filters and a technology filter
 - [x] **UX-06**: Each planet shows its real area as the primary label and its codename as secondary
+- [x] **UX-07**: Two explicit navigation flows exist — compassado (system exploration) and expresso (dense project index)
+- [x] **CONTENT-05**: Technology tags are canonical and clickable; the express sidebar groups technologies by category with project counts
 - [x] **DATA-01**: Cloudflare Worker + D1 serves projects, belt reports and anonymous visit counts
 - [x] **DATA-02**: Static archive remains a full fallback when the Worker is unavailable
 - [x] **DATA-03**: Anonymous visit counter appears in the side strip without cookies
@@ -99,13 +101,15 @@
 | CONTENT-04 | Phase 6 | Complete |
 | UX-05 | Phase 6 | Complete |
 | UX-06 | Phase 6 | Complete |
+| UX-07 | Phase 6 | Complete |
+| CONTENT-05 | Phase 6 | Complete |
 | DATA-01 | Phase 6 | Complete |
 | DATA-02 | Phase 6 | Complete |
 | DATA-03 | Phase 6 | Complete |
 
 **Coverage:**
-- v1 requirements: 26 total
-- Mapped to phases: 26
+- v1 requirements: 28 total
+- Mapped to phases: 28
 - Unmapped: 0 ✓
 
 ---

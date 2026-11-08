@@ -7,7 +7,13 @@
 **Stack:** React 19 + TypeScript + Rolldown-Vite + Three.js/R3F + drei
 **Deployment:** GitHub Pages (static SPA)
 
-**What This Is:** A 3D space portfolio where planets represent real development areas (Design → Front-end → Back-end → Dados & Algoritmos → Infra & Deploy). An AI "sonda network" belt connects all planets, representing agentic skills. The theme is navigation, not lore: projects are the main content and are always one click away through the Mission Log.
+**What This Is:** A 3D space portfolio where planets represent real development areas (Design → Front-end → Back-end → Dados & Algoritmos → Infra & Deploy). An AI "sonda network" belt connects all planets, representing agentic skills. The theme is navigation, not lore.
+
+**Two navigation flows:**
+- **Compassado (default):** explore the solar system, planets, case cards and AI belt at the visitor's pace.
+- **Expresso:** a single header switch opens a dense project index with search, area filters and a canonical technology sidebar with counts. This is the escape hatch for recruiters who only want experience with a specific technology.
+
+Technology tags are canonical (see `src/components/Planetary/data/technologies.ts`); aliases like "React 19"/"React.js" fold into "React". Clicking a tech tag opens the Express mode filtered by that technology.
 
 **Core Value:** Visually demonstrate full-stack development proficiency — including cutting-edge agentic/AI skills — in a way that impresses both technical peers and hiring managers.
 
@@ -48,10 +54,10 @@ This project uses the Get Shit Done (GSD) workflow. All work must follow these r
 ```
 src/
 ├── components/
-│   ├── MainFrame.tsx          # Layout shell + featured bar + Mission Log state
-│   ├── MissionLog/            # Global project index (search + area filters)
+│   ├── MainFrame.tsx          # Layout shell + express mode + navigation state
+│   ├── MissionLog/            # Express mode: dense index, filters, tech sidebar
 │   ├── Planetary/             # 3D planetary system
-│   │   ├── data/              # Static archive + D1 hooks
+│   │   ├── data/              # Static archive, D1 hooks, canonical technologies
 │   │   ├── PlanetarySystem/   # Orbital animation + planet rendering
 │   │   └── UI/                # HUD components (Tabs, cards, CLI, symbols)
 │   ├── SideStrip/             # Profile, stack, links, CV and visit count
