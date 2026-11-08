@@ -1,6 +1,8 @@
 // BeltData.ts — S.O.N.D.A. NETWORK: AI/Agentic tools, proficiency metrics, and mission reports
 // Separate from planet data; consumed by Phase 3 (BeltHUD)
 
+import type { MissionPerspectives } from "./perspectives";
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -36,6 +38,7 @@ export interface BeltMissionReport {
   external_links?: { label: string; url: string }[];
   imageUrl?: string;
   featured?: boolean;
+  perspectives?: MissionPerspectives;
 }
 
 export interface BeltDataModel {

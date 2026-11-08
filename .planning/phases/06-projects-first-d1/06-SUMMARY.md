@@ -41,6 +41,24 @@ After review, the interface was split into two explicit navigation flows:
   filter returns 5 projects, and the tag bridge opens the same filter from a
   planet card.
 
+## Refinement: per-planet perspectives
+
+Multi-area projects now have a `perspectives` map keyed by planet id in
+`src/components/Planetary/data/perspectives.ts`. The same project renders a
+different role, summary, highlights, challenge/impact and stack depending on the
+selected planet:
+
+- SmartKitchen in DESIGN → Product Designer & Design Systems
+- SmartKitchen in FRONT-END → Frontend Engineer
+- SmartKitchen in BACK-END → Backend Engineer
+- SmartKitchen in INFRA → Deploy & Infra
+
+The planet card shows an `ÓTICA // AREA` label and a `CONTRIBUIÇÃO EM AREA`
+section. In SALTO, a specific area filter uses that area's perspective for each
+row. D1 stores the perspectives as JSON in the `perspectives` column
+(migration `0002_perspectives.sql`); the frontend also falls back to the static
+map when the API cache is stale.
+
 ## Infrastructure
 
 - D1 database: `star-system-portfolio`

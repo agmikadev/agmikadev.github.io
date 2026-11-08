@@ -114,8 +114,9 @@ Plans:
   2. Salto abre por um único switch no header e oferece busca, filtro por área e filtro por tecnologia com contagem
   3. Cada planeta mostra a área real como label primário e o codinome como secundário
   4. Tags de tecnologia são canônicas e clicáveis: levam ao Salto filtrado pela tecnologia
-  5. Worker + D1 serve os 11 projetos e 5 relatórios de IA; visitas anônimas aparecem no side strip
-  6. Fallback estático mantém o portfólio funcional sem o Worker
+  5. Projetos multiárea mudam papel, resumo, destaques e stack conforme o planeta selecionado
+  6. Worker + D1 serve os 11 projetos, 5 relatórios de IA e perspectivas por planeta; visitas anônimas aparecem no side strip
+  7. Fallback estático mantém o portfólio funcional sem o Worker
 **Plans**: 1 plan
 
 Plans:

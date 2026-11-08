@@ -27,6 +27,8 @@ const PlanetMissions: React.FC<{ planet: PlanetModel }> = ({ planet }) => {
         <MissionCard
           key={`${planet.id}-${mission.id}`}
           mission={mission}
+          planetId={planet.id}
+          perspectiveLabel={planet.area}
         />
       ))}
     </div>

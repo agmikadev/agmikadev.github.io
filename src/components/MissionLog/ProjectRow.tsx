@@ -1,18 +1,30 @@
 import React, { useState } from "react";
 import type { MissionType } from "../Planetary/data/MissionData";
 import { canonicalTechList } from "../Planetary/data/technologies";
+import { resolveMissionPerspective } from "../Planetary/data/perspectives";
 import "./ProjectRow.css";
 
 interface ProjectRowProps {
   mission: MissionType;
   onTechClick: (technology: string) => void;
+  perspectivePlanetId?: string;
+  perspectiveLabel?: string;
 }
 
 export const ProjectRow: React.FC<ProjectRowProps> = ({
   mission,
   onTechClick,
+  perspectivePlanetId,
+  perspectiveLabel,
 }) => {
   const [expanded, setExpanded] = useState(false);
+  const perspective = resolveMissionPerspective(mission, perspectivePlanetId);
+  const role = perspective?.role ?? mission.role;
+  const summary = perspective?.summary ?? mission.summary;
+  const highlights = perspective?.highlights ?? mission.highlights;
+  const challenges = perspective?.challenges ?? mission.challenges;
+  const impact = perspective?.impact ?? mission.impact;
+  const aiWorkflow = perspective?.aiWorkflow ?? mission.aiWorkflow;
   const technologies = canonicalTechList(mission.technologies);
   const visibleTechnologies = technologies.slice(0, 5);
   const hiddenCount = technologies.length - visibleTechnologies.length;
@@ -35,12 +47,17 @@ export const ProjectRow: React.FC<ProjectRowProps> = ({
         <div className="project-row-heading">
           <h3 className="project-row-title">{mission.title}</h3>
           <div className="project-row-meta">
-            <span>{mission.role}</span>
+            {perspective && (
+              <span className="project-row-perspective">
+                ÓTICA // {perspectiveLabel ?? perspectivePlanetId}
+              </span>
+            )}
+            <span>{role}</span>
             <span>{mission.year}</span>
           </div>
         </div>
 
-        <p className="project-row-summary">{mission.summary}</p>
+        <p className="project-row-summary">{summary}</p>
 
         <div className="project-row-techs">
           {visibleTechnologies.map(renderTech)}
@@ -78,9 +95,13 @@ export const ProjectRow: React.FC<ProjectRowProps> = ({
       {expanded && (
         <div className="project-row-details">
           <div className="project-row-detail-block">
-            <span className="project-row-detail-label">O QUE FOI FEITO</span>
+            <span className="project-row-detail-label">
+              {perspective
+                ? `CONTRIBUIÇÃO EM ${(perspectiveLabel ?? perspectivePlanetId ?? "ÁREA").toUpperCase()}`
+                : "O QUE FOI FEITO"}
+            </span>
             <ul className="project-row-highlights">
-              {mission.highlights.slice(0, 4).map((highlight, index) => (
+              {highlights.slice(0, 4).map((highlight, index) => (
                 <li key={index}>{highlight}</li>
               ))}
             </ul>
@@ -88,18 +109,18 @@ export const ProjectRow: React.FC<ProjectRowProps> = ({
 
           <div className="project-row-detail-block">
             <span className="project-row-detail-label">DESAFIO</span>
-            <p>{mission.challenges}</p>
+            <p>{challenges}</p>
           </div>
 
           <div className="project-row-detail-block">
             <span className="project-row-detail-label">IMPACTO</span>
-            <p>{mission.impact}</p>
+            <p>{impact}</p>
           </div>
 
-          {mission.aiWorkflow && (
+          {aiWorkflow && (
             <div className="project-row-detail-block">
               <span className="project-row-detail-label">AI WORKFLOW</span>
-              <p>{mission.aiWorkflow}</p>
+              <p>{aiWorkflow}</p>
             </div>
           )}
 

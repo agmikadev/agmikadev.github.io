@@ -51,6 +51,7 @@ Recent decisions affecting current work:
 - One Salto CTA — featured bar, side-strip project button and onboarding project CTA were removed
 - Canonical technology taxonomy — aliases fold into one name; Salto has a tech sidebar with counts
 - Tech tags are navigation — clicking a tag opens/filters SALTO by that technology
+- Per-planet perspective — the same project changes role, summary, highlights and stack by area
 - D1 content + static fallback — Content is editable without redeploying the frontend, but the site never depends on the Worker
 - Same HUD pattern for belt — Consistency — belt uses Projects + Skills tabs like planets
 - Real project links are validated before being attached to cards

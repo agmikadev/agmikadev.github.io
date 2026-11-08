@@ -10,6 +10,12 @@ const API_BASE = (
 
 const REQUEST_TIMEOUT_MS = 3500;
 
+/**
+ * Bump this when the D1 seed changes so the browser/edge cache is bypassed
+ * immediately after a content update.
+ */
+const DATA_VERSION = "2026-11-08-perspectives";
+
 interface MissionsResponse {
   missions?: unknown;
   count?: number;
@@ -62,9 +68,9 @@ function asMissionList(value: unknown): MissionType[] | null {
  */
 export async function loadMissions(): Promise<MissionType[] | null> {
   if (!missionsPromise) {
-    missionsPromise = request<MissionsResponse>("/v1/missions").then((data) =>
-      asMissionList(data?.missions),
-    );
+    missionsPromise = request<MissionsResponse>(
+      `/v1/missions?v=${DATA_VERSION}`,
+    ).then((data) => asMissionList(data?.missions));
   }
   return missionsPromise;
 }
@@ -72,7 +78,7 @@ export async function loadMissions(): Promise<MissionType[] | null> {
 export async function loadBeltMissions(): Promise<BeltMissionReport[] | null> {
   if (!beltMissionsPromise) {
     beltMissionsPromise = request<MissionsResponse>(
-      "/v1/missions?belt=1",
+      `/v1/missions?belt=1&v=${DATA_VERSION}`,
     ).then((data) => asMissionList(data?.missions) as BeltMissionReport[] | null);
   }
   return beltMissionsPromise;

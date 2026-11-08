@@ -15,6 +15,8 @@
 
 Technology tags are canonical (see `src/components/Planetary/data/technologies.ts`); aliases like "React 19"/"React.js" fold into "React". Clicking a tech tag opens the Salto index filtered by that technology.
 
+**Per-planet perspectives:** multi-area projects carry a `perspectives` map keyed by planet id (see `src/components/Planetary/data/perspectives.ts`). The same project changes role, summary, highlights, challenge/impact and stack depending on the selected planet. In SALTO, an active area filter uses that area's perspective.
+
 **Core Value:** Visually demonstrate full-stack development proficiency — including cutting-edge agentic/AI skills — in a way that impresses both technical peers and hiring managers.
 
 ## GSD Workflow Enforcement
@@ -57,7 +59,7 @@ src/
 │   ├── MainFrame.tsx          # Layout shell + Salto mode + navigation state
 │   ├── MissionLog/            # Salto: dense index, filters, tech sidebar
 │   ├── Planetary/             # 3D planetary system
-│   │   ├── data/              # Static archive, D1 hooks, canonical technologies
+│   │   ├── data/              # Archive, D1 hooks, canonical technologies, perspectives
 │   │   ├── PlanetarySystem/   # Orbital animation + planet rendering
 │   │   └── UI/                # HUD components (Tabs, cards, CLI, symbols)
 │   ├── SideStrip/             # Profile, stack, links, CV and visit count

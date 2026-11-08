@@ -27,7 +27,7 @@ function missionRow(
 ): string {
   return `INSERT OR REPLACE INTO missions (
   id, title, year, role, summary, planet_ids, highlights, challenges, impact,
-  ai_workflow, technologies, links, image_url, featured, is_belt, sort_order
+  ai_workflow, technologies, links, perspectives, image_url, featured, is_belt, sort_order
 ) VALUES (
   ${sqlString(mission.id)},
   ${sqlString(mission.title)},
@@ -41,6 +41,7 @@ function missionRow(
   ${sqlString(mission.aiWorkflow)},
   ${sqlJson(canonicalTechList(mission.technologies))},
   ${sqlJson(mission.external_links ?? [])},
+  ${sqlJson(mission.perspectives ?? {})},
   ${sqlString(mission.imageUrl)},
   ${mission.featured ? 1 : 0},
   ${isBelt},

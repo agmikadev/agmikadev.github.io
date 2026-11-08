@@ -16,6 +16,7 @@ interface MissionRow {
   ai_workflow: string | null;
   technologies: string;
   links: string;
+  perspectives: string;
   image_url: string | null;
   featured: number;
   is_belt: number;
@@ -92,6 +93,19 @@ function parseJsonArray<T>(value: string | null): T[] {
   }
 }
 
+function parseJsonObject<T>(value: string | null): T | undefined {
+  if (!value) return undefined;
+  try {
+    const parsed: unknown = JSON.parse(value);
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+      return undefined;
+    }
+    return parsed as T;
+  } catch {
+    return undefined;
+  }
+}
+
 function parseMission(row: MissionRow) {
   return {
     id: row.id,
@@ -106,6 +120,7 @@ function parseMission(row: MissionRow) {
     aiWorkflow: row.ai_workflow ?? undefined,
     technologies: parseJsonArray<string>(row.technologies),
     external_links: parseJsonArray<MissionLink>(row.links),
+    perspectives: parseJsonObject<Record<string, unknown>>(row.perspectives),
     imageUrl: row.image_url ?? undefined,
     featured: row.featured === 1,
     isBelt: row.is_belt === 1,

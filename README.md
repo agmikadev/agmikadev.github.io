@@ -17,6 +17,17 @@ de **IA & Agentic**. Os projetos são o conteúdo principal — a metáfora espa
 - Tags de tecnologia são canônicas e clicáveis: clicar em `React` em um card
   abre o Salto já filtrado por React.
 
+### Perspectivas por planeta
+
+Projetos multiárea têm uma leitura própria em cada planeta. O mesmo SmartKitchen
+aparece como **Product Designer** em DESIGN, **Frontend Engineer** em FRONT-END,
+**Backend Engineer** em BACK-END e **Deploy & Infra** em INFRA. Papel, resumo,
+destaques, desafio/impacto e stack mudam conforme a área selecionada.
+
+As perspectivas ficam em `src/components/Planetary/data/perspectives.ts` e são
+enviadas ao D1 na coluna `perspectives` (JSON por planeta). No Salto, quando um
+filtro de área está ativo, as linhas usam a perspectiva daquela área.
+
 - **Live:** https://agmikadev.github.io/
 - **Repositório:** https://github.com/agmikadev/agmikadev.github.io
 - **API (Cloudflare Worker):** https://star-system-portfolio-api.agmikadesign.workers.dev
@@ -68,6 +79,7 @@ Os dados estáticos ficam em:
 - `src/components/Planetary/data/BeltData.ts` — ferramentas e relatórios de IA
 - `src/components/Planetary/data/PlanetaryData.ts` — áreas, stack e proficiência
 - `src/components/Planetary/data/technologies.ts` — taxonomia canônica de tecnologias, aliases e categorias
+- `src/components/Planetary/data/perspectives.ts` — leitura por planeta de cada projeto multiárea
 
 O frontend busca o conteúdo no D1 e usa esses arquivos como fallback. Para
 atualizar o banco:

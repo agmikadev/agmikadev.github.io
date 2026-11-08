@@ -55,6 +55,14 @@
   color: hsl(var(--primary) / 40%);
 }
 
+.project-row-perspective {
+  padding: 1px 6px;
+  border: 1px solid hsl(var(--primary) / 30%);
+  border-radius: var(--radius-full);
+  color: hsl(var(--primary)) !important;
+  letter-spacing: 0.06em;
+}
+
 .project-row-summary {
   margin: 0;
   font-size: var(--text-xs);

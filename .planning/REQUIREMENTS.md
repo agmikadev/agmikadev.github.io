@@ -40,6 +40,7 @@
 - [x] **UX-06**: Each planet shows its real area as the primary label and its codename as secondary
 - [x] **UX-07**: Two named navigation flows exist — ÓRBITA (compassado, system exploration) and SALTO (expresso, dense project index)
 - [x] **CONTENT-05**: Technology tags are canonical and clickable; the Salto sidebar groups technologies by category with project counts
+- [x] **CONTENT-06**: Multi-area projects have per-planet perspectives (role, summary, highlights and stack change by area)
 - [x] **DATA-01**: Cloudflare Worker + D1 serves projects, belt reports and anonymous visit counts
 - [x] **DATA-02**: Static archive remains a full fallback when the Worker is unavailable
 - [x] **DATA-03**: Anonymous visit counter appears in the side strip without cookies
@@ -103,13 +104,14 @@
 | UX-06 | Phase 6 | Complete |
 | UX-07 | Phase 6 | Complete |
 | CONTENT-05 | Phase 6 | Complete |
+| CONTENT-06 | Phase 6 | Complete |
 | DATA-01 | Phase 6 | Complete |
 | DATA-02 | Phase 6 | Complete |
 | DATA-03 | Phase 6 | Complete |
 
 **Coverage:**
-- v1 requirements: 28 total
-- Mapped to phases: 28
+- v1 requirements: 29 total
+- Mapped to phases: 29
 - Unmapped: 0 ✓
 
 ---

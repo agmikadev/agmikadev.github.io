@@ -24,6 +24,7 @@ Visually demonstrate full-stack development proficiency — including cutting-ed
 - ✓ Projects-first Mission Log with search, area filters and card links — Phase 6
 - ✓ Real area labels as primary navigation (Design, Front-end, Back-end, Dados, Infra) — Phase 6
 - ✓ Cloudflare Worker + D1 content API with static fallback and anonymous visit counter — Phase 6
+- ✓ Per-planet perspectives for multi-area projects (role, summary, highlights and stack change by area) — Phase 6 refinement
 
 ### Active
 
@@ -75,6 +76,7 @@ Visually demonstrate full-stack development proficiency — including cutting-ed
 | Two navigation flows | ÓRBITA is for exploring; SALTO is a single-switch dense index for recruiters in a hurry | ✓ Good — Phase 6 refinement |
 | Canonical technology taxonomy | One canonical name per technology; aliases fold together so filtering shows every project | ✓ Good — Phase 6 refinement |
 | Tech tags as navigation | Clicking a tag opens/filters the Salto index by that technology | ✓ Good — Phase 6 refinement |
+| Per-planet perspective | The same project has a different role, summary, highlights and stack under each planet | ✓ Good — Phase 6 refinement |
 | D1 content with static fallback | Content can be updated without redeploying, but the portfolio never depends on the Worker | ✓ Good — Phase 6 |
 
 ---

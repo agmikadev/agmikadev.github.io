@@ -100,6 +100,7 @@ export const MissionLog: React.FC<MissionLogProps> = ({
 
   const hasFilters =
     activeArea !== "all" || activeTech !== "all" || query.trim().length > 0;
+  const activeAreaPlanet = AREAS.find((area) => area.id === activeArea);
 
   const clearFilters = () => {
     setActiveArea("all");
@@ -272,6 +273,8 @@ export const MissionLog: React.FC<MissionLogProps> = ({
                     key={mission.id}
                     mission={mission}
                     onTechClick={setActiveTech}
+                    perspectivePlanetId={activeArea !== "all" ? activeArea : undefined}
+                    perspectiveLabel={activeAreaPlanet?.area}
                   />
                 ))
               )}

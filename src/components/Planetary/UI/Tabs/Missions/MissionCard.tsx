@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import type { MissionType } from "../../../data/MissionData";
 import type { BeltMissionReport } from "../../../data/BeltData";
 import { canonicalTechList } from "../../../data/technologies";
+import { resolveMissionPerspective } from "../../../data/perspectives";
 import { useProjectNavigation } from "../../../../MissionLog/ProjectNavigationContext";
 import { Card } from "../../CardVariants";
 import "./MissionCard.css";
@@ -11,18 +12,30 @@ type MissionCardData = MissionType | BeltMissionReport;
 interface MissionCardProps {
   mission: MissionCardData;
   compact?: boolean;
+  planetId?: string;
+  perspectiveLabel?: string;
   onTechClick?: (technology: string) => void;
 }
 
 export const MissionCard: React.FC<MissionCardProps> = ({
   mission,
   compact = false,
+  planetId,
+  perspectiveLabel,
   onTechClick,
 }) => {
   const [expanded, setExpanded] = useState(false);
   const navigation = useProjectNavigation();
-  const visibleHighlights = mission.highlights.slice(0, 3);
-  const canonicalTechnologies = canonicalTechList(mission.technologies);
+  const perspective = resolveMissionPerspective(mission, planetId);
+  const role = perspective?.role ?? mission.role;
+  const summary = perspective?.summary ?? mission.summary;
+  const highlights = perspective?.highlights ?? mission.highlights;
+  const challenges = perspective?.challenges ?? mission.challenges;
+  const impact = perspective?.impact ?? mission.impact;
+  const aiWorkflow = perspective?.aiWorkflow ?? mission.aiWorkflow;
+  const technologies = perspective?.technologies ?? mission.technologies;
+  const visibleHighlights = highlights.slice(0, 3);
+  const canonicalTechnologies = canonicalTechList(technologies);
   const visibleTechnologies = canonicalTechnologies.slice(0, 4);
   const hiddenTechnologies = canonicalTechnologies.length - visibleTechnologies.length;
   const handleTechClick =
@@ -54,7 +67,16 @@ export const MissionCard: React.FC<MissionCardProps> = ({
   };
 
   return (
-    <Card variant="dark" className={`mission-card ${compact ? "mission-card-compact" : ""}`}>
+    <Card
+      variant="dark"
+      className={`mission-card ${compact ? "mission-card-compact" : ""} ${perspective ? "mission-card-perspective" : ""}`}
+    >
+      {perspective && (
+        <div className="mission-perspective">
+          ÓTICA // {perspectiveLabel ?? planetId}
+        </div>
+      )}
+
       {mission.imageUrl && (
         <div className="mission-image-wrapper">
           <img
@@ -72,18 +94,20 @@ export const MissionCard: React.FC<MissionCardProps> = ({
           <div className="mission-heading">
             <h3 className="mission-title mission-title-accent">{mission.title}</h3>
             <div className="mission-role">
-              {mission.role.toUpperCase()}
+              {role.toUpperCase()}
               {!mission.imageUrl && ` · ${mission.year}`}
             </div>
           </div>
           {!mission.imageUrl && <span className="mission-year">{mission.year}</span>}
         </div>
 
-        <p className="mission-summary">{mission.summary}</p>
+        <p className="mission-summary">{summary}</p>
 
         <div className="mission-section">
           <span className="mission-section-label mission-section-label-accent">
-            O QUE FOI FEITO
+            {perspective
+              ? `CONTRIBUIÇÃO EM ${(perspectiveLabel ?? planetId ?? "ÁREA").toUpperCase()}`
+              : "O QUE FOI FEITO"}
           </span>
           <ul className="mission-highlights">
             {visibleHighlights.map((highlight, index) => (
@@ -94,13 +118,13 @@ export const MissionCard: React.FC<MissionCardProps> = ({
 
         {expanded && (
           <div className="mission-details">
-            {mission.highlights.length > visibleHighlights.length && (
+            {highlights.length > visibleHighlights.length && (
               <div className="mission-section">
                 <span className="mission-section-label mission-section-label-accent">
                   MAIS DESTAQUES
                 </span>
                 <ul className="mission-highlights">
-                  {mission.highlights.slice(visibleHighlights.length).map((highlight, index) => (
+                  {highlights.slice(visibleHighlights.length).map((highlight, index) => (
                     <li key={index}>{highlight}</li>
                   ))}
                 </ul>
@@ -112,22 +136,22 @@ export const MissionCard: React.FC<MissionCardProps> = ({
                 <span className="mission-section-label mission-section-label-accent">
                   DESAFIO
                 </span>
-                <p className="mission-detail-text">{mission.challenges}</p>
+                <p className="mission-detail-text">{challenges}</p>
               </div>
               <div className="mission-detail-block">
                 <span className="mission-section-label mission-section-label-accent">
                   IMPACTO
                 </span>
-                <p className="mission-detail-text">{mission.impact}</p>
+                <p className="mission-detail-text">{impact}</p>
               </div>
             </div>
 
-            {mission.aiWorkflow && (
+            {aiWorkflow && (
               <div className="mission-ai-block">
                 <span className="mission-section-label mission-ai-label">
                   AI WORKFLOW
                 </span>
-                <p className="mission-detail-text">{mission.aiWorkflow}</p>
+                <p className="mission-detail-text">{aiWorkflow}</p>
               </div>
             )}
 

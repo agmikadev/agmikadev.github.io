@@ -1,3 +1,8 @@
+import {
+  MISSION_PERSPECTIVES,
+  type MissionPerspectives,
+} from "./perspectives";
+
 export interface MissionType {
   id: string;
   title: string;
@@ -13,9 +18,10 @@ export interface MissionType {
   external_links?: { label: string; url: string }[];
   imageUrl?: string;
   featured?: boolean;
+  perspectives?: MissionPerspectives;
 }
 
-export const MISSION_ARCHIVE: MissionType[] = [
+const MISSIONS: MissionType[] = [
   {
     id: "smartkitchen-01",
     title: "SmartKitchen — Gestão de Estoque",
@@ -424,3 +430,16 @@ export const MISSION_ARCHIVE: MissionType[] = [
     ],
   },
 ];
+
+/**
+ * The archive is enriched with the per-planet perspectives. Keeping the array
+ * separate makes the project content easy to read while the map holds the
+ * area-specific narratives.
+ */
+export const MISSION_ARCHIVE: MissionType[] = MISSIONS.map((mission) => ({
+  ...mission,
+  perspectives: {
+    ...MISSION_PERSPECTIVES[mission.id],
+    ...mission.perspectives,
+  },
+}));

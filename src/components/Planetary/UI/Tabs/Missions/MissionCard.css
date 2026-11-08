@@ -14,6 +14,23 @@
   height: 100%;
 }
 
+/* --- PERSPECTIVE LABEL --- */
+.mission-perspective {
+  padding: var(--space-1) var(--space-3);
+  border-bottom: 1px solid hsl(var(--primary) / 18%);
+  background: hsl(var(--primary) / 9%);
+  color: hsl(var(--primary));
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.mission-card-perspective {
+  border-color: hsl(var(--primary) / 32%);
+}
+
 /* --- IMAGE --- */
 .mission-image-wrapper {
   position: relative;
