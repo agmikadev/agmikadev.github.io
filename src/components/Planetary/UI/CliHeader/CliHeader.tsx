@@ -65,10 +65,11 @@ export const CliHeader: React.FC<CliHeaderProps> = ({
           type="button"
           className="cli-projects-btn"
           onClick={onOpenProjects}
-          aria-label="Abrir modo expresso de projetos"
+          aria-label="Abrir índice de projetos (Salto)"
+          title="Abrir índice de projetos"
         >
           {EXPRESS_ICON}
-          <span>MODO EXPRESSO</span>
+          <span>SALTO</span>
         </button>
       )}
     </div>

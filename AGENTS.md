@@ -10,10 +10,10 @@
 **What This Is:** A 3D space portfolio where planets represent real development areas (Design → Front-end → Back-end → Dados & Algoritmos → Infra & Deploy). An AI "sonda network" belt connects all planets, representing agentic skills. The theme is navigation, not lore.
 
 **Two navigation flows:**
-- **Compassado (default):** explore the solar system, planets, case cards and AI belt at the visitor's pace.
-- **Expresso:** a single header switch opens a dense project index with search, area filters and a canonical technology sidebar with counts. This is the escape hatch for recruiters who only want experience with a specific technology.
+- **ÓRBITA (default, compassado):** explore the solar system, planets, case cards and AI belt at the visitor's pace.
+- **SALTO (expresso):** a single header switch opens a dense project index with search, area filters and a canonical technology sidebar with counts. This is the escape hatch for recruiters who only want experience with a specific technology.
 
-Technology tags are canonical (see `src/components/Planetary/data/technologies.ts`); aliases like "React 19"/"React.js" fold into "React". Clicking a tech tag opens the Express mode filtered by that technology.
+Technology tags are canonical (see `src/components/Planetary/data/technologies.ts`); aliases like "React 19"/"React.js" fold into "React". Clicking a tech tag opens the Salto index filtered by that technology.
 
 **Core Value:** Visually demonstrate full-stack development proficiency — including cutting-edge agentic/AI skills — in a way that impresses both technical peers and hiring managers.
 
@@ -54,8 +54,8 @@ This project uses the Get Shit Done (GSD) workflow. All work must follow these r
 ```
 src/
 ├── components/
-│   ├── MainFrame.tsx          # Layout shell + express mode + navigation state
-│   ├── MissionLog/            # Express mode: dense index, filters, tech sidebar
+│   ├── MainFrame.tsx          # Layout shell + Salto mode + navigation state
+│   ├── MissionLog/            # Salto: dense index, filters, tech sidebar
 │   ├── Planetary/             # 3D planetary system
 │   │   ├── data/              # Static archive, D1 hooks, canonical technologies
 │   │   ├── PlanetarySystem/   # Orbital animation + planet rendering

@@ -8,13 +8,14 @@ de **IA & Agentic**. Os projetos são o conteúdo principal — a metáfora espa
 
 ## Dois fluxos de navegação
 
-- **Compassado (padrão):** explorar o sistema, abrir planetas, ler os cases e
-  navegar pelo cinturão de IA no tempo do visitante.
-- **Expresso:** um único atalho no header abre um índice denso de projetos com
-  busca, filtro por área e **filtro por tecnologia com contagem**. É o caminho
-  para recrutadores que só querem saber "o que você fez com React/D1/Supabase".
+- **ÓRBITA (padrão, fluxo compassado):** explorar o sistema, abrir planetas,
+  ler os cases e navegar pelo cinturão de IA no tempo do visitante.
+- **SALTO (fluxo expresso):** um único switch no header abre um índice denso de
+  projetos com busca, filtro por área e **filtro por tecnologia com contagem**.
+  É o caminho para recrutadores que só querem saber "o que você fez com
+  React/D1/Supabase".
 - Tags de tecnologia são canônicas e clicáveis: clicar em `React` em um card
-  abre o Modo Expresso já filtrado por React.
+  abre o Salto já filtrado por React.
 
 - **Live:** https://agmikadev.github.io/
 - **Repositório:** https://github.com/agmikadev/agmikadev.github.io
@@ -33,7 +34,7 @@ de **IA & Agentic**. Os projetos são o conteúdo principal — a metáfora espa
 ```
 src/
 ├── components/
-│   ├── MissionLog/            # Modo Expresso: índice, filtros e tech sidebar
+│   ├── MissionLog/            # Salto: índice, filtros e tech sidebar
 │   ├── Planetary/
 │   │   ├── data/              # Fonte estática: planetas, projetos, belt
 │   │   ├── PlanetarySystem/   # Sistema solar + dashboard

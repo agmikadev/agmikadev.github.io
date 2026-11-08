@@ -40,8 +40,8 @@ export const MainFrame: FC<MainFrameProps> = ({ children }) => {
 
   const isDashboard = !!selectedPlanet;
   const cliCommand = isDashboard
-    ? `❯ explorar --area="${selectedPlanet.area}" --modo=compassado`
-    : "❯ explorar --modo=compassado // Escolha uma área ou use o Modo Expresso";
+    ? `❯ órbita --area="${selectedPlanet.area}" --status=online`
+    : "❯ órbita --status=online // Escolha uma área ou dê um Salto";
 
   return (
     <ProjectNavigationContext.Provider value={projectNavigation}>
@@ -79,7 +79,7 @@ export const MainFrame: FC<MainFrameProps> = ({ children }) => {
 
         {/* Bottom HUD bar — full width */}
         <div className="footer">
-          <div className="footer-text">PORTFOLIO // STATUS: ONLINE</div>
+          <div className="footer-text">ÓRBITA // STATUS: ONLINE</div>
           <div className="footer-line"></div>
           <div className="stars">
             <span>✦</span><span>✦</span><span>✦</span>

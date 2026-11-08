@@ -41,14 +41,14 @@ export const OnboardingOverlay: React.FC = () => {
         <h2 id="onboarding-title">MIKAEL ANGELO</h2>
         <p className="onboarding-role">Full Stack Developer</p>
         <p className="onboarding-copy">
-          Explore no seu ritmo: cada planeta é uma área e o cinturão é a camada
-          de IA. Se estiver com pressa, o botão <strong>MODO EXPRESSO</strong> no
-          topo vai direto aos projetos e à experiência por tecnologia.
+          Explore a órbita no seu ritmo: cada planeta é uma área e o cinturão é
+          a camada de IA. Se estiver com pressa, o botão <strong>SALTO</strong> no
+          topo abre o índice de projetos e experiência por tecnologia.
         </p>
 
         <div className="onboarding-actions">
           <button type="button" className="onboarding-primary" onClick={dismiss}>
-            EXPLORAR SISTEMA
+            ENTRAR EM ÓRBITA
           </button>
         </div>
 

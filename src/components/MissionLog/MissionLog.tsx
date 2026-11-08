@@ -115,7 +115,7 @@ export const MissionLog: React.FC<MissionLogProps> = ({
         className="express-panel"
         role="dialog"
         aria-modal="true"
-        aria-label="Modo expresso: projetos e experiência"
+        aria-label="Salto: índice de projetos e experiência"
         onMouseDown={(event) => event.stopPropagation()}
       >
         <header className="express-header">
@@ -124,15 +124,15 @@ export const MissionLog: React.FC<MissionLogProps> = ({
             type="button"
             className="express-back"
             onClick={onClose}
-            aria-label="Voltar à exploração"
+            aria-label="Voltar à órbita"
           >
-            ← EXPLORAR
+            ← ÓRBITA
           </button>
 
           <div className="express-heading">
-            <div className="express-kicker">ATALHO // SEM PASSAR PELOS PLANETAS</div>
+            <div className="express-kicker">SALTO // ÍNDICE DE PROJETOS</div>
             <h2 className="express-title">
-              <StarBurst size={18} /> MODO EXPRESSO
+              <StarBurst size={18} /> SALTO
             </h2>
             <p className="express-subtitle">
               Projetos e experiência por área e tecnologia. Filtre e vá direto ao que interessa.
