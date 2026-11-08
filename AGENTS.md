@@ -56,6 +56,7 @@ This project uses the Get Shit Done (GSD) workflow. All work must follow these r
 - **Design tokens:** `src/styles/tokens.css` is the source of truth; `npm run check:tokens` blocks raw layout dimensions
 - **Quality gates:** `lint`, `lint:css`, `check:tokens` run in CI before build; `npm run test:visual` covers layout (1440/1280/1024/768), keyboard/focus, reduced motion and SALTO pixel snapshots locally
 - **Keyboard contract:** belt and planets are buttons; keyboard-opened HUD focuses `← SISTEMA`; closing restores focus after the orbit remounts; Escape closes HUD and SALTO
+- **External links:** any link that opens another site uses `ExternalLinkIcon` and an `aria-label` ending in “(abre em nova aba)”; mailto links do not get the arrow
 - **Reduced motion:** `usePrefersReducedMotion` stops the orbit loop and 3D animation; CSS transitions are disabled
 - **shadcn scope:** primitives only (`Button`, `Input`, `ToggleGroup`); HUD/3D styling stays in tokenized CSS
 

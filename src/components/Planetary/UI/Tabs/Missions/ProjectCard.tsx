@@ -3,6 +3,7 @@ import type { MissionType } from "../../../data/MissionData";
 import type { BeltMissionReport } from "../../../data/BeltData";
 import { canonicalTechList } from "../../../data/technologies";
 import { resolveMissionPerspective } from "../../../data/perspectives";
+import { ExternalLinkIcon } from "../../../../ui/ExternalLinkIcon";
 import { useSaltoNavigation } from "../../../../Salto/SaltoNavigationContext";
 import { Card } from "../../CardVariants";
 import "./ProjectCard.css";
@@ -184,23 +185,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 key={`${link.label}-${link.url}`}
                 href={link.url}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="project-card__link"
+                aria-label={`${link.label} (abre em nova aba)`}
               >
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg>
+                <ExternalLinkIcon />
                 {link.label}
               </a>
             ))}

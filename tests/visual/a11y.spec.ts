@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { API_PATTERN, bootstrap } from "./helpers";
+import { API_PATTERN, bootstrap, openSalto } from "./helpers";
 
 test.use({ reducedMotion: "no-preference" });
 
@@ -59,6 +59,39 @@ test.describe("keyboard navigation", () => {
     await page.keyboard.press("Escape");
     await expect(page.locator(".salto")).toHaveCount(0);
     await expect(trigger).toBeFocused();
+  });
+});
+
+test.describe("external link affordance", () => {
+  test("external links show an arrow and announce the new tab", async ({
+    page,
+  }) => {
+    await bootstrap(page);
+
+    const socials = page.locator('.social-icon-btn[target="_blank"]');
+    const socialCount = await socials.count();
+    expect(socialCount).toBeGreaterThanOrEqual(2);
+
+    for (let index = 0; index < socialCount; index += 1) {
+      const link = socials.nth(index);
+      const href = await link.getAttribute("href");
+      if (!href?.startsWith("http")) continue;
+
+      await expect(link.locator(".social-icon-btn__external")).toHaveCount(1);
+      await expect(link).toHaveAttribute("aria-label", /abre em nova aba/);
+    }
+
+    const email = page.locator('.social-icon-btn[href^="mailto:"]');
+    await expect(email.locator(".social-icon-btn__external")).toHaveCount(0);
+
+    await openSalto(page);
+    const projectLinks = page.locator(".salto__row-link");
+    expect(await projectLinks.count()).toBeGreaterThan(0);
+    await expect(projectLinks.first().locator(".external-link-icon")).toHaveCount(1);
+    await expect(projectLinks.first()).toHaveAttribute(
+      "aria-label",
+      /abre em nova aba/,
+    );
   });
 });
 

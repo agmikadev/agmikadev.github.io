@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import type { MissionType } from "../Planetary/data/MissionData";
 import { canonicalTechList } from "../Planetary/data/technologies";
 import { resolveMissionPerspective } from "../Planetary/data/perspectives";
+import { ExternalLinkIcon } from "../ui/ExternalLinkIcon";
 import "./SaltoRow.css";
 
 interface SaltoRowProps {
@@ -73,10 +74,12 @@ export const SaltoRow: React.FC<SaltoRowProps> = ({
                 key={`${link.label}-${link.url}`}
                 href={link.url}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="salto__row-link"
+                aria-label={`${link.label} (abre em nova aba)`}
               >
                 {link.label}
+                <ExternalLinkIcon />
               </a>
             ))}
           </div>

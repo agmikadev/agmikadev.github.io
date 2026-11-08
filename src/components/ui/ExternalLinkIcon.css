@@ -1,0 +1,6 @@
+.external-link-icon {
+  width: var(--icon-xs);
+  height: var(--icon-xs);
+  flex-shrink: 0;
+  pointer-events: none;
+}

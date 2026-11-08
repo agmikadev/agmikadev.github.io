@@ -30,6 +30,14 @@ transition became an orbit ↔ HUD focus transition:
   `SALTO` trigger after the orbit remounts.
 - `Escape` closes the HUD and SALTO.
 
+### External link affordance
+
+- Added the shared `ExternalLinkIcon` (↗) for links that leave the portfolio.
+- SALTO rows and project cards show the arrow next to the link label; the social
+  buttons show a small corner badge.
+- External links announce “(abre em nova aba)” via `aria-label` and use
+  `rel="noopener noreferrer"`; `mailto:` keeps its icon-only treatment.
+
 ### Reduced motion (UX-04)
 
 - `usePrefersReducedMotion` uses `matchMedia` via `useSyncExternalStore` and
@@ -43,8 +51,9 @@ transition became an orbit ↔ HUD focus transition:
 
 - `npm run lint`, `npm run lint:css`, `npm run check:tokens` pass.
 - `npm run build` passes; `npm run worker:typecheck` passes.
-- `npm run test:visual` — 20 tests pass:
+- `npm run test:visual` — 21 tests pass:
   - 12 layout checks at 1440/1280/1024/768;
   - 2 SALTO pixel snapshots;
-  - 6 accessibility checks (belt, planet, SALTO, onboarding, motion on/off).
+  - 7 accessibility/affordance checks (belt, planet, SALTO, external links,
+    onboarding, motion on/off).
 - CI runs layout + accessibility tests with Chromium before the build.

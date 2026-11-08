@@ -1,5 +1,6 @@
 // Certifique-se de importar o CSS (SideStrip.css)
 import { useVisitCount } from "../../Planetary/data/hooks";
+import { ExternalLinkIcon } from "../../ui/ExternalLinkIcon";
 
 // Configuração dos Links Sociais
 const SOCIALS = [
@@ -54,20 +55,27 @@ export const FooterInfo = () => {
         
         {/* 1. SOCIAL ROW (Horizontal Icons) */}
         <div className="social-row">
-          {SOCIALS.map((social) => (
-            <a
-              key={social.id}
-              href={social.url}
-              target="_blank"
-              rel="noreferrer"
-              className="social-icon-btn"
-              aria-label={social.id}
-            >
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d={social.icon} />
-              </svg>
-            </a>
-          ))}
+          {SOCIALS.map((social) => {
+            const opensExternalSite = social.url.startsWith("http");
+
+            return (
+              <a
+                key={social.id}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-icon-btn"
+                aria-label={`${social.id}${opensExternalSite ? " (abre em nova aba)" : ""}`}
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d={social.icon} />
+                </svg>
+                {opensExternalSite && (
+                  <ExternalLinkIcon className="social-icon-btn__external" />
+                )}
+              </a>
+            );
+          })}
         </div>
 
         {/* RESUME DOWNLOAD BUTTON */}
