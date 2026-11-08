@@ -18,15 +18,17 @@ interface DashboardProps {
 export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched }) => {
   const isBelt = mode === "belt";
   const themeColor = isBelt ? beltDataModel.color : planet?.color;
-  const planetName = isBelt ? beltDataModel.name : planet?.name;
-  const planetType = isBelt ? "Large Language Model Belt" : planet?.type;
+  const planetArea = isBelt ? beltDataModel.area : planet?.area;
+  const planetCodename = isBelt ? beltDataModel.codename : planet?.name;
+  const planetType = isBelt ? beltDataModel.area : planet?.type;
   const planetDescription = isBelt ? beltDataModel.description : planet?.description;
 
   const beltPlanet: PlanetModel = isBelt
     ? {
         id: "ai-belt",
-        name: beltDataModel.name,
-        type: "Large Language Model Belt",
+        name: beltDataModel.codename,
+        area: beltDataModel.area,
+        type: beltDataModel.area,
         description: beltDataModel.description,
         tools: [],
         shape: "belt",
@@ -38,7 +40,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched })
       }
     : planet!;
 
-  if (!planetName || !themeColor) return null;
+  if (!planetArea || !themeColor) return null;
 
   return (
     <div
@@ -53,11 +55,12 @@ export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched })
                 <Planet3D planet={beltPlanet} />
               </div>
               <div className="planet-info-content">
-        <h1 className="planet-title" style={{ "--planet-title-color": themeColor } as React.CSSProperties}>
-          <StarBurst size={22} /> {planetName}
-        </h1>
+                <div className="planet-kicker">SETOR // {planetCodename}</div>
+                <h1 className="planet-title" style={{ "--planet-title-color": themeColor } as React.CSSProperties}>
+                  <StarBurst size={22} /> {planetArea}
+                </h1>
                 <div className="planet-debrief planet-debrief-yellow">
-                  <strong>STATUS:</strong> {planetType}
+                  <strong>FOCO:</strong> {planetType}
                   {!isBelt && <br />}
                   {planetDescription}
                 </div>
@@ -70,17 +73,18 @@ export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched })
               <Tabs defaultValue="missions" className="dashboard-right-tabs">
                 <div className="dashboard-right-header">
                   <TabsList>
-                    <TabsTrigger value="missions"><StarBurst size={14} /> MISSÕES</TabsTrigger>
-                    <TabsTrigger value="analytics"><StarBurst size={14} /> MÉTRICAS</TabsTrigger>
+                    <TabsTrigger value="missions"><StarBurst size={14} /> PROJETOS</TabsTrigger>
+                    <TabsTrigger value="analytics"><StarBurst size={14} /> COMPETÊNCIAS</TabsTrigger>
                   </TabsList>
                 </div>
                 <div className="dashboard-right-body">
         <div className="mobile-planet-header">
+          <div className="planet-kicker">SETOR // {planetCodename}</div>
           <h1 className="planet-title" style={{ "--planet-title-color": themeColor } as React.CSSProperties}>
-            <StarBurst size={22} /> {planetName}
+            <StarBurst size={22} /> {planetArea}
           </h1>
                     <div className="planet-debrief planet-debrief-yellow">
-                      <strong>STATUS:</strong> {planetType}
+                      <strong>FOCO:</strong> {planetType}
                     </div>
                   </div>
                   <div className="fetched-data-wrapper">

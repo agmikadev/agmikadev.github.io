@@ -1,68 +1,153 @@
-/* Onboarding overlay – full screen dark panel */
+/* First-visit card: anchored, dismissible, never covers the whole system. */
 .onboarding-overlay {
   position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.94);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  left: var(--space-4);
+  bottom: var(--space-4);
   z-index: 12000;
-  animation: fade-in var(--duration-fast) var(--ease-smooth);
+  pointer-events: none;
+  animation: onboarding-rise 0.45s var(--ease-out-expo) both;
 }
 
 .onboarding-content {
-  background: hsl(var(--hud-panel-dark));
-  color: hsl(var(--hud-text-primary));
-  padding: var(--space-6);
+  position: relative;
+  width: min(430px, calc(100vw - var(--space-6)));
+  box-sizing: border-box;
+  padding: var(--space-4);
+  background: rgba(9, 9, 16, 0.96);
+  border: 1px solid hsl(var(--primary) / 38%);
   border-radius: var(--radius-lg);
-  max-width: 480px;
-  text-align: center;
-  box-shadow: var(--shadow-card);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.65), 0 0 35px hsl(var(--primary) / 8%);
+  backdrop-filter: blur(14px);
+  pointer-events: auto;
+}
+
+.onboarding-kicker {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: hsl(var(--primary) / 75%);
+  margin-bottom: var(--space-1);
 }
 
 .onboarding-content h2 {
   font-family: var(--font-display);
-  font-size: var(--text-2xl);
-  margin-bottom: var(--space-4);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin: 0;
   color: hsl(var(--primary));
 }
 
-.onboarding-content p {
+.onboarding-role {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  color: hsl(var(--hud-text-primary) / 70%);
+  margin: var(--space-1) 0 var(--space-2);
+}
+
+.onboarding-copy {
   font-family: var(--font-sans);
-  margin-bottom: var(--space-4);
-  line-height: var(--leading-normal);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: hsl(var(--hud-text-primary) / 78%);
+  margin: 0 0 var(--space-3);
 }
 
-.onboarding-content ul {
-  list-style: none;
-  padding: 0;
-  margin: var(--space-2) 0;
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
+.onboarding-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
 }
 
-.onboarding-close {
-  margin-top: var(--space-4);
-  padding: var(--space-2) var(--space-4);
-  background: transparent;
-  border: 1px solid hsl(var(--primary));
-  color: hsl(var(--primary));
+.onboarding-primary,
+.onboarding-secondary {
+  padding: var(--space-2) var(--space-3);
   font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  text-transform: uppercase;
+  font-size: var(--text-micro);
+  font-weight: 700;
+  letter-spacing: 0.08em;
   cursor: pointer;
-  transition: background var(--duration-fast) var(--ease-smooth);
+  transition: all var(--duration-fast) var(--ease-smooth);
 }
 
-.onboarding-close:hover {
+.onboarding-primary {
+  background: hsl(var(--primary));
+  border: 1px solid hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.onboarding-primary:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 0 22px hsl(var(--primary) / 30%);
+}
+
+.onboarding-secondary {
+  background: transparent;
+  border: 1px solid hsl(var(--primary) / 35%);
+  color: hsl(var(--primary));
+}
+
+.onboarding-secondary:hover {
   background: hsl(var(--primary) / 10%);
 }
 
+.onboarding-close-x {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 1px solid hsl(var(--primary) / 20%);
+  border-radius: 50%;
+  color: hsl(var(--primary) / 70%);
+  font-size: var(--text-xs);
+  cursor: pointer;
+}
+
+.onboarding-close-x:hover {
+  color: hsl(var(--primary));
+  border-color: hsl(var(--primary) / 50%);
+}
+
+.onboarding-hint {
+  margin: var(--space-2) 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  color: hsl(var(--muted-foreground) / 65%);
+}
+
+@keyframes onboarding-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .onboarding-overlay {
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .onboarding-content {
+    width: 100%;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    border-bottom: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .onboarding-overlay,
-  .onboarding-content,
-  .onboarding-close {
-    animation: none !important;
-    transition: none !important;
+  .onboarding-overlay {
+    animation: none;
   }
 }

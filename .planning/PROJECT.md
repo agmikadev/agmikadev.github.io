@@ -19,31 +19,38 @@ Visually demonstrate full-stack development proficiency — including cutting-ed
 - ✓ Stylized 3D planet rendering with Three.js/R3F — existing
 - ✓ CLI header with terminal typing animation — existing
 - ✓ GitHub Pages deployment pipeline — existing
+- ✓ AI "sonda network" belt — animated network connections between planets
+- ✓ Belt HUD with Projects + Skills tabs
+- ✓ Projects-first Mission Log with search, area filters and card links — Phase 6
+- ✓ Real area labels as primary navigation (Design, Front-end, Back-end, Dados, Infra) — Phase 6
+- ✓ Cloudflare Worker + D1 content API with static fallback and anonymous visit counter — Phase 6
 
 ### Active
 
-- [ ] AI "sonda network" belt — visual network connections between all planets representing AI/Agentic skills
-- [ ] Belt data model — tools, proficiency levels, and mission data for the AI belt
-- [ ] Belt HUD panel — same two-tab structure (Missions + Metrics) when clicking the belt
-- [ ] Updated skill exposure — ensure agentic programming tools are represented alongside traditional dev tools
-- [ ] Visual polish — refined aesthetics for the belt integration with existing planetary system
+- [ ] Finish Phase 4 polish: onboarding edge cases, camera transitions, keyboard nav, reduced motion
+- [ ] Phase 5 production readiness: error boundary, bundle code-splitting, cross-device testing
+- [ ] Keep the recent-project cards and links current as new work ships
 
 ### Out of Scope
 
-- Backend/API integration — portfolio is static, no server-side functionality needed
 - User authentication — public showcase, no login required
 - Mobile-first responsive redesign — desktop 3D experience is the primary target
-- Real-time updates — all data is statically embedded
+- Public write access to portfolio content — D1 content is updated by seed/migrations, not by visitors
+- Real-time updates — content is fetched on load; no websockets or live collaboration
+- Storing personal data in D1 — only anonymous session counts and public project metadata
 
 ## Context
 
-**Technical environment:** React 19 + TypeScript + Rolldown-Vite + Three.js/R3F. No routing, no API calls — fully static SPA deployed to GitHub Pages.
+**Technical environment:** React 19 + TypeScript + Rolldown-Vite + Three.js/R3F. The frontend is a static SPA on GitHub Pages; project content is served by a Cloudflare Worker + D1 API with a static archive fallback.
 
 **Existing architecture:**
 - `PlanetarySystem` — orbital animation engine with requestAnimationFrame loop
-- `PlanetDashboard` — detail view with 3D planet, CLI header, tabs
-- `SideStrip` — profile sidebar with astronaut header and telemetry
-- Static data in `PlanetaryData.ts` and `MissionData.ts`
+- `Dashboard` — detail view with 3D planet, CLI header, Projects + Skills tabs
+- `MissionLog` — global project index with search and area filters
+- `SideStrip` — profile sidebar with real role, stack, links, CV and visit count
+- Static data in `PlanetaryData.ts`, `MissionData.ts` and `BeltData.ts`
+- `worker/` — Cloudflare Worker + D1 migrations/seed
+- `src/lib/portfolio-api.ts` — D1 client with timeout and static fallback
 
 **Codebase map exists:** `.planning/codebase/` with 7 structured documents covering stack, architecture, conventions, testing, concerns, integrations, and structure.
 
@@ -60,10 +67,13 @@ Visually demonstrate full-stack development proficiency — including cutting-ed
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| AI as belt, not planet | Agentic skills cut across all dev stages, not a standalone stage | — Pending |
-| Network connections visual | Belt should feel alive and functional, not decorative | — Pending |
-| Same HUD pattern for belt | Consistency — belt uses Missions + Metrics tabs like planets | — Pending |
-| Static data approach | Portfolio doesn't need dynamic content; simplicity over complexity | ✓ Good |
+| AI as belt, not planet | Agentic skills cut across all dev stages, not a standalone stage | ✓ Good |
+| Network connections visual | Belt should feel alive and functional, not decorative | ✓ Good |
+| Same HUD pattern for belt | Consistency — belt uses Projects + Skills tabs like planets | ✓ Good |
+| Theme as navigation, not lore | The space metaphor should help visitors find projects, not require learning fiction | ✓ Good — Phase 6 |
+| Real areas primary, codenames secondary | Recruiters should understand Design/Front-end/Back-end/Dados/Infra at a glance | ✓ Good — Phase 6 |
+| Projects-first Mission Log | Every project must be reachable in one click, independent of 3D exploration | ✓ Good — Phase 6 |
+| D1 content with static fallback | Content can be updated without redeploying, but the portfolio never depends on the Worker | ✓ Good — Phase 6 |
 
 ---
 
@@ -85,4 +95,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-05-17 after initialization*
+*Last updated: 2026-11-08 after Phase 6 (projects-first + D1)*

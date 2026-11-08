@@ -19,12 +19,14 @@ const categoryLabels: Record<BeltTool["category"], string> = {
   rag: "RAG",
   mcp: "MCP",
   "prompt-engineering": "PROMPT ENGINEERING",
+  vision: "VISION & OCR",
 };
 
 const categoryOrder: BeltTool["category"][] = [
   "llm",
   "agent-framework",
   "orchestration",
+  "vision",
   "evaluation",
   "rag",
   "mcp",
@@ -47,7 +49,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({ planet, variant = "p
   return (
   <>
     <div className="analytics-main-header belt-analytics-header">
-    <span className="header-label">Progresso de Sincronização do LLMB</span>
+    <span className="header-label">Cobertura de IA &amp; Agentic</span>
     <span className="header-value header-value-accent">STATUS: ATIVA</span>
     </div>
     <Card variant="dark" className="analytics-wrapper belt-analytics">
@@ -114,8 +116,8 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({ planet, variant = "p
   return (
   <>
     <div className="analytics-main-header">
-    <span className="header-label">Progresso de Sincronização do Astronauta</span>
-    <span className="header-value header-value-accent">STATUS: ESTABILIZADO</span>
+    <span className="header-label">Competências por área</span>
+    <span className="header-value header-value-accent">STATUS: ATUALIZADO</span>
     </div>
     <Card variant="dark" className="analytics-wrapper">
     <div className="analytics-container">

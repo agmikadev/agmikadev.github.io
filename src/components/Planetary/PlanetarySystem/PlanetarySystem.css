@@ -125,6 +125,80 @@
   box-shadow: 0 0 10px var(--tooltip-color);
 }
 
+/* --- ALWAYS-VISIBLE AREA LABELS ---
+   The real development area is the primary label; the codename sits below it. */
+.planet-area-label {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: 4px 8px;
+  background: rgba(3, 3, 5, 0.82);
+  border: 1px solid hsl(var(--primary) / 10%);
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0.82;
+  transition: opacity var(--duration-fast) var(--ease-smooth),
+    border-color var(--duration-fast) var(--ease-smooth),
+    box-shadow var(--duration-fast) var(--ease-smooth);
+}
+
+.planet-node:hover .planet-area-label,
+.planet-area-label-hovered {
+  opacity: 1;
+  border-color: var(--p-color);
+  box-shadow: 0 0 14px var(--p-color);
+}
+
+.planet-area-name {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--p-color);
+}
+
+.planet-area-code {
+  font-family: var(--font-mono);
+  font-size: calc(var(--text-micro) * 0.82);
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+/* --- SYSTEM CAPTION (explains the metaphor without lore) --- */
+.system-caption {
+  position: absolute;
+  right: var(--space-3);
+  bottom: var(--space-2);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 4px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-full);
+  background: rgba(0, 0, 0, 0.38);
+  color: rgba(255, 255, 255, 0.42);
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.system-caption strong {
+  color: hsl(var(--primary) / 75%);
+  font-weight: 700;
+}
+
+.system-caption-sep {
+  color: hsl(var(--primary) / 30%);
+}
+
 .solar-system-svg {
   position: absolute;
   top: 0;
@@ -161,5 +235,17 @@
   .sun-center {
     width: 48px;
     height: 48px;
+  }
+
+  .planet-area-label {
+    padding: 2px 5px;
+  }
+
+  .planet-area-code {
+    display: none;
+  }
+
+  .system-caption {
+    display: none;
   }
 }

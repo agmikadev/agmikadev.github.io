@@ -1,10 +1,10 @@
 import React from "react";
-import { beltDataModel } from "../../../data/BeltData";
+import { useBeltMissions } from "../../../data/hooks";
 import { MissionCard } from "../Missions/MissionCard";
 import { NO_MISSIONS_ERROR } from "@/lib/ui-constants";
 
 export const BeltMissionsTab: React.FC = () => {
-  const reports = beltDataModel.missionReports;
+  const reports = useBeltMissions();
 
   if (reports.length === 0) {
     return (

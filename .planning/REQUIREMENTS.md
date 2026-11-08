@@ -29,9 +29,18 @@
 
 ### Content
 
-- [ ] **CONT-01**: All 5 planets have populated mission reports with case-study structure (problem → approach → outcome)
-- [ ] **CONT-02**: All planets have accurate proficiency analytics data
+- [x] **CONT-01**: All 5 planets have populated mission reports with case-study structure (problem → approach → outcome)
+- [x] **CONT-02**: All planets have accurate proficiency analytics data
 - [x] **CONT-03**: Belt has populated AI tool proficiency data and mission reports
+
+### Content Refresh & D1 (Phase 6)
+
+- [x] **CONTENT-04**: SmartKitchen, HellzDashboard, FootScout and UIMaga are cards with images, stacks and validated links
+- [x] **UX-05**: Mission Log is reachable in one click from the header, side strip and onboarding, with search and area filters
+- [x] **UX-06**: Each planet shows its real area as the primary label and its codename as secondary
+- [x] **DATA-01**: Cloudflare Worker + D1 serves projects, belt reports and anonymous visit counts
+- [x] **DATA-02**: Static archive remains a full fallback when the Worker is unavailable
+- [x] **DATA-03**: Anonymous visit counter appears in the side strip without cookies
 
 ### Production Readiness
 
@@ -80,19 +89,25 @@
 | UX-02 | Phase 4 | Pending |
 | UX-03 | Phase 4 | Pending |
 | UX-04 | Phase 4 | Pending |
-| CONT-01 | Phase 3 | Pending |
-| CONT-02 | Phase 3 | Pending |
+| CONT-01 | Phase 3 | Complete |
+| CONT-02 | Phase 3 | Complete |
 | CONT-03 | Phase 3 | Complete |
 | PROD-01 | Phase 5 | Pending |
 | PROD-02 | Phase 5 | Pending |
 | PROD-03 | Phase 5 | Pending |
 | PROD-04 | Phase 5 | Pending |
+| CONTENT-04 | Phase 6 | Complete |
+| UX-05 | Phase 6 | Complete |
+| UX-06 | Phase 6 | Complete |
+| DATA-01 | Phase 6 | Complete |
+| DATA-02 | Phase 6 | Complete |
+| DATA-03 | Phase 6 | Complete |
 
 **Coverage:**
-- v1 requirements: 20 total
-- Mapped to phases: 20
+- v1 requirements: 26 total
+- Mapped to phases: 26
 - Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-05-17*
-*Last updated: 2026-05-17 after initial definition*
+*Last updated: 2026-11-08 after Phase 6 (projects-first + D1)*

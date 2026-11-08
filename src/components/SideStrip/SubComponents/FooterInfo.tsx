@@ -1,4 +1,5 @@
 // Certifique-se de importar o CSS (SideStrip.css)
+import { useVisitCount } from "../../Planetary/data/hooks";
 
 // Configuração dos Links Sociais
 const SOCIALS = [
@@ -19,63 +20,75 @@ const SOCIALS = [
   },
 ];
 
-export const FooterInfo = () => (
-  <div className="profile-footer">
-    
-    {/* GRID DE DADOS TÉCNICOS */}
-    <div className="info-grid">
+export const FooterInfo = () => {
+  const visitCount = useVisitCount();
+
+  return (
+    <div className="profile-footer">
       
-      {/* Localização */}
-      <div className="info-row">
-        <span className="label">BASE_GEO:</span>
-        <span className="value">S.G. Amarante, CE</span>
-      </div>
-      
-      {/* Status com Ponto Piscante */}
-      <div className="info-row">
-        <span className="label">STATUS:</span>
-        <span className="value status-active">
-          <span className="blink-dot"></span>
-          OPEN TO WORK
-        </span>
-      </div>
-      
-      {/* 1. SOCIAL ROW (Horizontal Icons) */}
-      <div className="social-row">
-        {SOCIALS.map((social) => (
-          <a
-            key={social.id}
-            href={social.url}
-            target="_blank"
-            rel="noreferrer"
-            className="social-icon-btn"
-            aria-label={social.id}
-          >
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d={social.icon} />
-            </svg>
-          </a>
-        ))}
+      {/* GRID DE DADOS TÉCNICOS */}
+      <div className="info-grid">
+        
+        {/* Localização */}
+        <div className="info-row">
+          <span className="label">LOCAL:</span>
+          <span className="value">S.G. Amarante, CE</span>
+        </div>
+        
+        {/* Status com Ponto Piscante */}
+        <div className="info-row">
+          <span className="label">STATUS:</span>
+          <span className="value status-active">
+            <span className="blink-dot"></span>
+            OPEN TO WORK
+          </span>
+        </div>
+
+        {/* Contador anônimo vindo do D1 */}
+        <div className="info-row">
+          <span className="label">VISITAS:</span>
+          <span className="value">
+            {visitCount == null ? "—" : String(visitCount).padStart(4, "0")}
+          </span>
+        </div>
+        
+        {/* 1. SOCIAL ROW (Horizontal Icons) */}
+        <div className="social-row">
+          {SOCIALS.map((social) => (
+            <a
+              key={social.id}
+              href={social.url}
+              target="_blank"
+              rel="noreferrer"
+              className="social-icon-btn"
+              aria-label={social.id}
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d={social.icon} />
+              </svg>
+            </a>
+          ))}
+        </div>
+
+        {/* RESUME DOWNLOAD BUTTON */}
+        {/* TODO: Replace public/resume.pdf with actual resume PDF */}
+        <a
+          href="/resume.pdf"
+          download="Mikael-Angelo-Resume.pdf"
+          className="resume-download-btn"
+          aria-label="Download resume as PDF"
+        >
+          <span className="btn-icon">↓</span>
+          <span className="btn-text">BAIXAR CV</span>
+        </a>
       </div>
 
-      {/* RESUME DOWNLOAD BUTTON */}
-      {/* TODO: Replace public/resume.pdf with actual resume PDF */}
-      <a
-        href="/resume.pdf"
-        download="Mikael-Angelo-Resume.pdf"
-        className="resume-download-btn"
-        aria-label="Download resume as PDF"
-      >
-        <span className="btn-icon">↓</span>
-        <span className="btn-text">DOWNLOAD CV</span>
-      </a>
+      {/* ASSINATURA DO SISTEMA */}
+      <div className="system-footer">
+        <div className="sys-line">PORTFOLIO // V1.1</div>
+        <div className="sys-line copyright">© 2026 MIKAEL ANGELO</div>
+      </div>
+      
     </div>
-
-    {/* ASSINATURA DO SISTEMA */}
-    <div className="system-footer">
-      <div className="sys-line">SYS.NOMINAL // V1.0</div>
-      <div className="sys-line copyright">© 2026 MIKAEL ANGELO</div>
-    </div>
-    
-  </div>
-);
+  );
+};

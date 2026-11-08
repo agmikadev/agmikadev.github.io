@@ -5,12 +5,16 @@ import { AstronautHeader } from "./SubComponents/AstronautHeader";
 import { StarBurst } from "../Planetary/UI/Symbols";
 import { FooterInfo } from "./SubComponents/FooterInfo";
 
-export const SideStrip: React.FC = () => {
-const [activeTab, setActiveTab] = useState<"manifesto" | "stack">("manifesto");
+interface SideStripProps {
+  onOpenProjects?: () => void;
+}
+
+export const SideStrip: React.FC<SideStripProps> = ({ onOpenProjects }) => {
+const [activeTab, setActiveTab] = useState<"about" | "stack">("about");
 const [isHovered, setIsHovered] = useState(false);
 
 const handleAnimationEnd = () => {
-  setActiveTab((prev) => (prev === "manifesto" ? "stack" : "manifesto"));
+  setActiveTab((prev) => (prev === "about" ? "stack" : "about"));
 };
 
 return (
@@ -26,10 +30,10 @@ return (
     >
       <div className="cycler-header">
         <div
-          className={`cycler-tab ${activeTab === "manifesto" ? "active" : ""}`}
-          onClick={() => setActiveTab("manifesto")}
+          className={`cycler-tab ${activeTab === "about" ? "active" : ""}`}
+          onClick={() => setActiveTab("about")}
         >
-          <StarBurst size={14} /> MANIFESTO
+          <StarBurst size={14} /> SOBRE
         </div>
         <div
           className={`cycler-tab ${activeTab === "stack" ? "active" : ""}`}
@@ -42,13 +46,12 @@ return (
       {/* CONTEÚDO DINÂMICO */}
       <div className="cycler-content">
 
-        {activeTab === "manifesto" && (
+        {activeTab === "about" && (
           <div className="content-pane fade-in">
             <p>
-              Procurando sempre duas maneiras de resolver o mesmo problema:
-              Uma pragmática e uma fora da caixa, aplicando cada uma conforme o contexto.
-              Está sempre jogando coletivamente,
-              seja como baixista no altar da igreja, ou como desenvolvedor no time ágil.
+              Full stack com base em design. Gosto de resolver o mesmo problema
+              por dois caminhos: um direto e um fora da caixa, escolhendo pelo contexto.
+              Trabalho bem em time — do design ao deploy.
             </p>
           </div>
         )}
@@ -56,17 +59,18 @@ return (
         {activeTab === "stack" && (
           <div className="content-pane fade-in">
             <div className="tags-container">
-              <span className="tag">React</span>
-              <span className="tag">Vue</span>
-              <span className="tag">Tailwind</span>
-              <span className="tag">TypeScript</span>
+              <span className="tag">React 19</span>
               <span className="tag">Next.js</span>
+              <span className="tag">TypeScript</span>
+              <span className="tag">Tailwind 4</span>
+              <span className="tag">React Router</span>
               <span className="tag">Node.js</span>
-              <span className="tag">Express.js</span>
               <span className="tag">PostgreSQL</span>
-              <span className="tag">MongoDB</span>
-              <span className="tag">Three.js (Fiber)</span>
-              <span className="tag">Git</span>
+              <span className="tag">Supabase</span>
+              <span className="tag">Cloudflare D1</span>
+              <span className="tag">Workers</span>
+              <span className="tag">Python</span>
+              <span className="tag">Three.js</span>
             </div>
           </div>
         )}
@@ -82,6 +86,16 @@ return (
       ></div>
 
     </div>
+
+    {onOpenProjects && (
+      <button
+        type="button"
+        className="side-projects-btn"
+        onClick={onOpenProjects}
+      >
+        <StarBurst size={14} /> VER TODOS OS PROJETOS
+      </button>
+    )}
 
     <FooterInfo />
 

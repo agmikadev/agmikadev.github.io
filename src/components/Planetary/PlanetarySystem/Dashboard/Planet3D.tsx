@@ -46,7 +46,7 @@ const NeuralMesh: React.FC<{ color: string }> = ({ color }) => {
       }
     }
     return result;
-  }, [icoGeo]);
+  }, [indices]);
 
   const linePositions = useMemo(() => {
     const arr: number[] = [];
@@ -66,7 +66,11 @@ const NeuralMesh: React.FC<{ color: string }> = ({ color }) => {
   const dummy = useMemo(() => new THREE.Object3D(), []);
 
   const pulseStates = useMemo(
-    () => uniqueVertices.map(() => ({ phase: Math.random() * Math.PI * 2, speed: 0.5 + Math.random() * 2 })),
+    () =>
+      uniqueVertices.map((_, index) => ({
+        phase: (index * 1.7) % (Math.PI * 2),
+        speed: 0.8 + ((index * 0.37) % 1.8),
+      })),
     [uniqueVertices],
   );
 
@@ -185,12 +189,12 @@ const PlanetMesh: React.FC<{ planet: PlanetModel }> = ({ planet }) => {
 
       {!isAIBelt && planet.hasAI && (
         <>
-          <group rotation={[Math.PI / 2, Math.PI / 4, 0]}>
+          <group rotation={[Math.PI / 2.8, Math.PI / 4, 0]}>
             <mesh ref={ring1MeshRef} material={scannerMaterial}>
               <torusGeometry args={[2.6, 0.015, 16, 100]} />
             </mesh>
           </group>
-          <group rotation={[Math.PI / 2, -Math.PI / 4, 0]}>
+          <group rotation={[Math.PI / 2.8, -Math.PI / 4, 0]}>
             <mesh ref={ring2MeshRef} material={scannerMaterial}>
               <torusGeometry args={[2.4, 0.015, 16, 100]} />
             </mesh>

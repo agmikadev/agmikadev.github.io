@@ -1,0 +1,16 @@
+name = "star-system-portfolio-api"
+main = "src/index.ts"
+compatibility_date = "2026-11-07"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "star-system-portfolio"
+database_id = "f9a2878d-18d3-4866-8b3c-7a0a752a5911"
+migrations_dir = "migrations"
+
+[vars]
+ALLOWED_ORIGINS = "https://agmikadev.github.io,https://angelomikaa.github.io,http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173"
+
+[observability]
+enabled = true

@@ -28,7 +28,7 @@ export const AstronautHeader = () => (
     {/* 2. O BLOCO DE TEXTO (Nome + Função colados) */}
     <div className="header-text-block">
       <h2 className="profile-name">MIKAEL ANGELO</h2>
-      <span className="profile-role">DEV. FRONT END JR</span>
+      <span className="profile-role">FULL STACK DEVELOPER</span>
     </div>
 
   </div>

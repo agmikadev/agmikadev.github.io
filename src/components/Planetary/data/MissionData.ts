@@ -11,9 +11,170 @@ export interface MissionType {
   aiWorkflow?: string;
   technologies: string[];
   external_links?: { label: string; url: string }[];
+  imageUrl?: string;
+  featured?: boolean;
 }
 
 export const MISSION_ARCHIVE: MissionType[] = [
+  {
+    id: "smartkitchen-01",
+    title: "SmartKitchen — Gestão de Estoque",
+    year: "2026",
+    role: "Desenvolvedor Full Stack",
+    summary:
+      "Sistema de estoque e perdas para cozinha industrial, construído a partir de um design system atômico no Figma, com auth real e API própria em Cloudflare Worker + D1.",
+    planetIds: ["aesthetica", "interactron", "nodeon", "infra-x"],
+    highlights: [
+      "9 áreas funcionais, de dashboard e produtos a estoque, usuários e aprovações",
+      "Auth real com Better Auth, 4 perfis hierárquicos e autorização no servidor",
+      "API própria em Cloudflare Worker + D1 com contratos Zod compartilhados",
+      "Fluxo de aprovação em 24h para ações destrutivas, com cron de reversão",
+      "Fidelidade ao Figma com tokens, renders comparativos e auditoria de design",
+    ],
+    challenges:
+      "Entregar fidelidade ao Figma sem inventar layout, enquanto auth, permissões, D1 e aprovação funcionavam de ponta a ponta.",
+    impact:
+      "App em produção na Vercel com dados reais no D1 e auth no Neon; todas as telas leem e escrevem no banco.",
+    aiWorkflow:
+      "Leitura do Figma via MCP/REST, extração de tokens, auditoria de design e implementação assistida por IA.",
+    technologies: [
+      "Next.js 15",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS 4",
+      "Better Auth",
+      "Neon Postgres",
+      "Drizzle ORM",
+      "Cloudflare Workers",
+      "Cloudflare D1",
+      "Hono",
+      "Zod",
+      "Vercel",
+    ],
+    external_links: [
+      { label: "Live Demo", url: "https://smartkitchen-ui.vercel.app" },
+    ],
+    imageUrl: "/projects/smartkitchen.webp",
+    featured: true,
+  },
+  {
+    id: "hellz-dashboard-01",
+    title: "Hellz — Painel de Guilda",
+    year: "2026",
+    role: "Desenvolvedor Full Stack",
+    summary:
+      "Painel de estatísticas para uma guilda de Ragnarok Origin: screenshots viram dados via OCR, com ranking por classe/função e autorização em RLS.",
+    planetIds: ["interactron", "nodeon", "logus-prime", "infra-x", "ai-belt"],
+    highlights: [
+      "OCR de screenshots com Tesseract.js e correção manual obrigatória",
+      "Cálculo de pontos e OVR por classe+função dentro do Postgres",
+      "Autorização em RLS e RPCs SECURITY DEFINER, com auditoria para oficiais",
+      "Cards por tier, rankings, escalação de guerra e ferramentas de auditoria",
+      "PWA com testes Vitest + harness de OCR e CI completo",
+    ],
+    challenges:
+      "Transformar screenshots inconsistentes de 160 jogadores em dados confiáveis, sem deixar autorização ou cálculo de rank no cliente.",
+    impact:
+      "Painel em produção usado pela guilda, com dados append-only e rankings calculados no banco; cada jogador vê sua posição na própria classe.",
+    aiWorkflow:
+      "Pipeline de OCR com pré-processamento, whitelist de dígitos e validação humana antes de persistir; amostras reais usadas como harness de regressão.",
+    technologies: [
+      "React 19",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS 4",
+      "Supabase",
+      "PostgreSQL",
+      "RLS",
+      "Tesseract.js",
+      "Vitest",
+      "PWA",
+      "Vercel",
+    ],
+    external_links: [
+      { label: "Live Demo", url: "https://hellzguild.vercel.app" },
+      {
+        label: "GitHub",
+        url: "https://github.com/angelomikaa/HellzDashboard",
+      },
+    ],
+    imageUrl: "/projects/hellz.webp",
+    featured: true,
+  },
+  {
+    id: "footscout-01",
+    title: "FootScout — Scouting U15",
+    year: "2026",
+    role: "Desenvolvedor Full Stack",
+    summary:
+      "Dashboard de scouting para prospects U15: observações manuais viram perfis visuais, com scoring ponderado, radar e comparação lado a lado.",
+    planetIds: ["aesthetica", "interactron", "logus-prime", "nodeon", "infra-x"],
+    highlights: [
+      "Formulário staged em 5 etapas com autosave, drafts e guarda de alterações",
+      "Scoring ponderado 1–5 com breakdown transparente por atributo e pesos via URL",
+      "Radar chart e comparação lado a lado com dual radar (Recharts)",
+      "React Router 7 em modo framework com SSR e rotas dedicadas",
+      "Turso/libSQL para decisões e histórico de Sign/Monitor/Pass",
+    ],
+    challenges:
+      "Fazer o score refletir o que a divisão procura sem esconder a matemática; cada mudança de peso precisa ser explicável e comparável.",
+    impact:
+      "v1.0 + v1.1 em produção, com 20 planos concluídos e o fluxo observação → score → decisão fechado.",
+    technologies: [
+      "React Router 7",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS 4",
+      "Vite",
+      "Turso",
+      "libSQL",
+      "Recharts",
+      "Zod",
+      "React Hook Form",
+      "Vercel",
+    ],
+    external_links: [
+      { label: "Live Demo", url: "https://footscout.vercel.app" },
+      { label: "GitHub", url: "https://github.com/angelomikaa/FootScout" },
+    ],
+    imageUrl: "/projects/footscout.webp",
+    featured: true,
+  },
+  {
+    id: "uimaga-01",
+    title: "UIMaga — Design System",
+    year: "2026",
+    role: "Frontend & Design Systems",
+    summary:
+      "Showcase interativo de um design system token-driven: primitives, componentes atômicos e temas claro/escuro que consomem exclusivamente tokens.",
+    planetIds: ["aesthetica", "interactron", "infra-x"],
+    highlights: [
+      "766 linhas de tokens CSS e 850 linhas de constantes TypeScript, com light/dark",
+      "Componentes atômicos sem valores hardcoded — trocar um token atualiza o sistema",
+      "Documentação interativa com copy-to-clipboard e visualização de valores",
+      "Hierarquia primitives → atoms → organisms e tema persistido",
+      "Deploy estático na Vercel",
+    ],
+    challenges:
+      "Manter pureza de tokens em todos os componentes sem engessar a evolução do sistema; cada novo componente precisa nascer do token, não do pixel.",
+    impact:
+      "Design system navegável e publicado, usado como referência viva de consistência visual e arquitetura de tokens.",
+    technologies: [
+      "React 19",
+      "TypeScript",
+      "Vite",
+      "CSS Variables",
+      "Design Tokens",
+      "Design Systems",
+      "Vercel",
+    ],
+    external_links: [
+      { label: "Live Demo", url: "https://ui-maga.vercel.app" },
+      { label: "GitHub", url: "https://github.com/angelomikaa/UIMaga" },
+    ],
+    imageUrl: "/projects/uimaga.webp",
+    featured: true,
+  },
   {
     id: "portal-egressos-01",
     title: "Portal dos Egressos PPGTE-UFC",
@@ -57,43 +218,44 @@ export const MISSION_ARCHIVE: MissionType[] = [
   },
   {
     id: "portfolio-01",
-    title: "Portfolio Pessoal",
+    title: "Portfolio 3D — Star System",
     year: "2026",
-    role: "Desenvolvedor Frontend",
+    role: "Desenvolvedor Full Stack",
     summary:
-      "Portfolio 3D interativo com tema espacial, sistema planetário e HUD analítico — deployado como SPA estática no GitHub Pages.",
-    planetIds: ["interactron", "logus-prime", "infra-x", "ai-belt"],
+      "Portfolio 3D que usa um sistema planetário como índice de áreas e projetos, com HUD de missões, métricas e uma camada de conteúdo em Cloudflare D1.",
+    planetIds: ["interactron", "nodeon", "logus-prime", "infra-x", "ai-belt"],
     highlights: [
-      "Sistema solar 3D interativo com React Three Fiber, orbital animation e instanced meshes para partículas",
-      "HUD sci-fi com dashboards por planeta — missões estruturadas e métricas de proficiência com progress bars",
-      "Cinturão de IA (S.O.N.D.A. Network) com modelo de dados próprio — tools categorizados e mission reports com problem/approach/outcome",
-      "Pipeline de dados estática com hooks customizados (usePlanetData, useMissions) abstraindo consumo de dados das UIs",
-      "SPA estática com 60fps estável, DPR capped em 2x e deploy via GitHub Pages",
+      "Sistema solar 3D interativo com React Three Fiber e orbital animation",
+      "Projetos como conteúdo principal: Mission Log com filtros, busca e cards com imagens",
+      "Cinturão de IA com ferramentas, proficiência e relatórios de projeto",
+      "Conteúdo servido por Cloudflare Worker + D1 com fallback estático",
+      "SPA estática no GitHub Pages, DPR capped em 2x e 60fps como meta",
     ],
     challenges:
-      "Alcançar 60fps estável em hardware intermediário com centenas de partículas instanciadas, múltiplos Canvas R3F e HUDs complexos — tudo como SPA estática sem servidor.",
+      "Manter o sistema 3D leve e, ao mesmo tempo, garantir que projetos e links sejam encontrados em um clique — sem que a metáfora espacial esconda o conteúdo.",
     impact:
-      "Portfolio deployado no GitHub Pages com performance validada, servindo como demonstração ao vivo de habilidades em React, Three.js e arquitetura de dados.",
+      "Portfolio deployado no GitHub Pages, com navegação por áreas, lista completa de projetos e dados atualizáveis sem novo deploy do frontend.",
     aiWorkflow:
-      "Desenvolvimento end-to-end assistido por IA agentic: arquitetura de dados planejada com agentes GSD, otimização de geometrias Three.js via prompt engineering, debug de performance com análise automatizada de gargalos de renderização, e refatoração incremental com code review por IA.",
+      "Desenvolvimento assistido por IA agentic: arquitetura de dados, otimização de geometrias Three.js, análise de performance e refatoração incremental com code review por IA.",
     technologies: [
       "React.js",
       "TypeScript",
       "Three.js (R3F)",
       "Vite",
       "Tailwind CSS",
-      "Git",
-      "GitHub",
-      "Responsive Design",
+      "Cloudflare Workers",
+      "Cloudflare D1",
+      "GitHub Pages",
       "UI Design",
     ],
     external_links: [
       {
         label: "GitHub",
-        url: "https://github.com/angelomikaa/angelomikaa.github.io",
+        url: "https://github.com/agmikadev/agmikadev.github.io",
       },
-      { label: "Website", url: "https://angelomikaa.github.io" },
+      { label: "Website", url: "https://agmikadev.github.io/" },
     ],
+    imageUrl: "/projects/portfolio.webp",
   },
   {
     id: "antigos-01",

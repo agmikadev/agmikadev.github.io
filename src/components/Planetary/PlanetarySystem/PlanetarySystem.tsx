@@ -12,6 +12,9 @@ const CONFIG = {
   keplerConstant: 15,
 };
 
+const PHYSICAL_PLANETS = planets.filter((planet) => planet.shape !== "belt");
+const BELT_PLANET = planets.find((planet) => planet.shape === "belt");
+
 interface PlanetarySystemProps {
   selectedPlanet: PlanetModel | null;
   onSelectPlanet: (planet: PlanetModel | null) => void;
@@ -24,8 +27,8 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
   isFetched,
 }) => {
   // --- DADOS ---
-  const physicalPlanets = planets.filter((p) => p.shape !== "belt");
-  const beltPlanet = planets.find((p) => p.shape === "belt");
+  const physicalPlanets = PHYSICAL_PLANETS;
+  const beltPlanet = BELT_PLANET;
 
   // --- ESTADOS ---
   const [hoveredPlanetId, setHoveredPlanetId] = useState<string | null>(null);
@@ -39,8 +42,7 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
   const containerHeightRef = useRef<number>(0);
 
   const svgHitboxRef = useRef<SVGPathElement>(null);
-  const pixelCoordsRef = useRef<{ x: number; y: number }[]>([]);
-  const [, setFrame] = useState(0);
+  const [pixelCoords, setPixelCoords] = useState<{ x: number; y: number }[]>([]);
 
   const anglesRef = useRef<number[]>(
     physicalPlanets.map((_, i) => i * ((Math.PI * 2) / physicalPlanets.length)),
@@ -103,13 +105,12 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
       const closedPath = `${pathData} Z`;
       if (svgHitboxRef.current) svgHitboxRef.current.setAttribute("d", closedPath);
 
-      pixelCoordsRef.current = pixelCoords;
-      setFrame((f) => f + 1);
+      setPixelCoords(pixelCoords);
       requestRef.current = requestAnimationFrame(animate);
     };
     requestRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(requestRef.current!);
-  }, [hoveredPlanetId]);
+  }, [hoveredPlanetId, physicalPlanets]);
 
   // --- KEYBOARD HANDLING (Escape to close HUD) ---
   useEffect(() => {
@@ -136,7 +137,7 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
             "--tooltip-color": beltPlanet.color,
           } as React.CSSProperties}
         >
-          {beltPlanet.name}
+          {beltPlanet.area}
         </div>
       )}
 
@@ -179,7 +180,7 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
             {beltPlanet && (
               <>
                 <BeltNetwork
-                  planetPositions={pixelCoordsRef.current.map((p, i) => ({
+                  planetPositions={pixelCoords.map((p, i) => ({
                     ...p,
                     color: physicalPlanets[i].color,
                     id: physicalPlanets[i].id,
@@ -242,16 +243,23 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
                   <div className="ai-ring inner" />
                 </>
               )}
-        <div
-          className={`planet-label ${hoveredPlanetId === p.id ? "planet-label-visible" : "planet-label-hidden"}`}
-          style={{ "--p-color": p.color } as React.CSSProperties}
-        >
-                {p.name}
+              <div
+                className={`planet-area-label ${hoveredPlanetId === p.id ? "planet-area-label-hovered" : ""}`}
+                style={{ "--p-color": p.color } as React.CSSProperties}
+              >
+                <span className="planet-area-name">{p.area}</span>
+                <span className="planet-area-code">{p.name}</span>
               </div>
             </div>
           ))}
 
           <div className="sun-center" />
+
+          <div className="system-caption" aria-hidden="true">
+            <span><strong>ÁREAS</strong> Design · Front-end · Back-end · Dados · Infra</span>
+            <span className="system-caption-sep">/</span>
+            <span><strong>CINTURÃO</strong> IA &amp; Agentic</span>
+          </div>
         </>
       )}
     </div>

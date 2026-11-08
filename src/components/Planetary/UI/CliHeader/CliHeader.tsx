@@ -8,9 +8,22 @@ interface CliHeaderProps {
   color?: string;
   onComplete?: () => void;
   onBack?: () => void;
+  onOpenProjects?: () => void;
   speed?: number;
   command?: string;
 }
+
+const GRID_ICON = (
+  <svg
+    width="16" height="16" viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+  >
+    <rect x="3" y="3" width="7" height="7" />
+    <rect x="14" y="3" width="7" height="7" />
+    <rect x="14" y="14" width="7" height="7" />
+    <rect x="3" y="14" width="7" height="7" />
+  </svg>
+);
 
 const BACK_ICON = (
   <svg
@@ -25,6 +38,7 @@ export const CliHeader: React.FC<CliHeaderProps> = ({
   planetId = "unknown",
   onComplete,
   onBack,
+  onOpenProjects,
   speed = 10,
   command,
 }) => {
@@ -35,7 +49,7 @@ export const CliHeader: React.FC<CliHeaderProps> = ({
       {onBack && (
         <HudButton
           variant="back"
-          label="SYSTEM VIEW"
+          label="VOLTAR AO SISTEMA"
           onClick={onBack}
           themeColor="hsl(var(--primary))"
           icon={BACK_ICON}
@@ -48,6 +62,18 @@ export const CliHeader: React.FC<CliHeaderProps> = ({
         speed={speed}
         onComplete={onComplete}
       />
+
+      {onOpenProjects && (
+        <button
+          type="button"
+          className="cli-projects-btn"
+          onClick={onOpenProjects}
+          aria-label="Abrir lista de projetos"
+        >
+          {GRID_ICON}
+          <span>PROJETOS</span>
+        </button>
+      )}
     </div>
   );
 };

@@ -1,0 +1,20 @@
+{
+  "name": "star-system-portfolio-api",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "db:migrate:local": "wrangler d1 migrations apply star-system-portfolio --local",
+    "db:migrate:remote": "wrangler d1 migrations apply star-system-portfolio --remote",
+    "db:seed:local": "wrangler d1 execute star-system-portfolio --local --file=./seed.sql",
+    "db:seed:remote": "wrangler d1 execute star-system-portfolio --remote --file=./seed.sql"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261104.1",
+    "typescript": "~5.9.3",
+    "wrangler": "^4.158.0"
+  }
+}

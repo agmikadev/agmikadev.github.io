@@ -35,6 +35,10 @@ jobs:
         
       - name: Build
         run: npm run build # Cria a pasta dist
+        env:
+          # Opcional: defina o repositório variable PORTFOLIO_API_URL.
+          # Se vazio, o build usa o Worker padrão definido em src/lib/portfolio-api.ts.
+          VITE_PORTFOLIO_API_URL: ${{ vars.PORTFOLIO_API_URL }}
         
       - name: Setup Pages
         uses: actions/configure-pages@v4

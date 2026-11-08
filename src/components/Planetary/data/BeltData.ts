@@ -15,7 +15,8 @@ export interface BeltTool {
     | "evaluation"
     | "rag"
     | "mcp"
-    | "prompt-engineering";
+    | "prompt-engineering"
+    | "vision";
   proficiency: number; // 0-100 percentage
   description: string;
   relatedTechnologies: string[]; // alternative/similar tools
@@ -33,10 +34,14 @@ export interface BeltMissionReport {
   aiWorkflow?: string;
   technologies: string[];
   external_links?: { label: string; url: string }[];
+  imageUrl?: string;
+  featured?: boolean;
 }
 
 export interface BeltDataModel {
   name: string;
+  codename: string;
+  area: string;
   description: string;
   color: string;
   tools: BeltTool[];
@@ -48,9 +53,11 @@ export interface BeltDataModel {
 // ---------------------------------------------------------------------------
 
 export const beltDataModel: BeltDataModel = {
-  name: "LLMB",
+  name: "IA & AGENTIC",
+  codename: "LLMB",
+  area: "IA & AGENTIC",
   description:
-    "Large Language Model Belt — uma rede neural autodidata que acumula uma quantidade imensurável de dados. É capaz de otimizar processos, sugerir melhorias e até mesmo antecipar falhas antes que ocorram. Sua principal função é se utilizar do seu volume robusto de informações em tempo real para sugerir os melhores cursos de ação para o astronauta, ajudando a maximizar a produtividade e minimizar o tempo perdido com bugs.",
+    "IA aplicada ao ciclo de desenvolvimento: LLMs, agentes, RAG, MCP, OCR e design-to-code. Uma camada que acelera e conecta design, front-end, back-end, dados e infra.",
   color: "#a9fc03",
 
   tools: [
@@ -62,9 +69,9 @@ export const beltDataModel: BeltDataModel = {
       description:
         "Integração com modelos de linguagem de grande porte (LLMs) via APIs como OpenAI, Anthropic Claude e Hugging Face. Capacidade de construir interfaces de chat, geração de texto e análise semântica.",
       relatedTechnologies: [
-        "ChatGPT API",
         "OpenAI",
         "Claude API",
+        "NVIDIA NIM",
         "Hugging Face",
         "LangChain",
       ],
@@ -97,6 +104,7 @@ export const beltDataModel: BeltDataModel = {
         "CrewAI",
         "AutoGen",
         "Semantic Kernel",
+        "NVIDIA NIM",
         "Event-Driven Architecture",
       ],
     },
@@ -175,6 +183,36 @@ export const beltDataModel: BeltDataModel = {
       ],
     },
     {
+      id: "design-to-code",
+      name: "Design-to-Code",
+      category: "orchestration",
+      proficiency: 88,
+      description:
+        "Pipeline de leitura de Figma via MCP/REST, extração de tokens e implementação assistida, com auditoria de fidelidade entre design e código.",
+      relatedTechnologies: [
+        "Figma MCP",
+        "Figma REST API",
+        "Design Tokens",
+        "Code Connect",
+        "Vision Models",
+      ],
+    },
+    {
+      id: "vision-ocr",
+      name: "OCR & Vision Pipelines",
+      category: "vision",
+      proficiency: 80,
+      description:
+        "Extração estruturada de dados a partir de imagens: pré-processamento, OCR, whitelist de caracteres e validação humana antes de persistir.",
+      relatedTechnologies: [
+        "Tesseract.js",
+        "Image Preprocessing",
+        "Digit Whitelisting",
+        "Human-in-the-loop",
+        "Regression Harness",
+      ],
+    },
+    {
       id: "nlp-processing",
       name: "Natural Language Processing",
       category: "llm",
@@ -200,6 +238,7 @@ export const beltDataModel: BeltDataModel = {
         "Code Analysis",
         "SonarQube",
         "GitHub Copilot",
+        "OpenCode",
         "Cursor",
         "Automated Testing",
       ],
@@ -208,33 +247,105 @@ export const beltDataModel: BeltDataModel = {
 
   missionReports: [
     {
+      id: "report-smartkitchen-design-to-code",
+      title: "SmartKitchen — Design-to-Code com D1",
+      year: "2026",
+      role: "AI-Assisted Full Stack Developer",
+      summary:
+        "Sistema full-stack construído a partir de um design system atômico no Figma, com IA na leitura do design e uma API própria em Cloudflare Worker + D1.",
+      highlights: [
+        "Leitura do Figma via MCP/REST e extração de tokens para o código",
+        "Auditoria de fidelidade com renders comparativos tela a tela",
+        "Worker + D1 com contratos Zod compartilhados entre web e API",
+        "Fluxo de aprovação em 24h com cron de reversão automática",
+      ],
+      challenges:
+        "Traduzir um arquivo de design extenso em 9 áreas funcionais sem inventar layout, e ainda operar auth, permissões e banco serverless.",
+      impact:
+        "App em produção com dados reais no D1; o design system virou contrato entre Figma, frontend e API.",
+      aiWorkflow:
+        "IA usada para leitura do Figma, extração de tokens, auditoria de consistência e implementação assistida; a validação final foi feita com renders e testes.",
+      technologies: [
+        "Figma MCP",
+        "Next.js",
+        "Cloudflare Workers",
+        "Cloudflare D1",
+        "Better Auth",
+        "Design Tokens",
+      ],
+      external_links: [
+        { label: "Live Demo", url: "https://smartkitchen-ui.vercel.app" },
+      ],
+      imageUrl: "/projects/smartkitchen.webp",
+      featured: true,
+    },
+    {
+      id: "report-hellz-ocr",
+      title: "Hellz — OCR Pipeline para GvG",
+      year: "2026",
+      role: "AI-Assisted Full Stack Developer",
+      summary:
+        "Pipeline que transforma screenshots de batalha em dados estruturados, com OCR no cliente e validação humana obrigatória antes de gravar no Postgres.",
+      highlights: [
+        "Tesseract.js com regiões, whitelist de dígitos e pré-processamento",
+        "Correção manual obrigatória para evitar dados silenciosamente errados",
+        "Harness com amostras reais para medir regressões de OCR",
+        "Rankings e OVR calculados no Postgres, com autorização em RLS",
+      ],
+      challenges:
+        "Lidar com screenshots inconsistentes e campos truncados sem deixar o OCR inventar dados ou a UI virar fonte de verdade.",
+      impact:
+        "Dados confiáveis o suficiente para rankings de guilda e escalação de guerra, com trilha de auditoria.",
+      aiWorkflow:
+        "OCR + pré-processamento + validação humana; o pipeline foi iterado com amostras reais e testes automatizados de extração.",
+      technologies: [
+        "Tesseract.js",
+        "Computer Vision",
+        "React 19",
+        "Supabase",
+        "PostgreSQL",
+        "RLS",
+      ],
+      external_links: [
+        { label: "Live Demo", url: "https://hellzguild.vercel.app" },
+        {
+          label: "GitHub",
+          url: "https://github.com/angelomikaa/HellzDashboard",
+        },
+      ],
+      imageUrl: "/projects/hellz.webp",
+      featured: true,
+    },
+    {
       id: "report-portfolio-ai",
       title: "Portfolio 3D — Otimização com IA",
       year: "2026",
       role: "AI-Driven Developer",
       summary:
-        "Portfolio 3D interativo com tema espacial, otimizado com assistência de IA para atingir 60fps em hardware intermediário como SPA estática.",
+        "Portfolio 3D que usa o sistema solar como índice de projetos, com HUD de missões, métricas e conteúdo servido por Cloudflare D1.",
       highlights: [
         "Geometrias Three.js otimizadas com sugestões de IA para redução de draw calls e instanciamento de partículas",
         "Sistema de cinturão de asteroides com centenas de instâncias via InstancedMesh",
-        "DPR capped em 2 com monitoramento de performance em tempo real",
-        "Deploy como SPA estática no GitHub Pages via Rolldown-Vite",
+        "Mission Log com projetos filtráveis, imagens e links diretos",
+        "Conteúdo em Cloudflare Worker + D1 com fallback estático",
         "Prompt engineering aplicado para refinar shaders GLSL e reduzir complexidade de renderização",
       ],
       challenges:
         "Alcançar 60fps estável em hardware intermediário com múltiplos planetas, cinturão de asteroides e HUDs complexos — tudo rodando como SPA estática sem servidor.",
       impact:
-        "Portfolio deployado no GitHub Pages com performance estável a 60fps, bundle otimizado via Rolldown-Vite e sistema de partículas instanciadas sem gargalos de renderização.",
+        "Portfolio deployado no GitHub Pages com performance estável a 60fps, bundle otimizado via Rolldown-Vite e conteúdo atualizável sem novo deploy do frontend.",
       aiWorkflow:
         "IA utilizada para identificação de gargalos de renderização, sugestão de instanciamento para o cinturão, otimização de memória e refinamento de shaders GLSL via prompt engineering iterativo.",
       technologies: [
         "React Three Fiber",
         "Three.js",
         "Rolldown-Vite",
+        "Cloudflare D1",
         "Prompt Engineering",
-        "GitHub Copilot",
+        "OpenCode",
         "Cursor",
       ],
+      imageUrl: "/projects/portfolio.webp",
     },
     {
       id: "report-maxvidro-algorithm",

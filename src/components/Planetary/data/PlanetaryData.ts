@@ -13,6 +13,8 @@ export interface PlanetTool {
 export interface PlanetModel {
   id: string;
   name: string;
+  /** Real development area shown as the primary label in the UI. */
+  area: string;
   type: string;
   description: string;
   tools: PlanetTool[];
@@ -31,9 +33,10 @@ export const planets: PlanetModel[] = [
   {
     id: "aesthetica",
     name: "AESTHETICA",
-    type: "Matriz Visual",
+    area: "DESIGN",
+    type: "Produto, interface e design systems",
     description:
-      "O setor de design primário. Gera protótipos de alta fidelidade, geometrias vetoriais e experiências visuais focadas no usuário antes da compilação do código.",
+      "Design de produto e sistemas visuais: pesquisa, prototipagem de alta fidelidade, design tokens e componentes. É aqui que os fluxos e a identidade visual são definidos antes do código.",
     tools: [
       { id: "figma", name: "Figma", category: "design" },
       { id: "adobe-illustrator", name: "Adobe Illustrator", category: "design" },
@@ -42,6 +45,8 @@ export const planets: PlanetModel[] = [
       { id: "mobile-design", name: "Mobile Design", category: "skill" },
       { id: "responsive-design", name: "Responsive Design", category: "skill" },
       { id: "design-systems", name: "Design Systems", category: "skill" },
+      { id: "design-tokens", name: "Design Tokens", category: "design" },
+      { id: "figma-mcp", name: "Figma MCP", category: "ai" },
       { id: "brand-design", name: "Brand Design", category: "skill" },
       { id: "color-theory", name: "Color Theory", category: "skill" },
       { id: "typography", name: "Typography", category: "skill" },
@@ -80,6 +85,16 @@ export const planets: PlanetModel[] = [
         alternatives: ["Design Tokens", "Component Libraries"],
       },
       {
+        label: "Implementação fiel de design systems (Figma → código)",
+        value: 92,
+        alternatives: ["Figma MCP", "Code Connect", "Design Tokens"],
+      },
+      {
+        label: "Auditoria de consistência visual e acessibilidade",
+        value: 85,
+        alternatives: ["WCAG", "Design Review", "Visual Regression"],
+      },
+      {
         label: "Design responsivo multi-plataforma",
         value: 95,
         alternatives: ["Mobile Design"],
@@ -99,11 +114,14 @@ export const planets: PlanetModel[] = [
   {
     id: "interactron",
     name: "INTERACTRON",
-    type: "Esfera de Interface",
+    area: "FRONT-END",
+    type: "Interfaces, performance e acessibilidade",
     description:
-      "O motor de renderização da superfície. Responsável pela interação humano-máquina, gerenciamento de estado global e renderização de telemetria visual.",
+      "Interfaces em React, Next.js e React Router, com foco em performance, acessibilidade e design systems em produção. Do protótipo ao componente publicado.",
     tools: [
       { id: "react", name: "React.js", category: "framework" },
+      { id: "nextjs", name: "Next.js", category: "framework" },
+      { id: "react-router", name: "React Router 7", category: "framework" },
       { id: "vue", name: "Vue.js", category: "framework" },
       { id: "typescript", name: "TypeScript", category: "language" },
       { id: "javascript", name: "JavaScript", category: "language" },
@@ -116,6 +134,11 @@ export const planets: PlanetModel[] = [
       { id: "responsive-design", name: "Responsive Design", category: "skill" },
       { id: "web-accessibility", name: "Web Accessibility", category: "skill" },
       { id: "context-api", name: "Context API", category: "state" },
+      { id: "react-hook-form", name: "React Hook Form", category: "forms" },
+      { id: "zod", name: "Zod", category: "validation" },
+      { id: "recharts", name: "Recharts", category: "data-viz" },
+      { id: "vitest", name: "Vitest", category: "testing" },
+      { id: "pwa", name: "PWA", category: "skill" },
       { id: "axios", name: "Axios", category: "data" },
     ],
 
@@ -131,6 +154,26 @@ export const planets: PlanetModel[] = [
         label: "Criação de arquitetura baseada em componentes com React.js",
         value: 95,
         alternatives: ["Vue.js", "Next.js"],
+      },
+      {
+        label: "Aplicações full-stack com Next.js App Router",
+        value: 82,
+        alternatives: ["React Router 7", "Remix"],
+      },
+      {
+        label: "SSR, loaders e rotas com React Router 7",
+        value: 78,
+        alternatives: ["Next.js", "Remix"],
+      },
+      {
+        label: "Formulários e validação com React Hook Form + Zod",
+        value: 85,
+        alternatives: ["Formik", "Yup", "React Router Actions"],
+      },
+      {
+        label: "Visualização de dados com Recharts",
+        value: 78,
+        alternatives: ["D3.js", "Chart.js", "Visx"],
       },
       {
         label: "Programação JavaScript moderna",
@@ -185,15 +228,25 @@ export const planets: PlanetModel[] = [
   {
     id: "nodeon",
     name: "NODEON",
-    type: "Nexus de Dados",
+    area: "BACK-END",
+    type: "APIs, auth e persistência",
     description:
-      "O hub central de backend. Não é um planeta, mas sim uma megaestrutura de 160km de diâmetro estrategicamente posicionada. Lida com roteamento assíncrono, mutações de banco de dados, transmissão segura de dados e lógica do lado do servidor.",
+      "APIs, autenticação, modelagem de dados e persistência. Node.js, Postgres, Supabase, Cloudflare D1 e bancos serverless para aplicações reais.",
     tools: [
       { id: "nodejs", name: "Node.js", category: "runtime" },
       { id: "express", name: "Express.js", category: "framework" },
       { id: "postgresql", name: "PostgreSQL", category: "database" },
+      { id: "neon", name: "Neon Postgres", category: "database" },
+      { id: "supabase", name: "Supabase", category: "database" },
+      { id: "cloudflare-d1", name: "Cloudflare D1", category: "database" },
+      { id: "turso", name: "Turso / libSQL", category: "database" },
       { id: "mongodb", name: "MongoDB", category: "database" },
+      { id: "drizzle", name: "Drizzle ORM", category: "orm" },
+      { id: "prisma", name: "Prisma", category: "orm" },
       { id: "sequelize", name: "Sequelize", category: "orm" },
+      { id: "cloudflare-workers", name: "Cloudflare Workers", category: "serverless" },
+      { id: "hono", name: "Hono", category: "serverless" },
+      { id: "better-auth", name: "Better Auth", category: "auth" },
       { id: "rest-api", name: "REST API", category: "skill" },
       { id: "graphql", name: "GraphQL", category: "skill" },
       { id: "jwt", name: "JWT", category: "auth" },
@@ -219,8 +272,28 @@ export const planets: PlanetModel[] = [
       },
       {
         label: "Modelagem de dados relacionais com PostgreSQL",
+        value: 82,
+        alternatives: ["MySQL", "SQLite", "Neon"],
+      },
+      {
+        label: "APIs serverless com Cloudflare Workers + D1",
+        value: 82,
+        alternatives: ["Hono", "Wrangler", "D1"],
+      },
+      {
+        label: "Postgres com RLS e RPCs SECURITY DEFINER",
+        value: 78,
+        alternatives: ["Supabase", "Neon", "Policies"],
+      },
+      {
+        label: "Autenticação e autorização com Better Auth",
+        value: 76,
+        alternatives: ["Supabase Auth", "JWT", "OAuth"],
+      },
+      {
+        label: "Modelagem e migrations com Drizzle ORM",
         value: 80,
-        alternatives: ["MySQL", "SQLite"],
+        alternatives: ["Prisma", "Kysely", "SQL puro"],
       },
       {
         label: "Banco de dados NoSQL com MongoDB",
@@ -266,14 +339,19 @@ export const planets: PlanetModel[] = [
   {
     id: "logus-prime",
     name: "LOGUS-PRIME",
-    type: "Prisma de Algoritmos",
+    area: "DADOS & ALGORITMOS",
+    type: "Scoring, OCR e automação",
     description:
-      "O processador lógico. Executa algoritmos computacionais complexos, pipelines de transformação de dados e otimização da arquitetura do sistema.",
+      "Análise de dados, scoring ponderado, OCR e regressão. O lugar de transformar regras de negócio e sinais bagunçados em cálculo confiável.",
     tools: [
       { id: "typescript", name: "TypeScript", category: "language" },
       { id: "python", name: "Python", category: "language" },
       { id: "algorithms", name: "Algorithms", category: "skill" },
       { id: "data-structures", name: "Data Structures", category: "skill" },
+      { id: "streamlit", name: "Streamlit", category: "data" },
+      { id: "pandas", name: "Pandas", category: "data" },
+      { id: "scikit-learn", name: "Scikit-learn", category: "ml" },
+      { id: "tesseract", name: "Tesseract.js", category: "ocr" },
       { id: "graphql", name: "GraphQL", category: "skill" },
       { id: "machine-learning", name: "Machine Learning", category: "skill" },
     ],
@@ -288,8 +366,28 @@ export const planets: PlanetModel[] = [
     stats: [
       {
         label: "Resolução de algoritmos complexos com Python",
-        value: 55,
+        value: 70,
         alternatives: ["Java", "C++"],
+      },
+      {
+        label: "Pipelines de OCR e extração estruturada",
+        value: 78,
+        alternatives: ["Tesseract.js", "Image Preprocessing", "Human-in-the-loop"],
+      },
+      {
+        label: "Scoring ponderado e rankings",
+        value: 82,
+        alternatives: ["Weighted Scoring", "Ranking", "Data Modeling"],
+      },
+      {
+        label: "Regressão e ajuste de modelos empíricos",
+        value: 72,
+        alternatives: ["Linear Regression", "Power-law", "RMSE", "R²"],
+      },
+      {
+        label: "Automação de análise com Python e Streamlit",
+        value: 70,
+        alternatives: ["Pandas", "NumPy", "Jupyter"],
       },
       {
         label: "Estruturação de modelos complexos com TypeScript",
@@ -340,15 +438,20 @@ export const planets: PlanetModel[] = [
   {
     id: "infra-x",
     name: "INFRA-X",
-    type: "Setor de Implantação",
+    area: "INFRA & DEPLOY",
+    type: "CI/CD, edge e observabilidade",
     description:
-      "A plataforma de implantação orbital. Gerencia integração contínua, ambientes em contêineres e automação segura de infraestrutura em nuvem.",
+      "CI/CD, deploy, borda e observabilidade. GitHub Actions, Vercel, Cloudflare Workers e bancos serverless para entregar e operar aplicações.",
     tools: [
       { id: "git", name: "Git", category: "vcs" },
       { id: "github", name: "GitHub", category: "vcs" },
       { id: "github-actions", name: "GitHub Actions", category: "ci" },
       { id: "vercel", name: "Vercel", category: "hosting" },
       { id: "netlify", name: "Netlify", category: "hosting" },
+      { id: "cloudflare", name: "Cloudflare", category: "edge" },
+      { id: "cloudflare-workers", name: "Cloudflare Workers", category: "edge" },
+      { id: "wrangler", name: "Wrangler", category: "edge" },
+      { id: "docker", name: "Docker", category: "containers" },
       { id: "npm", name: "npm", category: "pkg" },
     ],
 
@@ -370,6 +473,26 @@ export const planets: PlanetModel[] = [
         label: "Deploy de aplicações frontend",
         value: 90,
         alternatives: ["Vercel", "Netlify", "Heroku", "Railway"],
+      },
+      {
+        label: "Deploy full-stack com Vercel + Cloudflare Workers",
+        value: 88,
+        alternatives: ["Cloudflare Pages", "Railway", "Fly.io"],
+      },
+      {
+        label: "CI/CD com GitHub Actions",
+        value: 78,
+        alternatives: ["GitLab CI", "CircleCI"],
+      },
+      {
+        label: "Migrations e bancos serverless (D1/Turso/Neon)",
+        value: 80,
+        alternatives: ["Wrangler", "Drizzle Kit", "Neon CLI"],
+      },
+      {
+        label: "Observabilidade e verificação pós-deploy",
+        value: 70,
+        alternatives: ["Health Checks", "Smoke Tests", "Logs"],
       },
       {
         label: "Configuração de servidores web (Nginx)",
@@ -402,15 +525,20 @@ export const planets: PlanetModel[] = [
   {
     id: "ai-belt",
     name: "LLMB",
-    type: "Large Language Model Belt",
+    area: "IA & AGENTIC",
+    type: "Camada de IA que atravessa todos os estágios",
     description:
-      "Uma rede neural autodidata que acumula uma quantidade imensurável de dados. É capaz de otimizar processos, sugerir melhorias e até mesmo antecipar falhas antes que ocorram. Sua principal função é se utilizar do seu volume robusto de informações em tempo real para sugerir os melhores cursos de ação para o astronauta, ajudando a maximizar a produtividade e minimizar o tempo perdido com bugs.",
+      "IA aplicada ao ciclo de desenvolvimento: LLMs, agentes, RAG, MCP, OCR e design-to-code. Uma camada que acelera e conecta design, front-end, back-end, dados e infra.",
     tools: [
       { id: "llm-integration", name: "LLM Integration", category: "llm" },
       { id: "agentic-orchestration", name: "Agentic Orchestration", category: "orchestration" },
+      { id: "langgraph", name: "LangGraph", category: "orchestration" },
+      { id: "nvidia-nim", name: "NVIDIA NIM", category: "llm" },
       { id: "prompt-engineering", name: "Prompt Engineering", category: "prompt" },
       { id: "rag-systems", name: "RAG Systems", category: "rag" },
       { id: "mcp-protocol", name: "MCP Protocol", category: "mcp" },
+      { id: "design-to-code", name: "Design-to-Code", category: "orchestration" },
+      { id: "ocr-pipelines", name: "OCR & Vision Pipelines", category: "vision" },
       { id: "ai-evaluation", name: "AI Evaluation & Testing", category: "evaluation" },
       { id: "code-ai-optimization", name: "AI Code Optimization", category: "evaluation" },
       { id: "predictive-analytics", name: "Predictive Analytics", category: "orchestration" },

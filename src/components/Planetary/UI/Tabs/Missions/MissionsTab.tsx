@@ -10,13 +10,7 @@ interface MissionsTabProps {
   variant?: "planet" | "belt";
 }
 
-export const MissionsTab: React.FC<MissionsTabProps> = ({ planet, variant = "planet" }) => {
-  if (variant === "belt") {
-    return <BeltMissionsTab />;
-  }
-
-  if (!planet) return null;
-
+const PlanetMissions: React.FC<{ planet: PlanetModel }> = ({ planet }) => {
   const relevantMissions = useMissions(planet.id);
 
   if (relevantMissions.length === 0) {
@@ -37,4 +31,14 @@ export const MissionsTab: React.FC<MissionsTabProps> = ({ planet, variant = "pla
       ))}
     </div>
   );
+};
+
+export const MissionsTab: React.FC<MissionsTabProps> = ({ planet, variant = "planet" }) => {
+  if (variant === "belt") {
+    return <BeltMissionsTab />;
+  }
+
+  if (!planet) return null;
+
+  return <PlanetMissions planet={planet} />;
 };

@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-05-17)
 
 **Core value:** Visually demonstrate full-stack development proficiency — including cutting-edge agentic/AI skills — in a way that impresses both technical peers and hiring managers.
-**Current focus:** Phase 3 - Belt Interaction & Content (Complete)
+**Current focus:** Phase 6 — Projects-First Content Refresh & D1 (Complete)
 
 ## Current Position
 
-Phase: 3 of 5 (Belt Interaction & Content)
-Plan: 3 of 3 in current phase
-Status: Completed plan 03-03 (Belt interaction wiring)
-Last activity: 2026-05-18 — Completed plan 03-03 (Belt interaction wiring)
+Phase: 6 (Projects-First Content Refresh & D1)
+Plan: 1 of 1 in current phase
+Status: Completed phase 06 — projects-first reframe, recent cards, Mission Log, D1
+Last activity: 2026-11-08 — Phase 6 complete
 
-Progress: [██████████░░] 50%
+Progress: [█████████████░] 65%
 
 ## Performance Metrics
 
@@ -30,10 +30,11 @@ Progress: [██████████░░] 50%
 | 01-foundation | 4 | 4 | ~4 min |
 | 02-belt-data-visual-core | 3 | 3 | ~4 min |
 | 03-belt-interaction-content | 3 | 3 | ~4 min |
+| 06-projects-first-d1 | 1 | 1 | ~1 session |
 
 **Recent Trend:**
-- Last 5 plans: 02-03 (~5 min), 03-01 (~5 min), 03-02 (~5 min), 03-03 (~3 min)
-- Trend: Phase 3 complete, consistent velocity across all phases
+- Phase 6 delivered the content reframe and D1 layer in one session
+- Next: finish Phase 4 accessibility/polish and Phase 5 production readiness
 
 *Updated after each plan completion*
 
@@ -45,19 +46,22 @@ Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
 - AI as belt, not planet — Agentic skills cut across all dev stages, not a standalone stage
-- Network connections visual — Belt should feel alive and functional, not decorative
-- Same HUD pattern for belt — Consistency — belt uses Missions + Metrics tabs like planets
-- Static data approach — Portfolio doesn't need dynamic content; simplicity over complexity
-- BeltDataModel has no `type` field — hardcoded "Neural Backbone" in BeltHUD debrief section
+- Theme as navigation, not lore — Real areas are primary; codenames are secondary
+- Projects-first — Featured bar + Mission Log put project names on the first paint
+- D1 content + static fallback — Content is editable without redeploying the frontend, but the site never depends on the Worker
+- Same HUD pattern for belt — Consistency — belt uses Projects + Skills tabs like planets
+- Real project links are validated before being attached to cards
 
 ### Pending Todos
 
-None yet.
+- Phase 4: onboarding polish is partially done; camera transitions, keyboard nav and reduced motion remain
+- Phase 5: error boundary, bundle code-splitting, cross-device testing
 
 ### Blockers/Concerns
 
-- NeuralConstellation performance at scale: SVG line animation with 6+ animated connections updating per frame needs empirical testing during Phase 2
-- framer-motion-3d React 19 compatibility: LOW confidence — use @react-spring/three instead
+- Bundle remains ~1.24 MB (350 kB gzip); code-splitting Three.js/drei is the main Phase 5 task
+- D1 content changes require `npm run d1:seed:generate` + `npm run db:seed:remote`; edge cache can delay updates up to ~5 minutes
+- Visit counter is anonymous and session-based; it is not a unique-visitor metric
 
 ## Deferred Items
 
@@ -67,6 +71,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-05-18
-Stopped at: Completed plan 03-03 (Belt interaction wiring) — Phase 3 complete
-Resume file: None
+Last session: 2026-11-08
+Stopped at: Phase 6 complete — projects-first content, recent cards, Mission Log, Cloudflare D1
+Resume file: .planning/ROADMAP.md (next: Phase 4 polish, then Phase 5 production readiness)

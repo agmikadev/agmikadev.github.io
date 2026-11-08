@@ -7,7 +7,7 @@
 **Stack:** React 19 + TypeScript + Rolldown-Vite + Three.js/R3F + drei
 **Deployment:** GitHub Pages (static SPA)
 
-**What This Is:** A 3D space portfolio where planets represent dev stages (Design → Front-end → Bridge → Backend → Database). An AI "sonda network" belt connects all planets, representing agentic skills. Users explore as "mission control," reviewing mission reports and proficiency metrics.
+**What This Is:** A 3D space portfolio where planets represent real development areas (Design → Front-end → Back-end → Dados & Algoritmos → Infra & Deploy). An AI "sonda network" belt connects all planets, representing agentic skills. The theme is navigation, not lore: projects are the main content and are always one click away through the Mission Log.
 
 **Core Value:** Visually demonstrate full-stack development proficiency — including cutting-edge agentic/AI skills — in a way that impresses both technical peers and hiring managers.
 
@@ -23,21 +23,23 @@ This project uses the Get Shit Done (GSD) workflow. All work must follow these r
 
 ## Current State
 
-**Active Phase:** Phase 1 — Foundation & Performance
-**Goal:** Portfolio deploys correctly, loads reliably, and runs at target performance baseline
+**Active Phase:** Phase 6 complete — Projects-First Content Refresh & D1
+**Next:** Phase 4 polish (camera, keyboard, reduced motion), then Phase 5 production readiness
 
 **Key Files:**
 - `.planning/ROADMAP.md` — Phase structure and success criteria
 - `.planning/STATE.md` — Current project state
 - `.planning/REQUIREMENTS.md` — v1 requirements with traceability
 - `.planning/PROJECT.md` — Full project context
+- `.planning/phases/06-projects-first-d1/` — Phase 6 plan and summary
 - `.planning/config.json` — Workflow preferences (YOLO, fine granularity, parallel, genius models)
 
 ## Technical Constraints
 
 - **Deployment:** GitHub Pages — must work as static SPA
 - **Performance:** 60fps target on mid-range hardware, DPR capped at 2
-- **Data:** All content is static TypeScript constants
+- **Data:** Static TypeScript archive is the source of truth and fallback; Cloudflare D1 serves the same content at runtime
+- **D1:** Public read-only content API + anonymous session counter; no public writes to project data
 - **Three.js:** Pinned to 0.182.0 (do not upgrade without checking R3F/drei compatibility)
 - **React 19:** Required for @react-three/fiber v9 and postprocessing v3
 
@@ -46,15 +48,21 @@ This project uses the Get Shit Done (GSD) workflow. All work must follow these r
 ```
 src/
 ├── components/
-│   ├── MainFrame.tsx          # Layout shell
+│   ├── MainFrame.tsx          # Layout shell + featured bar + Mission Log state
+│   ├── MissionLog/            # Global project index (search + area filters)
 │   ├── Planetary/             # 3D planetary system
-│   │   ├── data/              # Static data (PlanetaryData.ts, MissionData.ts)
+│   │   ├── data/              # Static archive + D1 hooks
 │   │   ├── PlanetarySystem/   # Orbital animation + planet rendering
-│   │   └── UI/                # HUD components (Tabs, CliHeader, HudButtons)
-│   ├── SideStrip/             # Profile sidebar
+│   │   └── UI/                # HUD components (Tabs, cards, CLI, symbols)
+│   ├── SideStrip/             # Profile, stack, links, CV and visit count
+│   ├── Onboarding/            # First-visit card with project CTA
 │   └── styles/                # Container/MainFrame CSS
+├── lib/portfolio-api.ts       # D1 client with timeout + static fallback
 ├── App.tsx                    # Root wrapper
 ├── App.css                    # Global CSS tokens
 ├── index.css                  # Global styles
 └── main.tsx                   # Entry point
+
+worker/                        # Cloudflare Worker + D1 migrations/seed
+scripts/generate-d1-seed.ts    # Generates seed.sql from TypeScript data
 ```

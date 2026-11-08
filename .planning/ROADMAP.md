@@ -17,6 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 3: Belt Interaction & Content** - Clickable belt with HUD panel, populate all planet and belt mission/analytics content
 - [ ] **Phase 4: Polish & Accessibility** - Onboarding overlay, smooth camera transitions, keyboard navigation, reduced-motion support
 - [ ] **Phase 5: Production Readiness** - Error boundary with 2D fallback, SEO meta tags, bundle optimization, cross-device testing
+- [x] **Phase 6: Projects-First Content Refresh & D1** - Reframe the space metaphor as navigation, add recent project cards, Mission Log, and Cloudflare D1 content/visits
 
 ## Phase Details
 
@@ -104,15 +105,31 @@ Plans:
   4. Portfolio renders and functions correctly on desktop and tablet devices
 **Plans**: TBD
 
+### Phase 6: Projects-First Content Refresh & D1
+**Goal**: Projetos recentes em destaque, metáfora espacial como navegação e conteúdo servido por Cloudflare D1
+**Depends on**: Phase 3 (content model)
+**Requirements**: CONTENT-04, UX-05, UX-06, DATA-01, DATA-02, DATA-03
+**Success Criteria** (what must be TRUE):
+  1. SmartKitchen, HellzDashboard, FootScout e UIMaga aparecem como cards com imagem e links validados
+  2. Mission Log abre em um clique pelo header, side strip ou onboarding, com busca e filtros
+  3. Cada planeta mostra a área real como label primário e o codinome como secundário
+  4. Worker + D1 serve os 11 projetos e 5 relatórios de IA; visitas anônimas aparecem no side strip
+  5. Fallback estático mantém o portfólio funcional sem o Worker
+**Plans**: 1 plan
+
+Plans:
+- [x] 06-01-PLAN.md — Projects-first reframe, recent project cards, Mission Log, D1 content/visits
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
+Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & Performance | 4/4 | Complete | 2026-05-17 |
 | 2. Belt Data & Visual Core | 3/3 | Complete | 2026-05-18 |
 | 3. Belt Interaction & Content | 3/3 | Complete | 2026-05-18 |
-| 4. Polish & Accessibility | 0/0 | Not started | - |
-| 5. Production Readiness | 0/0 | Not started | - |
+| 4. Polish & Accessibility | 0/0 | Pending | - |
+| 5. Production Readiness | 0/0 | Pending | - |
+| 6. Projects-First Content Refresh & D1 | 1/1 | Complete | 2026-11-08 |
