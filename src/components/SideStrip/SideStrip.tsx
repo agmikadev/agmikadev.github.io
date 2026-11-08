@@ -14,7 +14,7 @@ const handleAnimationEnd = () => {
 };
 
 return (
-    <aside className="side-strip-container">
+    <aside className="console__sidebar">
 
       <AstronautHeader />
 

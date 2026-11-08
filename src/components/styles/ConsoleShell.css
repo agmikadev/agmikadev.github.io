@@ -1,5 +1,6 @@
-/* The main container for the whole screen */
-.app-container {
+/* --- CONSOLE SHELL --- */
+.console {
+  position: relative;
   height: 100vh;
   width: 100%;
   background: var(--bg-gradient);
@@ -12,74 +13,48 @@
   padding: 0;
 }
 
-/* --- THE GRAIN OVERLAY --- */
-.app-container::before {
+/* Grain overlay */
+.console::before {
   content: "";
   position: absolute;
   inset: 0;
-
   background-image: var(--grain-texture);
-
   opacity: 0.12;
   mix-blend-mode: overlay;
-
   pointer-events: none;
   z-index: 0;
 }
 
-/* --- THE DEEP SPACE VIGNETTE --- */
-.app-container::after {
+/* Deep-space vignette */
+.console::after {
   content: "";
   position: absolute;
   inset: 0;
-
   background: radial-gradient(
     ellipse at 50% 50%,
     transparent 50%,
     rgba(0, 0, 0, 0.4) 100%
   );
-
   pointer-events: none;
   z-index: 0;
 }
 
-/* The wrapper that holds main column + sidebar side-by-side */
-.dashboard-wrapper {
+/* Console body: stage + sidebar */
+.console__body {
   position: relative;
   z-index: 1;
-
   flex: 1;
   display: flex;
   gap: var(--space-3);
-
   width: 100%;
   box-sizing: border-box;
   padding: 0 var(--space-6);
-
   min-height: 0;
   overflow: hidden;
 }
 
-/* Main column: header → card → footer */
-.main-column {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-
-/* --- CLI HEADER WRAPPER — single screen header for all states --- */
-.cli-header-wrapper {
-  flex-shrink: 0;
-  padding: var(--space-3) var(--space-6);
-  width: 100%;
-  box-sizing: border-box;
-  position: relative;
-  z-index: 1;
-}
-
-/* --- BOTTOM HUD BAR --- */
-.footer {
+/* Bottom HUD bar */
+.console__footer {
   display: flex;
   align-items: center;
   gap: var(--space-3);
@@ -89,7 +64,7 @@
   box-sizing: border-box;
 }
 
-.footer-text {
+.console__footer-text {
   font-family: var(--font-sans);
   font-size: var(--text-xs);
   font-weight: 800;
@@ -98,14 +73,24 @@
   letter-spacing: 1px;
 }
 
-.footer-line { flex-grow: 1; height: 1px; background: hsl(var(--primary)); margin: 0 var(--space-4); opacity: 0.5; }
-.stars { display: flex; flex-direction: row; font-size: var(--text-xs); color: hsl(var(--primary)); }
+.console__footer-line {
+  flex-grow: 1;
+  height: 1px;
+  background: hsl(var(--primary));
+  margin: 0 var(--space-4);
+  opacity: 0.5;
+}
 
-/* =========================================
-   MOBILE RESPONSIVENESS
-   ========================================= */
+.console__footer-stars {
+  display: flex;
+  flex-direction: row;
+  font-size: var(--text-xs);
+  color: hsl(var(--primary));
+}
+
+/* Mobile */
 @media (max-width: 960px) {
-  .app-container {
+  .console {
     min-height: 100dvh;
     height: auto;
     overflow-y: auto;
@@ -113,11 +98,11 @@
     padding: 0;
   }
 
-  .app-container::before {
+  .console::before {
     opacity: 0.08;
   }
 
-  .dashboard-wrapper {
+  .console__body {
     flex: none;
     flex-direction: column;
     height: auto;
@@ -126,15 +111,7 @@
     overflow: visible;
   }
 
-  .main-column {
-    flex: none;
-  }
-
-  .cli-header-wrapper {
-    padding: var(--space-3);
-  }
-
-  .footer {
+  .console__footer {
     display: none !important;
   }
 }

@@ -10,10 +10,10 @@ de **IA & Agentic**. Os projetos são o conteúdo principal — a metáfora espa
 
 - **ÓRBITA (padrão, fluxo compassado):** explorar o sistema, abrir planetas,
   ler os cases e navegar pelo cinturão de IA no tempo do visitante.
-- **SALTO (fluxo expresso):** um único switch no header abre um índice denso de
-  projetos com busca, filtro por área e **filtro por tecnologia com contagem**.
-  É o caminho para recrutadores que só querem saber "o que você fez com
-  React/D1/Supabase".
+- **SALTO (fluxo expresso):** um único switch no header troca a tela do console
+  para um índice denso de projetos com busca, filtro por área e **filtro por
+  tecnologia com contagem**. É o caminho para recrutadores que só querem saber
+  "o que você fez com React/D1/Supabase" — sem passar pelos planetas.
 - Tags de tecnologia são canônicas e clicáveis: clicar em `React` em um card
   abre o Salto já filtrado por React.
 
@@ -45,17 +45,32 @@ filtro de área está ativo, as linhas usam a perspectiva daquela área.
 ```
 src/
 ├── components/
-│   ├── MissionLog/            # Salto: índice, filtros e tech sidebar
+│   ├── ConsoleShell.tsx        # Shell: header, stage, sidebar, footer
+│   ├── ConsoleHeader/          # Comando, botão SALTO e voltar
+│   ├── Salto/                  # Tela SALTO, linhas e navegação de tecnologia
 │   ├── Planetary/
-│   │   ├── data/              # Fonte estática: planetas, projetos, belt
-│   │   ├── PlanetarySystem/   # Sistema solar + dashboard
-│   │   └── UI/                # Tabs, cards, CLI, símbolos
-│   ├── SideStrip/             # Perfil, stack, links e CV
-│   └── Onboarding/            # Cartão de primeira visita
+│   │   ├── data/               # Projetos, perspectivas, tecnologias, belt
+│   │   ├── PlanetarySystem/    # Tela ÓRBITA + HUD de planeta
+│   │   └── UI/                 # Tabs, ProjectCard, símbolos
+│   ├── SideStrip/              # Sidebar do console: perfil, stack, CV
+│   ├── Onboarding/             # Cartão de primeira visita
+│   └── styles/                 # ConsoleShell.css, Console.css
 ├── lib/
-│   └── portfolio-api.ts       # Cliente do Worker com fallback estático
-└── worker/                    # Cloudflare Worker + migrações D1
+│   └── portfolio-api.ts        # Cliente do Worker com fallback estático
+└── worker/                     # Cloudflare Worker + migrações D1
 ```
+
+### Hierarquia de classes
+
+O console usa BEM: `console__*` para o shell, `orbit__*` para a tela
+planetária, `planet-hud__*` para o dashboard do planeta, `salto__*` para o
+índice e `project-card__*` para os cards de projeto. O estado fica em
+`data-screen="orbit|salto"`, `data-variant="planet|belt"`,
+`data-perspective="..."` e `aria-pressed` nos filtros.
+
+O SALTO não é um modal: ele é renderizado dentro de `.console__screen`, no
+mesmo frame do sistema planetário. O header do console é o único controle de
+volta (`← ÓRBITA`), e a sidebar/footer permanecem visíveis.
 
 ## Rodando
 

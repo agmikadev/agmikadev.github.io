@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import type { MissionType } from "../Planetary/data/MissionData";
 import { canonicalTechList } from "../Planetary/data/technologies";
 import { resolveMissionPerspective } from "../Planetary/data/perspectives";
-import "./ProjectRow.css";
+import "./SaltoRow.css";
 
-interface ProjectRowProps {
+interface SaltoRowProps {
   mission: MissionType;
   onTechClick: (technology: string) => void;
   perspectivePlanetId?: string;
   perspectiveLabel?: string;
 }
 
-export const ProjectRow: React.FC<ProjectRowProps> = ({
+export const SaltoRow: React.FC<SaltoRowProps> = ({
   mission,
   onTechClick,
   perspectivePlanetId,
@@ -33,7 +33,7 @@ export const ProjectRow: React.FC<ProjectRowProps> = ({
     <button
       key={technology}
       type="button"
-      className="project-row-tech"
+      className="salto__row-tech"
       onClick={() => onTechClick(technology)}
       aria-label={`Filtrar projetos com ${technology}`}
     >
@@ -42,13 +42,13 @@ export const ProjectRow: React.FC<ProjectRowProps> = ({
   );
 
   return (
-    <article className={`project-row ${expanded ? "project-row-expanded" : ""}`}>
-      <div className="project-row-main">
-        <div className="project-row-heading">
-          <h3 className="project-row-title">{mission.title}</h3>
-          <div className="project-row-meta">
+    <article className={`salto__row ${expanded ? "salto__row--expanded" : ""}`}>
+      <div className="salto__row-main">
+        <div className="salto__row-heading">
+          <h3 className="salto__row-title">{mission.title}</h3>
+          <div className="salto__row-meta">
             {perspective && (
-              <span className="project-row-perspective">
+              <span className="salto__row-perspective">
                 ÓTICA // {perspectiveLabel ?? perspectivePlanetId}
               </span>
             )}
@@ -57,24 +57,24 @@ export const ProjectRow: React.FC<ProjectRowProps> = ({
           </div>
         </div>
 
-        <p className="project-row-summary">{summary}</p>
+        <p className="salto__row-summary">{summary}</p>
 
-        <div className="project-row-techs">
+        <div className="salto__row-techs">
           {visibleTechnologies.map(renderTech)}
           {hiddenCount > 0 && (
-            <span className="project-row-more">+{hiddenCount}</span>
+            <span className="salto__row-more">+{hiddenCount}</span>
           )}
         </div>
 
-        <div className="project-row-actions">
-          <div className="project-row-links">
+        <div className="salto__row-actions">
+          <div className="salto__row-links">
             {mission.external_links?.map((link) => (
               <a
                 key={`${link.label}-${link.url}`}
                 href={link.url}
                 target="_blank"
                 rel="noreferrer"
-                className="project-row-link"
+                className="salto__row-link"
               >
                 {link.label}
               </a>
@@ -83,7 +83,7 @@ export const ProjectRow: React.FC<ProjectRowProps> = ({
 
           <button
             type="button"
-            className="project-row-toggle"
+            className="salto__row-toggle"
             onClick={() => setExpanded((current) => !current)}
             aria-expanded={expanded}
           >
@@ -93,40 +93,40 @@ export const ProjectRow: React.FC<ProjectRowProps> = ({
       </div>
 
       {expanded && (
-        <div className="project-row-details">
-          <div className="project-row-detail-block">
-            <span className="project-row-detail-label">
+        <div className="salto__row-details">
+          <div className="salto__row-detail">
+            <span className="salto__row-detail-label">
               {perspective
                 ? `CONTRIBUIÇÃO EM ${(perspectiveLabel ?? perspectivePlanetId ?? "ÁREA").toUpperCase()}`
                 : "O QUE FOI FEITO"}
             </span>
-            <ul className="project-row-highlights">
+            <ul className="salto__row-highlights">
               {highlights.slice(0, 4).map((highlight, index) => (
                 <li key={index}>{highlight}</li>
               ))}
             </ul>
           </div>
 
-          <div className="project-row-detail-block">
-            <span className="project-row-detail-label">DESAFIO</span>
+          <div className="salto__row-detail">
+            <span className="salto__row-detail-label">DESAFIO</span>
             <p>{challenges}</p>
           </div>
 
-          <div className="project-row-detail-block">
-            <span className="project-row-detail-label">IMPACTO</span>
+          <div className="salto__row-detail">
+            <span className="salto__row-detail-label">IMPACTO</span>
             <p>{impact}</p>
           </div>
 
           {aiWorkflow && (
-            <div className="project-row-detail-block">
-              <span className="project-row-detail-label">AI WORKFLOW</span>
+            <div className="salto__row-detail">
+              <span className="salto__row-detail-label">AI WORKFLOW</span>
               <p>{aiWorkflow}</p>
             </div>
           )}
 
-          <div className="project-row-detail-block project-row-stack">
-            <span className="project-row-detail-label">STACK COMPLETA</span>
-            <div className="project-row-techs">
+          <div className="salto__row-detail salto__row-stack">
+            <span className="salto__row-detail-label">STACK COMPLETA</span>
+            <div className="salto__row-techs">
               {technologies.map(renderTech)}
             </div>
           </div>

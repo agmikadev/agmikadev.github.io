@@ -1,7 +1,7 @@
 /* =========================================
    VARIAVEIS E CONTAINER
    ========================================= */
-.side-strip-container {
+.console__sidebar {
   position: relative;
   width: 260px;
   flex-shrink: 0;
@@ -24,7 +24,7 @@
   animation: fade-in 0.6s ease-out forwards;
 }
 
-.side-strip-container::-webkit-scrollbar { width: 0px; }
+.console__sidebar::-webkit-scrollbar { width: 0px; }
 
 
 
@@ -411,7 +411,7 @@ SOCIALS
    MOBILE
    ========================================= */
 @media (max-width: 960px) {
-  .side-strip-container {
+  .console__sidebar {
     width: 100%;
     max-width: 100%;
     border: none;

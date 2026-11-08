@@ -1,5 +1,5 @@
-/* --- 1. BASE CLASS (.hud-btn) --- */
-.hud-btn {
+/* --- CONSOLE BUTTON --- */
+.console__button {
   display: inline-flex;
   align-items: center;
   gap: var(--space-3);
@@ -18,7 +18,7 @@
   outline: none;
 }
 
-.hud-icon {
+.console__button-icon {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,32 +30,35 @@
   transition: background-color var(--duration-base) var(--ease-smooth);
 }
 
-/* --- HOVER STATES --- */
-.hud-btn:hover {
+.console__button:hover {
   color: hsl(var(--hud-text-primary));
   background: rgba(255, 255, 255, 0.08);
   border-color: var(--theme-color);
   box-shadow: 0 0 15px var(--theme-color);
 }
 
-.hud-btn:hover .hud-icon {
+.console__button:hover .console__button-icon {
   background-color: var(--theme-color);
   color: #000;
 }
 
-/* --- 2. MODIFIER CLASSES --- */
-.hud-btn-back:hover { transform: translateX(-4px); }
+.console__button--back:hover {
+  transform: translateX(-4px);
+}
 
-.hud-btn-default:hover,
-.hud-btn-action:hover {
+.console__button--default:hover,
+.console__button--action:hover {
   transform: translateY(-3px);
   box-shadow: 0 5px 15px var(--theme-color);
 }
 
-/* =========================================
-   3. MOBILE RESPONSIVENESS
-   ========================================= */
 @media (max-width: 960px) {
-  .hud-label { display: none; }
-  .hud-btn { padding: var(--space-2); gap: 0; }
+  .console__button-label {
+    display: none;
+  }
+
+  .console__button {
+    padding: var(--space-2);
+    gap: 0;
+  }
 }

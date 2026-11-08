@@ -1,13 +1,12 @@
 /* =========================================
-   DASHBOARD — fills container-content
-   Desktop: 40/60 body split
-   Mobile: stacked, left column hidden
+   PLANET HUD — fills the console screen
+   Desktop: 38/62 body split
+   Mobile: stacked, left column above tabs
    Used by both planet and belt modes.
    ========================================= */
 @import "./dashboard-shared.css";
 
-/* --- OVERLAY --- */
-.dashboard-overlay {
+.planet-hud {
   width: 100%;
   height: 100%;
   background: transparent;
@@ -17,13 +16,7 @@
   animation: fade-in var(--duration-base) var(--ease-smooth) forwards;
 }
 
-/* Belt mode modifier */
-.dashboard-overlay.belt-dashboard {
-  /* inherits all base styles */
-}
-
-/* --- CONTAINER --- */
-.dashboard-container {
+.planet-hud__container {
   position: relative;
   width: 100%;
   height: 100%;
@@ -33,8 +26,7 @@
   box-sizing: border-box;
 }
 
-/* --- BODY — flex row: left + right columns --- */
-.dashboard-body {
+.planet-hud__body {
   flex: 1;
   display: flex;
   flex-direction: row;
@@ -43,8 +35,8 @@
   overflow: hidden;
 }
 
-/* --- LEFT COLUMN — Planet 3D + info --- */
-.dashboard-left {
+/* --- LEFT COLUMN — planet 3D + info --- */
+.planet-hud__left {
   flex: 0 0 38%;
   max-width: 38%;
   display: flex;
@@ -53,7 +45,7 @@
   overflow: hidden;
 }
 
-.planet-info-card {
+.planet-hud__info-card {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -65,7 +57,7 @@
   border-right: var(--hud-border-yellow) !important;
 }
 
-.planet-3d-wrapper {
+.planet-hud__planet {
   flex: 1;
   display: flex;
   align-items: flex-start;
@@ -76,22 +68,22 @@
   margin: 0 auto;
 }
 
-.planet-info-content {
+.planet-hud__info {
   flex-shrink: 0;
   padding-top: var(--space-2);
 }
 
-.planet-info-content .planet-title {
+.planet-hud__info .planet-hud__title {
   margin-bottom: var(--space-2);
 }
 
-.planet-info-content .planet-debrief {
+.planet-hud__info .planet-hud__debrief {
   font-size: var(--text-xs);
   line-height: var(--leading-relaxed);
 }
 
-/* --- RIGHT COLUMN — header + scrollable body --- */
-.dashboard-right {
+/* --- RIGHT COLUMN — tabs + scrollable body --- */
+.planet-hud__right {
   flex: 1 1 60%;
   min-width: 0;
   display: flex;
@@ -100,22 +92,19 @@
   overflow: hidden;
 }
 
-/* Single Tabs root spans header + body */
-.dashboard-right-tabs {
+.planet-hud__tabs {
   display: flex;
   flex-direction: column;
   min-height: 0;
   flex: 1;
 }
 
-/* --- RIGHT COLUMN HEADER (fixed, tabs) --- */
-.dashboard-right-header {
+.planet-hud__tabs-header {
   flex-shrink: 0;
   padding: var(--space-2) var(--space-3) 0;
 }
 
-/* --- RIGHT COLUMN BODY (scrollable content) --- */
-.dashboard-right-body {
+.planet-hud__tabs-body {
   flex: 1;
   min-height: 0;
   min-width: 0;
@@ -124,30 +113,30 @@
   font-family: var(--font-mono);
 }
 
-.dashboard-right-body::-webkit-scrollbar {
+.planet-hud__tabs-body::-webkit-scrollbar {
   width: 6px;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.dashboard-right-body::-webkit-scrollbar-thumb {
+.planet-hud__tabs-body::-webkit-scrollbar-thumb {
   background-color: var(--theme-color);
   border-radius: var(--radius-sm);
 }
 
-.dashboard-right-body::-webkit-scrollbar-thumb:hover {
+.planet-hud__tabs-body::-webkit-scrollbar-thumb:hover {
   filter: brightness(1.2);
 }
 
 /* --- MOBILE PLANET HEADER (hidden on desktop) --- */
-.mobile-planet-header {
+.planet-hud__mobile-header {
   display: none;
 }
 
 /* =========================================
-   MOBILE RESPONSIVENESS
+   MOBILE
    ========================================= */
 @media (max-width: 960px) {
-  .dashboard-overlay {
+  .planet-hud {
     position: relative;
     width: 100%;
     height: auto;
@@ -156,32 +145,32 @@
     backdrop-filter: none;
   }
 
-  .dashboard-container {
+  .planet-hud__container {
     display: block;
     height: auto;
     overflow: visible;
     padding: 0;
   }
 
-  .dashboard-body {
+  .planet-hud__body {
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
   }
 
-  .dashboard-left {
+  .planet-hud__left {
     display: flex;
     flex: none;
     padding: 0 var(--space-2);
     overflow: visible;
   }
 
-  .planet-3d-wrapper {
+  .planet-hud__planet {
     max-width: 100%;
     max-height: 200px;
   }
 
-  .planet-info-card {
+  .planet-hud__info-card {
     flex: none;
     min-height: auto;
     border: var(--hud-border-yellow) !important;
@@ -190,7 +179,7 @@
     overflow: visible !important;
   }
 
-  .dashboard-right {
+  .planet-hud__right {
     display: flex;
     flex-direction: column;
     height: auto;
@@ -198,18 +187,18 @@
     overflow: visible;
   }
 
-  .dashboard-right-tabs {
+  .planet-hud__tabs {
     display: flex;
     flex-direction: column;
     height: auto;
     overflow: visible;
   }
 
-  .dashboard-right-header {
+  .planet-hud__tabs-header {
     padding: 0 var(--space-2);
   }
 
-  .dashboard-right-body {
+  .planet-hud__tabs-body {
     display: block;
     height: auto;
     max-height: none;
@@ -217,11 +206,11 @@
     overflow: visible;
   }
 
-  .mobile-planet-header {
+  .planet-hud__mobile-header {
     display: none;
   }
 
-  .dashboard-container .planet-title {
+  .planet-hud__container .planet-hud__title {
     font-size: var(--text-2xl);
     text-align: left;
   }

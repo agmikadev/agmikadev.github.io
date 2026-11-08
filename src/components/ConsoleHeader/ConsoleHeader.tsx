@@ -1,19 +1,19 @@
 import React from "react";
 import { TerminalText } from "./TerminalText";
-import "./CliHeader.css";
-import { HudButton } from "../HudButtons";
+import { ConsoleButton } from "./ConsoleButton";
+import "./ConsoleHeader.css";
 
-interface CliHeaderProps {
+interface ConsoleHeaderProps {
   planetId?: string;
-  color?: string;
   onComplete?: () => void;
   onBack?: () => void;
-  onOpenProjects?: () => void;
+  backLabel?: string;
+  onOpenSalto?: () => void;
   speed?: number;
   command?: string;
 }
 
-const EXPRESS_ICON = (
+const SALTO_ICON = (
   <svg
     width="16" height="16" viewBox="0 0 24 24" fill="none"
     stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
@@ -31,22 +31,23 @@ const BACK_ICON = (
   </svg>
 );
 
-export const CliHeader: React.FC<CliHeaderProps> = ({
-  planetId = "unknown",
+export const ConsoleHeader: React.FC<ConsoleHeaderProps> = ({
+  planetId = "orbit",
   onComplete,
   onBack,
-  onOpenProjects,
+  backLabel = "VOLTAR AO SISTEMA",
+  onOpenSalto,
   speed = 10,
   command,
 }) => {
-  const terminalCommand = command || `❯ root@ship-os:~# fetch_archives --location="${planetId}"`;
+  const terminalCommand = command || "❯ órbita --status=online";
 
   return (
-    <div className="cli-header">
+    <header className="console__header">
       {onBack && (
-        <HudButton
+        <ConsoleButton
           variant="back"
-          label="VOLTAR AO SISTEMA"
+          label={backLabel}
           onClick={onBack}
           themeColor="hsl(var(--primary))"
           icon={BACK_ICON}
@@ -54,24 +55,24 @@ export const CliHeader: React.FC<CliHeaderProps> = ({
       )}
 
       <TerminalText
-        key={`${planetId}-cli`}
+        key={`${planetId}-command`}
         text={terminalCommand}
         speed={speed}
         onComplete={onComplete}
       />
 
-      {onOpenProjects && (
+      {onOpenSalto && (
         <button
           type="button"
-          className="cli-projects-btn"
-          onClick={onOpenProjects}
+          className="console__mode-button"
+          onClick={onOpenSalto}
           aria-label="Abrir índice de projetos (Salto)"
           title="Abrir índice de projetos"
         >
-          {EXPRESS_ICON}
+          {SALTO_ICON}
           <span>SALTO</span>
         </button>
       )}
-    </div>
+    </header>
   );
 };

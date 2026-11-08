@@ -127,10 +127,10 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
   const isBeltHovered = beltPlanet && hoveredPlanetId === beltPlanet.id;
 
   return (
-    <div className="solar-system-container" ref={containerRef}>
+    <div className="orbit" ref={containerRef}>
       {isBeltHovered && beltPlanet && !selectedPlanet && (
         <div
-          className="planet-label planet-label-tooltip"
+          className="orbit__label orbit__label--tooltip"
           style={{
             "--tooltip-x": `${mousePos.x + 15}px`,
             "--tooltip-y": `${mousePos.y + 15}px`,
@@ -155,7 +155,7 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
       ) : (
         <>
         <svg
-          className="solar-system-svg"
+          className="orbit__svg"
           preserveAspectRatio="none"
         >
             {physicalPlanets.map((p) => {
@@ -172,7 +172,7 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
               stroke={isHovered ? p.color : "rgba(255, 255, 255, 0.08)"}
               strokeWidth={isHovered ? 2 : 1}
               strokeOpacity={isHovered ? 1 : 0.5}
-              className="orbit-ellipse"
+              className="orbit__ellipse"
             />
               );
             })}
@@ -198,7 +198,7 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
           stroke="transparent"
           strokeWidth="30"
           strokeLinejoin="bevel"
-          className="belt-hitbox-path"
+          className="orbit__belt-hitbox"
           onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
           onMouseEnter={() => setHoveredPlanetId(beltPlanet.id)}
           onMouseLeave={() => setHoveredPlanetId(null)}
@@ -221,7 +221,7 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
                 }
               }}
               key={p.id}
-              className="planet-node"
+              className="orbit__planet"
               ref={(el) => {
                 planetNodesRef.current[i] = el;
               }}
@@ -236,28 +236,28 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
           "--p-size": `${p.size * 2}px`,
         } as React.CSSProperties}
             >
-              <div className={`planet-visual shape-${p.shape}`} />
+              <div className="orbit__planet-visual" data-shape={p.shape} />
               {p.hasAI && (
                 <>
-                  <div className="ai-ring outer" />
-                  <div className="ai-ring inner" />
+                  <div className="orbit__ai-ring orbit__ai-ring--outer" />
+                  <div className="orbit__ai-ring orbit__ai-ring--inner" />
                 </>
               )}
               <div
-                className={`planet-area-label ${hoveredPlanetId === p.id ? "planet-area-label-hovered" : ""}`}
+                className={`orbit__label orbit__label--area ${hoveredPlanetId === p.id ? "orbit__label--hovered" : ""}`}
                 style={{ "--p-color": p.color } as React.CSSProperties}
               >
-                <span className="planet-area-name">{p.area}</span>
-                <span className="planet-area-code">{p.name}</span>
+                <span className="orbit__label-name">{p.area}</span>
+                <span className="orbit__label-code">{p.name}</span>
               </div>
             </div>
           ))}
 
-          <div className="sun-center" />
+          <div className="orbit__sun" />
 
-          <div className="system-caption" aria-hidden="true">
+          <div className="orbit__caption" aria-hidden="true">
             <span><strong>ÁREAS</strong> Design · Front-end · Back-end · Dados · Infra</span>
-            <span className="system-caption-sep">/</span>
+            <span className="orbit__caption-sep">/</span>
             <span><strong>CINTURÃO</strong> IA &amp; Agentic</span>
           </div>
         </>

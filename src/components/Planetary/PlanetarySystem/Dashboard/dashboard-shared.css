@@ -1,46 +1,29 @@
 /* =========================================
-   DASHBOARD SHARED STYLES
-   Shared between PlanetaryDashboard and BeltHUD.
-   Yellow card, title, debrief, and common HUD patterns.
+   PLANET HUD SHARED STYLES
    ========================================= */
 
 /* --- YELLOW CARD OVERRIDES (dark text for contrast) --- */
-.planet-debrief-yellow {
+.planet-hud__debrief--yellow {
   color: hsl(var(--hud-text-inverse));
   margin-bottom: 0;
 }
 
-.planet-debrief-yellow strong {
+.planet-hud__debrief--yellow strong {
   color: hsl(var(--hud-text-inverse));
 }
 
-.planet-title-yellow {
+.planet-hud__title--yellow {
   color: hsl(var(--hud-text-inverse)) !important;
   text-shadow: none !important;
 }
 
-/* --- YELLOW CARD WRAPPER --- */
-.planet-detail-card {
-  margin-bottom: var(--space-6);
-}
-
-/* --- TAB AREA (sits on dark overlay, outside yellow card) --- */
-.tab-area-wrapper {
-  position: relative;
-}
-
-/* --- DASHBOARD RIGHT HEADER (tabs) --- */
-.dashboard-right-header {
-  position: relative;
-}
-
-/* --- FETCHED DATA REVEALER --- */
-.fetched-data-wrapper {
+/* --- CONTENT REVEAL --- */
+.planet-hud__content {
   animation: tab-fade var(--duration-base) var(--ease-smooth) forwards;
 }
 
-/* --- PLANET DEBRIEF (base style) --- */
-.planet-debrief {
+/* --- PLANET DEBRIEF --- */
+.planet-hud__debrief {
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
@@ -48,20 +31,8 @@
   padding-left: var(--space-3);
 }
 
-/* --- PLANET KICKER (real area label above the codename) --- */
-.planet-kicker {
-  font-family: var(--font-mono);
-  font-size: var(--text-micro);
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: hsl(var(--primary));
-  padding-left: var(--space-3);
-  margin-bottom: var(--space-1);
-}
-
-/* --- PLANET TITLE (base style) --- */
-.planet-title {
+/* --- PLANET TITLE --- */
+.planet-hud__title {
   font-family: var(--font-display);
   font-size: var(--text-2xl);
   font-weight: 800;
@@ -75,10 +46,21 @@
   text-shadow: 0 0 10px var(--planet-title-color, hsl(var(--hud-text-primary)));
 }
 
-.planet3d-canvas-wrapper {
+/* --- PLANET KICKER --- */
+.planet-hud__kicker {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: hsl(var(--primary));
+  padding-left: var(--space-3);
+  margin-bottom: var(--space-1);
+}
+
+/* --- 3D CANVAS --- */
+.planet-hud__planet-3d {
   width: 100%;
   height: 100%;
   position: relative;
 }
-
-

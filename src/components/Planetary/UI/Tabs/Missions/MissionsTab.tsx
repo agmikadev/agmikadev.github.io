@@ -1,6 +1,6 @@
 import React from "react";
 import { type PlanetModel } from "../../../data/PlanetaryData";
-import { MissionCard } from "./MissionCard";
+import { ProjectCard } from "./ProjectCard";
 import { useMissions } from "../../../data/hooks";
 import { BeltMissionsTab } from "../Belt/BeltMissionsTab";
 import { NO_MISSIONS_ERROR } from "@/lib/ui-constants";
@@ -15,16 +15,16 @@ const PlanetMissions: React.FC<{ planet: PlanetModel }> = ({ planet }) => {
 
   if (relevantMissions.length === 0) {
     return (
-      <div className="mission-error-log">
+      <div className="project-list__error">
         {NO_MISSIONS_ERROR}
       </div>
     );
   }
 
   return (
-    <div className="mission-list">
+    <div className="project-list">
       {relevantMissions.map((mission) => (
-        <MissionCard
+        <ProjectCard
           key={`${planet.id}-${mission.id}`}
           mission={mission}
           planetId={planet.id}

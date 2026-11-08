@@ -209,7 +209,7 @@ export const Planet3D: React.FC<Planet3DProps> = ({ planet }) => {
   const isAIBelt = planet.shape === 'belt';
 
   return (
-    <div className="planet3d-canvas-wrapper">
+    <div className="planet-hud__planet-3d">
       <Canvas camera={{ position: [0, 0, 7], fov: 45 }} gl={{ alpha: true }}>
         <ambientLight intensity={0.5} />
         {!isAIBelt && <directionalLight position={[5, 5, 5]} intensity={1.5} color={planet.color} />}

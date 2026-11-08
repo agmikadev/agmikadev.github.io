@@ -44,22 +44,23 @@ export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched })
 
   return (
     <div
-      className={`dashboard-overlay ${isBelt ? "belt-dashboard" : ""}`}
+      className="planet-hud"
+      data-variant={isBelt ? "belt" : "planet"}
       style={{ "--theme-color": themeColor } as React.CSSProperties}
     >
-      <div className="dashboard-container">
-        <div className="dashboard-body">
-          <div className="dashboard-left">
-            <Card variant="dark" className="planet-info-card">
-              <div className="planet-3d-wrapper">
+      <div className="planet-hud__container">
+        <div className="planet-hud__body">
+          <div className="planet-hud__left">
+            <Card variant="dark" className="planet-hud__info-card">
+              <div className="planet-hud__planet">
                 <Planet3D planet={beltPlanet} />
               </div>
-              <div className="planet-info-content">
-                <div className="planet-kicker">SETOR // {planetCodename}</div>
-                <h1 className="planet-title" style={{ "--planet-title-color": themeColor } as React.CSSProperties}>
+              <div className="planet-hud__info">
+                <div className="planet-hud__kicker">SETOR // {planetCodename}</div>
+                <h1 className="planet-hud__title" style={{ "--planet-title-color": themeColor } as React.CSSProperties}>
                   <StarBurst size={22} /> {planetArea}
                 </h1>
-                <div className="planet-debrief planet-debrief-yellow">
+                <div className="planet-hud__debrief planet-hud__debrief--yellow">
                   <strong>FOCO:</strong> {planetType}
                   {!isBelt && <br />}
                   {planetDescription}
@@ -68,26 +69,26 @@ export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched })
             </Card>
           </div>
 
-          <div className="dashboard-right">
+          <div className="planet-hud__right">
             {isFetched && (
-              <Tabs defaultValue="missions" className="dashboard-right-tabs">
-                <div className="dashboard-right-header">
+              <Tabs defaultValue="missions" className="planet-hud__tabs">
+                <div className="planet-hud__tabs-header">
                   <TabsList>
                     <TabsTrigger value="missions"><StarBurst size={14} /> PROJETOS</TabsTrigger>
                     <TabsTrigger value="analytics"><StarBurst size={14} /> COMPETÊNCIAS</TabsTrigger>
                   </TabsList>
                 </div>
-                <div className="dashboard-right-body">
-        <div className="mobile-planet-header">
-          <div className="planet-kicker">SETOR // {planetCodename}</div>
-          <h1 className="planet-title" style={{ "--planet-title-color": themeColor } as React.CSSProperties}>
+                <div className="planet-hud__tabs-body">
+        <div className="planet-hud__mobile-header">
+          <div className="planet-hud__kicker">SETOR // {planetCodename}</div>
+          <h1 className="planet-hud__title" style={{ "--planet-title-color": themeColor } as React.CSSProperties}>
             <StarBurst size={22} /> {planetArea}
           </h1>
-                    <div className="planet-debrief planet-debrief-yellow">
+                    <div className="planet-hud__debrief planet-hud__debrief--yellow">
                       <strong>FOCO:</strong> {planetType}
                     </div>
                   </div>
-                  <div className="fetched-data-wrapper">
+                  <div className="planet-hud__content">
                     <TabsContent value="missions">
                       {isBelt ? (
                         <MissionsTab variant="belt" />

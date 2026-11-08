@@ -1,22 +1,27 @@
-/* --- CLI HEADER --- */
-.cli-header {
+/* --- CONSOLE HEADER --- */
+.console__header {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   gap: var(--space-2);
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--space-3) var(--space-6);
   font-size: var(--text-sm);
   font-family: var(--font-mono);
-  opacity: 0.8;
   font-weight: bold;
-  box-sizing: border-box;
   color: hsl(var(--primary));
+  opacity: 0.8;
 }
 
-.cli-header .hud-btn {
+.console__header .console__button {
   opacity: 1;
   flex-shrink: 0;
 }
 
-.cli-cursor {
+.console__cursor {
   display: inline-block;
   width: 2px;
   height: 1.2em;
@@ -25,14 +30,14 @@
   vertical-align: middle;
 }
 
-.terminal-text {
+.console__command {
   flex: 1;
   min-width: 0;
   overflow-wrap: break-word;
   word-break: break-word;
 }
 
-.cli-projects-btn {
+.console__mode-button {
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
@@ -50,21 +55,21 @@
   transition: all var(--duration-fast) var(--ease-smooth);
 }
 
-.cli-projects-btn:hover {
+.console__mode-button:hover {
   background: hsl(var(--primary) / 16%);
   box-shadow: 0 0 18px hsl(var(--primary) / 18%);
 }
 
 @media (max-width: 960px) {
-  .cli-header {
+  .console__header {
     padding: var(--space-3);
   }
 
-  .cli-projects-btn span {
+  .console__mode-button span {
     display: none;
   }
 
-  .cli-projects-btn {
+  .console__mode-button {
     padding: var(--space-1);
   }
 }

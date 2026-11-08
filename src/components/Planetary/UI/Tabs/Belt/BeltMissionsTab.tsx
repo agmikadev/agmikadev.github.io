@@ -1,6 +1,6 @@
 import React from "react";
 import { useBeltMissions } from "../../../data/hooks";
-import { MissionCard } from "../Missions/MissionCard";
+import { ProjectCard } from "../Missions/ProjectCard";
 import { NO_MISSIONS_ERROR } from "@/lib/ui-constants";
 
 export const BeltMissionsTab: React.FC = () => {
@@ -8,16 +8,16 @@ export const BeltMissionsTab: React.FC = () => {
 
   if (reports.length === 0) {
     return (
-      <div className="mission-error-log">
+      <div className="project-list__error">
         {NO_MISSIONS_ERROR}
       </div>
     );
   }
 
   return (
-    <div className="mission-list">
+    <div className="project-list">
       {reports.map((report) => (
-        <MissionCard
+        <ProjectCard
           key={report.id}
           mission={report}
         />

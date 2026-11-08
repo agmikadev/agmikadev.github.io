@@ -3,21 +3,21 @@ import type { MissionType } from "../../../data/MissionData";
 import type { BeltMissionReport } from "../../../data/BeltData";
 import { canonicalTechList } from "../../../data/technologies";
 import { resolveMissionPerspective } from "../../../data/perspectives";
-import { useProjectNavigation } from "../../../../MissionLog/ProjectNavigationContext";
+import { useSaltoNavigation } from "../../../../Salto/SaltoNavigationContext";
 import { Card } from "../../CardVariants";
-import "./MissionCard.css";
+import "./ProjectCard.css";
 
-type MissionCardData = MissionType | BeltMissionReport;
+type ProjectCardData = MissionType | BeltMissionReport;
 
-interface MissionCardProps {
-  mission: MissionCardData;
+interface ProjectCardProps {
+  mission: ProjectCardData;
   compact?: boolean;
   planetId?: string;
   perspectiveLabel?: string;
   onTechClick?: (technology: string) => void;
 }
 
-export const MissionCard: React.FC<MissionCardProps> = ({
+export const ProjectCard: React.FC<ProjectCardProps> = ({
   mission,
   compact = false,
   planetId,
@@ -25,7 +25,7 @@ export const MissionCard: React.FC<MissionCardProps> = ({
   onTechClick,
 }) => {
   const [expanded, setExpanded] = useState(false);
-  const navigation = useProjectNavigation();
+  const navigation = useSaltoNavigation();
   const perspective = resolveMissionPerspective(mission, planetId);
   const role = perspective?.role ?? mission.role;
   const summary = perspective?.summary ?? mission.summary;
@@ -41,7 +41,7 @@ export const MissionCard: React.FC<MissionCardProps> = ({
   const handleTechClick =
     onTechClick ??
     (navigation
-      ? (technology: string) => navigation.openProjects(technology)
+      ? (technology: string) => navigation.openSalto(technology)
       : undefined);
 
   const renderTechnology = (technology: string) => {
@@ -50,7 +50,7 @@ export const MissionCard: React.FC<MissionCardProps> = ({
         <button
           key={technology}
           type="button"
-          className="mission-tag active mission-tag-button"
+          className="project-card__tag project-card__tag--button project-card__tag--active"
           onClick={() => handleTechClick(technology)}
           aria-label={`Ver projetos com ${technology}`}
         >
@@ -60,7 +60,7 @@ export const MissionCard: React.FC<MissionCardProps> = ({
     }
 
     return (
-      <span key={technology} className="mission-tag active">
+      <span key={technology} className="project-card__tag project-card__tag--active">
         {technology}
       </span>
     );
@@ -69,47 +69,47 @@ export const MissionCard: React.FC<MissionCardProps> = ({
   return (
     <Card
       variant="dark"
-      className={`mission-card ${compact ? "mission-card-compact" : ""} ${perspective ? "mission-card-perspective" : ""}`}
+      className={`project-card ${compact ? "project-card--compact" : ""} ${perspective ? "project-card--perspective" : ""}`}
     >
       {perspective && (
-        <div className="mission-perspective">
+        <div className="project-card__perspective">
           ÓTICA // {perspectiveLabel ?? planetId}
         </div>
       )}
 
       {mission.imageUrl && (
-        <div className="mission-image-wrapper">
+        <div className="project-card__media">
           <img
-            className="mission-image"
+            className="project-card__image"
             src={mission.imageUrl}
             alt={`Interface do projeto ${mission.title}`}
             loading="lazy"
           />
-          <span className="mission-year mission-year-floating">{mission.year}</span>
+          <span className="project-card__year project-card__year--floating">{mission.year}</span>
         </div>
       )}
 
-      <div className="mission-content">
-        <div className="mission-header">
-          <div className="mission-heading">
-            <h3 className="mission-title mission-title-accent">{mission.title}</h3>
-            <div className="mission-role">
+      <div className="project-card__content">
+        <div className="project-card__header">
+          <div className="project-card__heading">
+            <h3 className="project-card__title">{mission.title}</h3>
+            <div className="project-card__role">
               {role.toUpperCase()}
               {!mission.imageUrl && ` · ${mission.year}`}
             </div>
           </div>
-          {!mission.imageUrl && <span className="mission-year">{mission.year}</span>}
+          {!mission.imageUrl && <span className="project-card__year">{mission.year}</span>}
         </div>
 
-        <p className="mission-summary">{summary}</p>
+        <p className="project-card__summary">{summary}</p>
 
-        <div className="mission-section">
-          <span className="mission-section-label mission-section-label-accent">
+        <div className="project-card__section">
+          <span className="project-card__label project-card__label--accent">
             {perspective
               ? `CONTRIBUIÇÃO EM ${(perspectiveLabel ?? planetId ?? "ÁREA").toUpperCase()}`
               : "O QUE FOI FEITO"}
           </span>
-          <ul className="mission-highlights">
+          <ul className="project-card__highlights">
             {visibleHighlights.map((highlight, index) => (
               <li key={index}>{highlight}</li>
             ))}
@@ -117,13 +117,13 @@ export const MissionCard: React.FC<MissionCardProps> = ({
         </div>
 
         {expanded && (
-          <div className="mission-details">
+          <div className="project-card__details">
             {highlights.length > visibleHighlights.length && (
-              <div className="mission-section">
-                <span className="mission-section-label mission-section-label-accent">
+              <div className="project-card__section">
+                <span className="project-card__label project-card__label--accent">
                   MAIS DESTAQUES
                 </span>
-                <ul className="mission-highlights">
+                <ul className="project-card__highlights">
                   {highlights.slice(visibleHighlights.length).map((highlight, index) => (
                     <li key={index}>{highlight}</li>
                   ))}
@@ -131,36 +131,36 @@ export const MissionCard: React.FC<MissionCardProps> = ({
               </div>
             )}
 
-            <div className="mission-detail-grid">
-              <div className="mission-detail-block">
-                <span className="mission-section-label mission-section-label-accent">
+            <div className="project-card__detail-grid">
+              <div className="project-card__detail">
+                <span className="project-card__label project-card__label--accent">
                   DESAFIO
                 </span>
-                <p className="mission-detail-text">{challenges}</p>
+                <p className="project-card__detail-text">{challenges}</p>
               </div>
-              <div className="mission-detail-block">
-                <span className="mission-section-label mission-section-label-accent">
+              <div className="project-card__detail">
+                <span className="project-card__label project-card__label--accent">
                   IMPACTO
                 </span>
-                <p className="mission-detail-text">{impact}</p>
+                <p className="project-card__detail-text">{impact}</p>
               </div>
             </div>
 
             {aiWorkflow && (
-              <div className="mission-ai-block">
-                <span className="mission-section-label mission-ai-label">
+              <div className="project-card__ai">
+                <span className="project-card__label project-card__ai-label">
                   AI WORKFLOW
                 </span>
-                <p className="mission-detail-text">{aiWorkflow}</p>
+                <p className="project-card__detail-text">{aiWorkflow}</p>
               </div>
             )}
 
             {hiddenTechnologies > 0 && (
-              <div className="mission-section">
-                <span className="mission-section-label mission-section-label-accent">
+              <div className="project-card__section">
+                <span className="project-card__label project-card__label--accent">
                   MAIS TECNOLOGIAS
                 </span>
-                <div className="mission-tags-container">
+                <div className="project-card__tags">
                   {canonicalTechnologies
                     .slice(visibleTechnologies.length)
                     .map(renderTechnology)}
@@ -170,22 +170,22 @@ export const MissionCard: React.FC<MissionCardProps> = ({
           </div>
         )}
 
-        <div className="mission-tags-container">
+        <div className="project-card__tags">
           {visibleTechnologies.map(renderTechnology)}
           {hiddenTechnologies > 0 && (
-            <span className="mission-tag mission-tag-more">+{hiddenTechnologies}</span>
+            <span className="project-card__tag project-card__tag--more">+{hiddenTechnologies}</span>
           )}
         </div>
 
-        <div className="mission-footer">
-          <div className="mission-links-container">
+        <div className="project-card__footer">
+          <div className="project-card__links">
             {mission.external_links?.map((link) => (
               <a
                 key={`${link.label}-${link.url}`}
                 href={link.url}
                 target="_blank"
                 rel="noreferrer"
-                className="mission-link mission-link-accent"
+                className="project-card__link"
               >
                 <svg
                   width="12"
@@ -208,7 +208,7 @@ export const MissionCard: React.FC<MissionCardProps> = ({
 
           <button
             type="button"
-            className="mission-expand"
+            className="project-card__expand"
             onClick={() => setExpanded((current) => !current)}
             aria-expanded={expanded}
           >

@@ -1,5 +1,5 @@
 export { MissionsTab } from "./Missions/MissionsTab";
 export { AnalyticsTab } from "./Analytics/AnalyticsTab";
 export { BeltMissionsTab } from "./Belt/BeltMissionsTab";
-export { MissionCard } from "./Missions/MissionCard";
+export { ProjectCard } from "./Missions/ProjectCard";
 export { AlternativeTag } from "./shared/AlternativeTag";

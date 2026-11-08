@@ -1,0 +1,46 @@
+/* --- CONSOLE STAGE (the screen frame) --- */
+.console__stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid hsl(var(--primary) / 40%);
+  border-radius: var(--radius-signature);
+  background: transparent;
+  overflow: hidden;
+}
+
+/* --- CONSOLE SCREEN (content area) --- */
+.console__screen {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  container-type: inline-size;
+}
+
+/* Mobile */
+@media (max-width: 960px) {
+  .console__stage {
+    width: 100%;
+    min-height: 50dvh;
+    overflow-x: hidden;
+    overflow-y: visible;
+    border: none;
+    border-radius: 0;
+  }
+
+  .console__screen {
+    min-width: 0;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    overflow: visible;
+  }
+}

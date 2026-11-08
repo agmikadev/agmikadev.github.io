@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import MainFrame from './components/MainFrame';
+import ConsoleShell from './components/ConsoleShell';
 import { LoadingSpinner } from './components/LoadingSpinner/LoadingSpinner';
 import './App.css';
 
@@ -31,7 +31,7 @@ function App() {
 
   return (
     <div>
-      {isLoading ? <LoadingSpinner /> : <MainFrame />}
+      {isLoading ? <LoadingSpinner /> : <ConsoleShell />}
     </div>
   );
 }

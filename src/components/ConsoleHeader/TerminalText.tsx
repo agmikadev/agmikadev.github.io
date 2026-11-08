@@ -15,7 +15,7 @@ export const TerminalText: React.FC<TerminalTextProps> = ({
 
   useEffect(() => {
     let currentIndex = 0;
-    setDisplayedText(""); // Reset on text change
+    setDisplayedText("");
 
     const interval = setInterval(() => {
       if (currentIndex < text.length) {
@@ -23,7 +23,6 @@ export const TerminalText: React.FC<TerminalTextProps> = ({
         currentIndex++;
       } else {
         clearInterval(interval);
-        // TRIGGER THE CALLBACK WHEN TYPING ENDS
         if (onComplete) onComplete(); 
       }
     }, speed);
@@ -32,9 +31,9 @@ export const TerminalText: React.FC<TerminalTextProps> = ({
   }, [text, speed, onComplete]);
 
   return (
-    <span className="terminal-text">
+    <span className="console__command">
       {displayedText}
-      <span className="cli-cursor" />
+      <span className="console__cursor" />
     </span>
   );
 };

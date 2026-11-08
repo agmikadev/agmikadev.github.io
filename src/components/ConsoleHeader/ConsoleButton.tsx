@@ -1,7 +1,7 @@
 import React, { type ReactNode } from "react";
-import "./HudButton.css";
+import "./ConsoleButton.css";
 
-interface HudButtonProps {
+interface ConsoleButtonProps {
   label: string;
   onClick: () => void;
   icon?: ReactNode;
@@ -9,7 +9,7 @@ interface HudButtonProps {
   variant?: "default" | "back" | "action";
 }
 
-export const HudButton: React.FC<HudButtonProps> = ({
+export const ConsoleButton: React.FC<ConsoleButtonProps> = ({
   label,
   onClick,
   icon,
@@ -18,14 +18,13 @@ export const HudButton: React.FC<HudButtonProps> = ({
 }) => {
   return (
     <button
-      className={`hud-btn hud-btn-${variant}`}
+      className={`console__button console__button--${variant}`}
       onClick={onClick}
-      aria-label={label} // Critical for accessibility since we hide the text on mobile
+      aria-label={label}
       style={{ "--theme-color": themeColor } as React.CSSProperties}
     >
-      {icon && <span className="hud-icon">{icon}</span>}
-      {/* THE FIX: Standardized to hud-label */}
-      <span className="hud-label">{label}</span>
+      {icon && <span className="console__button-icon">{icon}</span>}
+      <span className="console__button-label">{label}</span>
     </button>
   );
 };

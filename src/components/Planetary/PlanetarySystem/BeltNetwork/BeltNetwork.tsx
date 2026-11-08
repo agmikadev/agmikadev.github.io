@@ -27,7 +27,7 @@ export const BeltNetwork: React.FC<BeltNetworkProps> = ({
   });
 
   return (
-    <svg className="belt-network-svg" preserveAspectRatio="none">
+    <svg className="orbit__belt-svg" preserveAspectRatio="none">
       <defs>
         <filter id="belt-glow">
           <feGaussianBlur stdDeviation="2" result="coloredBlur" />
@@ -42,7 +42,7 @@ export const BeltNetwork: React.FC<BeltNetworkProps> = ({
         {lines.map((line) => (
           <line
             key={line.key}
-            className="belt-connection"
+            className="orbit__belt-line"
             x1={line.x1}
             y1={line.y1}
             x2={line.x2}
@@ -58,7 +58,7 @@ export const BeltNetwork: React.FC<BeltNetworkProps> = ({
       {planetPositions.map((planet) => (
         <circle
           key={`belt-node-${planet.id}`}
-          className="belt-node"
+          className="orbit__belt-node"
           cx={planet.x}
           cy={planet.y}
           r={isHovered ? 4 : 3}

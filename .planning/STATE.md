@@ -11,8 +11,8 @@ See: .planning/PROJECT.md (updated 2026-05-17)
 
 Phase: 6 (Projects-First Content Refresh & D1)
 Plan: 1 of 1 in current phase
-Status: Completed phase 06 — two navigation flows, canonical tech index, D1
-Last activity: 2026-11-08 — Phase 6 refinement: ÓRBITA/SALTO flows + tech taxonomy
+Status: Completed phase 06 — console shell, ÓRBITA/SALTO screens, BEM hierarchy, D1
+Last activity: 2026-11-08 — Phase 6 refinement: SALTO inside the console screen + BEM class hierarchy
 
 Progress: [█████████████░] 65%
 
@@ -47,8 +47,9 @@ Recent decisions affecting current work:
 
 - AI as belt, not planet — Agentic skills cut across all dev stages, not a standalone stage
 - Theme as navigation, not lore — Real areas are primary; codenames are secondary
-- Two navigation flows — ÓRBITA (compassado, system exploration) is the default; SALTO (expresso, dense project index) is a single header switch
-- One Salto CTA — featured bar, side-strip project button and onboarding project CTA were removed
+- One console, two screens — ÓRBITA (compassado) and SALTO (expresso) swap inside `.console__screen`; sidebar/footer stay visible
+- Single back control — the console header is the only `← ÓRBITA`; SALTO has no modal/backdrop/duplicated back button
+- BEM class hierarchy — `console__*`, `orbit__*`, `planet-hud__*`, `salto__*`, `project-card__*`; state via `data-*`/`aria-pressed`
 - Canonical technology taxonomy — aliases fold into one name; Salto has a tech sidebar with counts
 - Tech tags are navigation — clicking a tag opens/filters SALTO by that technology
 - Per-planet perspective — the same project changes role, summary, highlights and stack by area

@@ -9,13 +9,15 @@
 
 **What This Is:** A 3D space portfolio where planets represent real development areas (Design → Front-end → Back-end → Dados & Algoritmos → Infra & Deploy). An AI "sonda network" belt connects all planets, representing agentic skills. The theme is navigation, not lore.
 
-**Two navigation flows:**
+**Two navigation flows, one console:**
 - **ÓRBITA (default, compassado):** explore the solar system, planets, case cards and AI belt at the visitor's pace.
-- **SALTO (expresso):** a single header switch opens a dense project index with search, area filters and a canonical technology sidebar with counts. This is the escape hatch for recruiters who only want experience with a specific technology.
+- **SALTO (expresso):** a single header switch swaps the console screen to a dense project index with search, area filters and a canonical technology sidebar with counts. It is a screen inside `.console__screen`, not a modal; the console sidebar and footer stay visible, and the header is the only back control (`← ÓRBITA`).
 
 Technology tags are canonical (see `src/components/Planetary/data/technologies.ts`); aliases like "React 19"/"React.js" fold into "React". Clicking a tech tag opens the Salto index filtered by that technology.
 
 **Per-planet perspectives:** multi-area projects carry a `perspectives` map keyed by planet id (see `src/components/Planetary/data/perspectives.ts`). The same project changes role, summary, highlights, challenge/impact and stack depending on the selected planet. In SALTO, an active area filter uses that area's perspective.
+
+**Class hierarchy (BEM):** `console__*` is the shell; `orbit__*` is the planetary screen; `planet-hud__*` is the planet dashboard; `salto__*` is the index screen; `project-card__*` is the shared project card. State uses `data-screen="orbit|salto"`, `data-variant="planet|belt"`, `data-perspective="..."` and `aria-pressed` on filters instead of modifier classes. Keep the console chrome visible in both screens.
 
 **Core Value:** Visually demonstrate full-stack development proficiency — including cutting-edge agentic/AI skills — in a way that impresses both technical peers and hiring managers.
 
@@ -56,15 +58,16 @@ This project uses the Get Shit Done (GSD) workflow. All work must follow these r
 ```
 src/
 ├── components/
-│   ├── MainFrame.tsx          # Layout shell + Salto mode + navigation state
-│   ├── MissionLog/            # Salto: dense index, filters, tech sidebar
-│   ├── Planetary/             # 3D planetary system
-│   │   ├── data/              # Archive, D1 hooks, canonical technologies, perspectives
+│   ├── ConsoleShell.tsx       # Console shell: header, stage, sidebar, footer
+│   ├── ConsoleHeader/         # Command, SALTO and back controls
+│   ├── Salto/                 # SALTO screen, rows, technology navigation
+│   ├── Planetary/             # ÓRBITA screen
+│   │   ├── data/              # Archive, D1 hooks, technologies, perspectives
 │   │   ├── PlanetarySystem/   # Orbital animation + planet rendering
-│   │   └── UI/                # HUD components (Tabs, cards, CLI, symbols)
-│   ├── SideStrip/             # Profile, stack, links, CV and visit count
-│   ├── Onboarding/            # First-visit card with project CTA
-│   └── styles/                # Container/MainFrame CSS
+│   │   └── UI/                # Tabs, ProjectCard, symbols
+│   ├── SideStrip/             # Console sidebar: profile, stack, CV, visits
+│   ├── Onboarding/            # First-visit card
+│   └── styles/                # ConsoleShell.css, Console.css
 ├── lib/portfolio-api.ts       # D1 client with timeout + static fallback
 ├── App.tsx                    # Root wrapper
 ├── App.css                    # Global CSS tokens

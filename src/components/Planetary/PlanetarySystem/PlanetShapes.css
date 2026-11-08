@@ -1,7 +1,7 @@
 /* =========================================
-   BASE VISUAL COMPARTILHADA (.planet-visual)
+   BASE PLANET VISUAL
    ========================================= */
-.planet-visual {
+.orbit__planet-visual {
   width: 100%;
   height: 100%;
 
@@ -10,14 +10,14 @@
   transition: transform var(--duration-base) var(--ease-spring);
 }
 
-.planet-node:hover .planet-visual {
+.orbit__planet:hover .orbit__planet-visual {
   transform: scale(1.3);
 }
 
 /* =========================================
-   FORMA 1: ESFERA (Padrão)
+   SPHERE
    ========================================= */
-.planet-visual.shape-sphere {
+.orbit__planet-visual[data-shape="sphere"] {
   background-color: var(--p-color);
   border-radius: 50%;
   box-shadow:
@@ -28,16 +28,16 @@
 }
 
 /* =========================================
-   FORMA 2: HEXÁGONO (Nodeon)
+   HEXAGON
    ========================================= */
-.planet-visual.shape-hexagon {
+.orbit__planet-visual[data-shape="hexagon"] {
   background-color: transparent;
   border-radius: 50%;
   box-shadow: 0 0 15px var(--p-color), 0 0 30px var(--p-color);
   animation: hex-spin 20s linear infinite;
 }
 
-.planet-visual.shape-hexagon::after {
+.orbit__planet-visual[data-shape="hexagon"]::after {
   content: "";
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
@@ -48,9 +48,9 @@
 }
 
 /* =========================================
-   CAMADA DE IA (ANÉIS DO SCANNER 2D)
+   AI SCANNER RINGS
    ========================================= */
-.ai-ring {
+.orbit__ai-ring {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -62,7 +62,7 @@
   z-index: 5;
 }
 
-.ai-ring.outer {
+.orbit__ai-ring--outer {
   width: 150%;
   height: 150%;
   border: 2px solid hsl(var(--hud-glow));
@@ -70,7 +70,7 @@
   animation: scan-spin-cw 10s linear infinite;
 }
 
-.ai-ring.inner {
+.orbit__ai-ring--inner {
   width: 140%;
   height: 140%;
   border: 2px solid hsl(var(--hud-glow));
@@ -78,13 +78,13 @@
   animation: scan-spin-ccw 10s linear infinite;
 }
 
-.planet-node:hover .ai-ring {
+.orbit__planet:hover .orbit__ai-ring {
   box-shadow: 0 0 15px hsl(var(--hud-glow));
   filter: brightness(1.5);
 }
 
 /* =========================================
-   ANIMAÇÕES
+   ANIMATIONS
    ========================================= */
 @keyframes sphere-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 @keyframes hex-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }

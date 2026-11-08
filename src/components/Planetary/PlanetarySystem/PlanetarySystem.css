@@ -1,7 +1,7 @@
 /* =========================================
-   O PALCO (SYSTEM CONTAINER)
+   ORBIT SCREEN
    ========================================= */
-.solar-system-container {
+.orbit {
   position: relative;
   width: 100%;
   height: 100%;
@@ -14,9 +14,9 @@
 }
 
 /* =========================================
-   O WRAPPER DE POSICIONAMENTO (.planet-node)
+   PLANET NODE
    ========================================= */
-.planet-node {
+.orbit__planet {
   position: absolute;
   top: 0;
   left: 0;
@@ -37,15 +37,15 @@
   transition: z-index 0s linear 0.1s;
 }
 
-.planet-node:hover {
+.orbit__planet:hover {
   transition-delay: 0s;
   z-index: 999 !important;
 }
 
 /* =========================================
-   O SOL (Centro do Sistema)
+   SUN
    ========================================= */
-.sun-center {
+.orbit__sun {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -69,51 +69,67 @@
 }
 
 /* =========================================
-   UI: LABELS (Nomes dos Planetas)
+   LABELS
    ========================================= */
-.planet-label {
-  position: absolute;
-  top: 100%;
-  margin-top: var(--space-2);
-
+.orbit__label {
   background-color: rgba(0, 0, 0, 0.85);
-  border: 1px solid var(--p-color);
-  color: var(--p-color);
-
-  font-size: var(--text-xs);
+  border: 1px solid var(--p-color, hsl(var(--primary)));
+  color: var(--p-color, hsl(var(--primary)));
   padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-md);
-
   font-family: var(--font-mono);
+  font-size: var(--text-xs);
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
   white-space: nowrap;
+  box-shadow: 0 0 10px var(--p-color, hsl(var(--primary)));
+}
 
-  opacity: 0;
-  transform: translateY(-10px);
+/* Always-visible area label under each planet. */
+.orbit__label--area {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: 4px 8px;
+  background: rgba(3, 3, 5, 0.82);
+  border-color: hsl(var(--primary) / 10%);
+  box-shadow: none;
+  white-space: nowrap;
   pointer-events: none;
-  transition: all var(--duration-base) var(--ease-spring);
-
-  box-shadow: 0 0 10px var(--p-color);
+  opacity: 0.82;
+  transition: opacity var(--duration-fast) var(--ease-smooth),
+    border-color var(--duration-fast) var(--ease-smooth),
+    box-shadow var(--duration-fast) var(--ease-smooth);
 }
 
-.planet-node:hover .planet-label {
+.orbit__planet:hover .orbit__label--area,
+.orbit__label--hovered {
   opacity: 1;
-  transform: translateY(0);
+  border-color: var(--p-color);
+  box-shadow: 0 0 14px var(--p-color);
 }
 
-.planet-label-visible {
-  opacity: 1;
-  transform: translateY(0);
+.orbit__label-name {
+  font-size: var(--text-micro);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--p-color);
 }
 
-.planet-label-hidden {
-  opacity: 0;
-  transform: translateY(-10px);
+.orbit__label-code {
+  font-size: calc(var(--text-micro) * 0.82);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.42);
 }
 
-.planet-label-tooltip {
+.orbit__label--tooltip {
   position: fixed;
   left: var(--tooltip-x);
   top: var(--tooltip-y);
@@ -125,53 +141,30 @@
   box-shadow: 0 0 10px var(--tooltip-color);
 }
 
-/* --- ALWAYS-VISIBLE AREA LABELS ---
-   The real development area is the primary label; the codename sits below it. */
-.planet-area-label {
+/* =========================================
+   SVG + CAPTION
+   ========================================= */
+.orbit__svg {
   position: absolute;
-  top: calc(100% + 6px);
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1px;
-  padding: 4px 8px;
-  background: rgba(3, 3, 5, 0.82);
-  border: 1px solid hsl(var(--primary) / 10%);
-  border-radius: var(--radius-sm);
-  white-space: nowrap;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
-  opacity: 0.82;
-  transition: opacity var(--duration-fast) var(--ease-smooth),
-    border-color var(--duration-fast) var(--ease-smooth),
-    box-shadow var(--duration-fast) var(--ease-smooth);
+  z-index: 1;
 }
 
-.planet-node:hover .planet-area-label,
-.planet-area-label-hovered {
-  opacity: 1;
-  border-color: var(--p-color);
-  box-shadow: 0 0 14px var(--p-color);
+.orbit__ellipse {
+  transition: all 0.3s ease;
 }
 
-.planet-area-name {
-  font-family: var(--font-mono);
-  font-size: var(--text-micro);
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: var(--p-color);
+.orbit__belt-hitbox {
+  cursor: pointer;
+  pointer-events: stroke;
+  outline: none;
 }
 
-.planet-area-code {
-  font-family: var(--font-mono);
-  font-size: calc(var(--text-micro) * 0.82);
-  letter-spacing: 0.12em;
-  color: rgba(255, 255, 255, 0.42);
-}
-
-/* --- SYSTEM CAPTION (explains the metaphor without lore) --- */
-.system-caption {
+.orbit__caption {
   position: absolute;
   right: var(--space-3);
   bottom: var(--space-2);
@@ -190,62 +183,42 @@
   pointer-events: none;
 }
 
-.system-caption strong {
+.orbit__caption strong {
   color: hsl(var(--primary) / 75%);
   font-weight: 700;
 }
 
-.system-caption-sep {
+.orbit__caption-sep {
   color: hsl(var(--primary) / 30%);
 }
 
-.solar-system-svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.orbit-ellipse {
-  transition: all 0.3s ease;
-}
-
-.belt-hitbox-path {
-  cursor: pointer;
-  pointer-events: stroke;
-  outline: none;
-}
-
 @media (max-width: 768px) {
-  .solar-system-container {
+  .orbit {
     position: relative;
     width: 100%;
     height: 100%;
   }
 
-  .planet-node {
+  .orbit__planet {
     transform: translate(-50%, -50%);
     width: calc(var(--p-size) * 0.5);
     height: calc(var(--p-size) * 0.5);
   }
 
-  .sun-center {
+  .orbit__sun {
     width: 48px;
     height: 48px;
   }
 
-  .planet-area-label {
+  .orbit__label--area {
     padding: 2px 5px;
   }
 
-  .planet-area-code {
+  .orbit__label-code {
     display: none;
   }
 
-  .system-caption {
+  .orbit__caption {
     display: none;
   }
 }
