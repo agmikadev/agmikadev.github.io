@@ -44,7 +44,7 @@ Visually demonstrate full-stack development proficiency — including cutting-ed
 
 ## Context
 
-**Technical environment:** React 19 + TypeScript + Rolldown-Vite + Three.js/R3F. The frontend is a static SPA on GitHub Pages; project content is served by a Cloudflare Worker + D1 API with a static archive fallback.
+**Technical environment:** React 19 + TypeScript + Rolldown-Vite + Three.js/R3F + Tailwind 4. The frontend is a static SPA on GitHub Pages; project content is served by a Cloudflare Worker + D1 API with a static archive fallback. Design decisions live in `src/styles/tokens.css`; Tailwind/shadcn consume them through the `@theme inline` bridge.
 
 **Existing architecture:**
 - `PlanetarySystem` — orbital animation engine with requestAnimationFrame loop

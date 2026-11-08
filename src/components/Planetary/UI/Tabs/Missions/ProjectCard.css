@@ -25,7 +25,7 @@
 /* --- PERSPECTIVE LABEL --- */
 .project-card__perspective {
   padding: var(--space-1) var(--space-3);
-  border-bottom: 1px solid hsl(var(--primary) / 18%);
+  border-bottom: var(--border-width) solid hsl(var(--primary) / 18%);
   background: hsl(var(--primary) / 9%);
   color: hsl(var(--primary));
   font-family: var(--font-mono);
@@ -42,12 +42,12 @@
 /* --- MEDIA --- */
 .project-card__media {
   position: relative;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: var(--project-card-media-ratio);
   overflow: hidden;
   background:
     radial-gradient(circle at 30% 20%, rgba(252, 233, 106, 0.12), transparent 45%),
     #07070d;
-  border-bottom: 1px solid hsl(var(--primary) / 18%);
+  border-bottom: var(--border-width) solid hsl(var(--primary) / 18%);
 }
 
 .project-card__image {
@@ -56,13 +56,13 @@
   object-fit: cover;
   object-position: top center;
   display: block;
-  transition: transform 0.5s var(--ease-smooth);
+  transition: transform var(--duration-slow) var(--ease-smooth);
 }
 
 /* Full cards live inside the planet dashboard; keep the image shorter there. */
 .project-card:not(.project-card--compact) .project-card__media {
-  aspect-ratio: 16 / 7;
-  max-height: 260px;
+  aspect-ratio: var(--project-card-media-ratio-wide);
+  max-height: var(--project-card-media-max-height);
 }
 
 .project-card:hover .project-card__image {
@@ -75,7 +75,7 @@
   font-size: var(--text-micro);
   color: hsl(var(--muted-foreground));
   background: rgba(0, 0, 0, 0.35);
-  border: 1px solid hsl(var(--primary) / 18%);
+  border: var(--border-width) solid hsl(var(--primary) / 18%);
   padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-full);
 }
@@ -85,7 +85,7 @@
   top: var(--space-2);
   right: var(--space-2);
   background: rgba(3, 3, 5, 0.78);
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(var(--blur-xs));
 }
 
 /* --- CONTENT --- */
@@ -183,7 +183,7 @@
   flex-direction: column;
   gap: var(--space-2);
   padding-top: var(--space-2);
-  border-top: 1px solid hsl(var(--primary) / 12%);
+  border-top: var(--border-width) solid hsl(var(--primary) / 12%);
   animation: tab-fade var(--duration-base) var(--ease-smooth) forwards;
 }
 
@@ -209,7 +209,7 @@
 .project-card__ai {
   padding: var(--space-2);
   background: rgba(169, 252, 3, 0.03);
-  border: 1px solid rgba(169, 252, 3, 0.15);
+  border: var(--border-width) solid rgba(169, 252, 3, 0.15);
   border-radius: var(--radius-md);
 }
 
@@ -234,7 +234,7 @@
   font-weight: 700;
   letter-spacing: 0.04em;
   background: rgba(255, 255, 255, 0.02);
-  border: 1px solid hsl(var(--primary) / 15%);
+  border: var(--border-width) solid hsl(var(--primary) / 15%);
   color: hsl(var(--muted-foreground));
   cursor: default;
   transition: all var(--duration-base) var(--ease-out-expo);
@@ -270,7 +270,7 @@
   gap: var(--space-2);
   margin-top: auto;
   padding-top: var(--space-2);
-  border-top: 1px solid hsl(var(--primary) / 12%);
+  border-top: var(--border-width) solid hsl(var(--primary) / 12%);
 }
 
 .project-card__links {
@@ -335,7 +335,7 @@
   grid-template-columns: 1fr;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .project-card__detail-grid {
     grid-template-columns: 1fr;
   }

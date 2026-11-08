@@ -67,7 +67,7 @@ src/
 │   │   └── UI/                # Tabs, ProjectCard, symbols
 │   ├── SideStrip/             # Console sidebar: profile, stack, CV, visits
 │   ├── Onboarding/            # First-visit card
-│   └── styles/                # ConsoleShell.css, Console.css
+│   └── styles/                # tokens.css, globals.css, ConsoleShell.css, Console.css
 ├── lib/portfolio-api.ts       # D1 client with timeout + static fallback
 ├── App.tsx                    # Root wrapper
 ├── App.css                    # Global CSS tokens

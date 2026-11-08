@@ -18,7 +18,7 @@
   gap: var(--space-3);
   flex-shrink: 0;
   padding: var(--space-3) var(--space-4);
-  border-bottom: 1px solid hsl(var(--primary) / 14%);
+  border-bottom: var(--border-width) solid hsl(var(--primary) / 14%);
 }
 
 .salto__back {
@@ -64,7 +64,7 @@
   flex-shrink: 0;
   justify-self: end;
   padding: var(--space-1) var(--space-2);
-  border: 1px solid hsl(var(--primary) / 22%);
+  border: var(--border-width) solid hsl(var(--primary) / 22%);
   border-radius: var(--radius-full);
   background: hsl(var(--primary) / 6%);
   color: hsl(var(--primary));
@@ -82,7 +82,7 @@
   gap: var(--space-2);
   flex-shrink: 0;
   padding: var(--space-2) var(--space-4);
-  border-bottom: 1px solid hsl(var(--primary) / 10%);
+  border-bottom: var(--border-width) solid hsl(var(--primary) / 10%);
 }
 
 .salto__search input {
@@ -90,7 +90,7 @@
   box-sizing: border-box;
   padding: var(--space-2) var(--space-3);
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid hsl(var(--primary) / 18%);
+  border: var(--border-width) solid hsl(var(--primary) / 18%);
   border-radius: var(--radius-md);
   color: hsl(var(--hud-text-primary));
   font-family: var(--font-mono);
@@ -132,7 +132,7 @@
 .salto__area-filter {
   padding: var(--space-1) var(--space-2);
   background: transparent;
-  border: 1px solid hsl(var(--primary) / 15%);
+  border: var(--border-width) solid hsl(var(--primary) / 15%);
   border-radius: var(--radius-full);
   color: hsl(var(--muted-foreground));
   font-family: var(--font-mono);
@@ -163,7 +163,7 @@
   margin-top: var(--space-1);
   padding: var(--space-2);
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid hsl(var(--primary) / 18%);
+  border: var(--border-width) solid hsl(var(--primary) / 18%);
   border-radius: var(--radius-md);
   color: hsl(var(--hud-text-primary));
   font-family: var(--font-mono);
@@ -180,16 +180,16 @@
 
 /* --- TECH INDEX --- */
 .salto__tech-index {
-  width: 220px;
+  width: var(--salto-tech-index-width);
   flex-shrink: 0;
   overflow-y: auto;
   padding: var(--space-3);
-  border-right: 1px solid hsl(var(--primary) / 10%);
+  border-right: var(--border-width) solid hsl(var(--primary) / 10%);
   background: rgba(0, 0, 0, 0.18);
 }
 
 .salto__tech-index::-webkit-scrollbar {
-  width: 5px;
+  width: var(--scrollbar-width-thin);
 }
 
 .salto__tech-index::-webkit-scrollbar-thumb {
@@ -272,7 +272,7 @@
   gap: var(--space-2);
   flex-shrink: 0;
   padding: var(--space-2) var(--space-4);
-  border-bottom: 1px solid hsl(var(--primary) / 10%);
+  border-bottom: var(--border-width) solid hsl(var(--primary) / 10%);
 }
 
 .salto__results-count {
@@ -299,9 +299,9 @@
 
 .salto__filter-chip,
 .salto__clear {
-  padding: 2px 7px;
+  padding: var(--salto-chip-padding-block) var(--salto-chip-padding-inline);
   background: hsl(var(--primary) / 8%);
-  border: 1px solid hsl(var(--primary) / 25%);
+  border: var(--border-width) solid hsl(var(--primary) / 25%);
   border-radius: var(--radius-full);
   color: hsl(var(--primary));
   font-family: var(--font-mono);
@@ -319,12 +319,12 @@
 .salto__list {
   flex: 1;
   overflow-y: auto;
-  padding: 0 var(--space-4);
+  padding: 0 var(--salto-list-padding);
   min-height: 0;
 }
 
 .salto__list::-webkit-scrollbar {
-  width: 6px;
+  width: var(--scrollbar-width);
   background: rgba(0, 0, 0, 0.4);
 }
 
@@ -340,7 +340,7 @@
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   color: hsl(var(--muted-foreground));
-  border: 1px dashed hsl(var(--primary) / 18%);
+  border: var(--border-width) dashed hsl(var(--primary) / 18%);
   border-radius: var(--radius-md);
 }
 
@@ -357,7 +357,7 @@
 }
 
 /* --- CONTAINER QUERIES: screen width, not viewport --- */
-@container (max-width: 900px) {
+@container (max-width: 56.25rem) {
   .salto__tech-index {
     display: none;
   }
@@ -368,7 +368,7 @@
   }
 }
 
-@media (max-width: 960px) {
+@media (max-width: 60rem) {
   .salto {
     height: auto;
     min-height: 0;

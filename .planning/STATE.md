@@ -50,6 +50,8 @@ Recent decisions affecting current work:
 - One console, two screens — ÓRBITA (compassado) and SALTO (expresso) swap inside `.console__screen`; sidebar/footer stay visible
 - Screen actions inside the panel — the console header is only the CLI line; `SALTO`, `← ÓRBITA` and `← SISTEMA` use the shared `screen-action` block
 - BEM class hierarchy — `console__*`, `orbit__*`, `planet-hud__*`, `salto__*`, `project-card__*`, `screen-action__*`; state via `data-*`/`aria-pressed`
+- Fluid layout tokens — sidebar, sun, Salto tech index/row columns, card media and onboarding use `clamp()`/container queries; breakpoints standardized
+- Tailwind theme bridge — tokens mapped through `@theme inline`; shadcn primitives and guardrails remain
 - Canonical technology taxonomy — aliases fold into one name; Salto has a tech sidebar with counts
 - Tech tags are navigation — clicking a tag opens/filters SALTO by that technology
 - Per-planet perspective — the same project changes role, summary, highlights and stack by area

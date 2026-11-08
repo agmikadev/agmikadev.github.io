@@ -8,7 +8,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-3);
-  border-bottom: 1px solid hsl(var(--primary) / 30%);
+  border-bottom: var(--border-width) solid hsl(var(--primary) / 30%);
   padding-bottom: var(--space-2);
   margin-bottom: var(--space-4);
 }
@@ -36,8 +36,8 @@
 }
 
 .tabs-trigger:focus-visible {
-  outline: 2px solid hsl(var(--ring));
-  outline-offset: 2px;
+  outline: var(--focus-ring-width) solid hsl(var(--ring));
+  outline-offset: var(--focus-ring-offset);
   border-radius: var(--radius-sm);
 }
 
@@ -49,10 +49,10 @@
 .tabs-trigger[data-state="active"]::after {
   content: "";
   position: absolute;
-  bottom: -9px;
+  bottom: var(--tab-underline-offset);
   left: 0;
   width: 100%;
-  height: 2px;
+  height: var(--border-width-strong);
   background-color: hsl(var(--primary));
   box-shadow: 0 0 8px hsl(var(--primary));
 }
@@ -68,8 +68,8 @@
 }
 
 .tabs-content:focus-visible {
-  outline: 2px solid hsl(var(--ring));
-  outline-offset: 2px;
+  outline: var(--focus-ring-width) solid hsl(var(--ring));
+  outline-offset: var(--focus-ring-offset);
 }
 
 .tabs-content[data-state="active"] {

@@ -69,9 +69,9 @@
     padding: 0;
     display: flex;
     place-items: flex-start;
-    min-width: 320px;
+    min-width: var(--viewport-min-width);
     min-height: 100vh;
-    background-color: hsl(240 15% 3%);
+    background-color: hsl(var(--body-background));
     color: hsl(var(--foreground) / 87%);
     font-family: var(--font-sans);
     line-height: var(--leading-normal);
@@ -93,20 +93,20 @@
    ACCESSIBILITY (Focus Visible)
    ============================================ */
 :focus-visible {
-  outline: 2px solid hsl(var(--ring));
-  outline-offset: 2px;
+  outline: var(--focus-ring-width) solid hsl(var(--ring));
+  outline-offset: var(--focus-ring-offset);
   border-radius: var(--radius-sm);
 }
 
 .orbit__planet:focus-visible {
-  outline: 2px solid hsl(var(--ring));
-  outline-offset: 4px;
+  outline: var(--focus-ring-width) solid hsl(var(--ring));
+  outline-offset: var(--focus-ring-offset-wide);
   border-radius: 50%;
 }
 
 path[tabindex]:focus-visible {
-  outline: 2px solid hsl(var(--ring));
-  outline-offset: 4px;
+  outline: var(--focus-ring-width) solid hsl(var(--ring));
+  outline-offset: var(--focus-ring-offset-wide);
 }
 
 button:focus:not(:focus-visible),
@@ -115,13 +115,13 @@ a:focus:not(:focus-visible) {
 }
 
 .onboarding-close:focus-visible {
-  outline: 2px solid hsl(var(--ring));
-  outline-offset: 2px;
+  outline: var(--focus-ring-width) solid hsl(var(--ring));
+  outline-offset: var(--focus-ring-offset);
 }
 
 .tab-btn:focus-visible {
-  outline: 2px solid hsl(var(--ring));
-  outline-offset: 2px;
+  outline: var(--focus-ring-width) solid hsl(var(--ring));
+  outline-offset: var(--focus-ring-offset);
   border-radius: var(--radius-sm);
 }
 
@@ -214,7 +214,7 @@ a:focus:not(:focus-visible) {
   }
 }
 
-@media (max-width: 960px) {
+@media (max-width: 60rem) {
   html, body, #root {
     overflow-x: hidden;
   }

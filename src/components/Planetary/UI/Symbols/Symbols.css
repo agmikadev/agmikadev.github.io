@@ -11,7 +11,7 @@
 
 .hud-divider-line {
   flex: 1;
-  height: 1px;
+  height: var(--border-width);
   background: rgba(255, 255, 255, 0.1);
   opacity: 0.5;
 }
@@ -100,9 +100,9 @@
 /* --- CHROME LINE --- */
 .hud-chrome-line {
   flex-grow: 1;
-  height: 1px;
+  height: var(--border-width);
   background: hsl(var(--primary) / 50%);
-  min-width: 30px;
+  min-width: var(--symbol-min-width);
 }
 
 /* --- CHROME LABEL --- */

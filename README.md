@@ -58,7 +58,24 @@ src/
 │   └── styles/                 # ConsoleShell.css, Console.css
 ├── lib/
 │   └── portfolio-api.ts        # Cliente do Worker com fallback estático
+├── styles/
+│   ├── tokens.css              # Primitivos, semânticos e layout/componente
+│   └── globals.css             # Base + ponte @theme do Tailwind
 └── worker/                     # Cloudflare Worker + migrações D1
+```
+
+### Tokens
+
+`src/styles/tokens.css` é a fonte de verdade. `globals.css` contém o
+`@theme inline` que conecta os tokens ao Tailwind/shadcn. As dimensões de
+layout usam `clamp()`/container queries: sidebar, sol, tech index do SALTO,
+mídia dos cards e colunas das linhas. Breakpoints documentados:
+
+```text
+mobile:      48rem / 768px
+console:     60rem / 960px
+salto-tech: 56.25rem / 900px
+salto-row:  68.75rem / 1100px
 ```
 
 ### Hierarquia de classes

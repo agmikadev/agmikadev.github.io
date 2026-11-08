@@ -83,6 +83,24 @@ console stage:
   returns to the previous planet; the tech-tag bridge opens SALTO inside the
   screen.
 
+## Refinement: token application
+
+The approved visual was preserved while the component layout moved to tokens:
+
+- `tokens.css` now holds primitives, semantic tokens and layout/component tokens.
+- `globals.css` contains the `@theme inline` bridge; Tailwind utilities
+  (`bg-primary`, `bg-primary/20`, `border-border`, `rounded-lg`, `font-mono`)
+  were validated.
+- Layout dimensions use fluid tokens: console sidebar, orbit sun, Salto tech
+  index, Salto row columns/actions, project-card media height and onboarding
+  width.
+- Breakpoints are standardized to `48rem` (mobile), `60rem` (console),
+  `56.25rem` (Salto tech) and `68.75rem` (Salto row).
+- Remaining raw px are decorative (glows, 1px borders, scrollbars, avatar
+  geometry) or intentional accessibility primitives.
+- Verified at 1440, 1280, 1024 and 768: no horizontal overflow; sidebar/sun/
+  tech index and card media scale coherently.
+
 ## Infrastructure
 
 - D1 database: `star-system-portfolio`

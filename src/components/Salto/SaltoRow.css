@@ -1,5 +1,5 @@
 .salto__row {
-  border-bottom: 1px solid hsl(var(--primary) / 10%);
+  border-bottom: var(--border-width) solid hsl(var(--primary) / 10%);
   transition: background var(--duration-fast) var(--ease-smooth);
 }
 
@@ -12,11 +12,11 @@
   /* Project | summary | stack | actions. Actions stay fixed so rows never
      shift horizontally when links or tags change. */
   grid-template-columns:
-    minmax(190px, 1.1fr)
-    minmax(280px, 1.9fr)
-    minmax(200px, 1.2fr)
-    140px;
-  gap: var(--space-3);
+    minmax(var(--salto-row-project-min), 1.1fr)
+    minmax(var(--salto-row-summary-min), 1.9fr)
+    minmax(var(--salto-row-stack-min), 1.2fr)
+    var(--salto-actions-width);
+  gap: var(--salto-row-gap);
   align-items: start;
   padding: var(--space-3) 0;
 }
@@ -82,7 +82,7 @@
 }
 
 .salto__row-tech {
-  padding: 2px 7px;
+  padding: var(--salto-chip-padding-block) var(--salto-chip-padding-inline);
   background: hsl(var(--primary) / 7%);
   border: 1px solid hsl(var(--primary) / 22%);
   border-radius: var(--radius-full);
@@ -103,7 +103,7 @@
   font-family: var(--font-mono);
   font-size: var(--text-micro);
   color: hsl(var(--muted-foreground));
-  padding: 2px 4px;
+  padding: var(--salto-chip-padding-block) var(--space-1);
 }
 
 .salto__row-actions {
@@ -211,7 +211,7 @@
 }
 
 /* The screen is narrower than the viewport because of the sidebar. */
-@container (max-width: 1100px) {
+@container (max-width: 68.75rem) {
   .salto__row-main {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:
@@ -242,7 +242,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .salto__row-main {
     grid-template-columns: 1fr;
     grid-template-areas:

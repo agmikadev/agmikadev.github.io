@@ -75,7 +75,7 @@
 
 .console__footer-line {
   flex-grow: 1;
-  height: 1px;
+  height: var(--border-width);
   background: hsl(var(--primary));
   margin: 0 var(--space-4);
   opacity: 0.5;
@@ -89,7 +89,7 @@
 }
 
 /* Mobile */
-@media (max-width: 960px) {
+@media (max-width: 60rem) {
   .console {
     min-height: 100dvh;
     height: auto;

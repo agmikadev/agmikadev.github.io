@@ -79,14 +79,14 @@
    ========================================= */
 .progress-track {
   width: 100%;
-  height: 6px;
+  height: var(--progress-height);
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 2px;
+  border-radius: var(--radius-xs);
 }
 
 .progress-fill {
   height: 100%;
-  border-radius: 2px;
+  border-radius: var(--radius-xs);
   width: var(--skill-width, 0%);
   background-color: var(--skill-color, hsl(var(--primary)));
   box-shadow: 0 0 10px var(--skill-color, hsl(var(--primary)));
@@ -155,7 +155,7 @@
 /* =========================================
    5. RESPONSIVIDADE MOBILE
    ========================================= */
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .analytics-alternatives {
     flex-direction: column;
     align-items: flex-start;
