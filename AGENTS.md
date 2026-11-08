@@ -11,7 +11,7 @@
 
 **Two navigation flows, one console:**
 - **ÓRBITA (default, compassado):** explore the solar system, planets, case cards and AI belt at the visitor's pace.
-- **SALTO (expresso):** a single header switch swaps the console screen to a dense project index with search, area filters and a canonical technology sidebar with counts. It is a screen inside `.console__screen`, not a modal; the console sidebar and footer stay visible, and the header is the only back control (`← ÓRBITA`).
+- **SALTO (expresso):** a single `SALTO` button inside the ÓRBITA screen swaps the console screen to a dense project index with search, area filters and a canonical technology sidebar with counts. It is a screen inside `.console__screen`, not a modal; the console sidebar and footer stay visible, and the header is the only back control (`← ÓRBITA`).
 
 Technology tags are canonical (see `src/components/Planetary/data/technologies.ts`); aliases like "React 19"/"React.js" fold into "React". Clicking a tech tag opens the Salto index filtered by that technology.
 

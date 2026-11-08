@@ -111,7 +111,7 @@ Plans:
 **Requirements**: CONTENT-04, UX-05, UX-06, DATA-01, DATA-02, DATA-03
 **Success Criteria** (what must be TRUE):
   1. SmartKitchen, HellzDashboard, FootScout e UIMaga aparecem como cards com imagem e links validados
-  2. Salto troca a tela do console por um único switch no header e oferece busca, filtro por área e filtro por tecnologia com contagem, mantendo sidebar/footer visíveis
+  2. Salto troca a tela do console por um único botão dentro da tela ÓRBITA e oferece busca, filtro por área e filtro por tecnologia com contagem, mantendo sidebar/footer visíveis
   3. Cada planeta mostra a área real como label primário e o codinome como secundário
   4. Tags de tecnologia são canônicas e clicáveis: levam ao Salto filtrado pela tecnologia
   5. Projetos multiárea mudam papel, resumo, destaques e stack conforme o planeta selecionado

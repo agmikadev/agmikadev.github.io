@@ -8,19 +8,9 @@ interface ConsoleHeaderProps {
   onComplete?: () => void;
   onBack?: () => void;
   backLabel?: string;
-  onOpenSalto?: () => void;
   speed?: number;
   command?: string;
 }
-
-const SALTO_ICON = (
-  <svg
-    width="16" height="16" viewBox="0 0 24 24" fill="none"
-    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-  >
-    <path d="M13 2 4.5 13.5H11l-1 8.5L19.5 10H13l0-8Z" />
-  </svg>
-);
 
 const BACK_ICON = (
   <svg
@@ -36,7 +26,6 @@ export const ConsoleHeader: React.FC<ConsoleHeaderProps> = ({
   onComplete,
   onBack,
   backLabel = "VOLTAR AO SISTEMA",
-  onOpenSalto,
   speed = 10,
   command,
 }) => {
@@ -60,19 +49,6 @@ export const ConsoleHeader: React.FC<ConsoleHeaderProps> = ({
         speed={speed}
         onComplete={onComplete}
       />
-
-      {onOpenSalto && (
-        <button
-          type="button"
-          className="console__mode-button"
-          onClick={onOpenSalto}
-          aria-label="Abrir índice de projetos (Salto)"
-          title="Abrir índice de projetos"
-        >
-          {SALTO_ICON}
-          <span>SALTO</span>
-        </button>
-      )}
     </header>
   );
 };

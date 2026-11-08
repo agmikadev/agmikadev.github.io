@@ -24,9 +24,9 @@
 
 After review, the interface was split into two explicit navigation flows:
 
-- **ÓRBITA (compassado, default):** the solar-system exploration. One single
-  header switch opens the Salto; the featured bar, side-strip project button and
-  onboarding project CTA were removed.
+- **ÓRBITA (compassado, default):** the solar-system exploration. A single
+  `SALTO` button inside the ÓRBITA screen opens the index; the featured bar,
+  side-strip project button and onboarding project CTA were removed.
 - **SALTO (expresso):** a dense project index with search, area filters and a
   canonical technology sidebar with project counts. This is the escape hatch for
   recruiters who want to see everything done with a specific technology.

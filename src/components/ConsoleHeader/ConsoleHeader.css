@@ -37,39 +37,8 @@
   word-break: break-word;
 }
 
-.console__mode-button {
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-1) var(--space-3);
-  background: hsl(var(--primary) / 8%);
-  border: 1px solid hsl(var(--primary) / 45%);
-  border-radius: var(--radius-full);
-  color: hsl(var(--primary));
-  font-family: var(--font-mono);
-  font-size: var(--text-micro);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  cursor: pointer;
-  transition: all var(--duration-fast) var(--ease-smooth);
-}
-
-.console__mode-button:hover {
-  background: hsl(var(--primary) / 16%);
-  box-shadow: 0 0 18px hsl(var(--primary) / 18%);
-}
-
 @media (max-width: 960px) {
   .console__header {
     padding: var(--space-3);
-  }
-
-  .console__mode-button span {
-    display: none;
-  }
-
-  .console__mode-button {
-    padding: var(--space-1);
   }
 }

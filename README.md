@@ -10,10 +10,11 @@ de **IA & Agentic**. Os projetos são o conteúdo principal — a metáfora espa
 
 - **ÓRBITA (padrão, fluxo compassado):** explorar o sistema, abrir planetas,
   ler os cases e navegar pelo cinturão de IA no tempo do visitante.
-- **SALTO (fluxo expresso):** um único switch no header troca a tela do console
-  para um índice denso de projetos com busca, filtro por área e **filtro por
-  tecnologia com contagem**. É o caminho para recrutadores que só querem saber
-  "o que você fez com React/D1/Supabase" — sem passar pelos planetas.
+- **SALTO (fluxo expresso):** um único botão **SALTO** dentro da tela ÓRBITA
+  troca o conteúdo do console para um índice denso de projetos com busca, filtro
+  por área e **filtro por tecnologia com contagem**. É o caminho para
+  recrutadores que só querem saber "o que você fez com React/D1/Supabase" — sem
+  passar pelos planetas.
 - Tags de tecnologia são canônicas e clicáveis: clicar em `React` em um card
   abre o Salto já filtrado por React.
 
@@ -46,7 +47,7 @@ filtro de área está ativo, as linhas usam a perspectiva daquela área.
 src/
 ├── components/
 │   ├── ConsoleShell.tsx        # Shell: header, stage, sidebar, footer
-│   ├── ConsoleHeader/          # Comando, botão SALTO e voltar
+│   ├── ConsoleHeader/          # Comando e controle de voltar
 │   ├── Salto/                  # Tela SALTO, linhas e navegação de tecnologia
 │   ├── Planetary/
 │   │   ├── data/               # Projetos, perspectivas, tecnologias, belt

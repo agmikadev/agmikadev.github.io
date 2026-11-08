@@ -81,7 +81,6 @@ export const ConsoleShell: FC<ConsoleShellProps> = ({ children }) => {
           onBack={handleBack}
           backLabel={isSalto ? 'ÓRBITA' : 'VOLTAR AO SISTEMA'}
           onComplete={isDashboard ? handleFetchComplete : undefined}
-          onOpenSalto={isSalto ? undefined : () => openSalto()}
         />
 
         <div className="console__body">
@@ -95,6 +94,7 @@ export const ConsoleShell: FC<ConsoleShellProps> = ({ children }) => {
                     selectedPlanet={selectedPlanet}
                     onSelectPlanet={handleSelectPlanet}
                     isFetched={isFetched}
+                    onOpenSalto={() => openSalto()}
                   />
                 )
               )}

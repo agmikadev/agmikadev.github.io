@@ -19,12 +19,14 @@ interface PlanetarySystemProps {
   selectedPlanet: PlanetModel | null;
   onSelectPlanet: (planet: PlanetModel | null) => void;
   isFetched: boolean;
+  onOpenSalto?: () => void;
 }
 
 export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
   selectedPlanet,
   onSelectPlanet,
   isFetched,
+  onOpenSalto,
 }) => {
   // --- DADOS ---
   const physicalPlanets = PHYSICAL_PLANETS;
@@ -154,6 +156,26 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
       />
       ) : (
         <>
+        {onOpenSalto && (
+          <button
+            type="button"
+            className="orbit__salto"
+            onClick={onOpenSalto}
+            aria-label="Abrir índice de projetos (Salto)"
+            title="Abrir índice de projetos"
+          >
+            <svg
+              width="15" height="15" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M13 2 4.5 13.5H11l-1 8.5L19.5 10H13l0-8Z" />
+            </svg>
+            <span className="orbit__salto-label">SALTO</span>
+            <span className="orbit__salto-hint">ÍNDICE DE PROJETOS</span>
+          </button>
+        )}
+
         <svg
           className="orbit__svg"
           preserveAspectRatio="none"

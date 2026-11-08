@@ -43,7 +43,7 @@ export const OnboardingOverlay: React.FC = () => {
         <p className="onboarding-copy">
           Explore a órbita no seu ritmo: cada planeta é uma área e o cinturão é
           a camada de IA. Se estiver com pressa, o botão <strong>SALTO</strong> no
-          topo abre o índice de projetos e experiência por tecnologia.
+          topo da tela abre o índice de projetos e experiência por tecnologia.
         </p>
 
         <div className="onboarding-actions">

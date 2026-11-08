@@ -36,7 +36,7 @@
 ### Content Refresh & D1 (Phase 6)
 
 - [x] **CONTENT-04**: SmartKitchen, HellzDashboard, FootScout and UIMaga are cards with images, stacks and validated links
-- [x] **UX-05**: Salto is a screen inside the console stage, reachable through a single header switch, with search, area filters and a technology filter; the console sidebar and footer remain visible
+- [x] **UX-05**: Salto is a screen inside the console stage, reachable through a single SALTO button inside the ÓRBITA screen, with search, area filters and a technology filter; the console sidebar and footer remain visible
 - [x] **UX-06**: Each planet shows its real area as the primary label and its codename as secondary
 - [x] **UX-07**: Two named navigation flows exist — ÓRBITA (compassado, system exploration) and SALTO (expresso, dense project index) — swapped inside the same console screen
 - [x] **CONTENT-05**: Technology tags are canonical and clickable; the Salto sidebar groups technologies by category with project counts
