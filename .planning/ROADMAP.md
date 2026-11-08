@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 1: Foundation & Performance** - Fix deployment, add loading state, establish performance baseline, enable resume download
 - [ ] **Phase 2: Belt Data & Visual Core** - Create belt data model, render animated network connections between all planets
 - [ ] **Phase 3: Belt Interaction & Content** - Clickable belt with HUD panel, populate all planet and belt mission/analytics content
-- [ ] **Phase 4: Polish & Accessibility** - Onboarding overlay, smooth camera transitions, keyboard navigation, reduced-motion support
+- [x] **Phase 4: Polish & Accessibility** - Onboarding overlay, orbit/HUD transitions, keyboard navigation, reduced-motion support
 - [ ] **Phase 5: Production Readiness** - Error boundary with 2D fallback, SEO meta tags, bundle optimization, cross-device testing
 - [x] **Phase 6: Projects-First Content Refresh & D1** - Reframe the space metaphor as navigation, add recent project cards, Mission Log, and Cloudflare D1 content/visits
 
@@ -88,10 +88,10 @@ Plans: TBD
 
 Plans:
 - [x] 04-00-PLAN.md — Implement full HUD visual system (UI-SPEC.md: yellow cards, typography, symbols)
-- [ ] 04-01-PLAN.md — Onboarding overlay with localStorage dismiss
-- [ ] 04-02-PLAN.md — Smooth camera transitions for planet select/deselect
-- [ ] 04-03-PLAN.md — Keyboard navigation (Tab/Enter/Escape)
-- [ ] 04-04-PLAN.md — prefers-reduced-motion support
+- [x] 04-01-PLAN.md — Onboarding overlay with localStorage + Escape dismiss
+- [x] 04-02-PLAN.md — Orbit ↔ HUD focus transitions
+- [x] 04-03-PLAN.md — Keyboard navigation and focus management (Tab/Enter/Space/Escape)
+- [x] 04-04-PLAN.md — prefers-reduced-motion support in CSS, orbit loop and 3D canvas
 - [x] 04-05-PLAN.md — Side strip polish and symbol integration
 
 ### Phase 5: Production Readiness
@@ -132,6 +132,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 1. Foundation & Performance | 4/4 | Complete | 2026-05-17 |
 | 2. Belt Data & Visual Core | 3/3 | Complete | 2026-05-18 |
 | 3. Belt Interaction & Content | 3/3 | Complete | 2026-05-18 |
-| 4. Polish & Accessibility | 0/0 | Pending | - |
+| 4. Polish & Accessibility | 5/5 | Complete | 2026-11-08 |
 | 5. Production Readiness | 0/0 | Pending | - |
 | 6. Projects-First Content Refresh & D1 | 1/1 | Complete | 2026-11-08 |

@@ -119,10 +119,12 @@ npm run test:visual     # Playwright: layout + regressão visual do SALTO
 ```
 
 Os testes de layout rodam em 1440, 1280, 1024 e 768 e validam overflow,
-sidebar/sol, colunas do SALTO e o HUD do planeta. A regressão visual compara
-apenas a tela SALTO (1440 e 768), mascarando o data cycler e o contador de
-visitas. Localmente o Playwright usa o Microsoft Edge instalado
-(`channel: msedge`); os baselines são `win32` e ficam em
+sidebar/sol, colunas do SALTO e o HUD do planeta. A suíte de acessibilidade
+cobre teclado (Tab/Enter/Space/Escape), restauração de foco no HUD e no SALTO,
+dispensa do onboarding e `prefers-reduced-motion` (órbita estática vs. animada).
+A regressão visual compara apenas a tela SALTO (1440 e 768), mascarando o data
+cycler e o contador de visitas. Localmente o Playwright usa o Microsoft Edge
+instalado (`channel: msedge`); os baselines são `win32` e ficam em
 `tests/visual/salto.spec.ts-snapshots/`.
 
 Para atualizar os baselines depois de uma mudança visual intencional:

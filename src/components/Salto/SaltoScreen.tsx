@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { planets } from "../Planetary/data/PlanetaryData";
 import { useAllMissions } from "../Planetary/data/hooks";
 import {
@@ -39,6 +39,13 @@ export const SaltoScreen: React.FC<SaltoScreenProps> = ({
   const [activeArea, setActiveArea] = useState<string>("all");
   const [activeTech, setActiveTech] = useState<string>(initialTech);
   const [query, setQuery] = useState("");
+  const screenRef = useRef<HTMLElement>(null);
+
+  // Move focus into the screen so keyboard users do not lose context when the
+  // orbit (and the SALTO trigger) unmounts. Tab then reaches the back action.
+  useEffect(() => {
+    screenRef.current?.focus({ preventScroll: true });
+  }, []);
 
   const techGroups = useMemo(() => {
     const counts = new Map<string, number>();
@@ -100,7 +107,12 @@ export const SaltoScreen: React.FC<SaltoScreenProps> = ({
   };
 
   return (
-    <section className="salto" aria-label="Índice de projetos e experiência">
+    <section
+      ref={screenRef}
+      className="salto"
+      aria-label="Índice de projetos e experiência"
+      tabIndex={-1}
+    >
       <header className="salto__header">
         <ScreenAction
           className="salto__back"

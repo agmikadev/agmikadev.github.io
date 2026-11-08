@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-05-17)
 
 **Core value:** Visually demonstrate full-stack development proficiency — including cutting-edge agentic/AI skills — in a way that impresses both technical peers and hiring managers.
-**Current focus:** Phase 6 — Projects-First Content Refresh & D1 (Complete)
+**Current focus:** Phase 4 — Polish & Accessibility (Complete); next Phase 5
 
 ## Current Position
 
-Phase: 6 (Projects-First Content Refresh & D1)
-Plan: 1 of 1 in current phase
-Status: Completed phase 06 — console shell, ÓRBITA/SALTO screens, BEM hierarchy, D1, tokens, shadcn primitives and guardrails
-Last activity: 2026-11-08 — Phase 6 refinement: shadcn primitives + Playwright/Stylelint/token guardrails
+Phase: 4 (Polish & Accessibility)
+Plan: 5 of 5 in current phase
+Status: Completed phase 04 — keyboard navigation with focus restoration, reduced motion, orbit/HUD transitions and onboarding Escape
+Last activity: 2026-11-08 — Phase 4: accessibility polish + Playwright keyboard/motion tests
 
-Progress: [█████████████░] 65%
+Progress: [██████████████░] 83%
 
 ## Performance Metrics
 
@@ -30,11 +30,13 @@ Progress: [█████████████░] 65%
 | 01-foundation | 4 | 4 | ~4 min |
 | 02-belt-data-visual-core | 3 | 3 | ~4 min |
 | 03-belt-interaction-content | 3 | 3 | ~4 min |
+| 04-polish-accessibility | 5 | 5 | ~1 session |
 | 06-projects-first-d1 | 1 | 1 | ~1 session |
 
 **Recent Trend:**
 - Phase 6 delivered the content reframe and D1 layer in one session
-- Next: finish Phase 4 accessibility/polish and Phase 5 production readiness
+- Phase 4 closed keyboard access, focus restoration and reduced motion
+- Next: Phase 5 production readiness (error boundary, SEO, code-splitting)
 
 *Updated after each plan completion*
 
@@ -53,7 +55,9 @@ Recent decisions affecting current work:
 - Fluid layout tokens — sidebar, sun, Salto tech index/row columns, card media and onboarding use `clamp()`/container queries; breakpoints standardized
 - Tailwind theme bridge — tokens mapped through `@theme inline`; shadcn primitives are allowed only for inputs/actions
 - shadcn primitives — `Button`, `Input` and `ToggleGroup` live in `src/components/ui`; `Input`/`ToggleGroup` power SALTO with unchanged visuals
-- Guardrails — `check-tokens.mjs`, Stylelint, ESLint and Playwright layout tests run in CI; SALTO pixel baselines are local (`win32`)
+- Guardrails — `check-tokens.mjs`, Stylelint, ESLint and Playwright layout/a11y tests run in CI; SALTO pixel baselines are local (`win32`)
+- Keyboard focus contract — belt and planets are buttons; keyboard-opened HUD focuses `← SISTEMA`; closing restores focus by identity after the orbit remounts
+- Reduced motion — `usePrefersReducedMotion` stops the orbit loop, 3D auto-rotate and mesh animation; CSS disables transitions
 - Canonical technology taxonomy — aliases fold into one name; Salto has a tech sidebar with counts
 - Tech tags are navigation — clicking a tag opens/filters SALTO by that technology
 - Per-planet perspective — the same project changes role, summary, highlights and stack by area
@@ -63,8 +67,7 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
-- Phase 4: onboarding polish is partially done; camera transitions, keyboard nav and reduced motion remain
-- Phase 5: error boundary, bundle code-splitting, cross-device testing
+- Phase 5: error boundary with WebGL fallback, OG/Twitter meta tags, bundle code-splitting, cross-device testing
 - Optionally adopt the `Button` primitive in a CTA after a visual review; it is installed but intentionally unused
 
 ### Blockers/Concerns
@@ -82,5 +85,5 @@ Recent decisions affecting current work:
 ## Session Continuity
 
 Last session: 2026-11-08
-Stopped at: Phase 6 complete — ÓRBITA/SALTO navigation, canonical technology index, Cloudflare D1
-Resume file: .planning/ROADMAP.md (next: Phase 4 polish, then Phase 5 production readiness)
+Stopped at: Phase 4 complete — keyboard navigation, focus restoration, reduced motion and orbit/HUD transitions
+Resume file: .planning/ROADMAP.md (next: Phase 5 production readiness)

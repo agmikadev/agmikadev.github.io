@@ -1,6 +1,6 @@
 import { expect, type Locator, type Page } from "@playwright/test";
 
-const API_PATTERN =
+export const API_PATTERN =
   /star-system-portfolio-api\.agmikadesign\.workers\.dev/;
 
 /**

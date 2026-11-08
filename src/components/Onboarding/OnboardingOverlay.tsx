@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./OnboardingOverlay.css";
 
 /**
@@ -14,14 +14,25 @@ export const OnboardingOverlay: React.FC = () => {
     }
   });
 
-  const dismiss = () => {
+  const dismiss = useCallback(() => {
     try {
       localStorage.setItem("hasSeenOnboarding:v2", "true");
     } catch {
       // Private mode can block storage; dismissal still works for this session.
     }
     setVisible(false);
-  };
+  }, []);
+
+  useEffect(() => {
+    if (!visible) return;
+
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") dismiss();
+    };
+
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [dismiss, visible]);
 
   if (!visible) return null;
 

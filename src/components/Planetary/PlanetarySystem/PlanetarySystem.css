@@ -11,6 +11,18 @@
   background: transparent;
   overflow: hidden;
   z-index: 1;
+  animation: orbit-focus-in var(--duration-base) var(--ease-smooth) both;
+}
+
+@keyframes orbit-focus-in {
+  from {
+    opacity: 0;
+    transform: scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* =========================================

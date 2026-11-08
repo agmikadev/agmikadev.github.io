@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useCallback, useState, useEffect, useRef } from "react";
 import "./PlanetarySystem.css";
 import "./PlanetShapes.css";
 import { planets, type PlanetModel } from "../data/PlanetaryData";
 import { Dashboard } from "./Dashboard/Dashboard";
 import { BeltNetwork } from "./BeltNetwork/BeltNetwork";
 import { ScreenAction } from "../../ui/ScreenAction";
+import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 
 const CONFIG = {
   centerX: 50,
@@ -35,11 +36,16 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
 
   // --- ESTADOS ---
   const [hoveredPlanetId, setHoveredPlanetId] = useState<string | null>(null);
+  const [beltFocused, setBeltFocused] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   // --- REFS ---
-  const requestRef = useRef<number>(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const lastTriggerRef = useRef<
+    { type: "planet"; id: string } | { type: "belt" } | null
+  >(null);
+  const keyboardOpenedRef = useRef(false);
   const planetNodesRef = useRef<(HTMLDivElement | null)[]>([]);
   const containerWidthRef = useRef<number>(0);
   const containerHeightRef = useRef<number>(0);
@@ -69,19 +75,23 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
 
   // --- GAMELOOP ---
   useEffect(() => {
+    let frame = 0;
+
     const animate = () => {
       if (!containerRef.current) return;
       const w = containerWidthRef.current;
       const h = containerHeightRef.current;
 
-      // Physics
-      anglesRef.current = anglesRef.current.map((angle, i) => {
-        const planet = physicalPlanets[i];
-        if (hoveredPlanetId === planet.id) return angle;
-        const radius = planet.orbitSize * CONFIG.orbitScale;
-        const speed = (CONFIG.keplerConstant / radius) * 0.005;
-        return angle + speed;
-      });
+      // Physics — reduced motion renders one static frame and stops.
+      if (!prefersReducedMotion) {
+        anglesRef.current = anglesRef.current.map((angle, i) => {
+          const planet = physicalPlanets[i];
+          if (hoveredPlanetId === planet.id) return angle;
+          const radius = planet.orbitSize * CONFIG.orbitScale;
+          const speed = (CONFIG.keplerConstant / radius) * 0.005;
+          return angle + speed;
+        });
+      }
 
       // Render positions
       const pixelCoords: { x: number; y: number }[] = [];
@@ -109,25 +119,77 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
       if (svgHitboxRef.current) svgHitboxRef.current.setAttribute("d", closedPath);
 
       setPixelCoords(pixelCoords);
-      requestRef.current = requestAnimationFrame(animate);
+      if (!prefersReducedMotion) {
+        frame = requestAnimationFrame(animate);
+      }
     };
-    requestRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(requestRef.current!);
-  }, [hoveredPlanetId, physicalPlanets]);
+
+    frame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frame);
+  }, [hoveredPlanetId, physicalPlanets, prefersReducedMotion]);
+
+  const closeDashboard = useCallback(() => {
+    onSelectPlanet(null);
+    setHoveredPlanetId(null);
+    setBeltFocused(false);
+
+    // The orbit unmounts while the HUD is open, so restore focus by identity
+    // after the trigger elements are recreated.
+    requestAnimationFrame(() => {
+      const trigger = lastTriggerRef.current;
+      if (!trigger) return;
+
+      if (trigger.type === "belt") {
+        document
+          .querySelector<SVGElement>(".orbit__belt-hitbox")
+          ?.focus({ preventScroll: true });
+        return;
+      }
+
+      document
+        .querySelector<HTMLElement>(
+          `.orbit__planet[data-planet-id="${CSS.escape(trigger.id)}"]`,
+        )
+        ?.focus({ preventScroll: true });
+    });
+  }, [onSelectPlanet]);
 
   // --- KEYBOARD HANDLING (Escape to close HUD) ---
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && selectedPlanet) {
-        onSelectPlanet(null);
-        setHoveredPlanetId(null);
-      }
+      if (e.key === "Escape" && selectedPlanet) closeDashboard();
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [selectedPlanet, onSelectPlanet]);
+  }, [selectedPlanet, closeDashboard]);
+
+  // Keyboard activation moves focus into the HUD; mouse activation does not.
+  useEffect(() => {
+    if (!selectedPlanet || !keyboardOpenedRef.current) return;
+    keyboardOpenedRef.current = false;
+
+    const frame = requestAnimationFrame(() => {
+      document
+        .querySelector<HTMLElement>(".planet-hud__back")
+        ?.focus({ preventScroll: true });
+    });
+
+    return () => cancelAnimationFrame(frame);
+  }, [selectedPlanet]);
+
+  const openPlanet = (planet: PlanetModel, keyboard: boolean) => {
+    lastTriggerRef.current =
+      planet.shape === "belt"
+        ? { type: "belt" }
+        : { type: "planet", id: planet.id };
+    keyboardOpenedRef.current = keyboard;
+    onSelectPlanet(planet);
+    setHoveredPlanetId(null);
+    setBeltFocused(false);
+  };
 
   const isBeltHovered = beltPlanet && hoveredPlanetId === beltPlanet.id;
+  const isBeltActive = Boolean(isBeltHovered || beltFocused);
 
   return (
     <div className="orbit" ref={containerRef}>
@@ -148,14 +210,14 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
       <Dashboard
         mode="belt"
         isFetched={isFetched}
-        onBack={() => onSelectPlanet(null)}
+        onBack={closeDashboard}
       />
     ) : selectedPlanet ? (
       <Dashboard
         planet={selectedPlanet}
         mode="planet"
         isFetched={isFetched}
-        onBack={() => onSelectPlanet(null)}
+        onBack={closeDashboard}
       />
       ) : (
         <>
@@ -210,13 +272,17 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
                     color: physicalPlanets[i].color,
                     id: physicalPlanets[i].id,
                   }))}
-                  isHovered={!!isBeltHovered}
+                  isHovered={isBeltActive}
                   beltColor={beltPlanet.color}
                 />
         <path
-          tabIndex={-1}
+          tabIndex={0}
+          role="button"
+          aria-label={`Abrir ${beltPlanet.area} (${beltPlanet.name})`}
           onKeyDown={(e) => {
-            if (e.key === "Enter") onSelectPlanet(beltPlanet);
+            if (e.key !== "Enter" && e.key !== " ") return;
+            e.preventDefault();
+            openPlanet(beltPlanet, true);
           }}
           ref={svgHitboxRef}
           fill="none"
@@ -227,10 +293,9 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
           onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
           onMouseEnter={() => setHoveredPlanetId(beltPlanet.id)}
           onMouseLeave={() => setHoveredPlanetId(null)}
-          onClick={() => {
-            onSelectPlanet(beltPlanet);
-            setHoveredPlanetId(null);
-          }}
+          onFocus={() => setBeltFocused(true)}
+          onBlur={() => setBeltFocused(false)}
+          onClick={() => openPlanet(beltPlanet, false)}
         />
               </>
             )}
@@ -238,22 +303,21 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
 
           {physicalPlanets.map((p, i) => (
             <div
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  onSelectPlanet(p);
-                  setHoveredPlanetId(null);
-                }
-              }}
               key={p.id}
+              role="button"
+              tabIndex={0}
+              data-planet-id={p.id}
+              aria-label={`Abrir área ${p.area}`}
+              onKeyDown={(e) => {
+                if (e.key !== "Enter" && e.key !== " ") return;
+                e.preventDefault();
+                openPlanet(p, true);
+              }}
               className="orbit__planet"
               ref={(el) => {
                 planetNodesRef.current[i] = el;
               }}
-              onClick={() => {
-                onSelectPlanet(p);
-                setHoveredPlanetId(null);
-              }}
+              onClick={() => openPlanet(p, false)}
               onMouseEnter={() => setHoveredPlanetId(p.id)}
               onMouseLeave={() => setHoveredPlanetId(null)}
         style={{

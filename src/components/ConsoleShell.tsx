@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo, type FC, type ReactNode } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef, type FC, type ReactNode } from 'react';
 import './styles/ConsoleShell.css';
 import './styles/Console.css';
 import { SideStrip } from './SideStrip';
@@ -21,6 +21,7 @@ export const ConsoleShell: FC<ConsoleShellProps> = ({ children }) => {
   const [isFetched, setIsFetched] = useState(false);
   const [saltoTech, setSaltoTech] = useState('all');
   const [saltoKey, setSaltoKey] = useState(0);
+  const previousScreenRef = useRef<Screen>(screen);
 
   const handleSelectPlanet = useCallback((planet: PlanetModel | null) => {
     setSelectedPlanet(planet);
@@ -51,6 +52,21 @@ export const ConsoleShell: FC<ConsoleShellProps> = ({ children }) => {
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
   }, [screen, closeSalto]);
+
+  // Restore focus to the SALTO trigger after the orbit remounts.
+  useEffect(() => {
+    const wasSalto = previousScreenRef.current === 'salto';
+    previousScreenRef.current = screen;
+    if (!wasSalto || screen !== 'orbit') return;
+
+    const frame = requestAnimationFrame(() => {
+      document
+        .querySelector<HTMLElement>('.orbit__salto')
+        ?.focus({ preventScroll: true });
+    });
+
+    return () => cancelAnimationFrame(frame);
+  }, [screen]);
 
   const navigation = useMemo(() => ({ openSalto }), [openSalto]);
 

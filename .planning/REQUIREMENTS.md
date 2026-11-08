@@ -22,10 +22,10 @@
 
 ### User Experience
 
-- [ ] **UX-01**: First-visit onboarding overlay explaining how to interact (dismissed via localStorage)
-- [ ] **UX-02**: Smooth camera transitions when selecting/deselecting planets
-- [ ] **UX-03**: Keyboard navigation support (Tab/Enter/Escape for planets, belt, and HUD)
-- [ ] **UX-04**: prefers-reduced-motion support for users who disable animations
+- [x] **UX-01**: First-visit onboarding overlay explaining how to interact (dismissed via localStorage or Escape)
+- [x] **UX-02**: Smooth orbit ↔ HUD transitions when selecting/deselecting planets
+- [x] **UX-03**: Keyboard navigation support (Tab/Enter/Space/Escape for planets, belt, HUD and SALTO, with focus restoration)
+- [x] **UX-04**: prefers-reduced-motion support for users who disable animations (CSS, orbit loop and 3D canvas)
 
 ### Content
 
@@ -88,10 +88,10 @@
 | BELT-03 | Phase 3 | Pending |
 | BELT-04 | Phase 3 | Complete |
 | BELT-05 | Phase 2 | Pending |
-| UX-01 | Phase 4 | Pending |
-| UX-02 | Phase 4 | Pending |
-| UX-03 | Phase 4 | Pending |
-| UX-04 | Phase 4 | Pending |
+| UX-01 | Phase 4 | Complete |
+| UX-02 | Phase 4 | Complete |
+| UX-03 | Phase 4 | Complete |
+| UX-04 | Phase 4 | Complete |
 | CONT-01 | Phase 3 | Complete |
 | CONT-02 | Phase 3 | Complete |
 | CONT-03 | Phase 3 | Complete |
@@ -116,4 +116,4 @@
 
 ---
 *Requirements defined: 2026-05-17*
-*Last updated: 2026-11-08 after Phase 6 (projects-first + D1)*
+*Last updated: 2026-11-08 after Phase 4 (polish & accessibility)*

@@ -13,7 +13,18 @@
   display: flex;
   box-sizing: border-box;
   color: hsl(var(--hud-text-primary));
-  animation: fade-in var(--duration-base) var(--ease-smooth) forwards;
+  animation: hud-focus-in var(--duration-base) var(--ease-smooth) both;
+}
+
+@keyframes hud-focus-in {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .planet-hud__container {

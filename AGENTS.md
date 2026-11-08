@@ -33,14 +33,15 @@ This project uses the Get Shit Done (GSD) workflow. All work must follow these r
 
 ## Current State
 
-**Active Phase:** Phase 6 complete — Projects-First Content Refresh & D1
-**Next:** Phase 4 polish (camera, keyboard, reduced motion), then Phase 5 production readiness
+**Active Phase:** Phase 4 complete — Polish & Accessibility
+**Next:** Phase 5 production readiness (error boundary, SEO, bundle code-splitting)
 
 **Key Files:**
 - `.planning/ROADMAP.md` — Phase structure and success criteria
 - `.planning/STATE.md` — Current project state
 - `.planning/REQUIREMENTS.md` — v1 requirements with traceability
 - `.planning/PROJECT.md` — Full project context
+- `.planning/phases/04-polish-accessibility/` — Phase 4 plans and summary
 - `.planning/phases/06-projects-first-d1/` — Phase 6 plan and summary
 - `.planning/config.json` — Workflow preferences (YOLO, fine granularity, parallel, genius models)
 
@@ -53,7 +54,9 @@ This project uses the Get Shit Done (GSD) workflow. All work must follow these r
 - **Three.js:** Pinned to 0.182.0 (do not upgrade without checking R3F/drei compatibility)
 - **React 19:** Required for @react-three/fiber v9 and postprocessing v3
 - **Design tokens:** `src/styles/tokens.css` is the source of truth; `npm run check:tokens` blocks raw layout dimensions
-- **Quality gates:** `lint`, `lint:css`, `check:tokens` run in CI before build; `npm run test:visual` covers layout (1440/1280/1024/768) and SALTO pixel snapshots locally
+- **Quality gates:** `lint`, `lint:css`, `check:tokens` run in CI before build; `npm run test:visual` covers layout (1440/1280/1024/768), keyboard/focus, reduced motion and SALTO pixel snapshots locally
+- **Keyboard contract:** belt and planets are buttons; keyboard-opened HUD focuses `← SISTEMA`; closing restores focus after the orbit remounts; Escape closes HUD and SALTO
+- **Reduced motion:** `usePrefersReducedMotion` stops the orbit loop and 3D animation; CSS transitions are disabled
 - **shadcn scope:** primitives only (`Button`, `Input`, `ToggleGroup`); HUD/3D styling stays in tokenized CSS
 
 ## Codebase Structure

@@ -3,6 +3,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Environment } from "@react-three/drei";
 import * as THREE from "three";
 import { type PlanetModel } from "../../data/PlanetaryData";
+import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 
 interface Planet3DProps {
   planet: PlanetModel;
@@ -11,7 +12,7 @@ interface Planet3DProps {
 const AI_COLOR = "#a9fc03";
 
 // --- Neural Network Mesh (AI Belt) ---
-const NeuralMesh: React.FC<{ color: string }> = ({ color }) => {
+const NeuralMesh: React.FC<{ color: string; paused: boolean }> = ({ color, paused }) => {
   const groupRef = useRef<THREE.Group>(null);
   const nodesRef = useRef<THREE.InstancedMesh>(null);
   const pulsesRef = useRef<THREE.InstancedMesh>(null);
@@ -75,6 +76,7 @@ const NeuralMesh: React.FC<{ color: string }> = ({ color }) => {
   );
 
   useFrame((state) => {
+    if (paused) return;
     const time = state.clock.getElapsedTime();
     if (groupRef.current) {
       groupRef.current.rotation.y += 0.003;
@@ -132,7 +134,7 @@ const NeuralMesh: React.FC<{ color: string }> = ({ color }) => {
 };
 
 // --- Standard Planet Mesh ---
-const PlanetMesh: React.FC<{ planet: PlanetModel }> = ({ planet }) => {
+const PlanetMesh: React.FC<{ planet: PlanetModel; paused: boolean }> = ({ planet, paused }) => {
   const coreMeshRef = useRef<THREE.Mesh>(null);
   const ring1MeshRef = useRef<THREE.Mesh>(null);
   const ring2MeshRef = useRef<THREE.Mesh>(null);
@@ -154,6 +156,7 @@ const PlanetMesh: React.FC<{ planet: PlanetModel }> = ({ planet }) => {
   }), []);
 
   useFrame((_state, delta) => {
+    if (paused) return;
     if (coreMeshRef.current) {
       coreMeshRef.current.rotation.y += delta * 0.1;
     }
@@ -207,21 +210,30 @@ const PlanetMesh: React.FC<{ planet: PlanetModel }> = ({ planet }) => {
 
 export const Planet3D: React.FC<Planet3DProps> = ({ planet }) => {
   const isAIBelt = planet.shape === 'belt';
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   return (
     <div className="planet-hud__planet-3d">
-      <Canvas camera={{ position: [0, 0, 7], fov: 45 }} gl={{ alpha: true }}>
+      <Canvas
+        camera={{ position: [0, 0, 7], fov: 45 }}
+        gl={{ alpha: true }}
+        frameloop={prefersReducedMotion ? "demand" : "always"}
+      >
         <ambientLight intensity={0.5} />
         {!isAIBelt && <directionalLight position={[5, 5, 5]} intensity={1.5} color={planet.color} />}
         {!isAIBelt && <pointLight position={[-5, -5, -5]} intensity={0.5} color="white" />}
 
         {isAIBelt ? (
-          <NeuralMesh color={planet.color} />
+          <NeuralMesh color={planet.color} paused={prefersReducedMotion} />
         ) : (
-          <PlanetMesh planet={planet} />
+          <PlanetMesh planet={planet} paused={prefersReducedMotion} />
         )}
 
-        <OrbitControls enableZoom={false} autoRotate={!isAIBelt} autoRotateSpeed={0.5} />
+        <OrbitControls
+          enableZoom={false}
+          autoRotate={!isAIBelt && !prefersReducedMotion}
+          autoRotateSpeed={0.5}
+        />
         <Environment preset="city" />
       </Canvas>
     </div>
