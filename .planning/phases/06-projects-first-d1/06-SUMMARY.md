@@ -69,8 +69,9 @@ console stage:
   `console__sidebar` and `console__footer`.
 - ÓRBITA and SALTO swap inside `.console__screen`; the sidebar and footer stay
   visible in both flows.
-- The console header is the only back control (`← ÓRBITA`); SALTO has no
-  duplicated back button, backdrop, body lock or portal.
+- The console header renders only the CLI command line. Navigation controls
+  (`SALTO`, `← ÓRBITA`, `← SISTEMA`) live inside the panel through the shared
+  `screen-action` block. SALTO has no modal/backdrop/body lock/portal.
 - `MissionLog` became `SaltoScreen`, `ProjectRow` became `SaltoRow`, and
   `MissionCard` became `ProjectCard`.
 - Class names follow BEM: `console__*`, `orbit__*`, `planet-hud__*`,

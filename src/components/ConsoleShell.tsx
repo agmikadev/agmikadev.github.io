@@ -63,12 +63,6 @@ export const ConsoleShell: FC<ConsoleShellProps> = ({ children }) => {
       ? `❯ órbita --area="${selectedPlanet.area}" --status=online`
       : '❯ órbita --status=online // Escolha uma área ou dê um Salto';
 
-  const handleBack = isSalto
-    ? closeSalto
-    : isDashboard
-      ? () => handleSelectPlanet(null)
-      : undefined;
-
   return (
     <SaltoNavigationContext.Provider value={navigation}>
       <main className="console" data-screen={screen}>
@@ -78,8 +72,6 @@ export const ConsoleShell: FC<ConsoleShellProps> = ({ children }) => {
           key={isSalto ? 'salto' : isDashboard ? `dashboard-${selectedPlanet.id}` : 'orbit'}
           planetId={isSalto ? 'salto' : isDashboard ? selectedPlanet.id : 'orbit'}
           command={command}
-          onBack={handleBack}
-          backLabel={isSalto ? 'ÓRBITA' : 'VOLTAR AO SISTEMA'}
           onComplete={isDashboard ? handleFetchComplete : undefined}
         />
 
@@ -87,7 +79,11 @@ export const ConsoleShell: FC<ConsoleShellProps> = ({ children }) => {
           <section className="console__stage">
             <div className="console__screen">
               {isSalto ? (
-                <SaltoScreen key={saltoKey} initialTech={saltoTech} />
+                <SaltoScreen
+                  key={saltoKey}
+                  initialTech={saltoTech}
+                  onBack={closeSalto}
+                />
               ) : (
                 children || (
                   <PlanetarySystem

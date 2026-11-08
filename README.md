@@ -47,7 +47,7 @@ filtro de área está ativo, as linhas usam a perspectiva daquela área.
 src/
 ├── components/
 │   ├── ConsoleShell.tsx        # Shell: header, stage, sidebar, footer
-│   ├── ConsoleHeader/          # Comando e controle de voltar
+│   ├── ConsoleHeader/          # Apenas a linha CLI do console
 │   ├── Salto/                  # Tela SALTO, linhas e navegação de tecnologia
 │   ├── Planetary/
 │   │   ├── data/               # Projetos, perspectivas, tecnologias, belt
@@ -65,13 +65,16 @@ src/
 
 O console usa BEM: `console__*` para o shell, `orbit__*` para a tela
 planetária, `planet-hud__*` para o dashboard do planeta, `salto__*` para o
-índice e `project-card__*` para os cards de projeto. O estado fica em
-`data-screen="orbit|salto"`, `data-variant="planet|belt"`,
-`data-perspective="..."` e `aria-pressed` nos filtros.
+índice, `project-card__*` para os cards de projeto e `screen-action__*` para os
+controles dentro da tela. O estado fica em `data-screen="orbit|salto"`,
+`data-variant="planet|belt"`, `data-perspective="..."` e `aria-pressed` nos
+filtros.
 
 O SALTO não é um modal: ele é renderizado dentro de `.console__screen`, no
-mesmo frame do sistema planetário. O header do console é o único controle de
-volta (`← ÓRBITA`), e a sidebar/footer permanecem visíveis.
+mesmo frame do sistema planetário. O header do console contém **apenas a linha
+CLI**; os controles de tela (`SALTO`, `← ÓRBITA`, `← SISTEMA`) ficam dentro do
+painel, no bloco compartilhado `screen-action`. A sidebar/footer permanecem
+visíveis.
 
 ## Rodando
 

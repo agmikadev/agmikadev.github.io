@@ -16,11 +16,6 @@
   opacity: 0.8;
 }
 
-.console__header .console__button {
-  opacity: 1;
-  flex-shrink: 0;
-}
-
 .console__cursor {
   display: inline-block;
   width: 2px;

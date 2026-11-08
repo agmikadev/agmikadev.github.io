@@ -4,6 +4,7 @@ import "./PlanetShapes.css";
 import { planets, type PlanetModel } from "../data/PlanetaryData";
 import { Dashboard } from "./Dashboard/Dashboard";
 import { BeltNetwork } from "./BeltNetwork/BeltNetwork";
+import { ScreenAction } from "../../ui/ScreenAction";
 
 const CONFIG = {
   centerX: 50,
@@ -147,33 +148,35 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
       <Dashboard
         mode="belt"
         isFetched={isFetched}
+        onBack={() => onSelectPlanet(null)}
       />
     ) : selectedPlanet ? (
       <Dashboard
         planet={selectedPlanet}
         mode="planet"
         isFetched={isFetched}
+        onBack={() => onSelectPlanet(null)}
       />
       ) : (
         <>
         {onOpenSalto && (
-          <button
-            type="button"
+          <ScreenAction
             className="orbit__salto"
+            label="SALTO"
+            hint="ÍNDICE DE PROJETOS"
             onClick={onOpenSalto}
-            aria-label="Abrir índice de projetos (Salto)"
+            ariaLabel="Abrir índice de projetos (Salto)"
             title="Abrir índice de projetos"
-          >
-            <svg
-              width="15" height="15" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M13 2 4.5 13.5H11l-1 8.5L19.5 10H13l0-8Z" />
-            </svg>
-            <span className="orbit__salto-label">SALTO</span>
-            <span className="orbit__salto-hint">ÍNDICE DE PROJETOS</span>
-          </button>
+            icon={
+              <svg
+                width="15" height="15" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M13 2 4.5 13.5H11l-1 8.5L19.5 10H13l0-8Z" />
+              </svg>
+            }
+          />
         )}
 
         <svg

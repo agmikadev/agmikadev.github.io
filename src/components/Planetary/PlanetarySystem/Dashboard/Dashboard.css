@@ -57,6 +57,11 @@
   border-right: var(--hud-border-yellow) !important;
 }
 
+.planet-hud__back {
+  align-self: flex-start;
+  margin-bottom: var(--space-2);
+}
+
 .planet-hud__planet {
   flex: 1;
   display: flex;

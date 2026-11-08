@@ -8,17 +8,30 @@ import {
   techCategory,
 } from "../Planetary/data/technologies";
 import { StarBurst } from "../Planetary/UI/Symbols";
+import { ScreenAction } from "../ui/ScreenAction";
 import { SaltoRow } from "./SaltoRow";
 import "./SaltoScreen.css";
 
 interface SaltoScreenProps {
   initialTech?: string;
+  onBack: () => void;
 }
 
 const AREAS = planets.filter((planet) => planet.shape !== "belt");
 
+const BACK_ICON = (
+  <svg
+    width="15" height="15" viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M19 12H5M12 19l-7-7 7-7" />
+  </svg>
+);
+
 export const SaltoScreen: React.FC<SaltoScreenProps> = ({
   initialTech = "all",
+  onBack,
 }) => {
   const { missions, isLoading } = useAllMissions();
   const [activeArea, setActiveArea] = useState<string>("all");
@@ -87,6 +100,14 @@ export const SaltoScreen: React.FC<SaltoScreenProps> = ({
   return (
     <section className="salto" aria-label="Índice de projetos e experiência">
       <header className="salto__header">
+        <ScreenAction
+          className="salto__back"
+          label="ÓRBITA"
+          icon={BACK_ICON}
+          onClick={onBack}
+          ariaLabel="Voltar à órbita"
+        />
+
         <div className="salto__heading">
           <div className="salto__kicker">SALTO // ÍNDICE DE PROJETOS</div>
           <h2 className="salto__title">

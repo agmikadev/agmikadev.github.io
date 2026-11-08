@@ -5,6 +5,7 @@ import { StarBurst } from "../../UI/Symbols";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import type { PlanetModel } from "../../data";
 import { beltDataModel } from "../../data/BeltData";
+import { ScreenAction } from "../../../ui/ScreenAction";
 import { Planet3D } from "./Planet3D";
 
 import "./Dashboard.css";
@@ -13,9 +14,20 @@ interface DashboardProps {
   planet?: PlanetModel;
   mode: "planet" | "belt";
   isFetched: boolean;
+  onBack?: () => void;
 }
 
-export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched }) => {
+const BACK_ICON = (
+  <svg
+    width="15" height="15" viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M19 12H5M12 19l-7-7 7-7" />
+  </svg>
+);
+
+export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched, onBack }) => {
   const isBelt = mode === "belt";
   const themeColor = isBelt ? beltDataModel.color : planet?.color;
   const planetArea = isBelt ? beltDataModel.area : planet?.area;
@@ -52,6 +64,15 @@ export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched })
         <div className="planet-hud__body">
           <div className="planet-hud__left">
             <Card variant="dark" className="planet-hud__info-card">
+              {onBack && (
+                <ScreenAction
+                  className="planet-hud__back"
+                  label="SISTEMA"
+                  icon={BACK_ICON}
+                  onClick={onBack}
+                  ariaLabel="Voltar ao sistema"
+                />
+              )}
               <div className="planet-hud__planet">
                 <Planet3D planet={beltPlanet} />
               </div>

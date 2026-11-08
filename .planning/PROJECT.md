@@ -80,6 +80,7 @@ Visually demonstrate full-stack development proficiency — including cutting-ed
 | Tech tags as navigation | Clicking a tag opens/filters the Salto index by that technology | ✓ Good — Phase 6 refinement |
 | Per-planet perspective | The same project has a different role, summary, highlights and stack under each planet | ✓ Good — Phase 6 refinement |
 | SALTO inside the console screen | The index is a screen inside the console stage, not a modal; the console chrome stays visible | ✓ Good — Phase 6 refinement |
+| Screen actions inside the panel | The header is only the CLI line; SALTO/ÓRBITA/SISTEMA controls live inside the screen | ✓ Good — Phase 6 refinement |
 | BEM class hierarchy | Clear console → screen → block → element naming; state via `data-*`/`aria-pressed` | ✓ Good — Phase 6 refinement |
 | D1 content with static fallback | Content can be updated without redeploying, but the portfolio never depends on the Worker | ✓ Good — Phase 6 |
 
