@@ -253,13 +253,16 @@
     --planet-hud-panel-radius: var(--radius-lg);
 
     /* Salto */
-    --salto-tech-index-width: clamp(12rem, 20cqi, 13.75rem);
-    --salto-actions-width: 8.75rem;
-    --salto-row-project-min: 11.875rem;
-    --salto-row-summary-min: 17.5rem;
-    --salto-row-stack-min: 12.5rem;
-    --salto-row-gap: var(--space-3);
-    --salto-list-padding: var(--space-4);
+    --salto-gutter: var(--space-6);
+    --salto-tech-index-width: clamp(13rem, 20cqi, 15rem);
+    --salto-actions-width: 10rem;
+    --salto-row-project-min: 12rem;
+    --salto-row-summary-min: 13rem;
+    --salto-row-stack-min: 11.5rem;
+    --salto-row-padding-block: var(--space-4);
+    --salto-row-gap: var(--space-4);
+    --salto-row-gap-y: var(--space-3);
+    --salto-list-padding: var(--salto-gutter);
 
     /* Project card */
     --project-card-media-ratio: 16 / 9;
@@ -304,8 +307,8 @@
     --tab-underline-offset: -0.5625rem;
     --sr-only-size: 1px;
 
-    --salto-chip-padding-block: 0.125rem;
-    --salto-chip-padding-inline: 0.4375rem;
+    --salto-chip-padding-block: var(--space-1);
+    --salto-chip-padding-inline: var(--space-2);
 
     --onboarding-close-size: 1.625rem;
     --sidebar-cycler-min-height: 13.75rem;
