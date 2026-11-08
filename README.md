@@ -107,6 +107,34 @@ npm run build
 npm run preview
 ```
 
+## Qualidade
+
+Guardrails locais e no CI:
+
+```bash
+npm run lint            # ESLint (TS/React)
+npm run lint:css        # Stylelint
+npm run check:tokens    # impede dimensões cruas fora de tokens.css
+npm run test:visual     # Playwright: layout + regressão visual do SALTO
+```
+
+Os testes de layout rodam em 1440, 1280, 1024 e 768 e validam overflow,
+sidebar/sol, colunas do SALTO e o HUD do planeta. A regressão visual compara
+apenas a tela SALTO (1440 e 768), mascarando o data cycler e o contador de
+visitas. Localmente o Playwright usa o Microsoft Edge instalado
+(`channel: msedge`); os baselines são `win32` e ficam em
+`tests/visual/salto.spec.ts-snapshots/`.
+
+Para atualizar os baselines depois de uma mudança visual intencional:
+
+```bash
+npm run test:visual:update
+```
+
+O CI (`.github/workflows/deploy.yml`) roda `lint`, `lint:css`, `check:tokens`
+e os testes de layout com Chromium antes do build. A comparação de pixels fica
+local porque os snapshots dependem do sistema operacional.
+
 ## Conteúdo
 
 Os dados estáticos ficam em:
@@ -147,7 +175,8 @@ O `POST /v1/visits` grava uma linha por sessão; o `GET /v1/stats` retorna o tot
 ## Deploy
 
 O deploy do frontend é feito pelo GitHub Actions em push para `main`
-(`.github/workflows/deploy.yml`). O build usa o Worker padrão definido em
+(`.github/workflows/deploy.yml`), somente depois dos guardrails de lint,
+tokens e layout. O build usa o Worker padrão definido em
 `src/lib/portfolio-api.ts`; para apontar para outro Worker, defina a variável
 `VITE_PORTFOLIO_API_URL` (local) ou a repository variable `PORTFOLIO_API_URL`
 (GitHub Actions).

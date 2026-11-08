@@ -11,8 +11,8 @@ See: .planning/PROJECT.md (updated 2026-05-17)
 
 Phase: 6 (Projects-First Content Refresh & D1)
 Plan: 1 of 1 in current phase
-Status: Completed phase 06 — console shell, ÓRBITA/SALTO screens, BEM hierarchy, D1
-Last activity: 2026-11-08 — Phase 6 refinement: SALTO inside the console screen + BEM class hierarchy
+Status: Completed phase 06 — console shell, ÓRBITA/SALTO screens, BEM hierarchy, D1, tokens, shadcn primitives and guardrails
+Last activity: 2026-11-08 — Phase 6 refinement: shadcn primitives + Playwright/Stylelint/token guardrails
 
 Progress: [█████████████░] 65%
 
@@ -51,7 +51,9 @@ Recent decisions affecting current work:
 - Screen actions inside the panel — the console header is only the CLI line; `SALTO`, `← ÓRBITA` and `← SISTEMA` use the shared `screen-action` block
 - BEM class hierarchy — `console__*`, `orbit__*`, `planet-hud__*`, `salto__*`, `project-card__*`, `screen-action__*`; state via `data-*`/`aria-pressed`
 - Fluid layout tokens — sidebar, sun, Salto tech index/row columns, card media and onboarding use `clamp()`/container queries; breakpoints standardized
-- Tailwind theme bridge — tokens mapped through `@theme inline`; shadcn primitives and guardrails remain
+- Tailwind theme bridge — tokens mapped through `@theme inline`; shadcn primitives are allowed only for inputs/actions
+- shadcn primitives — `Button`, `Input` and `ToggleGroup` live in `src/components/ui`; `Input`/`ToggleGroup` power SALTO with unchanged visuals
+- Guardrails — `check-tokens.mjs`, Stylelint, ESLint and Playwright layout tests run in CI; SALTO pixel baselines are local (`win32`)
 - Canonical technology taxonomy — aliases fold into one name; Salto has a tech sidebar with counts
 - Tech tags are navigation — clicking a tag opens/filters SALTO by that technology
 - Per-planet perspective — the same project changes role, summary, highlights and stack by area
@@ -63,6 +65,7 @@ Recent decisions affecting current work:
 
 - Phase 4: onboarding polish is partially done; camera transitions, keyboard nav and reduced motion remain
 - Phase 5: error boundary, bundle code-splitting, cross-device testing
+- Optionally adopt the `Button` primitive in a CTA after a visual review; it is installed but intentionally unused
 
 ### Blockers/Concerns
 

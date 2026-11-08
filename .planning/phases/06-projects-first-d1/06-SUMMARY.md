@@ -101,6 +101,28 @@ The approved visual was preserved while the component layout moved to tokens:
 - Verified at 1440, 1280, 1024 and 768: no horizontal overflow; sidebar/sun/
   tech index and card media scale coherently.
 
+## Refinement: shadcn primitives + guardrails
+
+- Added shadcn-style primitives in `src/components/ui`: `Button`, `Input` and
+  `ToggleGroup` (Radix).
+- `Input` and `ToggleGroup` now power the SALTO search and area filters. The
+  HUD look is unchanged: the `data-state="on"` selector preserves the active
+  area color, and the input keeps 36px height, tokenized radius and JetBrains
+  Mono.
+- `Button` is available but intentionally unused; no approved CTA changed.
+- `scripts/check-tokens.mjs` blocks raw px/rem in layout properties outside
+  `tokens.css`/`globals.css`.
+- `.stylelintrc.json` adds minimal CSS correctness rules; `npm run lint:css`
+  passes.
+- Playwright (`@playwright/test`) covers:
+  - layout at 1440, 1280, 1024 and 768: no horizontal overflow, sidebar/sun,
+    SALTO columns/tech navigation and planet HUD width;
+  - SALTO pixel snapshots at 1440x1000 and 768x900, masking `.data-cycler` and
+    the `VISITAS` row. The API is blocked so the static archive is used.
+- CI runs `lint`, `lint:css`, `check:tokens` and the Playwright layout suite
+  with Chromium before the build. Pixel baselines stay local because they are
+  platform-specific (`win32`).
+
 ## Infrastructure
 
 - D1 database: `star-system-portfolio`

@@ -4,7 +4,7 @@
 
 **Project:** Star System Portfolio
 **Type:** 3D interactive space-themed developer portfolio
-**Stack:** React 19 + TypeScript + Rolldown-Vite + Three.js/R3F + drei
+**Stack:** React 19 + TypeScript + Rolldown-Vite + Three.js/R3F + drei + Tailwind 4 + shadcn primitives
 **Deployment:** GitHub Pages (static SPA)
 
 **What This Is:** A 3D space portfolio where planets represent real development areas (Design → Front-end → Back-end → Dados & Algoritmos → Infra & Deploy). An AI "sonda network" belt connects all planets, representing agentic skills. The theme is navigation, not lore.
@@ -52,6 +52,9 @@ This project uses the Get Shit Done (GSD) workflow. All work must follow these r
 - **D1:** Public read-only content API + anonymous session counter; no public writes to project data
 - **Three.js:** Pinned to 0.182.0 (do not upgrade without checking R3F/drei compatibility)
 - **React 19:** Required for @react-three/fiber v9 and postprocessing v3
+- **Design tokens:** `src/styles/tokens.css` is the source of truth; `npm run check:tokens` blocks raw layout dimensions
+- **Quality gates:** `lint`, `lint:css`, `check:tokens` run in CI before build; `npm run test:visual` covers layout (1440/1280/1024/768) and SALTO pixel snapshots locally
+- **shadcn scope:** primitives only (`Button`, `Input`, `ToggleGroup`); HUD/3D styling stays in tokenized CSS
 
 ## Codebase Structure
 
@@ -76,4 +79,7 @@ src/
 
 worker/                        # Cloudflare Worker + D1 migrations/seed
 scripts/generate-d1-seed.ts    # Generates seed.sql from TypeScript data
+scripts/check-tokens.mjs       # Blocks raw layout dimensions outside tokens.css
+tests/visual/                  # Playwright layout + SALTO visual regression
+playwright.config.ts           # Edge locally, Chromium in CI
 ```

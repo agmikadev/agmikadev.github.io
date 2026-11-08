@@ -11,6 +11,11 @@ node_modules
 dist
 dist-ssr
 *.local
+
+# Playwright
+test-results
+playwright-report
+blob-report
 .env
 .dev.vars
 .wrangler

@@ -9,6 +9,8 @@ import {
 } from "../Planetary/data/technologies";
 import { StarBurst } from "../Planetary/UI/Symbols";
 import { ScreenAction } from "../ui/ScreenAction";
+import { Input } from "../ui/input";
+import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
 import { SaltoRow } from "./SaltoRow";
 import "./SaltoScreen.css";
 
@@ -126,7 +128,7 @@ export const SaltoScreen: React.FC<SaltoScreenProps> = ({
       <div className="salto__toolbar">
         <label className="salto__search">
           <span className="sr-only">Buscar projetos</span>
-          <input
+          <Input
             type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
@@ -136,28 +138,29 @@ export const SaltoScreen: React.FC<SaltoScreenProps> = ({
 
         <div className="salto__area-row">
           <span className="salto__filter-label">ÁREA</span>
-          <div className="salto__area-filters" role="group" aria-label="Filtrar por área">
-            <button
-              type="button"
-              className="salto__area-filter"
-              aria-pressed={activeArea === "all"}
-              onClick={() => setActiveArea("all")}
-            >
+          <ToggleGroup
+            type="single"
+            value={activeArea}
+            onValueChange={(value) => {
+              if (value) setActiveArea(value);
+            }}
+            className="salto__area-filters"
+            aria-label="Filtrar por área"
+          >
+            <ToggleGroupItem value="all" className="salto__area-filter">
               TODOS
-            </button>
+            </ToggleGroupItem>
             {AREAS.map((area) => (
-              <button
+              <ToggleGroupItem
                 key={area.id}
-                type="button"
+                value={area.id}
                 className="salto__area-filter"
-                aria-pressed={activeArea === area.id}
-                onClick={() => setActiveArea(area.id)}
                 style={{ "--area-color": area.color } as React.CSSProperties}
               >
                 {area.area}
-              </button>
+              </ToggleGroupItem>
             ))}
-          </div>
+          </ToggleGroup>
         </div>
 
         <label className="salto__tech-select">
