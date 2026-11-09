@@ -28,7 +28,6 @@
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
   color: hsl(var(--foreground) / 87%);
-  padding-left: var(--space-3);
 }
 
 /* --- PLANET TITLE --- */
@@ -38,7 +37,6 @@
   font-weight: 800;
   letter-spacing: 1px;
   margin: 0 0 var(--space-3) 0;
-  padding-left: var(--space-3);
   display: flex;
   align-items: center;
   gap: var(--space-3);
@@ -54,7 +52,6 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   color: hsl(var(--primary));
-  padding-left: var(--space-3);
   margin-bottom: var(--space-1);
 }
 

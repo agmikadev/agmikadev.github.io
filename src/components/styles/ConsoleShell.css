@@ -48,7 +48,7 @@
   gap: var(--space-3);
   width: 100%;
   box-sizing: border-box;
-  padding: 0 var(--space-6);
+  padding: 0 var(--console-body-padding);
   min-height: 0;
   overflow: hidden;
 }
@@ -59,7 +59,7 @@
   align-items: center;
   gap: var(--space-3);
   flex-shrink: 0;
-  padding: var(--space-3) var(--space-6);
+  padding: var(--space-3) var(--console-body-padding);
   width: 100%;
   box-sizing: border-box;
 }
