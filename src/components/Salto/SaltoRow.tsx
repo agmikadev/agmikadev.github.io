@@ -9,14 +9,12 @@ interface SaltoRowProps {
   mission: MissionType;
   onTechClick: (technology: string) => void;
   perspectivePlanetId?: string;
-  perspectiveLabel?: string;
 }
 
 export const SaltoRow: React.FC<SaltoRowProps> = ({
   mission,
   onTechClick,
   perspectivePlanetId,
-  perspectiveLabel,
 }) => {
   const [expanded, setExpanded] = useState(false);
   const perspective = resolveMissionPerspective(mission, perspectivePlanetId);
@@ -48,11 +46,6 @@ export const SaltoRow: React.FC<SaltoRowProps> = ({
         <div className="salto__row-heading">
           <h3 className="salto__row-title">{mission.title}</h3>
           <div className="salto__row-meta">
-            {perspective && (
-              <span className="salto__row-perspective">
-                ÓTICA // {perspectiveLabel ?? perspectivePlanetId}
-              </span>
-            )}
             <span>{role}</span>
             <span>{mission.year}</span>
           </div>
@@ -99,9 +92,7 @@ export const SaltoRow: React.FC<SaltoRowProps> = ({
         <div className="salto__row-details">
           <div className="salto__row-detail">
             <span className="salto__row-detail-label">
-              {perspective
-                ? `CONTRIBUIÇÃO EM ${(perspectiveLabel ?? perspectivePlanetId ?? "ÁREA").toUpperCase()}`
-                : "O QUE FOI FEITO"}
+              O QUE FOI FEITO
             </span>
             <ul className="salto__row-highlights">
               {highlights.slice(0, 4).map((highlight, index) => (

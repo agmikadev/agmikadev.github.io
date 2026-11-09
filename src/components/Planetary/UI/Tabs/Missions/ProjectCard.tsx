@@ -14,7 +14,6 @@ interface ProjectCardProps {
   mission: ProjectCardData;
   compact?: boolean;
   planetId?: string;
-  perspectiveLabel?: string;
   onTechClick?: (technology: string) => void;
 }
 
@@ -22,7 +21,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   mission,
   compact = false,
   planetId,
-  perspectiveLabel,
   onTechClick,
 }) => {
   const [expanded, setExpanded] = useState(false);
@@ -72,12 +70,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       variant="dark"
       className={`project-card ${compact ? "project-card--compact" : ""} ${perspective ? "project-card--perspective" : ""}`}
     >
-      {perspective && (
-        <div className="project-card__perspective">
-          ÓTICA // {perspectiveLabel ?? planetId}
-        </div>
-      )}
-
       {mission.imageUrl && (
         <div className="project-card__media">
           <img
@@ -106,9 +98,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
         <div className="project-card__section">
           <span className="project-card__label project-card__label--accent">
-            {perspective
-              ? `CONTRIBUIÇÃO EM ${(perspectiveLabel ?? planetId ?? "ÁREA").toUpperCase()}`
-              : "O QUE FOI FEITO"}
+            O QUE FOI FEITO
           </span>
           <ul className="project-card__highlights">
             {visibleHighlights.map((highlight, index) => (

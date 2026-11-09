@@ -22,19 +22,6 @@
   height: 100%;
 }
 
-/* --- PERSPECTIVE LABEL --- */
-.project-card__perspective {
-  padding: var(--space-2) var(--space-4);
-  border-bottom: var(--border-width) solid hsl(var(--primary) / 18%);
-  background: hsl(var(--primary) / 9%);
-  color: hsl(var(--primary));
-  font-family: var(--font-mono);
-  font-size: var(--text-micro);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
 .project-card--perspective {
   border-color: hsl(var(--primary) / 32%);
 }

@@ -36,15 +36,6 @@
   grid-column: 2;
 }
 
-.salto__kicker {
-  font-family: var(--font-mono);
-  font-size: var(--text-micro);
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: hsl(var(--primary) / 65%);
-  margin-bottom: var(--space-1);
-}
-
 .salto__title {
   display: flex;
   align-items: center;
@@ -55,14 +46,6 @@
   font-weight: 800;
   letter-spacing: 1px;
   color: hsl(var(--primary));
-}
-
-.salto__subtitle {
-  margin: var(--space-2) 0 0;
-  max-width: 76ch;
-  font-size: var(--text-xs);
-  line-height: var(--leading-relaxed);
-  color: hsl(var(--hud-text-primary) / 62%);
 }
 
 .salto__count {
@@ -268,11 +251,6 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   color: hsl(var(--primary));
-}
-
-.salto__results-source {
-  color: hsl(var(--muted-foreground) / 55%);
-  font-weight: 400;
 }
 
 .salto__active-filters {

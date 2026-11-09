@@ -98,6 +98,11 @@ export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched, o
                     <TabsTrigger value="missions"><StarBurst size={14} /> PROJETOS</TabsTrigger>
                     <TabsTrigger value="analytics"><StarBurst size={14} /> COMPETÊNCIAS</TabsTrigger>
                   </TabsList>
+                  {!isBelt && (
+                    <span className="planet-hud__perspective">
+                      ÓTICA // {planetArea}
+                    </span>
+                  )}
                 </div>
                 <div className="planet-hud__tabs-body">
         <div className="planet-hud__mobile-header">

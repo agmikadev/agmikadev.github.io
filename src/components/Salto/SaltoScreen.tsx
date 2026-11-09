@@ -98,7 +98,6 @@ export const SaltoScreen: React.FC<SaltoScreenProps> = ({
 
   const hasFilters =
     activeArea !== "all" || activeTech !== "all" || query.trim().length > 0;
-  const activeAreaPlanet = AREAS.find((area) => area.id === activeArea);
 
   const clearFilters = () => {
     setActiveArea("all");
@@ -123,13 +122,9 @@ export const SaltoScreen: React.FC<SaltoScreenProps> = ({
         />
 
         <div className="salto__heading">
-          <div className="salto__kicker">SALTO // ÍNDICE DE PROJETOS</div>
           <h2 className="salto__title">
             <StarBurst size={18} /> SALTO
           </h2>
-          <p className="salto__subtitle">
-            Projetos e experiência por área e tecnologia. Filtre e vá direto ao que interessa.
-          </p>
         </div>
 
         <div className="salto__count">
@@ -232,9 +227,6 @@ export const SaltoScreen: React.FC<SaltoScreenProps> = ({
           <div className="salto__results-header">
             <div className="salto__results-count">
               {isLoading ? "SINCRONIZANDO..." : `${filteredMissions.length} PROJETOS`}
-              <span className="salto__results-source">
-                {isLoading ? "D1 → CACHE LOCAL" : "D1 + FALLBACK"}
-              </span>
             </div>
 
             <div className="salto__active-filters">
@@ -271,7 +263,6 @@ export const SaltoScreen: React.FC<SaltoScreenProps> = ({
                   mission={mission}
                   onTechClick={setActiveTech}
                   perspectivePlanetId={activeArea !== "all" ? activeArea : undefined}
-                  perspectiveLabel={activeAreaPlanet?.area}
                 />
               ))
             )}

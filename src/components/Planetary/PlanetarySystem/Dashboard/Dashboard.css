@@ -116,8 +116,22 @@
 }
 
 .planet-hud__tabs-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
   flex-shrink: 0;
   padding: var(--space-3) var(--space-4) 0;
+}
+
+.planet-hud__perspective {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: hsl(var(--primary) / 60%);
+  white-space: nowrap;
+  padding-top: var(--space-1);
 }
 
 .planet-hud__tabs-body {
@@ -214,6 +228,10 @@
 
   .planet-hud__tabs-header {
     padding: 0 var(--space-4);
+  }
+
+  .planet-hud__perspective {
+    display: none;
   }
 
   .planet-hud__tabs-body {
