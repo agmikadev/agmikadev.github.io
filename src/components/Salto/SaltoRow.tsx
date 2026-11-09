@@ -17,6 +17,7 @@ export const SaltoRow: React.FC<SaltoRowProps> = ({
   perspectivePlanetId,
 }) => {
   const [expanded, setExpanded] = useState(false);
+  const detailsId = `salto-details-${mission.id}`;
   const perspective = resolveMissionPerspective(mission, perspectivePlanetId);
   const role = perspective?.role ?? mission.role;
   const summary = perspective?.summary ?? mission.summary;
@@ -27,6 +28,17 @@ export const SaltoRow: React.FC<SaltoRowProps> = ({
   const technologies = canonicalTechList(mission.technologies);
   const visibleTechnologies = technologies.slice(0, 5);
   const hiddenCount = technologies.length - visibleTechnologies.length;
+
+  const toggleExpanded = () => setExpanded((current) => !current);
+
+  // The explicit control is the title button; this lets pointer users open the
+  // row from its non-interactive area without hijacking links, tags or actions.
+  const handleRowClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if ((event.target as HTMLElement).closest("a, button, input, select, textarea")) {
+      return;
+    }
+    toggleExpanded();
+  };
 
   const renderTech = (technology: string) => (
     <button
@@ -42,9 +54,23 @@ export const SaltoRow: React.FC<SaltoRowProps> = ({
 
   return (
     <article className={`salto__row ${expanded ? "salto__row--expanded" : ""}`}>
-      <div className="salto__row-main">
+      <div className="salto__row-main" onClick={handleRowClick}>
         <div className="salto__row-heading">
-          <h3 className="salto__row-title">{mission.title}</h3>
+          <h3 className="salto__row-title">
+            <button
+              type="button"
+              className="salto__row-title-button"
+              onClick={toggleExpanded}
+              aria-expanded={expanded}
+              aria-label={`${expanded ? "Ocultar" : "Ver"} detalhes de ${mission.title}`}
+              title={expanded ? "Ocultar detalhes" : "Ver detalhes"}
+            >
+              <span className="salto__row-title-text">{mission.title}</span>
+              <span className="salto__row-chevron" aria-hidden="true">
+                {expanded ? "−" : "+"}
+              </span>
+            </button>
+          </h3>
           <div className="salto__row-meta">
             <span>{role}</span>
             <span>{mission.year}</span>
@@ -76,20 +102,11 @@ export const SaltoRow: React.FC<SaltoRowProps> = ({
               </a>
             ))}
           </div>
-
-          <button
-            type="button"
-            className="salto__row-toggle"
-            onClick={() => setExpanded((current) => !current)}
-            aria-expanded={expanded}
-          >
-            {expanded ? "FECHAR" : "DETALHES"}
-          </button>
         </div>
       </div>
 
       {expanded && (
-        <div className="salto__row-details">
+        <div className="salto__row-details" id={detailsId}>
           <div className="salto__row-detail">
             <span className="salto__row-detail-label">
               O QUE FOI FEITO
