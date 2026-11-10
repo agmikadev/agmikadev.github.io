@@ -1,0 +1,94 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+# Permissões necessárias para o GITHUB_TOKEN fazer o deploy
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Permite apenas um deploy concorrente
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # Guardrails de layout (sem comparação de pixels entre sistemas)
+  guardrails:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Visual layout guardrails
+        run: npm run test:visual:layout
+
+  # Tarefa de Construção (Build)
+  build:
+    needs: guardrails
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20" # Versão do Node
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci # Instalação limpa das dependências
+
+      - name: Lint (JS/TS)
+        run: npm run lint
+
+      - name: Lint (CSS)
+        run: npm run lint:css
+
+      - name: Check design tokens
+        run: npm run check:tokens
+
+      - name: Build
+        run: npm run build # Cria a pasta dist
+        env:
+          # Opcional: defina o repositório variable PORTFOLIO_API_URL.
+          # Se vazio, o build usa o Worker padrão definido em src/lib/portfolio-api.ts.
+          VITE_PORTFOLIO_API_URL: ${{ vars.PORTFOLIO_API_URL }}
+        
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Aponta para a pasta onde o Vite gerou o build (geralmente 'dist')
+          path: './dist'
+
+  # Tarefa de Publicação (Deploy)
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

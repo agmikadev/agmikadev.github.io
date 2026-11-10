@@ -1,0 +1,119 @@
+# Requirements: Star System Portfolio
+
+**Defined:** 2026-05-17
+**Core Value:** Visually demonstrate full-stack development proficiency — including cutting-edge agentic/AI skills — in a way that impresses both technical peers and hiring managers.
+
+## v1 Requirements
+
+### Foundation & Performance
+
+- [x] **FOUND-01**: GitHub Pages deployment works correctly (vite base path fixed)
+- [ ] **FOUND-02**: 3D scene loads with visible loading state/spinner
+- [ ] **FOUND-03**: Performance baseline of 60fps on mid-range hardware (DPR capped at 2, layout thrashing fixed)
+- [x] **FOUND-04**: Resume/CV downloadable as PDF from the portfolio
+
+### AI Sonda Network Belt
+
+- [ ] **BELT-01**: Visual belt rendered as animated network connections between all planets
+- [x] **BELT-02**: Belt data model with AI/Agentic tools, proficiency percentages, and mission reports
+- [ ] **BELT-03**: Belt is clickable and opens BeltHUD panel
+- [x] **BELT-04**: BeltHUD follows same two-tab pattern (Missions + Metrics) as planet HUDs
+- [ ] **BELT-05**: Belt connections animate and update with planet positions in real-time
+
+### User Experience
+
+- [x] **UX-01**: First-visit onboarding overlay explaining how to interact (dismissed via localStorage or Escape)
+- [x] **UX-02**: Smooth orbit ↔ HUD transitions when selecting/deselecting planets
+- [x] **UX-03**: Keyboard navigation support (Tab/Enter/Space/Escape for planets, belt, HUD and SALTO, with focus restoration)
+- [x] **UX-04**: prefers-reduced-motion support for users who disable animations (CSS, orbit loop and 3D canvas)
+
+### Content
+
+- [x] **CONT-01**: All 5 planets have populated mission reports with case-study structure (problem → approach → outcome)
+- [x] **CONT-02**: All planets have accurate proficiency analytics data
+- [x] **CONT-03**: Belt has populated AI tool proficiency data and mission reports
+
+### Content Refresh & D1 (Phase 6)
+
+- [x] **CONTENT-04**: SmartKitchen, HellzDashboard, FootScout and UIMaga are cards with images, stacks and validated links
+- [x] **UX-05**: Salto is a screen inside the console stage, reachable through a single SALTO button inside the ÓRBITA screen, with search, area filters and a technology filter; the console sidebar/footer remain visible and all screen navigation controls live inside the panel
+- [x] **UX-06**: Each planet shows its real area as the primary label and its codename as secondary
+- [x] **UX-07**: Two named navigation flows exist — ÓRBITA (compassado, system exploration) and SALTO (expresso, dense project index) — swapped inside the same console screen
+- [x] **CONTENT-05**: Technology tags are canonical and clickable; the Salto sidebar groups technologies by category with project counts
+- [x] **CONTENT-06**: Multi-area projects have per-planet perspectives (role, summary, highlights and stack change by area)
+- [x] **DATA-01**: Cloudflare Worker + D1 serves projects, belt reports and anonymous visit counts
+- [x] **DATA-02**: Static archive remains a full fallback when the Worker is unavailable
+- [x] **DATA-03**: Anonymous visit counter appears in the side strip without cookies
+
+### Production Readiness
+
+- [ ] **PROD-01**: React error boundary with 2D fallback for WebGL failures
+- [ ] **PROD-02**: SEO meta tags (OG, Twitter Cards) for social sharing
+- [ ] **PROD-03**: Bundle size optimized (<2MB initial load, code-splitting for Three.js)
+- [ ] **PROD-04**: Cross-device tested on real hardware (desktop + tablet minimum)
+
+## v2 Requirements
+
+### Enhanced Features
+
+- **EASTER-01**: Hidden CLI commands/easter eggs for engaged visitors
+- **ANALYTICS-01**: Anonymous usage tracking for navigation insights
+- **MOBILE-01**: Dedicated mobile-optimized 2D fallback view
+
+### Content Expansion
+
+- **CONTENT-01**: Video project showcases embedded in mission cards
+- **CONTENT-02**: Blog/writing section accessible from side strip
+
+## Out of Scope
+
+| Feature | Reason |
+|---------|--------|
+| Backend/API integration | Portfolio is static showcase; no server-side functionality needed |
+| User authentication | Public portfolio, no login required |
+| Real-time collaboration | Not relevant to personal portfolio use case |
+| CMS integration | Content changes infrequently; static TypeScript is simpler |
+| Mobile-first responsive redesign | Desktop 3D experience is primary target; graceful degradation acceptable |
+
+## Traceability
+
+| Requirement | Phase | Status |
+|-------------|-------|--------|
+| FOUND-01 | Phase 1 | Complete |
+| FOUND-02 | Phase 1 | Pending |
+| FOUND-03 | Phase 1 | Pending |
+| FOUND-04 | Phase 1 | Complete |
+| BELT-01 | Phase 2 | Pending |
+| BELT-02 | Phase 2 | Complete |
+| BELT-03 | Phase 3 | Pending |
+| BELT-04 | Phase 3 | Complete |
+| BELT-05 | Phase 2 | Pending |
+| UX-01 | Phase 4 | Complete |
+| UX-02 | Phase 4 | Complete |
+| UX-03 | Phase 4 | Complete |
+| UX-04 | Phase 4 | Complete |
+| CONT-01 | Phase 3 | Complete |
+| CONT-02 | Phase 3 | Complete |
+| CONT-03 | Phase 3 | Complete |
+| PROD-01 | Phase 5 | Pending |
+| PROD-02 | Phase 5 | Pending |
+| PROD-03 | Phase 5 | Pending |
+| PROD-04 | Phase 5 | Pending |
+| CONTENT-04 | Phase 6 | Complete |
+| UX-05 | Phase 6 | Complete |
+| UX-06 | Phase 6 | Complete |
+| UX-07 | Phase 6 | Complete |
+| CONTENT-05 | Phase 6 | Complete |
+| CONTENT-06 | Phase 6 | Complete |
+| DATA-01 | Phase 6 | Complete |
+| DATA-02 | Phase 6 | Complete |
+| DATA-03 | Phase 6 | Complete |
+
+**Coverage:**
+- v1 requirements: 29 total
+- Mapped to phases: 29
+- Unmapped: 0 ✓
+
+---
+*Requirements defined: 2026-05-17*
+*Last updated: 2026-11-08 after Phase 4 (polish & accessibility)*
