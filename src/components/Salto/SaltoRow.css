@@ -188,7 +188,7 @@
   display: grid;
   grid-template-columns: 1.2fr 1fr 1fr;
   gap: var(--space-5);
-  padding: var(--space-4) 0 var(--space-6);
+  padding: var(--space-4) var(--space-4) var(--space-6);
   border-top: var(--border-width) solid hsl(var(--primary) / 12%);
   animation: tab-fade var(--duration-base) var(--ease-smooth) forwards;
 }
