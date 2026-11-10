@@ -42,7 +42,20 @@ export async function openSalto(page: Page): Promise<void> {
   await expect(page.locator(".salto__results-count")).not.toContainText(
     "SINCRONIZANDO",
   );
-  await expect(page.locator(".salto__row").first()).toBeVisible();
+  await expect(page.locator(".project-collection").first()).toBeVisible();
+  await expect(page.locator(".project-card, .project-row").first()).toBeVisible();
+  await page.waitForFunction(() =>
+    Array.from(document.images).every((image) => image.complete),
+  );
+}
+
+/** SALTO and the planet HUD default to cards; this switches to the list layout. */
+export async function switchProjectView(
+  page: Page,
+  view: "cards" | "list",
+): Promise<void> {
+  await page.locator(`.view-toggle__item[data-view-option="${view}"]`).click();
+  await expect(page.locator(`.project-collection[data-view="${view}"]`)).toBeVisible();
 }
 
 export async function openPlanet(page: Page, area: string): Promise<void> {

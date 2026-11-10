@@ -42,4 +42,23 @@ test.describe("in-app history navigation", () => {
     await expect(page.locator(".planet-hud")).toBeVisible();
     await expect(page.locator(".salto")).toHaveCount(0);
   });
+
+  test("a CORE chip opens SALTO filtered by that technology", async ({
+    page,
+  }) => {
+    await bootstrap(page);
+    await openPlanet(page, "FRONT-END");
+
+    const chip = page.locator(".planet-core__tool--button").first();
+    const technology = (await chip.textContent())?.trim() ?? "";
+    expect(technology.length).toBeGreaterThan(0);
+
+    await chip.click();
+    await expect(page.locator(".salto")).toBeVisible();
+    await expect(page.locator(".salto__filter-chip")).toContainText(technology);
+
+    await page.evaluate(() => history.back());
+    await expect(page.locator(".planet-hud")).toBeVisible();
+    await expect(page.locator(".salto")).toHaveCount(0);
+  });
 });

@@ -1,0 +1,261 @@
+/* =========================================
+   PLANET CORE
+   Bottom-anchored stack index in the left HUD card.
+   Fills the lower half of the panel with the area's real tools.
+   ========================================= */
+.planet-core {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  flex: 0 1 auto;
+  min-height: 0;
+  margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: var(--border-width) solid hsl(var(--primary) / 14%);
+  container-type: inline-size;
+}
+
+.planet-core__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+.planet-core__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: hsl(var(--primary) / 70%);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.planet-core__count {
+  flex-shrink: 0;
+  padding: 0 var(--space-2);
+  border: var(--border-width) solid hsl(var(--primary) / 22%);
+  border-radius: var(--radius-full);
+  background: hsl(var(--primary) / 6%);
+  color: hsl(var(--primary));
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.planet-core__groups {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: var(--space-1);
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--primary) / 45%) hsl(var(--primary) / 8%);
+}
+
+.planet-core__groups::-webkit-scrollbar {
+  width: var(--scrollbar-width-thin);
+}
+
+.planet-core__groups::-webkit-scrollbar-track {
+  background: hsl(var(--primary) / 8%);
+  border-radius: var(--radius-sm);
+}
+
+.planet-core__groups::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 45%);
+  border-radius: var(--radius-sm);
+}
+
+/* Expanded beyond the visible height: fade the top edge so the auto-scroll
+   reads as "more above" rather than as missing groups. */
+@media (max-height: 950px) {
+  .planet-core--expanded .planet-core__groups {
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0,
+      #000 var(--space-4),
+      #000 100%
+    );
+  }
+}
+
+.planet-core__group {
+  display: grid;
+  grid-template-columns: var(--planet-core-label-width) minmax(0, 1fr);
+  gap: var(--space-2);
+  align-items: start;
+}
+
+.planet-core__group-label {
+  padding-top: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: hsl(var(--primary) / 45%);
+  line-height: 1.2;
+}
+
+.planet-core__tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.planet-core__tool {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--salto-chip-padding-block) var(--salto-chip-padding-inline);
+  background: color-mix(in srgb, var(--theme-color) 6%, transparent);
+  border: var(--border-width) solid color-mix(in srgb, var(--theme-color) 24%, transparent);
+  border-radius: var(--radius-full);
+  color: var(--theme-color);
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.planet-core__tool--button {
+  cursor: pointer;
+  transition:
+    background var(--duration-fast) var(--ease-smooth),
+    color var(--duration-fast) var(--ease-smooth),
+    border-color var(--duration-fast) var(--ease-smooth);
+}
+
+.planet-core__tool--button:hover {
+  background: var(--theme-color);
+  border-color: var(--theme-color);
+  color: hsl(var(--primary-foreground));
+}
+
+.planet-core__tool--button:focus-visible {
+  outline: var(--focus-ring-width) solid hsl(var(--ring));
+  outline-offset: var(--focus-ring-offset);
+}
+
+.planet-core__rest {
+  display: none;
+  align-items: center;
+  padding: var(--salto-chip-padding-block) var(--salto-chip-padding-inline);
+  color: hsl(var(--muted-foreground));
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.planet-core__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  flex-shrink: 0;
+  padding-top: var(--space-2);
+  border-top: var(--border-width) solid hsl(var(--primary) / 10%);
+}
+
+.planet-core__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  letter-spacing: 0.04em;
+  color: hsl(var(--muted-foreground));
+}
+
+.planet-core__toggle {
+  margin-left: auto;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: hsl(var(--primary) / 80%);
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+
+.planet-core__toggle:hover {
+  color: hsl(var(--primary));
+  text-decoration: underline;
+}
+
+.planet-core__toggle:focus-visible {
+  outline: var(--focus-ring-width) solid hsl(var(--ring));
+  outline-offset: var(--focus-ring-offset);
+}
+
+.planet-core__signal {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--theme-color);
+}
+
+.planet-core__signal::before {
+  content: "";
+  width: var(--sidebar-dot-size);
+  height: var(--sidebar-dot-size);
+  border-radius: var(--radius-full);
+  background: var(--theme-color);
+  box-shadow: 0 0 8px var(--theme-color);
+}
+
+@media (max-width: 60rem) {
+  .planet-core {
+    margin-top: var(--space-4);
+  }
+
+  .planet-core__groups {
+    overflow: visible;
+    max-height: none;
+  }
+}
+
+/* Narrow left column: show only the primary stack, with the rest counted. */
+@container (max-width: 20rem) {
+  .planet-core__groups {
+    overflow: visible;
+  }
+
+  .planet-core__group {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .planet-core__group:not(:first-child) {
+    display: none;
+  }
+
+  .planet-core__group:first-child .planet-core__group-label {
+    display: none;
+  }
+
+  .planet-core__toggle {
+    display: none;
+  }
+
+  .planet-core__rest {
+    display: inline-flex;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .planet-core__tool--button {
+    transition: none;
+  }
+}

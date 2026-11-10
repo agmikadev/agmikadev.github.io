@@ -1,31 +1,28 @@
 import React, { useState } from "react";
-import type { MissionType } from "../../../data/MissionData";
-import type { BeltMissionReport } from "../../../data/BeltData";
-import { canonicalTechList } from "../../../data/technologies";
-import { resolveMissionPerspective } from "../../../data/perspectives";
-import { ExternalLinkIcon } from "../../../../ui/ExternalLinkIcon";
-import { useSaltoNavigation } from "../../../../Salto/SaltoNavigationContext";
-import { Card } from "../../CardVariants";
+import { canonicalTechList } from "../Planetary/data/technologies";
+import { resolveMissionPerspective } from "../Planetary/data/perspectives";
+import { ExternalLinkIcon } from "../ui/ExternalLinkIcon";
+import { useSaltoNavigation } from "../Salto/SaltoNavigationContext";
+import { Card } from "../Planetary/UI/CardVariants";
+import type { ProjectData } from "./types";
 import "./ProjectCard.css";
 
-type ProjectCardData = MissionType | BeltMissionReport;
-
 interface ProjectCardProps {
-  mission: ProjectCardData;
+  mission: ProjectData;
   compact?: boolean;
-  planetId?: string;
+  perspectivePlanetId?: string;
   onTechClick?: (technology: string) => void;
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
   mission,
   compact = false,
-  planetId,
+  perspectivePlanetId,
   onTechClick,
 }) => {
   const [expanded, setExpanded] = useState(false);
   const navigation = useSaltoNavigation();
-  const perspective = resolveMissionPerspective(mission, planetId);
+  const perspective = resolveMissionPerspective(mission, perspectivePlanetId);
   const role = perspective?.role ?? mission.role;
   const summary = perspective?.summary ?? mission.summary;
   const highlights = perspective?.highlights ?? mission.highlights;
@@ -37,6 +34,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   const canonicalTechnologies = canonicalTechList(technologies);
   const visibleTechnologies = canonicalTechnologies.slice(0, 4);
   const hiddenTechnologies = canonicalTechnologies.length - visibleTechnologies.length;
+  const detailsId = `project-details-${mission.id}`;
   const handleTechClick =
     onTechClick ??
     (navigation
@@ -108,7 +106,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
 
         {expanded && (
-          <div className="project-card__details">
+          <div className="project-card__details" id={detailsId}>
             {highlights.length > visibleHighlights.length && (
               <div className="project-card__section">
                 <span className="project-card__label project-card__label--accent">
@@ -190,6 +188,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             className="project-card__expand"
             onClick={() => setExpanded((current) => !current)}
             aria-expanded={expanded}
+            aria-controls={expanded ? detailsId : undefined}
           >
             {expanded ? "MENOS DETALHES" : "VER CASE COMPLETO"}
           </button>

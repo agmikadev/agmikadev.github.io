@@ -2,21 +2,6 @@
    PLANET HUD SHARED STYLES
    ========================================= */
 
-/* --- YELLOW CARD OVERRIDES (dark text for contrast) --- */
-.planet-hud__debrief--yellow {
-  color: hsl(var(--hud-text-inverse));
-  margin-bottom: 0;
-}
-
-.planet-hud__debrief--yellow strong {
-  color: hsl(var(--hud-text-inverse));
-}
-
-.planet-hud__title--yellow {
-  color: hsl(var(--hud-text-inverse)) !important;
-  text-shadow: none !important;
-}
-
 /* --- CONTENT REVEAL --- */
 .planet-hud__content {
   animation: tab-fade var(--duration-base) var(--ease-smooth) forwards;
@@ -27,7 +12,18 @@
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
-  color: hsl(var(--foreground) / 87%);
+  color: hsl(var(--hud-text-primary) / 72%);
+}
+
+/* "FOCO:" reads as a field label, matching the project metadata kickers. */
+.planet-hud__debrief strong {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: hsl(var(--primary) / 85%);
 }
 
 /* --- PLANET TITLE --- */
@@ -35,13 +31,14 @@
   font-family: var(--font-display);
   font-size: var(--text-2xl);
   font-weight: 800;
-  letter-spacing: 1px;
+  letter-spacing: 0.02em;
+  line-height: var(--leading-tight);
   margin: 0 0 var(--space-3) 0;
   display: flex;
   align-items: center;
   gap: var(--space-3);
   color: var(--planet-title-color, hsl(var(--hud-text-primary)));
-  text-shadow: 0 0 10px var(--planet-title-color, hsl(var(--hud-text-primary)));
+  text-shadow: 0 0 14px color-mix(in srgb, var(--planet-title-color, hsl(var(--hud-text-primary))) 45%, transparent);
 }
 
 /* --- PLANET KICKER --- */
@@ -49,7 +46,7 @@
   font-family: var(--font-mono);
   font-size: var(--text-micro);
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: hsl(var(--primary));
   margin-bottom: var(--space-1);

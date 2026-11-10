@@ -1,23 +1,29 @@
 import React, { useState } from "react";
-import type { MissionType } from "../Planetary/data/MissionData";
 import { canonicalTechList } from "../Planetary/data/technologies";
 import { resolveMissionPerspective } from "../Planetary/data/perspectives";
 import { ExternalLinkIcon } from "../ui/ExternalLinkIcon";
-import "./SaltoRow.css";
+import { useSaltoNavigation } from "../Salto/SaltoNavigationContext";
+import type { ProjectData } from "./types";
+import "./ProjectRow.css";
 
-interface SaltoRowProps {
-  mission: MissionType;
-  onTechClick: (technology: string) => void;
+interface ProjectRowProps {
+  mission: ProjectData;
+  onTechClick?: (technology: string) => void;
   perspectivePlanetId?: string;
 }
 
-export const SaltoRow: React.FC<SaltoRowProps> = ({
+/**
+ * Disclosure row used by the list layout on both SALTO and the planet HUD.
+ * The row body opens the details; the title button is the explicit control.
+ */
+export const ProjectRow: React.FC<ProjectRowProps> = ({
   mission,
   onTechClick,
   perspectivePlanetId,
 }) => {
   const [expanded, setExpanded] = useState(false);
-  const detailsId = `salto-details-${mission.id}`;
+  const navigation = useSaltoNavigation();
+  const detailsId = `project-row-details-${mission.id}`;
   const perspective = resolveMissionPerspective(mission, perspectivePlanetId);
   const role = perspective?.role ?? mission.role;
   const summary = perspective?.summary ?? mission.summary;
@@ -25,9 +31,16 @@ export const SaltoRow: React.FC<SaltoRowProps> = ({
   const challenges = perspective?.challenges ?? mission.challenges;
   const impact = perspective?.impact ?? mission.impact;
   const aiWorkflow = perspective?.aiWorkflow ?? mission.aiWorkflow;
-  const technologies = canonicalTechList(mission.technologies);
+  const technologies = canonicalTechList(
+    perspective?.technologies ?? mission.technologies,
+  );
   const visibleTechnologies = technologies.slice(0, 5);
   const hiddenCount = technologies.length - visibleTechnologies.length;
+  const handleTechClick =
+    onTechClick ??
+    (navigation
+      ? (technology: string) => navigation.openSalto(technology)
+      : undefined);
 
   const toggleExpanded = () => setExpanded((current) => !current);
 
@@ -40,61 +53,75 @@ export const SaltoRow: React.FC<SaltoRowProps> = ({
     toggleExpanded();
   };
 
-  const renderTech = (technology: string) => (
-    <button
-      key={technology}
-      type="button"
-      className="salto__row-tech"
-      onClick={() => onTechClick(technology)}
-      aria-label={`Filtrar projetos com ${technology}`}
-    >
-      {technology}
-    </button>
-  );
+  const renderTech = (technology: string) => {
+    if (!handleTechClick) {
+      return (
+        <span key={technology} className="project-row__tech">
+          {technology}
+        </span>
+      );
+    }
+
+    return (
+      <button
+        key={technology}
+        type="button"
+        className="project-row__tech project-row__tech--button"
+        onClick={() => handleTechClick(technology)}
+        aria-label={`Filtrar projetos com ${technology}`}
+      >
+        {technology}
+      </button>
+    );
+  };
 
   return (
-    <article className={`salto__row ${expanded ? "salto__row--expanded" : ""}`}>
-      <div className="salto__row-main" onClick={handleRowClick}>
-        <div className="salto__row-heading">
-          <h3 className="salto__row-title">
+    <article
+      className={`project-row ${expanded ? "project-row--expanded" : ""}`}
+      data-expanded={expanded}
+    >
+      <div className="project-row__main" onClick={handleRowClick}>
+        <div className="project-row__heading">
+          <h3 className="project-row__title">
             <button
               type="button"
-              className="salto__row-title-button"
+              className="project-row__title-button"
               onClick={toggleExpanded}
               aria-expanded={expanded}
+              aria-controls={expanded ? detailsId : undefined}
               aria-label={`${expanded ? "Ocultar" : "Ver"} detalhes de ${mission.title}`}
               title={expanded ? "Ocultar detalhes" : "Ver detalhes"}
             >
-              <span className="salto__row-title-text">{mission.title}</span>
-              <span className="salto__row-chevron" aria-hidden="true">
+              <span className="project-row__title-text">{mission.title}</span>
+              <span className="project-row__chevron" aria-hidden="true">
                 {expanded ? "−" : "+"}
               </span>
             </button>
           </h3>
-          <div className="salto__row-meta">
+          <div className="project-row__meta">
             <span>{role}</span>
             <span>{mission.year}</span>
           </div>
         </div>
 
-        <p className="salto__row-summary">{summary}</p>
+        <p className="project-row__summary">{summary}</p>
 
-        <div className="salto__row-techs">
+        <div className="project-row__techs">
           {visibleTechnologies.map(renderTech)}
           {hiddenCount > 0 && (
-            <span className="salto__row-more">+{hiddenCount}</span>
+            <span className="project-row__more">+{hiddenCount}</span>
           )}
         </div>
 
-        <div className="salto__row-actions">
-          <div className="salto__row-links">
+        <div className="project-row__actions">
+          <div className="project-row__links">
             {mission.external_links?.map((link) => (
               <a
                 key={`${link.label}-${link.url}`}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="salto__row-link"
+                className="project-row__link"
                 aria-label={`${link.label} (abre em nova aba)`}
               >
                 {link.label}
@@ -106,38 +133,38 @@ export const SaltoRow: React.FC<SaltoRowProps> = ({
       </div>
 
       {expanded && (
-        <div className="salto__row-details" id={detailsId}>
-          <div className="salto__row-detail">
-            <span className="salto__row-detail-label">
+        <div className="project-row__details" id={detailsId}>
+          <div className="project-row__detail">
+            <span className="project-row__detail-label">
               O QUE FOI FEITO
             </span>
-            <ul className="salto__row-highlights">
+            <ul className="project-row__highlights">
               {highlights.slice(0, 4).map((highlight, index) => (
                 <li key={index}>{highlight}</li>
               ))}
             </ul>
           </div>
 
-          <div className="salto__row-detail">
-            <span className="salto__row-detail-label">DESAFIO</span>
+          <div className="project-row__detail">
+            <span className="project-row__detail-label">DESAFIO</span>
             <p>{challenges}</p>
           </div>
 
-          <div className="salto__row-detail">
-            <span className="salto__row-detail-label">IMPACTO</span>
+          <div className="project-row__detail">
+            <span className="project-row__detail-label">IMPACTO</span>
             <p>{impact}</p>
           </div>
 
           {aiWorkflow && (
-            <div className="salto__row-detail">
-              <span className="salto__row-detail-label">AI WORKFLOW</span>
+            <div className="project-row__detail">
+              <span className="project-row__detail-label">AI WORKFLOW</span>
               <p>{aiWorkflow}</p>
             </div>
           )}
 
-          <div className="salto__row-detail salto__row-stack">
-            <span className="salto__row-detail-label">STACK COMPLETA</span>
-            <div className="salto__row-techs">
+          <div className="project-row__detail project-row__stack">
+            <span className="project-row__detail-label">STACK COMPLETA</span>
+            <div className="project-row__techs">
               {technologies.map(renderTech)}
             </div>
           </div>

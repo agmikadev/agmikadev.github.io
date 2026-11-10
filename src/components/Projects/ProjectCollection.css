@@ -1,0 +1,35 @@
+/* =========================================
+   PROJECT COLLECTION
+   Cards (default) or list, chosen by the shared view switch.
+   The wrapper is the query container for the list row.
+   ========================================= */
+.project-collection {
+  container-type: inline-size;
+  min-width: 0;
+}
+
+.project-collection--cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--project-grid-min), 1fr));
+  gap: var(--space-4);
+  align-items: stretch;
+}
+
+.project-collection--list {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-collection__empty {
+  padding: var(--space-8);
+  border: var(--border-width) dashed hsl(var(--primary) / 18%);
+  border-radius: var(--radius-md);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: hsl(var(--muted-foreground));
+}
+
+.project-collection--empty .project-collection__empty {
+  margin: var(--space-4) 0;
+}

@@ -16,7 +16,7 @@
     --popover: 240 20% 4%;
     --popover-foreground: 0 0% 100%;
 
-    /* Primary accent (neon yellow — HUD signature) */
+    /* Primary accent (neon yellow â€” HUD signature) */
     --primary: 51 96% 68%;
     --primary-foreground: 240 17% 1%;
 
@@ -248,21 +248,29 @@
 
     /* Planet HUD */
     --planet-hud-left-ratio: 38%;
-    --planet-hud-planet-max: 18.75rem;
+    --planet-hud-planet-max: 22rem;
     --planet-hud-planet-max-mobile: 12.5rem;
+    --planet-hud-planet-min: 7rem;
     --planet-hud-panel-radius: var(--radius-lg);
+    --planet-core-label-width: 4.75rem;
+
+    /* Shared screen rhythm (SALTO and planet HUD use the same gutter) */
+    --screen-gutter: var(--space-6);
 
     /* Salto */
-    --salto-gutter: var(--space-6);
+    --salto-gutter: var(--screen-gutter);
     --salto-tech-index-width: clamp(13rem, 20cqi, 15rem);
     --salto-actions-width: 10rem;
     --salto-row-project-min: 12rem;
     --salto-row-summary-min: 13rem;
     --salto-row-stack-min: 11.5rem;
     --salto-row-padding-block: var(--space-4);
+    --salto-row-padding-inline: var(--screen-gutter);
     --salto-row-gap: var(--space-4);
     --salto-row-gap-y: var(--space-3);
-    --salto-list-padding: var(--salto-gutter);
+
+    /* Project collection */
+    --project-grid-min: 20rem;
 
     /* Project card */
     --project-card-media-ratio: 16 / 9;
@@ -333,11 +341,17 @@
     --z-overlay: 20000;
     --z-loading: 30000;
 
-    /* Breakpoints (documentation only — CSS vars do not work in media queries)
+    /* Breakpoints (documentation only â€” CSS vars do not work in media queries)
        mobile: 48rem / 768px
        console: 60rem / 960px
        salto-tech: 56.25rem / 900px
-       salto-row: 68rem / 1088px
+       project-row: 50rem / 800px
     */
+  }
+
+  @media (max-width: 60rem) {
+    :root {
+      --screen-gutter: var(--space-4);
+    }
   }
 }

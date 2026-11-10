@@ -7,6 +7,7 @@ import { ConsoleHeader } from './ConsoleHeader';
 import { OnboardingOverlay } from './Onboarding/OnboardingOverlay';
 import { SaltoScreen } from './Salto/SaltoScreen';
 import { SaltoNavigationContext } from './Salto/SaltoNavigationContext';
+import { ProjectViewProvider } from './Projects';
 import { planets } from './Planetary/data/PlanetaryData';
 import type { PlanetModel } from './Planetary/data';
 
@@ -170,53 +171,55 @@ export const ConsoleShell: FC<ConsoleShellProps> = ({ children }) => {
       : '❯ órbita --status=online // Escolha uma área ou dê um Salto';
 
   return (
-    <SaltoNavigationContext.Provider value={navigation}>
-      <main className="console" data-screen={screen}>
-        <OnboardingOverlay />
+    <ProjectViewProvider>
+      <SaltoNavigationContext.Provider value={navigation}>
+        <main className="console" data-screen={screen}>
+          <OnboardingOverlay />
 
-        <ConsoleHeader
-          key={isSalto ? 'salto' : isDashboard ? `dashboard-${selectedPlanet.id}` : 'orbit'}
-          planetId={isSalto ? 'salto' : isDashboard ? selectedPlanet.id : 'orbit'}
-          command={command}
-          onComplete={isDashboard ? handleFetchComplete : undefined}
-        />
+          <ConsoleHeader
+            key={isSalto ? 'salto' : isDashboard ? `dashboard-${selectedPlanet.id}` : 'orbit'}
+            planetId={isSalto ? 'salto' : isDashboard ? selectedPlanet.id : 'orbit'}
+            command={command}
+            onComplete={isDashboard ? handleFetchComplete : undefined}
+          />
 
-        <div className="console__body">
-          <section className="console__stage">
-            <div className="console__screen">
-              {isSalto ? (
-                <SaltoScreen
-                  key={saltoKey}
-                  initialTech={saltoTech}
-                  onBack={closeSalto}
-                />
-              ) : (
-                children || (
-                  <PlanetarySystem
-                    selectedPlanet={selectedPlanet}
-                    onSelectPlanet={handleSelectPlanet}
-                    isFetched={isFetched}
-                    onOpenSalto={() => openSalto()}
+          <div className="console__body">
+            <section className="console__stage">
+              <div className="console__screen">
+                {isSalto ? (
+                  <SaltoScreen
+                    key={saltoKey}
+                    initialTech={saltoTech}
+                    onBack={closeSalto}
                   />
-                )
-              )}
+                ) : (
+                  children || (
+                    <PlanetarySystem
+                      selectedPlanet={selectedPlanet}
+                      onSelectPlanet={handleSelectPlanet}
+                      isFetched={isFetched}
+                      onOpenSalto={() => openSalto()}
+                    />
+                  )
+                )}
+              </div>
+            </section>
+
+            <SideStrip />
+          </div>
+
+          <footer className="console__footer">
+            <div className="console__footer-text">
+              {isSalto ? "SALTO" : "ÓRBITA"} // STATUS: ONLINE
             </div>
-          </section>
-
-          <SideStrip />
-        </div>
-
-        <footer className="console__footer">
-          <div className="console__footer-text">
-            {isSalto ? "SALTO" : "ÓRBITA"} // STATUS: ONLINE
-          </div>
-          <div className="console__footer-line"></div>
-          <div className="console__footer-stars">
-            <span>✦</span><span>✦</span><span>✦</span>
-          </div>
-        </footer>
-      </main>
-    </SaltoNavigationContext.Provider>
+            <div className="console__footer-line"></div>
+            <div className="console__footer-stars">
+              <span>✦</span><span>✦</span><span>✦</span>
+            </div>
+          </footer>
+        </main>
+      </SaltoNavigationContext.Provider>
+    </ProjectViewProvider>
   );
 };
 

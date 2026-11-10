@@ -6,6 +6,7 @@ import {
   measureBox,
   openPlanet,
   openSalto,
+  switchProjectView,
 } from "./helpers";
 
 const VIEWPORTS = [
@@ -74,10 +75,16 @@ for (const viewport of VIEWPORTS) {
         ).toBeHidden();
       }
 
-      const columns = await columnCount(page, ".salto__row-main");
-      const expectedColumns =
-        viewport.width >= 1440 ? 4 : viewport.width >= 1024 ? 2 : 1;
+      await switchProjectView(page, "list");
+      const columns = await columnCount(page, ".project-row__main");
+      const expectedColumns = viewport.width >= 1440 ? 4 : viewport.width > 768 ? 2 : 1;
       expect(columns).toBe(expectedColumns);
+
+      await switchProjectView(page, "cards");
+      expect(await horizontalOverflow(page, ".salto__list")).toBeLessThanOrEqual(
+        0,
+      );
+      await expect(page.locator(".project-card").first()).toBeVisible();
 
       if (viewport.width >= 1280) {
         await expect(page.locator(".salto__tech-index")).toBeVisible();
@@ -106,11 +113,17 @@ for (const viewport of VIEWPORTS) {
 
       const stage = await measureBox(page, ".console__stage");
       const left = await measureBox(page, ".planet-hud__left");
+      const infoCard = await measureBox(page, ".planet-hud__info-card");
+      const core = await measureBox(page, ".planet-core");
 
       expect(stage).not.toBeNull();
       expect(left).not.toBeNull();
+      expect(infoCard).not.toBeNull();
+      expect(core).not.toBeNull();
       expect(left!.width).toBeGreaterThan(0);
       expect(left!.width).toBeLessThanOrEqual(stage!.width);
+      expect(core!.height).toBeGreaterThan(0);
+      expect(core!.height).toBeLessThanOrEqual(infoCard!.height);
 
       if (viewport.width <= 960) {
         expect(left!.width).toBeGreaterThanOrEqual(stage!.width * 0.95);
@@ -119,6 +132,17 @@ for (const viewport of VIEWPORTS) {
         expect(ratio).toBeGreaterThan(0.3);
         expect(ratio).toBeLessThan(0.45);
       }
+
+      await expect(page.locator(".planet-hud .project-card").first()).toBeVisible();
+
+      await switchProjectView(page, "list");
+      await expect(page.locator(".planet-hud .project-row").first()).toBeVisible();
+      expect(
+        await horizontalOverflow(page, ".planet-hud__tabs-body"),
+      ).toBeLessThanOrEqual(0);
+
+      await switchProjectView(page, "cards");
+      await expect(page.locator(".planet-hud .project-card").first()).toBeVisible();
     });
   });
 }

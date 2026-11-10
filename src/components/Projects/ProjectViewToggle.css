@@ -1,0 +1,67 @@
+/* Cards/list switch shared by SALTO and the planet HUD. */
+.view-toggle {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
+  padding: var(--space-1);
+  background: rgba(0, 0, 0, 0.32);
+  border: var(--border-width) solid hsl(var(--primary) / 15%);
+  border-radius: var(--radius-full);
+}
+
+.view-toggle__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-full);
+  color: hsl(var(--muted-foreground));
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    color var(--duration-fast) var(--ease-smooth),
+    background var(--duration-fast) var(--ease-smooth);
+}
+
+.view-toggle__item:hover {
+  color: hsl(var(--primary));
+}
+
+.view-toggle__item:focus-visible {
+  outline: var(--focus-ring-width) solid hsl(var(--ring));
+  outline-offset: var(--focus-ring-offset);
+}
+
+.view-toggle__item[data-state="on"] {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.view-toggle__label {
+  white-space: nowrap;
+}
+
+@media (max-width: 40rem) {
+  .view-toggle__item {
+    padding: var(--space-1) var(--space-2);
+  }
+
+  .view-toggle__label {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .view-toggle__item {
+    transition: none;
+  }
+}

@@ -11,19 +11,19 @@
   font-family: var(--font-sans);
 }
 
-.hud-card-yellow h1,
-.hud-card-yellow h2,
-.hud-card-yellow h3,
-.hud-card-yellow h4,
-.hud-card-yellow h5,
-.hud-card-yellow h6 {
+.hud-card-yellow > h1,
+.hud-card-yellow > h2,
+.hud-card-yellow > h3,
+.hud-card-yellow > h4,
+.hud-card-yellow > h5,
+.hud-card-yellow > h6 {
   font-family: var(--font-display);
   font-weight: 800;
   letter-spacing: 4px;
   text-transform: uppercase;
 }
 
-.hud-card-yellow p {
+.hud-card-yellow > p {
   color: hsl(var(--hud-text-inverse));
   opacity: 0.9;
   line-height: var(--leading-relaxed);
@@ -43,19 +43,19 @@
   backdrop-filter: blur(var(--blur-sm));
 }
 
-.hud-card-dark h1,
-.hud-card-dark h2,
-.hud-card-dark h3,
-.hud-card-dark h4,
-.hud-card-dark h5,
-.hud-card-dark h6 {
+.hud-card-dark > h1,
+.hud-card-dark > h2,
+.hud-card-dark > h3,
+.hud-card-dark > h4,
+.hud-card-dark > h5,
+.hud-card-dark > h6 {
   font-family: var(--font-display);
   font-weight: 800;
   letter-spacing: 4px;
   text-transform: uppercase;
 }
 
-.hud-card-dark p {
+.hud-card-dark > p {
   color: hsl(var(--hud-text-primary));
   opacity: 0.9;
   line-height: var(--leading-relaxed);
@@ -74,19 +74,19 @@
   font-family: var(--font-sans);
 }
 
-.hud-card-glass h1,
-.hud-card-glass h2,
-.hud-card-glass h3,
-.hud-card-glass h4,
-.hud-card-glass h5,
-.hud-card-glass h6 {
+.hud-card-glass > h1,
+.hud-card-glass > h2,
+.hud-card-glass > h3,
+.hud-card-glass > h4,
+.hud-card-glass > h5,
+.hud-card-glass > h6 {
   font-family: var(--font-display);
   font-weight: 800;
   letter-spacing: 4px;
   text-transform: uppercase;
 }
 
-.hud-card-glass p {
+.hud-card-glass > p {
   color: hsl(var(--hud-text-muted));
   line-height: var(--leading-relaxed);
 }
@@ -140,9 +140,9 @@
   padding: var(--space-2);
 }
 
-.hud-card-yellow h1,
-.hud-card-dark h1,
-.hud-card-glass h1 {
+  .hud-card-yellow > h1,
+  .hud-card-dark > h1,
+  .hud-card-glass > h1 {
     font-size: var(--text-2xl);
     letter-spacing: 2px;
   }

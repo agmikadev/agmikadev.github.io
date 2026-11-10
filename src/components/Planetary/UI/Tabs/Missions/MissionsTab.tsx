@@ -1,8 +1,8 @@
 import React from "react";
 import { type PlanetModel } from "../../../data/PlanetaryData";
-import { ProjectCard } from "./ProjectCard";
 import { useMissions } from "../../../data/hooks";
 import { BeltMissionsTab } from "../Belt/BeltMissionsTab";
+import { ProjectCollection } from "@/components/Projects";
 import { NO_MISSIONS_ERROR } from "@/lib/ui-constants";
 
 interface MissionsTabProps {
@@ -13,24 +13,12 @@ interface MissionsTabProps {
 const PlanetMissions: React.FC<{ planet: PlanetModel }> = ({ planet }) => {
   const relevantMissions = useMissions(planet.id);
 
-  if (relevantMissions.length === 0) {
-    return (
-      <div className="project-list__error">
-        {NO_MISSIONS_ERROR}
-      </div>
-    );
-  }
-
   return (
-    <div className="project-list">
-      {relevantMissions.map((mission) => (
-        <ProjectCard
-          key={`${planet.id}-${mission.id}`}
-          mission={mission}
-          planetId={planet.id}
-        />
-      ))}
-    </div>
+    <ProjectCollection
+      missions={relevantMissions}
+      perspectivePlanetId={planet.id}
+      emptyMessage={NO_MISSIONS_ERROR}
+    />
   );
 };
 

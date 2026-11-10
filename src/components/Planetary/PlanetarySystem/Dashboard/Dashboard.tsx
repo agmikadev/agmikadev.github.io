@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { MissionsTab, AnalyticsTab } from "../../UI";
 import { Card } from "../../UI/CardVariants";
 import { StarBurst } from "../../UI/Symbols";
@@ -6,7 +6,9 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import type { PlanetModel } from "../../data";
 import { beltDataModel } from "../../data/BeltData";
 import { ScreenAction } from "../../../ui/ScreenAction";
+import { ProjectViewToggle } from "../../../Projects";
 import { Planet3D } from "./Planet3D";
+import { PlanetCore } from "./PlanetCore";
 
 import "./Dashboard.css";
 
@@ -28,6 +30,7 @@ const BACK_ICON = (
 );
 
 export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched, onBack }) => {
+  const [activeTab, setActiveTab] = useState("missions");
   const isBelt = mode === "belt";
   const themeColor = isBelt ? beltDataModel.color : planet?.color;
   const planetArea = isBelt ? beltDataModel.area : planet?.area;
@@ -51,6 +54,10 @@ export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched, o
         stats: [],
       }
     : planet!;
+
+  const coreTools = isBelt ? beltDataModel.tools : planet?.tools ?? [];
+  const coreStats = isBelt ? 0 : planet?.stats.length ?? 0;
+  const coreHasAI = isBelt ? true : Boolean(planet?.hasAI);
 
   if (!planetArea || !themeColor) return null;
 
@@ -81,28 +88,41 @@ export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched, o
                 <h1 className="planet-hud__title" style={{ "--planet-title-color": themeColor } as React.CSSProperties}>
                   <StarBurst size={22} /> {planetArea}
                 </h1>
-                <div className="planet-hud__debrief planet-hud__debrief--yellow">
+                <div className="planet-hud__debrief">
                   <strong>FOCO:</strong> {planetType}
                   {!isBelt && <br />}
                   {planetDescription}
                 </div>
               </div>
+              <PlanetCore
+                codename={planetCodename ?? ""}
+                tools={coreTools}
+                statsCount={coreStats}
+                hasAI={coreHasAI}
+              />
             </Card>
           </div>
 
           <div className="planet-hud__right">
             {isFetched && (
-              <Tabs defaultValue="missions" className="planet-hud__tabs">
+              <Tabs
+                value={activeTab}
+                onValueChange={setActiveTab}
+                className="planet-hud__tabs"
+              >
                 <div className="planet-hud__tabs-header">
                   <TabsList>
                     <TabsTrigger value="missions"><StarBurst size={14} /> PROJETOS</TabsTrigger>
                     <TabsTrigger value="analytics"><StarBurst size={14} /> COMPETÊNCIAS</TabsTrigger>
                   </TabsList>
-                  {!isBelt && (
-                    <span className="planet-hud__perspective">
-                      ÓTICA // {planetArea}
-                    </span>
-                  )}
+                  <div className="planet-hud__tabs-tools">
+                    {!isBelt && (
+                      <span className="planet-hud__perspective">
+                        ÓTICA // {planetArea}
+                      </span>
+                    )}
+                    {activeTab === "missions" && <ProjectViewToggle />}
+                  </div>
                 </div>
                 <div className="planet-hud__tabs-body">
         <div className="planet-hud__mobile-header">
@@ -110,7 +130,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched, o
           <h1 className="planet-hud__title" style={{ "--planet-title-color": themeColor } as React.CSSProperties}>
             <StarBurst size={22} /> {planetArea}
           </h1>
-                    <div className="planet-hud__debrief planet-hud__debrief--yellow">
+                    <div className="planet-hud__debrief">
                       <strong>FOCO:</strong> {planetType}
                     </div>
                   </div>

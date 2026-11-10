@@ -11,7 +11,7 @@ import { StarBurst } from "../Planetary/UI/Symbols";
 import { ScreenAction } from "../ui/ScreenAction";
 import { Input } from "../ui/input";
 import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
-import { SaltoRow } from "./SaltoRow";
+import { ProjectCollection, ProjectViewToggle } from "../Projects";
 import "./SaltoScreen.css";
 
 interface SaltoScreenProps {
@@ -229,43 +229,39 @@ export const SaltoScreen: React.FC<SaltoScreenProps> = ({
               {isLoading ? "SINCRONIZANDO..." : `${filteredMissions.length} PROJETOS`}
             </div>
 
-            <div className="salto__active-filters">
-              {activeTech !== "all" && (
-                <button
-                  type="button"
-                  className="salto__filter-chip"
-                  onClick={() => setActiveTech("all")}
-                >
-                  TECNOLOGIA: {activeTech} ✕
-                </button>
-              )}
-              {hasFilters && (
-                <button
-                  type="button"
-                  className="salto__clear"
-                  onClick={clearFilters}
-                >
-                  LIMPAR FILTROS
-                </button>
-              )}
+            <div className="salto__results-tools">
+              <div className="salto__active-filters">
+                {activeTech !== "all" && (
+                  <button
+                    type="button"
+                    className="salto__filter-chip"
+                    onClick={() => setActiveTech("all")}
+                  >
+                    TECNOLOGIA: {activeTech} ✕
+                  </button>
+                )}
+                {hasFilters && (
+                  <button
+                    type="button"
+                    className="salto__clear"
+                    onClick={clearFilters}
+                  >
+                    LIMPAR FILTROS
+                  </button>
+                )}
+              </div>
+
+              <ProjectViewToggle />
             </div>
           </div>
 
           <div className="salto__list">
-            {filteredMissions.length === 0 ? (
-              <div className="salto__empty">
-                Nenhum projeto encontrado para esses filtros.
-              </div>
-            ) : (
-              filteredMissions.map((mission) => (
-                <SaltoRow
-                  key={mission.id}
-                  mission={mission}
-                  onTechClick={setActiveTech}
-                  perspectivePlanetId={activeArea !== "all" ? activeArea : undefined}
-                />
-              ))
-            )}
+            <ProjectCollection
+              missions={filteredMissions}
+              onTechClick={setActiveTech}
+              perspectivePlanetId={activeArea !== "all" ? activeArea : undefined}
+              emptyMessage="Nenhum projeto encontrado para esses filtros."
+            />
           </div>
         </main>
       </div>

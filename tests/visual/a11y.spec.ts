@@ -85,7 +85,9 @@ test.describe("external link affordance", () => {
     await expect(email.locator(".social-icon-btn__external")).toHaveCount(0);
 
     await openSalto(page);
-    const projectLinks = page.locator(".salto__row-link");
+    const projectLinks = page.locator(
+      ".salto .project-card__link, .salto .project-row__link",
+    );
     expect(await projectLinks.count()).toBeGreaterThan(0);
     await expect(projectLinks.first().locator(".external-link-icon")).toHaveCount(1);
     await expect(projectLinks.first()).toHaveAttribute(
