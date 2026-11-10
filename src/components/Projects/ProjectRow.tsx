@@ -16,7 +16,7 @@ interface ProjectRowProps {
  * Disclosure row used by the list layout on both SALTO and the planet HUD.
  * The row body opens the details; the title button is the explicit control.
  */
-export const ProjectRow: React.FC<ProjectRowProps> = ({
+const ProjectRowComponent: React.FC<ProjectRowProps> = ({
   mission,
   onTechClick,
   perspectivePlanetId,
@@ -173,3 +173,6 @@ export const ProjectRow: React.FC<ProjectRowProps> = ({
     </article>
   );
 };
+
+export const ProjectRow = React.memo(ProjectRowComponent);
+ProjectRow.displayName = "ProjectRow";

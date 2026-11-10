@@ -39,12 +39,25 @@ export const SaltoScreen: React.FC<SaltoScreenProps> = ({
   const [activeArea, setActiveArea] = useState<string>("all");
   const [activeTech, setActiveTech] = useState<string>(initialTech);
   const [query, setQuery] = useState("");
+  const [bodyReady, setBodyReady] = useState(false);
   const screenRef = useRef<HTMLElement>(null);
 
-  // Move focus into the screen so keyboard users do not lose context when the
-  // orbit (and the SALTO trigger) unmounts. Tab then reaches the back action.
+  // Mount the shell first and the dense body in the following task. On slower
+  // machines the full SALTO tree (tech index + project cards) costs a ~100ms
+  // task; splitting it lets the screen paint immediately instead of freezing.
   useEffect(() => {
-    screenRef.current?.focus({ preventScroll: true });
+    const timeout = window.setTimeout(() => setBodyReady(true), 0);
+    return () => window.clearTimeout(timeout);
+  }, []);
+
+  // Move focus into the screen so keyboard users do not lose context when the
+  // orbit (and the SALTO trigger) unmounts. Focus the back action rather than
+  // the section: focusing the whole screen forces a costly focusable-area/layout
+  // flush (~100ms on low-end machines). The back action is the first tab stop.
+  useEffect(() => {
+    screenRef.current
+      ?.querySelector<HTMLElement>(".salto__back")
+      ?.focus({ preventScroll: true });
   }, []);
 
   const techGroups = useMemo(() => {
@@ -110,7 +123,6 @@ export const SaltoScreen: React.FC<SaltoScreenProps> = ({
       ref={screenRef}
       className="salto"
       aria-label="Índice de projetos e experiência"
-      tabIndex={-1}
     >
       <header className="salto__header">
         <ScreenAction
@@ -190,81 +202,83 @@ export const SaltoScreen: React.FC<SaltoScreenProps> = ({
         </label>
       </div>
 
-      <div className="salto__body">
-        <aside className="salto__tech-index" aria-label="Filtrar por tecnologia">
-          <div className="salto__tech-title">TECNOLOGIAS</div>
+      {bodyReady && (
+        <div className="salto__body">
+          <aside className="salto__tech-index" aria-label="Filtrar por tecnologia">
+            <div className="salto__tech-title">TECNOLOGIAS</div>
 
-          <button
-            type="button"
-            className="salto__tech-all"
-            aria-pressed={activeTech === "all"}
-            onClick={() => setActiveTech("all")}
-          >
-            <span>Todas</span>
-            <span className="salto__tech-count">{missions.length}</span>
-          </button>
+            <button
+              type="button"
+              className="salto__tech-all"
+              aria-pressed={activeTech === "all"}
+              onClick={() => setActiveTech("all")}
+            >
+              <span>Todas</span>
+              <span className="salto__tech-count">{missions.length}</span>
+            </button>
 
-          {techGroups.map((group) => (
-            <div key={group.category} className="salto__tech-group">
-              <div className="salto__tech-category">{group.label}</div>
-              {group.items.map((item) => (
-                <button
-                  key={item.name}
-                  type="button"
-                  className="salto__tech-button"
-                  aria-pressed={activeTech === item.name}
-                  onClick={() => setActiveTech(item.name)}
-                >
-                  <span>{item.name}</span>
-                  <span className="salto__tech-count">{item.count}</span>
-                </button>
-              ))}
-            </div>
-          ))}
-        </aside>
-
-        <main className="salto__results">
-          <div className="salto__results-header">
-            <div className="salto__results-count">
-              {isLoading ? "SINCRONIZANDO..." : `${filteredMissions.length} PROJETOS`}
-            </div>
-
-            <div className="salto__results-tools">
-              <div className="salto__active-filters">
-                {activeTech !== "all" && (
+            {techGroups.map((group) => (
+              <div key={group.category} className="salto__tech-group">
+                <div className="salto__tech-category">{group.label}</div>
+                {group.items.map((item) => (
                   <button
+                    key={item.name}
                     type="button"
-                    className="salto__filter-chip"
-                    onClick={() => setActiveTech("all")}
+                    className="salto__tech-button"
+                    aria-pressed={activeTech === item.name}
+                    onClick={() => setActiveTech(item.name)}
                   >
-                    TECNOLOGIA: {activeTech} ✕
+                    <span>{item.name}</span>
+                    <span className="salto__tech-count">{item.count}</span>
                   </button>
-                )}
-                {hasFilters && (
-                  <button
-                    type="button"
-                    className="salto__clear"
-                    onClick={clearFilters}
-                  >
-                    LIMPAR FILTROS
-                  </button>
-                )}
+                ))}
+              </div>
+            ))}
+          </aside>
+
+          <main className="salto__results">
+            <div className="salto__results-header">
+              <div className="salto__results-count">
+                {isLoading ? "SINCRONIZANDO..." : `${filteredMissions.length} PROJETOS`}
               </div>
 
-              <ProjectViewToggle />
-            </div>
-          </div>
+              <div className="salto__results-tools">
+                <div className="salto__active-filters">
+                  {activeTech !== "all" && (
+                    <button
+                      type="button"
+                      className="salto__filter-chip"
+                      onClick={() => setActiveTech("all")}
+                    >
+                      TECNOLOGIA: {activeTech} ✕
+                    </button>
+                  )}
+                  {hasFilters && (
+                    <button
+                      type="button"
+                      className="salto__clear"
+                      onClick={clearFilters}
+                    >
+                      LIMPAR FILTROS
+                    </button>
+                  )}
+                </div>
 
-          <div className="salto__list">
-            <ProjectCollection
-              missions={filteredMissions}
-              onTechClick={setActiveTech}
-              perspectivePlanetId={activeArea !== "all" ? activeArea : undefined}
-              emptyMessage="Nenhum projeto encontrado para esses filtros."
-            />
-          </div>
-        </main>
-      </div>
+                <ProjectViewToggle />
+              </div>
+            </div>
+
+            <div className="salto__list">
+              <ProjectCollection
+                missions={filteredMissions}
+                onTechClick={setActiveTech}
+                perspectivePlanetId={activeArea !== "all" ? activeArea : undefined}
+                emptyMessage="Nenhum projeto encontrado para esses filtros."
+              />
+            </div>
+          </main>
+        </div>
+      )}
     </section>
   );
 };

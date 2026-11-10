@@ -54,7 +54,7 @@ test.describe("keyboard navigation", () => {
     await page.keyboard.press("Enter");
 
     await expect(page.locator(".salto")).toBeVisible();
-    await expect(page.locator(".salto")).toBeFocused();
+    await expect(page.locator(".salto__back")).toBeFocused();
 
     await page.keyboard.press("Escape");
     await expect(page.locator(".salto")).toHaveCount(0);

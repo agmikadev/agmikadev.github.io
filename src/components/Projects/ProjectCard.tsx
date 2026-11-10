@@ -14,7 +14,7 @@ interface ProjectCardProps {
   onTechClick?: (technology: string) => void;
 }
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({
+const ProjectCardComponent: React.FC<ProjectCardProps> = ({
   mission,
   compact = false,
   perspectivePlanetId,
@@ -75,6 +75,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             src={mission.imageUrl}
             alt={`Interface do projeto ${mission.title}`}
             loading="lazy"
+            decoding="async"
           />
           <span className="project-card__year project-card__year--floating">{mission.year}</span>
         </div>
@@ -197,3 +198,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     </Card>
   );
 };
+
+export const ProjectCard = React.memo(ProjectCardComponent);
+ProjectCard.displayName = "ProjectCard";

@@ -10,11 +10,6 @@
   overflow: hidden;
 }
 
-/* Receives focus on mount; the visible focus moves to the back action on Tab. */
-.salto:focus {
-  outline: none;
-}
-
 /* --- HEADER --- */
 .salto__header {
   display: grid;
