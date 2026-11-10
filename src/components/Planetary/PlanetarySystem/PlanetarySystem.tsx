@@ -132,13 +132,17 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
     onSelectPlanet(null);
     setHoveredPlanetId(null);
     setBeltFocused(false);
+  }, [onSelectPlanet]);
 
-    // The orbit unmounts while the HUD is open, so restore focus by identity
-    // after the trigger elements are recreated.
-    requestAnimationFrame(() => {
-      const trigger = lastTriggerRef.current;
-      if (!trigger) return;
+  // Restore focus to the trigger by identity after the orbit remounts. This
+  // covers Escape, the in-app back control and the browser/system back gesture.
+  useEffect(() => {
+    if (selectedPlanet) return;
 
+    const trigger = lastTriggerRef.current;
+    if (!trigger) return;
+
+    const frame = requestAnimationFrame(() => {
       if (trigger.type === "belt") {
         document
           .querySelector<SVGElement>(".orbit__belt-hitbox")
@@ -152,7 +156,9 @@ export const PlanetarySystem: React.FC<PlanetarySystemProps> = ({
         )
         ?.focus({ preventScroll: true });
     });
-  }, [onSelectPlanet]);
+
+    return () => cancelAnimationFrame(frame);
+  }, [selectedPlanet]);
 
   // --- KEYBOARD HANDLING (Escape to close HUD) ---
   useEffect(() => {

@@ -294,8 +294,11 @@
     --icon-2xs: 0.625rem;
     --icon-xs: 0.75rem;
     --icon-sm: 1rem;
+    --icon-nav: 1.25rem;
     --icon-md: 1.75rem;
     --icon-lg: 2rem;
+
+    --touch-target-min: 2.75rem;
 
     --radius-xs: 2px;
     --text-initials: 1.1rem;

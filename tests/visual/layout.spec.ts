@@ -64,6 +64,16 @@ for (const viewport of VIEWPORTS) {
       );
       await expect(page.locator(".salto__back")).toBeVisible();
 
+      if (viewport.width <= 768) {
+        const back = await measureBox(page, ".salto__back");
+        expect(back).not.toBeNull();
+        expect(back!.width).toBeGreaterThanOrEqual(44);
+        expect(back!.height).toBeGreaterThanOrEqual(44);
+        await expect(
+          page.locator(".salto__back .screen-action__label"),
+        ).toBeHidden();
+      }
+
       const columns = await columnCount(page, ".salto__row-main");
       const expectedColumns =
         viewport.width >= 1440 ? 4 : viewport.width >= 1024 ? 2 : 1;
@@ -83,6 +93,16 @@ for (const viewport of VIEWPORTS) {
 
       expect(await horizontalOverflow(page)).toBeLessThanOrEqual(0);
       await expect(page.locator(".planet-hud__back")).toBeVisible();
+
+      if (viewport.width <= 768) {
+        const back = await measureBox(page, ".planet-hud__back");
+        expect(back).not.toBeNull();
+        expect(back!.width).toBeGreaterThanOrEqual(44);
+        expect(back!.height).toBeGreaterThanOrEqual(44);
+        await expect(
+          page.locator(".planet-hud__back .screen-action__label"),
+        ).toBeHidden();
+      }
 
       const stage = await measureBox(page, ".console__stage");
       const left = await measureBox(page, ".planet-hud__left");

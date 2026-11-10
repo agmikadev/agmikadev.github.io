@@ -251,3 +251,21 @@
     text-align: left;
   }
 }
+
+@media (max-width: 48rem) {
+  .screen-action.planet-hud__back {
+    justify-content: center;
+    min-width: var(--touch-target-min);
+    min-height: var(--touch-target-min);
+    padding: 0;
+  }
+
+  .planet-hud__back .screen-action__label {
+    display: none;
+  }
+
+  .planet-hud__back .screen-action__icon svg {
+    width: var(--icon-nav);
+    height: var(--icon-nav);
+  }
+}
