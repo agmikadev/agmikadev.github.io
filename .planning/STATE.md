@@ -51,7 +51,8 @@ Recent decisions affecting current work:
 - Theme as navigation, not lore — Real areas are primary; codenames are secondary
 - One console, two screens — ÓRBITA (compassado) and SALTO (expresso) swap inside `.console__screen`; sidebar/footer stay visible
 - Screen actions inside the panel — the console header is only the CLI line; `SALTO`, `← ÓRBITA` and `← SISTEMA` use the shared `screen-action` block
-- BEM class hierarchy — `console__*`, `orbit__*`, `planet-hud__*`, `salto__*`, `project-card__*`, `screen-action__*`; state via `data-*`/`aria-pressed`
+- BEM class hierarchy — `console__*`, `orbit__*`, `planet-hud__*`, `salto__*`, `project-collection__*`, `project-card__*`, `project-row__*`, `screen-action__*`; state via `data-*`/`aria-pressed`
+- One project renderer — `ProjectCollection` renders cards or rows on both SALTO and the planet HUD; the shared `view-toggle` defaults to cards and persists in `localStorage`
 - Fluid layout tokens — sidebar, sun, Salto tech index/row columns, card media and onboarding use `clamp()`/container queries; breakpoints standardized
 - Tailwind theme bridge — tokens mapped through `@theme inline`; shadcn primitives are allowed only for inputs/actions
 - shadcn primitives — `Button`, `Input` and `ToggleGroup` live in `src/components/ui`; `Input`/`ToggleGroup` power SALTO with unchanged visuals

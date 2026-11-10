@@ -13,11 +13,13 @@
 - **ÓRBITA (default, compassado):** explore the solar system, planets, case cards and AI belt at the visitor's pace.
 - **SALTO (expresso):** a single `SALTO` button inside the ÓRBITA screen swaps the console screen to a dense project index with search, area filters and a canonical technology sidebar with counts. It is a screen inside `.console__screen`, not a modal; the console sidebar and footer stay visible. The header renders only the CLI command line; navigation controls (`SALTO`, `← ÓRBITA`, `← SISTEMA`) live inside the panel via the shared `screen-action` block.
 
+Both screens use the same project renderer (`src/components/Projects`): `ProjectCollection` renders `ProjectCard` or `ProjectRow` and a shared `view-toggle` (CARDS | LISTA) lets the visitor switch. **Cards are the default on both screens**, the choice is shared and persisted in `localStorage` under `projectsView:v1`.
+
 Technology tags are canonical (see `src/components/Planetary/data/technologies.ts`); aliases like "React 19"/"React.js" fold into "React". Clicking a tech tag opens the Salto index filtered by that technology.
 
 **Per-planet perspectives:** multi-area projects carry a `perspectives` map keyed by planet id (see `src/components/Planetary/data/perspectives.ts`). The same project changes role, summary, highlights, challenge/impact and stack depending on the selected planet. In SALTO, an active area filter uses that area's perspective.
 
-**Class hierarchy (BEM):** `console__*` is the shell; `orbit__*` is the planetary screen; `planet-hud__*` is the planet dashboard; `salto__*` is the index screen; `project-card__*` is the shared project card; `screen-action__*` is the in-panel navigation control. State uses `data-screen="orbit|salto"`, `data-variant="planet|belt"`, `data-perspective="..."` and `aria-pressed` on filters instead of modifier classes. Keep the console chrome visible in both screens; the header is only the CLI line.
+**Class hierarchy (BEM):** `console__*` is the shell; `orbit__*` is the planetary screen; `planet-hud__*` is the planet dashboard; `planet-core__*` is the stack index anchored in the HUD's left column; `salto__*` is the index screen; `project-collection__*` is the shared project collection; `project-card__*` and `project-row__*` are its two layouts; `screen-action__*` is the in-panel navigation control. State uses `data-screen="orbit|salto"`, `data-variant="planet|belt"`, `data-perspective="..."`, `data-view="cards|list"` and `aria-pressed` on filters instead of modifier classes. Keep the console chrome visible in both screens; the header is only the CLI line.
 
 **Core Value:** Visually demonstrate full-stack development proficiency — including cutting-edge agentic/AI skills — in a way that impresses both technical peers and hiring managers.
 
@@ -67,11 +69,12 @@ src/
 ├── components/
 │   ├── ConsoleShell.tsx       # Console shell: header, stage, sidebar, footer
 │   ├── ConsoleHeader/         # CLI command line only
-│   ├── Salto/                 # SALTO screen, rows, technology navigation
+│   ├── Projects/              # ProjectCard, ProjectRow, ProjectCollection, view toggle
+│   ├── Salto/                 # SALTO screen + technology navigation
 │   ├── Planetary/             # ÓRBITA screen
 │   │   ├── data/              # Archive, D1 hooks, technologies, perspectives
 │   │   ├── PlanetarySystem/   # Orbital animation + planet rendering
-│   │   └── UI/                # Tabs, ProjectCard, symbols
+│   │   └── UI/                # Tabs, Card primitives, symbols
 │   ├── SideStrip/             # Console sidebar: profile, stack, CV, visits
 │   ├── Onboarding/            # First-visit card
 │   └── styles/                # tokens.css, globals.css, ConsoleShell.css, Console.css

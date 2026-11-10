@@ -48,11 +48,12 @@ src/
 ├── components/
 │   ├── ConsoleShell.tsx        # Shell: header, stage, sidebar, footer
 │   ├── ConsoleHeader/          # Apenas a linha CLI do console
-│   ├── Salto/                  # Tela SALTO, linhas e navegação de tecnologia
+│   ├── Projects/               # Card, linha, coleção e seletor cards/lista
+│   ├── Salto/                  # Tela SALTO e navegação de tecnologia
 │   ├── Planetary/
 │   │   ├── data/               # Projetos, perspectivas, tecnologias, belt
 │   │   ├── PlanetarySystem/    # Tela ÓRBITA + HUD de planeta
-│   │   └── UI/                 # Tabs, ProjectCard, símbolos
+│   │   └── UI/                 # Tabs, Card primitives, símbolos
 │   ├── SideStrip/              # Sidebar do console: perfil, stack, CV
 │   ├── Onboarding/             # Cartão de primeira visita
 │   └── styles/                 # ConsoleShell.css, Console.css
@@ -72,20 +73,27 @@ layout usam `clamp()`/container queries: sidebar, sol, tech index do SALTO,
 mídia dos cards e colunas das linhas. Breakpoints documentados:
 
 ```text
-mobile:      48rem / 768px
-console:     60rem / 960px
-salto-tech: 56.25rem / 900px
-salto-row:  68.75rem / 1100px
+mobile:       48rem / 768px
+console:      60rem / 960px
+salto-tech:  56.25rem / 900px
+project-row: 50rem / 800px
+view-toggle: 40rem / 640px
 ```
 
 ### Hierarquia de classes
 
 O console usa BEM: `console__*` para o shell, `orbit__*` para a tela
-planetária, `planet-hud__*` para o dashboard do planeta, `salto__*` para o
-índice, `project-card__*` para os cards de projeto e `screen-action__*` para os
-controles dentro da tela. O estado fica em `data-screen="orbit|salto"`,
-`data-variant="planet|belt"`, `data-perspective="..."` e `aria-pressed` nos
-filtros.
+planetária, `planet-hud__*` para o dashboard do planeta, `planet-core__*` para o
+índice de stack ancorado na coluna esquerda do HUD, `salto__*` para o
+índice, `project-collection__*` para a coleção, `project-card__*`/`project-row__*`
+para os dois layouts de projeto e `screen-action__*` para os controles dentro da
+tela. O estado fica em `data-screen="orbit|salto"`, `data-variant="planet|belt"`,
+`data-perspective="..."`, `data-view="cards|list"` e `aria-pressed` nos filtros.
+
+As duas telas compartilham o mesmo seletor `view-toggle`, com **cards como
+padrão**; a escolha vale para SALTO e HUD e persiste em `localStorage`. O card e
+a linha vivem em `src/components/Projects` e são renderizados por
+`ProjectCollection`, para que as duas telas nunca divirjam.
 
 O SALTO não é um modal: ele é renderizado dentro de `.console__screen`, no
 mesmo frame do sistema planetário. O header do console contém **apenas a linha
