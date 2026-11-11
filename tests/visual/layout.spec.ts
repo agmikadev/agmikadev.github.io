@@ -74,6 +74,14 @@ for (const viewport of VIEWPORTS) {
         ).toBeHidden();
       }
 
+      const cardColumns = await columnCount(
+        page,
+        ".salto .project-collection--cards",
+      );
+      const expectedCardColumns =
+        viewport.width > 768 ? 2 : 1;
+      expect(cardColumns).toBe(expectedCardColumns);
+
       await switchProjectView(page, "list");
       const columns = await columnCount(page, ".project-row__main");
       const expectedColumns = viewport.width >= 1440 ? 4 : viewport.width > 768 ? 2 : 1;

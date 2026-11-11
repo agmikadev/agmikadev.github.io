@@ -10,9 +10,23 @@
 
 .project-collection--cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--project-grid-min), 1fr));
+  /* One readable column by default; at most two on desktop. */
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-4);
   align-items: stretch;
+}
+
+@container (min-width: 40rem) {
+  .project-collection--cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile portrait keeps a single vertical column; landscape can use two. */
+@media (max-width: 60rem) and (orientation: portrait) {
+  .project-collection--cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .project-collection--list {

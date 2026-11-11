@@ -1,4 +1,5 @@
 export { ProjectCard } from "./ProjectCard";
+export { ProjectCase } from "./ProjectCase";
 export { ProjectRow } from "./ProjectRow";
 export { ProjectCollection } from "./ProjectCollection";
 export type { ProjectData } from "./types";

@@ -45,7 +45,12 @@ export async function openSalto(page: Page): Promise<void> {
   await expect(page.locator(".project-collection").first()).toBeVisible();
   await expect(page.locator(".project-card, .project-row").first()).toBeVisible();
   await page.waitForFunction(() =>
-    Array.from(document.images).every((image) => image.complete),
+    Array.from(document.images)
+      .filter((image) => {
+        const rect = image.getBoundingClientRect();
+        return rect.bottom > 0 && rect.top < window.innerHeight;
+      })
+      .every((image) => image.complete),
   );
 }
 

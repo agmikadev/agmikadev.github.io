@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { canonicalTechList } from "../Planetary/data/technologies";
 import { resolveMissionPerspective } from "../Planetary/data/perspectives";
 import { ExternalLinkIcon } from "../ui/ExternalLinkIcon";
@@ -12,6 +12,7 @@ interface ProjectCardProps {
   compact?: boolean;
   perspectivePlanetId?: string;
   onTechClick?: (technology: string) => void;
+  onOpenCase: (mission: ProjectData) => void;
 }
 
 const ProjectCardComponent: React.FC<ProjectCardProps> = ({
@@ -19,22 +20,18 @@ const ProjectCardComponent: React.FC<ProjectCardProps> = ({
   compact = false,
   perspectivePlanetId,
   onTechClick,
+  onOpenCase,
 }) => {
-  const [expanded, setExpanded] = useState(false);
   const navigation = useSaltoNavigation();
   const perspective = resolveMissionPerspective(mission, perspectivePlanetId);
   const role = perspective?.role ?? mission.role;
   const summary = perspective?.summary ?? mission.summary;
   const highlights = perspective?.highlights ?? mission.highlights;
-  const challenges = perspective?.challenges ?? mission.challenges;
-  const impact = perspective?.impact ?? mission.impact;
-  const aiWorkflow = perspective?.aiWorkflow ?? mission.aiWorkflow;
   const technologies = perspective?.technologies ?? mission.technologies;
   const visibleHighlights = highlights.slice(0, 3);
   const canonicalTechnologies = canonicalTechList(technologies);
   const visibleTechnologies = canonicalTechnologies.slice(0, 4);
   const hiddenTechnologies = canonicalTechnologies.length - visibleTechnologies.length;
-  const detailsId = `project-details-${mission.id}`;
   const handleTechClick =
     onTechClick ??
     (navigation
@@ -106,60 +103,6 @@ const ProjectCardComponent: React.FC<ProjectCardProps> = ({
           </ul>
         </div>
 
-        {expanded && (
-          <div className="project-card__details" id={detailsId}>
-            {highlights.length > visibleHighlights.length && (
-              <div className="project-card__section">
-                <span className="project-card__label project-card__label--accent">
-                  MAIS DESTAQUES
-                </span>
-                <ul className="project-card__highlights">
-                  {highlights.slice(visibleHighlights.length).map((highlight, index) => (
-                    <li key={index}>{highlight}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            <div className="project-card__detail-grid">
-              <div className="project-card__detail">
-                <span className="project-card__label project-card__label--accent">
-                  DESAFIO
-                </span>
-                <p className="project-card__detail-text">{challenges}</p>
-              </div>
-              <div className="project-card__detail">
-                <span className="project-card__label project-card__label--accent">
-                  IMPACTO
-                </span>
-                <p className="project-card__detail-text">{impact}</p>
-              </div>
-            </div>
-
-            {aiWorkflow && (
-              <div className="project-card__ai">
-                <span className="project-card__label project-card__ai-label">
-                  AI WORKFLOW
-                </span>
-                <p className="project-card__detail-text">{aiWorkflow}</p>
-              </div>
-            )}
-
-            {hiddenTechnologies > 0 && (
-              <div className="project-card__section">
-                <span className="project-card__label project-card__label--accent">
-                  MAIS TECNOLOGIAS
-                </span>
-                <div className="project-card__tags">
-                  {canonicalTechnologies
-                    .slice(visibleTechnologies.length)
-                    .map(renderTechnology)}
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-
         <div className="project-card__tags">
           {visibleTechnologies.map(renderTechnology)}
           {hiddenTechnologies > 0 && (
@@ -187,11 +130,11 @@ const ProjectCardComponent: React.FC<ProjectCardProps> = ({
           <button
             type="button"
             className="project-card__expand"
-            onClick={() => setExpanded((current) => !current)}
-            aria-expanded={expanded}
-            aria-controls={expanded ? detailsId : undefined}
+            onClick={() => onOpenCase(mission)}
+            data-case-trigger={mission.id}
+            aria-label={`Ver case completo de ${mission.title}`}
           >
-            {expanded ? "MENOS DETALHES" : "VER CASE COMPLETO"}
+            VER CASE COMPLETO
           </button>
         </div>
       </div>

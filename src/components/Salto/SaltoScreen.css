@@ -293,6 +293,17 @@
   /* Rows carry their own inline gutter so hover and dividers stay full-bleed. */
   padding: var(--space-4) 0 var(--space-6);
   min-height: 0;
+  /* Query container for the card grid (one/two columns by available width). */
+  container-type: inline-size;
+}
+
+/* A case takes the whole results area: the count/filters/toggle header retires. */
+.salto:has(.project-collection[data-view="case"]) .salto__results-header {
+  display: none;
+}
+
+.salto__list:has(.project-collection[data-view="case"]) {
+  will-change: scroll-position;
 }
 
 /* The list layout has no blurred card layers, so scrolling is raster-bound on

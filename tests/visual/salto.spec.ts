@@ -1,5 +1,11 @@
 import { expect, test } from "@playwright/test";
-import { bootstrap, dynamicMasks, openSalto, switchProjectView } from "./helpers";
+import {
+  bootstrap,
+  columnCount,
+  dynamicMasks,
+  openSalto,
+  switchProjectView,
+} from "./helpers";
 
 test.describe("project view switch", () => {
   test("defaults to cards and keeps the chosen layout across screens", async ({
@@ -28,6 +34,64 @@ test.describe("project view switch", () => {
     await expect(
       page.locator('.project-collection[data-view="cards"]'),
     ).toBeVisible();
+  });
+});
+
+test.describe("SALTO case view", () => {
+  test("takes the whole results area and restores focus on Escape", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await bootstrap(page);
+    await openSalto(page);
+
+    const trigger = page.locator(".project-card__expand").first();
+    await trigger.click();
+
+    const caseView = page.locator(".project-case");
+    await expect(caseView).toBeVisible();
+    await expect(page.locator(".salto__results-header")).toBeHidden();
+    await expect(page.locator(".project-case__back")).toBeFocused();
+    await expect(caseView).toContainText("O QUE FOI FEITO");
+    expect(await columnCount(page, ".project-case__grid")).toBe(2);
+
+    await page.keyboard.press("Escape");
+
+    await expect(caseView).toHaveCount(0);
+    await expect(page.locator(".salto")).toBeVisible();
+    await expect(page.locator(".salto__results-header")).toBeVisible();
+    await expect(page.locator(".project-card__expand").first()).toBeFocused();
+  });
+
+  test("caps the card grid at two columns on wide desktops", async ({ page }) => {
+    await page.setViewportSize({ width: 2560, height: 1200 });
+    await bootstrap(page);
+    await openSalto(page);
+
+    expect(await columnCount(page, ".project-collection--cards")).toBe(2);
+  });
+
+  test("uses one column in portrait and two in landscape", async ({ page }) => {
+    await page.setViewportSize({ width: 768, height: 900 });
+    await bootstrap(page);
+    await openSalto(page);
+
+    expect(await columnCount(page, ".project-collection--cards")).toBe(1);
+
+    await page.locator(".project-card__expand").first().click();
+    await expect(page.locator(".project-case")).toBeVisible();
+    expect(await columnCount(page, ".project-case__grid")).toBe(1);
+    await page.locator(".project-case__back").click();
+    await expect(page.locator(".project-case")).toHaveCount(0);
+
+    await page.setViewportSize({ width: 844, height: 390 });
+    await expect
+      .poll(() => columnCount(page, ".project-collection--cards"))
+      .toBe(2);
+
+    await page.locator(".project-card__expand").first().click();
+    await expect(page.locator(".project-case")).toBeVisible();
+    expect(await columnCount(page, ".project-case__grid")).toBe(2);
   });
 });
 

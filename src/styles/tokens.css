@@ -269,8 +269,6 @@
     --salto-row-gap: var(--space-4);
     --salto-row-gap-y: var(--space-3);
 
-    /* Project collection */
-    --project-grid-min: 20rem;
 
     /* Project card */
     --project-card-media-ratio: 16 / 9;
@@ -346,6 +344,7 @@
        console: 60rem / 960px
        salto-tech: 56.25rem / 900px
        project-row: 50rem / 800px
+       project-grid: 40rem / 640px
     */
   }
 

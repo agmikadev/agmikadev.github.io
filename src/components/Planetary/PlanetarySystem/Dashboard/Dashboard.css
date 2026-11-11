@@ -158,12 +158,20 @@
   overflow-y: auto;
   padding: var(--space-4) var(--screen-gutter) var(--space-6);
   font-family: var(--font-mono);
+  /* Query container for the card grid. */
+  container-type: inline-size;
 }
 
 /* Rows are raster-bound while scrolling; cards already composite via the
    card blur, so only the list layout needs the hint. */
-.planet-hud__tabs-body[data-view="list"] {
+.planet-hud__tabs-body[data-view="list"],
+.planet-hud__tabs-body:has(.project-collection[data-view="case"]) {
   will-change: scroll-position;
+}
+
+/* The view switch does not apply while a case fills the pane. */
+.planet-hud__tabs:has(.project-collection[data-view="case"]) .view-toggle {
+  display: none;
 }
 
 .planet-hud__tabs-body::-webkit-scrollbar {
