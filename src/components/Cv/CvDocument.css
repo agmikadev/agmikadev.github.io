@@ -1,0 +1,456 @@
+/* =========================================
+   CV / RESUME — light A4 document
+   Screen preview + print. Independent from the
+   console tokens so it reads well on paper.
+   ========================================= */
+.cv-doc {
+  --cv-ink: #171717;
+  --cv-muted: #5c5c5c;
+  --cv-accent: #7a5b00;
+  --cv-line: #e4dcc4;
+
+  color: var(--cv-ink);
+  font-family: var(--font-sans);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.cv-page {
+  display: flex;
+  flex-direction: column;
+  gap: 8mm;
+  width: 210mm;
+  min-height: 297mm;
+  padding: 14mm 15mm 12mm;
+  background: #fff;
+  box-sizing: border-box;
+  font-size: 9.3pt;
+  line-height: 1.42;
+}
+
+.cv-page a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* --- HEADER --- */
+.cv-header {
+  display: grid;
+  grid-template-columns: 30mm minmax(0, 1fr);
+  grid-template-areas:
+    "photo identity"
+    "summary summary";
+  gap: 5mm 6mm;
+  align-items: start;
+}
+
+.cv-photo {
+  grid-area: photo;
+  width: 30mm;
+  height: 36mm;
+  object-fit: cover;
+  object-position: top center;
+  border: 0.4mm solid var(--cv-line);
+  border-radius: 2mm;
+}
+
+.cv-identity {
+  grid-area: identity;
+  min-width: 0;
+}
+
+.cv-name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 25pt;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--cv-ink);
+}
+
+.cv-role {
+  margin: 2mm 0 0;
+  font-family: var(--font-display);
+  font-size: 12.5pt;
+  font-weight: 600;
+  color: var(--cv-muted);
+}
+
+.cv-rule {
+  display: block;
+  width: 18mm;
+  height: 0.6mm;
+  margin: 3mm 0;
+  background: var(--cv-accent);
+}
+
+.cv-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2mm 3mm;
+  font-family: var(--font-mono);
+  font-size: 7.6pt;
+  color: var(--cv-muted);
+}
+
+.cv-summary {
+  grid-area: summary;
+  max-width: 175mm;
+  margin: 0;
+  font-size: 9.7pt;
+  line-height: 1.45;
+  color: #2a2a2a;
+}
+
+/* --- SECTIONS --- */
+.cv-section {
+  display: flex;
+  flex-direction: column;
+  gap: 3mm;
+  min-width: 0;
+}
+
+.cv-section__title {
+  margin: 0;
+  padding-bottom: 1.6mm;
+  border-bottom: 0.25mm solid var(--cv-line);
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cv-accent);
+}
+
+/* --- EXPERIENCE TIMELINE --- */
+.cv-timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6mm;
+  padding-left: 5mm;
+  border-left: 0.35mm solid #d8ceac;
+}
+
+.cv-entry {
+  position: relative;
+  break-inside: avoid;
+}
+
+.cv-entry::before {
+  content: "";
+  position: absolute;
+  top: 1.4mm;
+  left: -6.3mm;
+  width: 2.2mm;
+  height: 2.2mm;
+  border: 0.55mm solid var(--cv-accent);
+  border-radius: 50%;
+  background: #fff;
+}
+
+.cv-entry__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4mm;
+}
+
+.cv-entry__role {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 10.8pt;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--cv-ink);
+}
+
+.cv-entry__period {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 7.6pt;
+  color: var(--cv-accent);
+  white-space: nowrap;
+}
+
+.cv-entry__org {
+  margin: 0.8mm 0 0;
+  font-size: 9pt;
+  color: var(--cv-muted);
+}
+
+.cv-entry__highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9mm;
+  margin: 1.6mm 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cv-entry__highlights li {
+  position: relative;
+  padding-left: 3.4mm;
+  font-size: 9pt;
+  line-height: 1.38;
+  color: #333;
+}
+
+.cv-entry__highlights li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--cv-accent);
+}
+
+/* --- PROJECTS --- */
+.cv-projects {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5mm 6mm;
+}
+
+.cv-project {
+  padding-top: 2.2mm;
+  border-top: 0.25mm solid var(--cv-line);
+  break-inside: avoid;
+}
+
+.cv-project__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2mm;
+}
+
+.cv-project__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 9.8pt;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--cv-ink);
+}
+
+.cv-project__year {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 7.2pt;
+  color: var(--cv-accent);
+}
+
+.cv-project__role {
+  margin: 0.6mm 0 0;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cv-muted);
+}
+
+.cv-project__highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7mm;
+  margin: 1.4mm 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cv-project__highlights li {
+  position: relative;
+  padding-left: 3mm;
+  font-size: 8.3pt;
+  line-height: 1.36;
+  color: #333;
+}
+
+.cv-project__highlights li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--cv-accent);
+}
+
+.cv-project__stack {
+  margin: 1.2mm 0 0;
+  font-family: var(--font-mono);
+  font-size: 7.2pt;
+  line-height: 1.4;
+  color: #666;
+}
+
+.cv-project__link {
+  display: inline-block;
+  margin-top: 1mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  color: var(--cv-accent);
+  text-decoration: none;
+}
+
+/* --- OTHER PROJECTS (compact) --- */
+.cv-others {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.8mm 6mm;
+}
+
+.cv-other {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 3mm;
+  padding-top: 1.4mm;
+  border-top: 0.2mm solid var(--cv-line);
+  break-inside: avoid;
+}
+
+.cv-other__title {
+  font-size: 8.4pt;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--cv-ink);
+}
+
+.cv-other__meta {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 6.9pt;
+  color: var(--cv-muted);
+  white-space: nowrap;
+}
+
+/* --- SKILLS --- */
+.cv-skills {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3mm 6mm;
+}
+
+.cv-skill-group__label {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 7.4pt;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cv-ink);
+}
+
+.cv-skill-group__items {
+  margin: 0.6mm 0 0;
+  font-size: 8.5pt;
+  line-height: 1.42;
+  color: #444;
+}
+
+/* --- EDUCATION / LANGUAGES --- */
+.cv-bottom {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 8mm;
+}
+
+.cv-education__entry + .cv-education__entry {
+  margin-top: 2mm;
+}
+
+.cv-education__degree {
+  margin: 0;
+  font-size: 8.8pt;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.cv-education__institution {
+  margin: 0.4mm 0 0;
+  font-size: 8pt;
+  color: var(--cv-muted);
+}
+
+.cv-languages {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4mm;
+}
+
+.cv-language {
+  display: flex;
+  justify-content: space-between;
+  gap: 3mm;
+  margin: 0;
+  font-size: 8.8pt;
+}
+
+.cv-language span:last-child {
+  font-family: var(--font-mono);
+  font-size: 7.8pt;
+  color: var(--cv-accent);
+}
+
+/* --- FOOTER --- */
+.cv-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 4mm;
+  margin-top: auto;
+  padding-top: 3mm;
+  border-top: 0.25mm solid var(--cv-line);
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  color: #777;
+}
+
+/* =========================================
+   PRINT
+   ========================================= */
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  body.cv-printing {
+    background: #fff !important;
+    overflow: visible !important;
+  }
+
+  body.cv-printing > #root {
+    display: none !important;
+  }
+
+  body.cv-printing .cv-doc {
+    background: #fff;
+  }
+
+  body.cv-printing .cv-page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0;
+    box-shadow: none;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  body.cv-printing .cv-page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  body.cv-printing .cv-doc a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  body.cv-printing .cv-entry,
+  body.cv-printing .cv-project,
+  body.cv-printing .cv-other,
+  body.cv-printing .cv-skill-group,
+  body.cv-printing .cv-education__entry {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

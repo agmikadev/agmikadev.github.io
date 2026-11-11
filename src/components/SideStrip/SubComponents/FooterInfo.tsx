@@ -1,6 +1,7 @@
 // Certifique-se de importar o CSS (SideStrip.css)
 import { useVisitCount } from "../../Planetary/data/hooks";
 import { ExternalLinkIcon } from "../../ui/ExternalLinkIcon";
+import { CvDownloadButton } from "../../Cv/CvDownloadButton";
 
 // Configuração dos Links Sociais
 const SOCIALS = [
@@ -78,17 +79,8 @@ export const FooterInfo = () => {
           })}
         </div>
 
-        {/* RESUME DOWNLOAD BUTTON */}
-        {/* TODO: Replace public/resume.pdf with actual resume PDF */}
-        <a
-          href="/resume.pdf"
-          download="Mikael-Angelo-Resume.pdf"
-          className="resume-download-btn"
-          aria-label="Download resume as PDF"
-        >
-          <span className="btn-icon">↓</span>
-          <span className="btn-text">BAIXAR CV</span>
-        </a>
+        {/* RESUME / CV PRINT */}
+        <CvDownloadButton />
       </div>
 
       {/* ASSINATURA DO SISTEMA */}

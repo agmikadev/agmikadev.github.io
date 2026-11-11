@@ -49,6 +49,7 @@ src/
 │   ├── ConsoleShell.tsx        # Shell: header, stage, sidebar, footer
 │   ├── ConsoleHeader/          # Apenas a linha CLI do console
 │   ├── Projects/               # Card, linha, case, coleção e seletor cards/lista
+│   ├── Cv/                     # CV imprimível: perfil, seleção, preview e CSS de impressão
 │   ├── Salto/                  # Tela SALTO e navegação de tecnologia
 │   ├── Planetary/
 │   │   ├── data/               # Projetos, perspectivas, tecnologias, belt
@@ -57,6 +58,7 @@ src/
 │   ├── SideStrip/              # Sidebar do console: perfil, stack, CV
 │   ├── Onboarding/             # Cartão de primeira visita
 │   └── styles/                 # ConsoleShell.css, Console.css
+├── curriculo/                  # Referência do CV em PDF (não entra no bundle)
 ├── lib/
 │   └── portfolio-api.ts        # Cliente do Worker com fallback estático
 ├── styles/
@@ -87,8 +89,8 @@ O console usa BEM: `console__*` para o shell, `orbit__*` para a tela
 planetária, `planet-hud__*` para o dashboard do planeta, `planet-core__*` para o
 índice de stack ancorado na coluna esquerda do HUD, `salto__*` para o
 índice, `project-collection__*` para a coleção, `project-card__*`/`project-row__*`/`project-case__*`
-para os layouts de projeto e `screen-action__*` para os controles dentro da
-tela. O estado fica em `data-screen="orbit|salto"`, `data-variant="planet|belt"`,
+para os layouts de projeto, `cv-*` para o documento imprimível e `screen-action__*` para os
+controles dentro da tela. O estado fica em `data-screen="orbit|salto"`, `data-variant="planet|belt"`,
 `data-perspective="..."`, `data-view="cards|list|case"` e `aria-pressed` nos filtros.
 
 As duas telas compartilham o mesmo seletor `view-toggle`, com **cards como
@@ -99,6 +101,17 @@ renderiza `ProjectCase` na área inteira de resultados (o header de contagem e o
 seletor saem de cena), com o conteúdo em duas colunas no desktop/landscape e uma
 no mobile em pé. A grade de cards também para em **duas colunas** no desktop;
 no mobile fica uma em pé e duas deitado.
+
+### CV imprimível
+
+`BAIXAR CV`, na sidebar, abre o `CvPreview` em tema claro (A4, com foto). O
+`cvProfile` guarda contato, resumo, experiências, formação, idiomas e skills;
+os projetos são buscados no clique com `loadMissions({ force: true })` (D1, com
+fallback estático) e selecionados por amplitude full stack + recência, com uma
+vaga reservada para nicho e uma lista compacta de "outros projetos". O preview
+é um portal fora do console; `window.print()` abre o diálogo do navegador para
+"Salvar como PDF" e o CSS de impressão esconde a aplicação. Não existe mais um
+`public/resume.pdf` estático.
 
 O SALTO não é um modal: ele é renderizado dentro de `.console__screen`, no
 mesmo frame do sistema planetário. O header do console contém **apenas a linha

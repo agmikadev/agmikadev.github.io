@@ -421,6 +421,16 @@ SOCIALS
   box-shadow: 0 0 12px hsl(var(--hud-glow) / 30%);
 }
 
+.resume-download-btn:disabled {
+  cursor: progress;
+  opacity: 0.55;
+}
+
+.resume-download-btn:focus-visible {
+  outline: var(--focus-ring-width) solid hsl(var(--ring));
+  outline-offset: var(--focus-ring-offset);
+}
+
 .resume-download-btn .btn-icon {
   font-size: var(--text-sm);
   line-height: 1;

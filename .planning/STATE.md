@@ -54,6 +54,7 @@ Recent decisions affecting current work:
 - BEM class hierarchy — `console__*`, `orbit__*`, `planet-hud__*`, `salto__*`, `project-collection__*`, `project-card__*`, `project-row__*`, `screen-action__*`; state via `data-*`/`aria-pressed`
 - One project renderer — `ProjectCollection` renders cards, rows or a full-area case on both SALTO and the planet HUD; the shared `view-toggle` defaults to cards and persists in `localStorage`
 - Case view — "VER CASE COMPLETO" fills the results pane; card grid and case cap at two columns on desktop, one in mobile portrait and two in landscape
+- CV printable — "BAIXAR CV" opens a light A4 preview from `cvProfile` + live D1 missions (3 broad + 1 niche + 6 compact), printed via the browser ("Salvar como PDF"); no static `resume.pdf`
 - Fluid layout tokens — sidebar, sun, Salto tech index/row columns, card media and onboarding use `clamp()`/container queries; breakpoints standardized
 - Tailwind theme bridge — tokens mapped through `@theme inline`; shadcn primitives are allowed only for inputs/actions
 - shadcn primitives — `Button`, `Input` and `ToggleGroup` live in `src/components/ui`; `Input`/`ToggleGroup` power SALTO with unchanged visuals

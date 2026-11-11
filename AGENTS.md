@@ -15,11 +15,13 @@
 
 Both screens use the same project renderer (`src/components/Projects`): `ProjectCollection` renders `ProjectCard`, `ProjectRow` or the full-area `ProjectCase`, and a shared `view-toggle` (CARDS | LISTA) lets the visitor switch. **Cards are the default on both screens**, the choice is shared and persisted in `localStorage` under `projectsView:v1`. Card and case layouts cap at **two columns** on desktop; mobile portrait stays at one column and mobile landscape may use two. "VER CASE COMPLETO" opens the case in the entire results pane instead of stretching one card.
 
+**CV printable:** `BAIXAR CV` opens a print-ready A4 CV (`src/components/Cv`) in a light theme with the photo. The profile (contact, summary, experience, education, languages, curated skills) lives in `cvProfile`; projects are selected at click time from `loadMissions({ force: true })` (D1, static fallback) by full-stack breadth + recency, with a reserved niche slot and a compact "outros projetos" list. The preview is a portal outside the console, uses `window.print()` (browser "Salvar como PDF") and print CSS hides the app; there is no static `public/resume.pdf`.
+
 Technology tags are canonical (see `src/components/Planetary/data/technologies.ts`); aliases like "React 19"/"React.js" fold into "React". Clicking a tech tag opens the Salto index filtered by that technology.
 
 **Per-planet perspectives:** multi-area projects carry a `perspectives` map keyed by planet id (see `src/components/Planetary/data/perspectives.ts`). The same project changes role, summary, highlights, challenge/impact and stack depending on the selected planet. In SALTO, an active area filter uses that area's perspective.
 
-**Class hierarchy (BEM):** `console__*` is the shell; `orbit__*` is the planetary screen; `planet-hud__*` is the planet dashboard; `planet-core__*` is the stack index anchored in the HUD's left column; `salto__*` is the index screen; `project-collection__*` is the shared project collection; `project-card__*`, `project-row__*` and `project-case__*` are its layouts; `screen-action__*` is the in-panel navigation control. State uses `data-screen="orbit|salto"`, `data-variant="planet|belt"`, `data-perspective="..."`, `data-view="cards|list|case"` and `aria-pressed` on filters instead of modifier classes. Keep the console chrome visible in both screens; the header is only the CLI line.
+**Class hierarchy (BEM):** `console__*` is the shell; `orbit__*` is the planetary screen; `planet-hud__*` is the planet dashboard; `planet-core__*` is the stack index anchored in the HUD's left column; `salto__*` is the index screen; `project-collection__*` is the shared project collection; `project-card__*`, `project-row__*` and `project-case__*` are its layouts; `cv-*` is the printable CV outside the console; `screen-action__*` is the in-panel navigation control. State uses `data-screen="orbit|salto"`, `data-variant="planet|belt"`, `data-perspective="..."`, `data-view="cards|list|case"` and `aria-pressed` on filters instead of modifier classes. Keep the console chrome visible in both screens; the header is only the CLI line.
 
 **Core Value:** Visually demonstrate full-stack development proficiency — including cutting-edge agentic/AI skills — in a way that impresses both technical peers and hiring managers.
 
@@ -70,14 +72,16 @@ src/
 │   ├── ConsoleShell.tsx       # Console shell: header, stage, sidebar, footer
 │   ├── ConsoleHeader/         # CLI command line only
 │   ├── Projects/              # ProjectCard, ProjectRow, ProjectCase, collection, view toggle
+│   ├── Cv/                    # Printable CV: profile, project selection, preview, print CSS
 │   ├── Salto/                 # SALTO screen + technology navigation
 │   ├── Planetary/             # ÓRBITA screen
 │   │   ├── data/              # Archive, D1 hooks, technologies, perspectives
 │   │   ├── PlanetarySystem/   # Orbital animation + planet rendering
 │   │   └── UI/                # Tabs, Card primitives, symbols
-│   ├── SideStrip/             # Console sidebar: profile, stack, CV, visits
+│   ├── SideStrip/             # Console sidebar: profile, stack, CV trigger, visits
 │   ├── Onboarding/            # First-visit card
 │   └── styles/                # tokens.css, globals.css, ConsoleShell.css, Console.css
+├── curriculo/                 # Reference: latest CV PDF (not bundled)
 ├── lib/portfolio-api.ts       # D1 client with timeout + static fallback
 ├── App.tsx                    # Root wrapper
 ├── App.css                    # Global CSS tokens

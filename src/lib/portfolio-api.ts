@@ -62,14 +62,24 @@ function asMissionList(value: unknown): MissionType[] | null {
   return Array.isArray(value) ? (value as MissionType[]) : null;
 }
 
+interface LoadMissionsOptions {
+  /** Bypass the per-session promise cache (used by the CV generator). */
+  force?: boolean;
+}
+
 /**
  * Loads the project cards from D1. The caller keeps the static archive as
  * fallback, so the portfolio still works if the Worker is offline.
  */
-export async function loadMissions(): Promise<MissionType[] | null> {
+export async function loadMissions(
+  options: LoadMissionsOptions = {},
+): Promise<MissionType[] | null> {
+  if (options.force) missionsPromise = null;
+
   if (!missionsPromise) {
+    const cacheBust = options.force ? `&t=${Date.now()}` : "";
     missionsPromise = request<MissionsResponse>(
-      `/v1/missions?v=${DATA_VERSION}`,
+      `/v1/missions?v=${DATA_VERSION}${cacheBust}`,
     ).then((data) => asMissionList(data?.missions));
   }
   return missionsPromise;
