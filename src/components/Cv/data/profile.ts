@@ -141,7 +141,7 @@ export const cvProfile: CvProfile = {
   ],
   languages: [
     { name: "Português", level: "Nativo" },
-    { name: "Inglês", level: "Avançado" },
+    { name: "Inglês", level: "Avançado (C1)" },
   ],
   skills: [
     {
