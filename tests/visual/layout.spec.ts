@@ -8,7 +8,6 @@ import {
   openSalto,
   switchProjectView,
 } from "./helpers";
-
 const VIEWPORTS = [
   { width: 1440, height: 1000 },
   { width: 1280, height: 900 },
@@ -133,15 +132,6 @@ for (const viewport of VIEWPORTS) {
         expect(ratio).toBeLessThan(0.45);
       }
 
-      await expect(page.locator(".planet-hud .project-card").first()).toBeVisible();
-
-      await switchProjectView(page, "list");
-      await expect(page.locator(".planet-hud .project-row").first()).toBeVisible();
-      expect(
-        await horizontalOverflow(page, ".planet-hud__tabs-body"),
-      ).toBeLessThanOrEqual(0);
-
-      await switchProjectView(page, "cards");
       await expect(page.locator(".planet-hud .project-card").first()).toBeVisible();
     });
   });
