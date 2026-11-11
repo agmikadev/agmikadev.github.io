@@ -11,7 +11,7 @@ import { StarBurst } from "../Planetary/UI/Symbols";
 import { ScreenAction } from "../ui/ScreenAction";
 import { Input } from "../ui/input";
 import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
-import { ProjectCollection, ProjectViewToggle } from "../Projects";
+import { ProjectCollection, ProjectViewToggle, useProjectView } from "../Projects";
 import "./SaltoScreen.css";
 
 interface SaltoScreenProps {
@@ -36,6 +36,7 @@ export const SaltoScreen: React.FC<SaltoScreenProps> = ({
   onBack,
 }) => {
   const { missions, isLoading } = useAllMissions();
+  const { view } = useProjectView();
   const [activeArea, setActiveArea] = useState<string>("all");
   const [activeTech, setActiveTech] = useState<string>(initialTech);
   const [query, setQuery] = useState("");
@@ -268,7 +269,7 @@ export const SaltoScreen: React.FC<SaltoScreenProps> = ({
               </div>
             </div>
 
-            <div className="salto__list">
+            <div className="salto__list" data-view={view}>
               <ProjectCollection
                 missions={filteredMissions}
                 onTechClick={setActiveTech}

@@ -160,6 +160,12 @@
   font-family: var(--font-mono);
 }
 
+/* Rows are raster-bound while scrolling; cards already composite via the
+   card blur, so only the list layout needs the hint. */
+.planet-hud__tabs-body[data-view="list"] {
+  will-change: scroll-position;
+}
+
 .planet-hud__tabs-body::-webkit-scrollbar {
   width: var(--scrollbar-width);
   background-color: rgba(0, 0, 0, 0.5);

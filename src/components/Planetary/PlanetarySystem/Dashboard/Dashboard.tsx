@@ -6,7 +6,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import type { PlanetModel } from "../../data";
 import { beltDataModel } from "../../data/BeltData";
 import { ScreenAction } from "../../../ui/ScreenAction";
-import { ProjectViewToggle } from "../../../Projects";
+import { ProjectViewToggle, useProjectView } from "../../../Projects";
 import { Planet3D } from "./Planet3D";
 import { PlanetCore } from "./PlanetCore";
 
@@ -31,6 +31,7 @@ const BACK_ICON = (
 
 export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched, onBack }) => {
   const [activeTab, setActiveTab] = useState("missions");
+  const { view } = useProjectView();
   const isBelt = mode === "belt";
   const themeColor = isBelt ? beltDataModel.color : planet?.color;
   const planetArea = isBelt ? beltDataModel.area : planet?.area;
@@ -124,7 +125,10 @@ export const Dashboard: React.FC<DashboardProps> = ({ planet, mode, isFetched, o
                     {activeTab === "missions" && <ProjectViewToggle />}
                   </div>
                 </div>
-                <div className="planet-hud__tabs-body">
+                <div
+                  className="planet-hud__tabs-body"
+                  data-view={activeTab === "missions" ? view : undefined}
+                >
         <div className="planet-hud__mobile-header">
           <div className="planet-hud__kicker">SETOR // {planetCodename}</div>
           <h1 className="planet-hud__title" style={{ "--planet-title-color": themeColor } as React.CSSProperties}>

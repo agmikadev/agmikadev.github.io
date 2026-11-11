@@ -149,6 +149,9 @@
   padding: var(--space-4) var(--space-4) var(--space-6);
   border-right: var(--border-width) solid hsl(var(--primary) / 10%);
   background: rgba(0, 0, 0, 0.18);
+  /* Both SALTO panes are raster-bound while scrolling on integrated GPUs
+     (the tech index measured ~11 fps without this hint). */
+  will-change: scroll-position;
 }
 
 .salto__tech-index::-webkit-scrollbar {
@@ -290,6 +293,12 @@
   /* Rows carry their own inline gutter so hover and dividers stay full-bleed. */
   padding: var(--space-4) 0 var(--space-6);
   min-height: 0;
+}
+
+/* The list layout has no blurred card layers, so scrolling is raster-bound on
+   integrated GPUs. The hint is scoped to list mode; cards already composite. */
+.salto__list[data-view="list"] {
+  will-change: scroll-position;
 }
 
 .salto__list::-webkit-scrollbar {
